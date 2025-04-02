@@ -1,0 +1,31 @@
+.auth-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px; /* Reduced gap from 20px to 10px */
+  margin-top: 20px;
+}
+
+.login-button,
+.signup-button {
+  background: linear-gradient(135deg, #333, #555);
+  color: #ffffff;
+  border: 1px solid #777;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin: 10px;
+}
+
+.login-button:hover,
+.signup-button:hover {
+  background: linear-gradient(135deg, #444, #666);
+  transform: translateY(-2px);
+}
+
+.login-button:active,
+.signup-button:active {
+  transform: scale(0.95);
+}
