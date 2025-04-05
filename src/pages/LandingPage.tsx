@@ -1,69 +1,19 @@
-import AuthButton from "../components/AuthButton";
-import "../styles/LandingPage.css";
+import "../styles/pages/LandingPage.css";
 import { motion } from "framer-motion";
+import RegisterForm from "../components/RegisterForm.tsx";
+import {useState} from "react";
+import Particles from "../components/Particles.tsx";
 
 export default function LandingPage() {
-  const particles = [...Array(40)].map(() => ({
-    x: Math.random() * 100, // Random X position (0 to 100%)
-    y: Math.random() * 100, // Random Y position (0 to 100%)
-    size: Math.random() * 8 + 3, // Random size (3px to 11px)
-    duration: Math.random() * 5 + 3, // Random animation duration
-    delay: Math.random() * 5, // Random delay
-  }));
+  const [showRegisterForm, setShowRegisterForm] = useState(false);
 
-  const binaryNumbers = [...Array(25)].map(() => ({
-    x: Math.random() * 100, // Random X position (0% - 100%)
-    delay: Math.random() * 5, // Random animation delay
-    duration: Math.random() * 6 + 4, // Random animation speed
-    value: Math.random() > 0.5 ? "1" : "0", // Random 1s or 0s
-  }));
+  const handleSignUpClick = () => {
+    setShowRegisterForm((showRegisterForm) => !showRegisterForm);
+  };
 
   return (
     <div className="landing-page">
-      <div className="binary-container">
-        {binaryNumbers.map((binary, i) => (
-          <motion.span
-            key={i}
-            className="binary"
-            style={{ left: `${binary.x}%` }}
-            initial={{ y: "-10vh", opacity: 0 }}
-            animate={{ y: "110vh", opacity: [0, 1, 0.5, 0] }} // Falling effect
-            transition={{
-              duration: binary.duration,
-              repeat: Infinity,
-              ease: "linear",
-              delay: binary.delay,
-            }}
-          >
-            {binary.value}
-          </motion.span>
-        ))}
-      </div>
-      <div className="particles-container">
-        {particles.map((particle, i) => (
-          <motion.div
-            key={i}
-            className="particle"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-            }}
-            initial={{ opacity: 0 }}
-            animate={{
-              opacity: [0, 1, 0], // Fade in and out
-              y: ["0px", "-50px", "0px"], // Float up and down
-            }}
-            transition={{
-              duration: particle.duration,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: particle.delay,
-            }}
-          />
-        ))}
-      </div>
+      <Particles/>
       <div className="landing-page-content">
         <motion.div
           animate={{ scale: 1.2 }}
@@ -88,9 +38,35 @@ export default function LandingPage() {
           transition={{ duration: 0.5 }}
         >
           <div className="auth-button-container">
-            <AuthButton />
+            <div className="auth-button">
+              <button className="login-button">Login</button>
+              <button className="signup-button" onClick={handleSignUpClick}>
+                Sign Up
+              </button>
+            </div>
           </div>
         </motion.div>
+
+        {showRegisterForm && (
+            <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{
+                  duration: 0.5,
+                  ease: "easeOut",
+                }}
+                className="register-form-container"
+            >
+              <button
+                  className="close-button"
+                  onClick={() => setShowRegisterForm(false)} // Close the form when clicked
+              >
+                ×
+              </button>
+              <RegisterForm />
+            </motion.div>
+        )}
       </div>
     </div>
   );
