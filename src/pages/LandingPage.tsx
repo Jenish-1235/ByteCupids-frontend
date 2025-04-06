@@ -6,15 +6,14 @@ import Particles from "../components/Particles.tsx";
 import LoginForm from "../components/LoginForm.tsx";
 
 export default function LandingPage() {
-  const [showRegisterForm, setShowRegisterForm] = useState(false);
-  const [showLoginForm, setShowLoginForm] = useState(false);
+  const [authForm, setAuthForm] = useState<"login" | "register" | null>(null);
 
   const handleSignUpClick = () => {
-    setShowRegisterForm((showRegisterForm) => !showRegisterForm);
+    setAuthForm("register");
   };
 
   const handleLoginClick = () => {
-    setShowLoginForm((showLoginForm) => !showLoginForm);
+    setAuthForm("login");
   };
 
   return (
@@ -55,7 +54,7 @@ export default function LandingPage() {
           </div>
         </motion.div>
 
-        {showRegisterForm && (
+        {authForm === "register" && (
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -66,17 +65,14 @@ export default function LandingPage() {
             }}
             className="register-form-container"
           >
-            <button
-              className="close-button"
-              onClick={() => setShowRegisterForm(false)} // Close the form when clicked
-            >
+            <button className="close-button" onClick={() => setAuthForm(null)}>
               ×
             </button>
-            <RegisterForm />
+            <RegisterForm onLoginClick={() => setAuthForm("login")} />
           </motion.div>
         )}
 
-        {showLoginForm && (
+        {authForm === "login" && (
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -89,11 +85,11 @@ export default function LandingPage() {
           >
             <button
               className="close-button"
-              onClick={() => setShowLoginForm(false)} // Close the form when clicked
+              onClick={() => setAuthForm(null)} // Close the form when clicked
             >
               ×
             </button>
-            <LoginForm />
+            <LoginForm onRegisterClick={() => setAuthForm("register")} />
           </motion.div>
         )}
       </div>

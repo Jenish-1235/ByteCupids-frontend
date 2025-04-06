@@ -1,7 +1,11 @@
 import { FormEvent, useState } from "react";
 import "../styles/components/LoginForm.css"; // Assuming you have a CSS file for styling
 
-export default function LoginForm() {
+export default function LoginForm({
+  onRegisterClick,
+}: {
+  onRegisterClick: () => void;
+}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -58,7 +62,7 @@ export default function LoginForm() {
           <button
             type="button"
             className="login-form-register-button"
-            onClick={() => console.log("Register")}
+            onClick={onRegisterClick}
           >
             Register
           </button>
