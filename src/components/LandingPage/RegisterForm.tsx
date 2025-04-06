@@ -1,8 +1,8 @@
 import { FormEvent, useState } from "react";
-import "../styles/components/RegisterForm.css";
-import { registerUser } from "../services/RegisterService";
-import { RegisterResponse } from "../types/RegisterResponse";
-import { RegisterPayload } from "../types/RegisterPayload";
+import "../../styles/components/RegisterForm.css";
+import { registerUser } from "../../services/RegisterService.tsx";
+import { RegisterResponse } from "../../types/RegisterResponse.tsx";
+import { RegisterPayload } from "../../types/RegisterPayload.tsx";
 
 export default function RegisterForm({
   onLoginClick,
@@ -53,7 +53,6 @@ export default function RegisterForm({
         alert("Registration successful! Please log in.");
         onLoginClick();
       }
-      
     } catch (error) {
       setError("An error occurred. Please try again.");
       console.error("Registration error:", error);

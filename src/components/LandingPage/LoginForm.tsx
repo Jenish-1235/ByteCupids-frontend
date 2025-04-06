@@ -1,9 +1,9 @@
 import { FormEvent, useState } from "react";
-import "../styles/components/LoginForm.css";
-import { loginUser } from "../services/LoginService";
-import { LoginResponse } from "../types/LoginResponse";
-import { LoginPayload } from "../types/LoginPayload";
-import { useAuth } from "../context/AuthContext";
+import "../../styles/components/LoginForm.css";
+import { loginUser } from "../../services/LoginService.tsx";
+import { LoginResponse } from "../../types/LoginResponse.tsx";
+import { LoginPayload } from "../../types/LoginPayload.tsx";
+import { useAuth } from "../../context/AuthContext.tsx";
 
 export default function LoginForm({
   onRegisterClick,
@@ -53,7 +53,6 @@ export default function LoginForm({
           response.refreshToken
         );
       }
-
     } catch (error) {
       console.error("Login failed:", error);
       setError("Invalid email or password");

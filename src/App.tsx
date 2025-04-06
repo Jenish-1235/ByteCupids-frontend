@@ -1,17 +1,18 @@
-import Particles from "./components/Particles";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import LandingPage from "./pages/LandingPage";
 import "./styles/pages/App.css";
+import LaunchLab from "./pages/LaunchLab";
 
 function App() {
   return (
     <AuthProvider>
-      <div className="app-container">
-        <div className="app-background">
-          <Particles />
-        </div>
-      </div>
-      <LandingPage />
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/launchlab" element={<LaunchLab />} />
+        </Routes>
+      </Router>
     </AuthProvider>
   );
 }

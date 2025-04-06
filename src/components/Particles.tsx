@@ -34,7 +34,7 @@ export default function Particles() {
                         repeat: Infinity,
                         ease: "easeInOut",
                         delay: particle.delay,
-                    }}
+                    }} // Ensure particles are behind other content
                 />
             ))}
         </div>
