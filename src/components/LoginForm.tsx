@@ -1,15 +1,22 @@
 import { FormEvent, useState } from "react";
-import "../styles/components/LoginForm.css"; // Assuming you have a CSS file for styling
+import "../styles/components/LoginForm.css";
+import { loginUser } from "../services/LoginService";
+import { LoginResponse } from "../types/LoginResponse";
+import { LoginPayload } from "../types/LoginPayload";
+import { useAuth } from "../context/AuthContext";
 
 export default function LoginForm({
   onRegisterClick,
+  onSuccess,
 }: {
   onRegisterClick: () => void;
+  onSuccess: () => void;
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -20,8 +27,40 @@ export default function LoginForm({
     }
 
     setLoading(true);
-    const user = { email, password };
-    console.log(user);
+    const payload: LoginPayload = {
+      email,
+      password,
+    };
+    console.log("Login payload:", payload);
+    try {
+      const response: LoginResponse = await loginUser(payload);
+
+      if (response.code !== 200) {
+        console.log("Error response:", response.error);
+        setError(response.message);
+        return;
+      }
+
+      console.log("Login response:", response);
+      if (response.code === 200) {
+        login(
+          {
+            username: response.user.username,
+            email: response.user.email,
+            uuid: response.user.uuid,
+          },
+          response.accessToken,
+          response.refreshToken
+        );
+      }
+
+    } catch (error) {
+      console.error("Login failed:", error);
+      setError("Invalid email or password");
+    } finally {
+      setLoading(false);
+      onSuccess();
+    }
   };
 
   return (

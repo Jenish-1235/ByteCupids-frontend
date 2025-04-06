@@ -2,8 +2,8 @@ import "../styles/pages/LandingPage.css";
 import { motion } from "framer-motion";
 import RegisterForm from "../components/RegisterForm.tsx";
 import { useState } from "react";
-import Particles from "../components/Particles.tsx";
 import LoginForm from "../components/LoginForm.tsx";
+import { useAuth } from "../context/AuthContext.tsx";
 
 export default function LandingPage() {
   const [authForm, setAuthForm] = useState<"login" | "register" | null>(null);
@@ -16,9 +16,19 @@ export default function LandingPage() {
     setAuthForm("login");
   };
 
+  const { isLoggedIn, user } = useAuth();
+
+  if (isLoggedIn && user) {
+    console.log("User is already logged in:", user);
+    return (
+      <>
+        <h1>You are logged in</h1>
+      </>
+    );
+  }
+
   return (
     <div className="landing-page">
-      <Particles />
       <div className="landing-page-content">
         <motion.div
           animate={{ scale: 1.2 }}
@@ -89,7 +99,10 @@ export default function LandingPage() {
             >
               ×
             </button>
-            <LoginForm onRegisterClick={() => setAuthForm("register")} />
+            <LoginForm
+              onRegisterClick={() => setAuthForm("register")}
+              onSuccess={() => setAuthForm(null)}
+            />
           </motion.div>
         )}
       </div>
