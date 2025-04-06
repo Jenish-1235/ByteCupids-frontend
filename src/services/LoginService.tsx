@@ -7,7 +7,7 @@ export const loginUser = async (
 ): Promise<LoginResponse> => {
   try {
     const response = await axios.post<LoginResponse>(
-      "http://localhost:8000/bytecupids/auth/login",
+      "http://localhost:8080/bytecupids/auth/login",
       payload,
       {
         headers: {

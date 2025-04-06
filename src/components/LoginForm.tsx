@@ -1,10 +1,15 @@
 import { FormEvent, useState } from "react";
-import "../styles/components/LoginForm.css"; // Assuming you have a CSS file for styling
+import "../styles/components/LoginForm.css";
+import { loginUser } from "../services/LoginService";
+import { LoginResponse } from "../types/LoginResponse";
+import { LoginPayload } from "../types/LoginPayload";
 
 export default function LoginForm({
   onRegisterClick,
+  onSuccess,
 }: {
   onRegisterClick: () => void;
+  onSuccess: () => void;
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,8 +25,22 @@ export default function LoginForm({
     }
 
     setLoading(true);
-    const user = { email, password };
-    console.log(user);
+    const payload: LoginPayload = {
+      email,
+      password,
+    };
+    console.log("Login payload:", payload);
+    try {
+      const response = await loginUser(payload);
+      const data: LoginResponse = response;
+      console.log("Login successful:", data);
+    } catch (error) {
+      console.error("Login failed:", error);
+      setError("Invalid email or password");
+    } finally {
+      setLoading(false);
+      onSuccess(); 
+    }
   };
 
   return (

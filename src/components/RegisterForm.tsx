@@ -1,5 +1,8 @@
 import { FormEvent, useState } from "react";
 import "../styles/components/RegisterForm.css";
+import { registerUser } from "../services/RegisterService";
+import { RegisterResponse } from "../types/RegisterResponse";
+import { RegisterPayload } from "../types/RegisterPayload";
 
 export default function RegisterForm({
   onLoginClick,
@@ -28,8 +31,28 @@ export default function RegisterForm({
     }
 
     setLoading(true);
-    const newUser = { username, email, password };
-    console.log("New User", newUser);
+    const payload: RegisterPayload = {
+      username,
+      email,
+      password,
+    };
+    console.log("Register payload:", payload);
+    try {
+      const response: RegisterResponse = await registerUser(payload);
+      console.log("Register response:", response);
+      if (response.message.toLowerCase() === "success") {
+        alert("Registration successful! Please log in.");
+        console.log("Registration successful:", response);
+        onLoginClick();
+      } else {
+        setError(response.message || "Registration failed. Please try again.");
+      }
+    } catch (error) {
+      setError("An error occurred. Please try again.");
+      console.error("Registration error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

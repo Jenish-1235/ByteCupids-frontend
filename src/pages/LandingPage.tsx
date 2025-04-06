@@ -89,7 +89,10 @@ export default function LandingPage() {
             >
               ×
             </button>
-            <LoginForm onRegisterClick={() => setAuthForm("register")} />
+            <LoginForm
+              onRegisterClick={() => setAuthForm("register")}
+              onSuccess={() => setAuthForm(null)} 
+            />
           </motion.div>
         )}
       </div>
