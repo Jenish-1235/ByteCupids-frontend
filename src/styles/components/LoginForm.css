@@ -1,0 +1,140 @@
+/* Overall form container styling */
+.login-form-container {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  background-color: #000000;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgb(255, 255, 255);
+  width: 90%;
+  max-width: 400px;
+  z-index: 10;
+  animation: fadeIn 0.5s ease-out; /* Fade-in effect */
+}
+
+/* Title of the form */
+.login-form-title {
+  font-size: 2rem;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Tagline */
+.login-form-tag-line {
+  font-size: 1.2rem;
+  color: #838383;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Input field styling */
+.input-field {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+.input-field:focus {
+  border-color: #ff0080;
+  box-shadow: 0 0 5px rgba(255, 0, 128, 0.6);
+}
+
+/* Error message styling */
+.login-form-error-message {
+  color: #e74c3c;
+  background-color: #f8d7da;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Button styling */
+.login-form-login-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  background-color: #ff0080;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 15px 0;
+}
+
+.login-form-login-button:hover {
+  background-color: #e60073;
+}
+
+.login-form-login-button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.login-form-register-button,
+.login-form-forget-password-button {
+  width: 48%;
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #f1f1f1;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 10px 1% 0;
+}
+
+.login-form-register-button:hover,
+.login-form-forget-password-button:hover {
+  background-color: #ff0080;
+  color: #fff;
+}
+
+.login-form-register-button:active,
+.login-form-forget-password-button:active {
+  transform: scale(0.98);
+}
+
+/* Close Button inside the login Form */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-button:hover {
+  color: #ff0080;
+}
+.close-button:focus {
+  outline: none;
+}
+/* Form fade-in effect */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

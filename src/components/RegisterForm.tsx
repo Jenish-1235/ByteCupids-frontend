@@ -83,7 +83,6 @@ export default function RegisterForm() {
 
           <div>
             <button type="button" className="register-form-login-button">Login</button>
-            <button type="button" className="register-form-forget-password-button">Forgot Password</button>
           </div>
         </form>
       </div>

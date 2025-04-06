@@ -1,19 +1,25 @@
 import "../styles/pages/LandingPage.css";
 import { motion } from "framer-motion";
 import RegisterForm from "../components/RegisterForm.tsx";
-import {useState} from "react";
+import { useState } from "react";
 import Particles from "../components/Particles.tsx";
+import LoginForm from "../components/LoginForm.tsx";
 
 export default function LandingPage() {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
+  const [showLoginForm, setShowLoginForm] = useState(false);
 
   const handleSignUpClick = () => {
     setShowRegisterForm((showRegisterForm) => !showRegisterForm);
   };
 
+  const handleLoginClick = () => {
+    setShowLoginForm((showLoginForm) => !showLoginForm);
+  };
+
   return (
     <div className="landing-page">
-      <Particles/>
+      <Particles />
       <div className="landing-page-content">
         <motion.div
           animate={{ scale: 1.2 }}
@@ -39,7 +45,9 @@ export default function LandingPage() {
         >
           <div className="auth-button-container">
             <div className="auth-button">
-              <button className="login-button">Login</button>
+              <button className="login-button" onClick={handleLoginClick}>
+                Login
+              </button>
               <button className="signup-button" onClick={handleSignUpClick}>
                 Sign Up
               </button>
@@ -48,24 +56,45 @@ export default function LandingPage() {
         </motion.div>
 
         {showRegisterForm && (
-            <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{
-                  duration: 0.5,
-                  ease: "easeOut",
-                }}
-                className="register-form-container"
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{
+              duration: 0.5,
+              ease: "easeOut",
+            }}
+            className="register-form-container"
+          >
+            <button
+              className="close-button"
+              onClick={() => setShowRegisterForm(false)} // Close the form when clicked
             >
-              <button
-                  className="close-button"
-                  onClick={() => setShowRegisterForm(false)} // Close the form when clicked
-              >
-                ×
-              </button>
-              <RegisterForm />
-            </motion.div>
+              ×
+            </button>
+            <RegisterForm />
+          </motion.div>
+        )}
+
+        {showLoginForm && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{
+              duration: 0.5,
+              ease: "easeOut",
+            }}
+            className="login-form-container"
+          >
+            <button
+              className="close-button"
+              onClick={() => setShowLoginForm(false)} // Close the form when clicked
+            >
+              ×
+            </button>
+            <LoginForm />
+          </motion.div>
         )}
       </div>
     </div>
