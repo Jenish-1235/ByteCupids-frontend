@@ -37,16 +37,23 @@ export default function RegisterForm({
       password,
     };
     console.log("Register payload:", payload);
+
     try {
       const response: RegisterResponse = await registerUser(payload);
       console.log("Register response:", response);
-      if (response.message.toLowerCase() === "success") {
-        alert("Registration successful! Please log in.");
-        console.log("Registration successful:", response);
-        onLoginClick();
-      } else {
+
+      if (response.code !== 200) {
         setError(response.message || "Registration failed. Please try again.");
+        console.error("Registration error:", response.error);
+        return;
       }
+
+      if (response.code === 200) {
+        console.log("Registration successful:", response);
+        alert("Registration successful! Please log in.");
+        onLoginClick();
+      }
+      
     } catch (error) {
       setError("An error occurred. Please try again.");
       console.error("Registration error:", error);

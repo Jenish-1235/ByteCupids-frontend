@@ -31,15 +31,29 @@ export default function LoginForm({
     };
     console.log("Login payload:", payload);
     try {
-      const response = await loginUser(payload);
-      const data: LoginResponse = response;
-      console.log("Login successful:", data);
+      const response: LoginResponse = await loginUser(payload);
+
+      if(response.code !== 200) {
+        console.log("Error response:", response.error);
+        setError(response.message);
+        return;
+      }
+      
+      
+      console.log("Login response:", response);
+      if (response.code === 200) {
+        localStorage.setItem("token", response.accessToken);
+        localStorage.setItem("user", JSON.stringify(response.user));
+        localStorage.setItem("refreshToken", response.refreshToken);
+      }
+
+
     } catch (error) {
       console.error("Login failed:", error);
       setError("Invalid email or password");
     } finally {
       setLoading(false);
-      onSuccess(); 
+      onSuccess();
     }
   };
 
