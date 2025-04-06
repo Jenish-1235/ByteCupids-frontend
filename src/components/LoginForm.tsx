@@ -3,6 +3,7 @@ import "../styles/components/LoginForm.css";
 import { loginUser } from "../services/LoginService";
 import { LoginResponse } from "../types/LoginResponse";
 import { LoginPayload } from "../types/LoginPayload";
+import { useAuth } from "../context/AuthContext";
 
 export default function LoginForm({
   onRegisterClick,
@@ -15,6 +16,7 @@ export default function LoginForm({
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -33,20 +35,24 @@ export default function LoginForm({
     try {
       const response: LoginResponse = await loginUser(payload);
 
-      if(response.code !== 200) {
+      if (response.code !== 200) {
         console.log("Error response:", response.error);
         setError(response.message);
         return;
       }
-      
-      
+
       console.log("Login response:", response);
       if (response.code === 200) {
-        localStorage.setItem("token", response.accessToken);
-        localStorage.setItem("user", JSON.stringify(response.user));
-        localStorage.setItem("refreshToken", response.refreshToken);
+        login(
+          {
+            username: response.user.username,
+            email: response.user.email,
+            uuid: response.user.uuid,
+          },
+          response.accessToken,
+          response.refreshToken
+        );
       }
-
 
     } catch (error) {
       console.error("Login failed:", error);
