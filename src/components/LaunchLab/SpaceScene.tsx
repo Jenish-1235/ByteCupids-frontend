@@ -3,7 +3,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import * as THREE from "three";
 import { useRef, useMemo } from "react";
-import { FloatingIconsContainer } from "./FloatingIconsContainer";
+import FloatingFacts from "./FloatingFacts";
 
 function AutoCameraRig() {
   const { camera } = useThree();
@@ -79,117 +79,30 @@ function ShootingStar() {
 
 export default function SpaceScene() {
   return (
-    <Canvas
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        backgroundColor: "#000",
-      }}
-      camera={{ position: [0, 0, 7], fov: 75 }}
-    >
-      {/* 🌌 Lighting & camera */}
-      <ambientLight intensity={1} />
-      <directionalLight position={[10, 10, 5]} intensity={1.5} />
-      <AutoCameraRig />
+    <>
+      <Canvas
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundColor: "#000",
+        }}
+        camera={{ position: [0, 0, 7], fov: 75 }}
+      >
+        {/* 🌌 Lighting & camera */}
+        <ambientLight intensity={1} />
+        <directionalLight position={[10, 10, 5]} intensity={1.5} />
+        <AutoCameraRig />
 
-      {/* ⭐ Stars and shooting stars */}
-      <Stars radius={200} depth={100} count={7000} factor={10} fade />
-      {Array.from({ length: 15 }).map((_, i) => (
-        <ShootingStar key={i} />
-      ))}
-
-      <FloatingIconsContainer />
-    </Canvas>
+        {/* ⭐ Stars and shooting stars */}
+        <Stars radius={200} depth={100} count={7000} factor={10} fade />
+        {Array.from({ length: 15 }).map((_, i) => (
+          <ShootingStar key={i} />
+        ))}
+      </Canvas>
+      <FloatingFacts />
+    </>
   );
 }
-
-// ✅ Finalized model scales
-// const floatingModels = [
-//   {
-//     modelPath: "../../store/models/react-logo/scene.gltf",
-//     scale: 1.5,
-//     info: "React",
-//     count: 3,
-//   },
-//   {
-//     modelPath: "../../store/models/c-sharp-logo/scene.gltf",
-//     scale: 0.1,
-//     info: "C#",
-//     count: 3,
-//   },
-//   {
-//     modelPath: "../../store/models/android-logo/scene.gltf",
-//     scale: 8,
-//     info: "Android Logo",
-//     count: 2,
-//   },
-//   {
-//     modelPath: "../../store/models/arch-linux/scene.gltf",
-//     scale: 2,
-//     info: "Arch Linux",
-//     count: 3,
-//   },
-//   {
-//     modelPath: "../../store/models/c-logo/scene.gltf",
-//     scale: 0.1,
-//     info: "C++",
-//     count: 3,
-//   },
-//   {
-//     modelPath: "../../store/models/docker/scene.gltf",
-//     scale: 3,
-//     info: "Docker",
-//     count: 2,
-//   },
-//   {
-//     modelPath: "../../store/models/github-logo/scene.gltf",
-//     scale: 2.5,
-//     info: "Github",
-//     count: 2,
-//   },
-//   {
-//     modelPath: "../../store/models/java-logo/scene.gltf",
-//     scale: 5,
-//     info: "Java",
-//     count: 3,
-//   },
-//   {
-//     modelPath: "../../store/models/linux-tux/scene.gltf",
-//     scale: 0.09,
-//     info: "Linux",
-//     count: 3,
-//   },
-//   {
-//     modelPath: "../../store/models/mechanical-keyboard/scene.gltf",
-//     scale: 2.5,
-//     info: "Keyboard",
-//     count: 2,
-//   },
-//   {
-//     modelPath: "../../store/models/my-computer/scene.gltf",
-//     scale: 3,
-//     info: "Modern Desktop Computer",
-//     count: 2,
-//   },
-//   {
-//     modelPath: "../../store/models/python-logo/scene.gltf",
-//     scale: 0.3,
-//     info: "Python",
-//     count: 3,
-//   },
-//   {
-//     modelPath: "../../store/models/raspberry-pi/scene.gltf",
-//     scale: 0.05,
-//     info: "Raspberry Pi",
-//     count: 3,
-//   },
-//   {
-//     modelPath: "../../store/models/rust-crab/scene.gltf",
-//     scale: 5,
-//     info: "Rust",
-//     count: 2,
-//   },
-// ];

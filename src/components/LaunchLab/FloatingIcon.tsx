@@ -1,66 +1,57 @@
-import { useTexture } from "@react-three/drei";
-import { useRef, useMemo, useState } from "react";
-import { useFrame } from "@react-three/fiber";
-import { Mesh, Vector3, MeshBasicMaterial } from "three";
-import { LinearFilter } from "three";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import styled from "styled-components";
 
-interface FloatingIconProps {
+const Container = styled(motion.div)`
+  position: absolute;
+  pointer-events: none;
+  z-index: 5;
+  will-change: transform;
+`;
+
+const GlowImg = styled.img`
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0 0 8px #ffc8fc) drop-shadow(0 0 4px #ffffffaa);
+  opacity: 0.9;
+  transition: transform 0.3s ease;
+`;
+
+interface FloatingIconDOMProps {
   texturePath: string;
-  size?: number;
 }
 
-export const FloatingIcon = ({ texturePath, size = 4 }: FloatingIconProps) => {
-  const texture = useTexture(texturePath);
-  texture.minFilter = LinearFilter;
-  texture.magFilter = LinearFilter;
-  texture.anisotropy = 10;
+export const FloatingIconDOM = ({ texturePath }: FloatingIconDOMProps) => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [lifecycleOffset] = useState(Math.random() * 5);
 
-  const meshRef = useRef<Mesh>(null);
-  const materialRef = useRef<MeshBasicMaterial>(null);
+  useEffect(() => {
+    const randomPosition = () => {
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+      setPosition({ x, y });
+    };
 
-  const [lifecycleOffset] = useState(() => Math.random() * 10); // random start time
-
-  // Random spawn position in space
-  const initialPosition = useMemo(() => {
-    const rand = (min: number, max: number) =>
-      Math.random() * (max - min) + min;
-    return new Vector3(rand(-80, 80), rand(-40, 40), rand(-80, 80));
+    randomPosition();
   }, []);
 
-  useFrame(({ clock }) => {
-    const t = clock.getElapsedTime() + lifecycleOffset;
-    const cycle = t % 10; // 10-second loop per icon
-
-    let opacity = 0;
-
-    if (cycle < 2) {
-      // fade in
-      opacity = cycle / 2;
-    } else if (cycle < 7) {
-      // hold
-      opacity = 1;
-    } else if (cycle < 9) {
-      // fade out
-      opacity = 1 - (cycle - 7) / 2;
-    } else {
-      opacity = 0;
-    }
-
-    if (materialRef.current) {
-      materialRef.current.opacity = opacity;
-    }
-  });
-
   return (
-    <mesh ref={meshRef} position={initialPosition}>
-      <planeGeometry args={[size, size]} />
-      <meshBasicMaterial
-        ref={materialRef}
-        map={texture}
-        transparent
-        opacity={0}
-        depthWrite={false}
-      />
-    </mesh>
+    <Container
+      style={{ top: position.y, left: position.x }}
+      animate={{
+        y: [0, -15, 0],
+        x: [0, 10, 0],
+        opacity: [0, 1, 1, 0],
+      }}
+      transition={{
+        duration: 10,
+        repeat: Infinity,
+        repeatType: "loop",
+        ease: "easeInOut",
+        delay: lifecycleOffset,
+      }}
+    >
+      <GlowImg src={texturePath} alt="Floating Icon" />
+    </Container>
   );
 };

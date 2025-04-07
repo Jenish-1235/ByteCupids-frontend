@@ -29,7 +29,7 @@ body {
   gap: 0;
   overflow: hidden;
   background: transparent;
-  cursor: none;
+  cursor: crosshair;
 }
 
 .launch-lab-content {
@@ -44,12 +44,13 @@ body {
 }
 
 .launch-lab-title {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   color: #ffffff;
   text-align: center;
   margin-bottom: 20px;
   text-shadow: 0 0 10px #ff0080, 0 0 20px #ff0080;
   animation: flicker 1.5s infinite alternate;
+  z-index: 10;
 }
 
 .launch-lab-tagline {
@@ -57,6 +58,7 @@ body {
   color: #f39fd9;
   text-shadow: 0 0 8px #f39fd9;
   animation: flicker 2s infinite alternate;
+  z-index: 10;
 }
 
 .circle-button {
@@ -70,6 +72,7 @@ body {
   align-items: center;
   overflow: visible;
   margin: 50px auto;
+  z-index: 10;
 }
 
 .center-icon {
