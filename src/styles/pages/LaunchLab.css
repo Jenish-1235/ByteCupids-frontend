@@ -29,6 +29,7 @@ body {
   gap: 0;
   overflow: hidden;
   background: transparent;
+  cursor: none;
 }
 
 .launch-lab-content {

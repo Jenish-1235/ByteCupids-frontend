@@ -15,13 +15,21 @@ export default function LaunchLab() {
     }
   }, [isLoggedIn, user, navigate]);
 
+  useEffect(() => {
+    const handleSpace = (e: KeyboardEvent) => {
+      if (e.code === "Space") {
+        e.preventDefault();
+        alert("Launch Lab is not available yet. Please check back later.");
+      }
+    };
+  
+    document.addEventListener("keydown", handleSpace);
+    return () => document.removeEventListener("keydown", handleSpace);
+  }, []);
+
   return (
     <div className="launch-lab-container">
-      <SpaceScene
-        onEnter={() => {
-          alert("Launch Lab is not available yet. Please check back later.");
-        }}
-      />
+      <SpaceScene/>
       <div className="launch-lab-content">
         <h1 className="launch-lab-title">Hello, {user?.username}</h1>
         <h3 className="launch-lab-tagline">Learning starts here... 🚀</h3>
