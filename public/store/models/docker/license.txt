@@ -1,0 +1,11 @@
+Model Information:
+* title:	Moby Dock (Docker whale)
+* source:	https://sketchfab.com/3d-models/moby-dock-docker-whale-b706010291ca46ad8daca2d4aeb79edd
+* author:	Maurice Svay (https://sketchfab.com/mauricesvay)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Moby Dock (Docker whale)" (https://sketchfab.com/3d-models/moby-dock-docker-whale-b706010291ca46ad8daca2d4aeb79edd) by Maurice Svay (https://sketchfab.com/mauricesvay) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

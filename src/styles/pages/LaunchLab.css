@@ -5,66 +5,100 @@
 }
 
 #root {
-  height: 100vh; /* Full viewport height */
-  width: 100vw; /* Full viewport width */
-  overflow: hidden; /* Prevent scrolling */
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
 html,
 body {
   height: 100%;
   width: 100%;
-  overflow: hidden; /* Remove scrolling */
+  overflow: hidden;
 }
 
-/* Main container */
 .launch-lab-container {
   position: relative;
   display: flex;
-  justify-content: space-between; /* Align panes side by side */
-  align-items: stretch; /* Ensure both panes stretch to full height */
-  padding: 0; /* Remove padding */
-  margin: 0; /* Remove margin */
-  width: 100%; /* Ensure it spans the entire screen width */
-  height: 100vh; /* Full viewport height */
-  gap: 0; /* No gap between panes */
-  overflow: hidden; /* Prevent overflow */
-}
-
-/* Content container */
-.launch-lab-content {
-  display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
+  padding: 0;
+  margin: 0;
   width: 100%;
-  position: relative;
-  z-index: 1; /* Ensure the content stays on top of the particles */
-  box-sizing: border-box; /* Prevent overflow */
+  height: 100vh;
+  gap: 0;
+  overflow: hidden;
+  background: transparent;
 }
 
-/* Left Pane Styling */
-/* Left Pane Styling */
-.left-pane {
+.launch-lab-content {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: flex-start;
-  width: 65%; /* Left pane takes 65% of the width */
-  height: 100%; /* Full height */
-  background-color: #000; /* Black background */
-  padding: 0; /* No padding */
-  margin: 0; /* No margin */
+  text-align: center;
+  padding: 20px;
 }
 
-/* Right Pane Styling */
-.right-pane {
+.launch-lab-title {
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px #ff0080, 0 0 20px #ff0080;
+  animation: flicker 1.5s infinite alternate;
+}
+
+.launch-lab-tagline {
+  font-size: 1.5rem;
+  color: #f39fd9;
+  text-shadow: 0 0 8px #f39fd9;
+  animation: flicker 2s infinite alternate;
+}
+
+.circle-button {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #111;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 35%; /* Right pane takes remaining 35% of the width */
-  height: 100%; /* Full height */
-  background-color: #fff; /* White background */
-  padding: 0; /* No padding */
-  margin: 0; /* No margin */
+  overflow: visible;
+  margin: 50px auto;
+}
+
+.center-icon {
+  font-size: 2rem;
+  z-index: 2;
+  color: white;
+}
+
+.orbit-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: rotateText 10s linear infinite;
+  transform-origin: center;
+}
+
+.orbit-text span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 1rem;
+  color: #0ff;
+  transform-origin: 0 -90px; /* Radius of the circle */
+}
+
+@keyframes rotateText {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

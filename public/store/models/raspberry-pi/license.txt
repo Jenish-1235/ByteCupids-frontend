@@ -1,0 +1,11 @@
+Model Information:
+* title:	树莓派 - Raspberry Pi 3B +
+* source:	https://sketchfab.com/3d-models/raspberry-pi-3b-50411de670934306adb2880e98e7e43c
+* author:	MrdT (https://sketchfab.com/mrdt.club)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "树莓派 - Raspberry Pi 3B +" (https://sketchfab.com/3d-models/raspberry-pi-3b-50411de670934306adb2880e98e7e43c) by MrdT (https://sketchfab.com/mrdt.club) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
