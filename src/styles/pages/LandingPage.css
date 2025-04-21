@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Remove scrolling */
+}
+
 body {
   width: 100vw;
   font-family: "Poppins", sans-serif;
@@ -136,5 +143,3 @@ body {
 .signup-button:active {
   transform: scale(0.95);
 }
-
-

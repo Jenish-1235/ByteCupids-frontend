@@ -1,0 +1,11 @@
+Model Information:
+* title:	Arch Linux Logo
+* source:	https://sketchfab.com/3d-models/arch-linux-logo-8fbac89ca2d64696a87850e80f423f27
+* author:	xtm (https://sketchfab.com/xtm)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Arch Linux Logo" (https://sketchfab.com/3d-models/arch-linux-logo-8fbac89ca2d64696a87850e80f423f27) by xtm (https://sketchfab.com/xtm) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
