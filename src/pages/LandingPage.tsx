@@ -1,35 +1,37 @@
 import "../styles/pages/LandingPage.css";
 import { motion } from "framer-motion";
-import RegisterForm from "../components/RegisterForm.tsx";
-import { useState } from "react";
-import LoginForm from "../components/LoginForm.tsx";
+import RegisterForm from "../components/LandingPage/RegisterForm.tsx";
+import { useEffect, useState } from "react";
+import LoginForm from "../components/LandingPage/LoginForm.tsx";
 import { useAuth } from "../context/AuthContext.tsx";
+import Particles from "../components/LandingPage/Particles.tsx";
+import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
-  const [authForm, setAuthForm] = useState<"login" | "register" | null>(null);
+  const { isLoggedIn, user } = useAuth();
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (isLoggedIn && user) {
+      navigate("/launchlab", { replace: true });
+    }
+  }, [isLoggedIn, user, navigate]);
+
+  const [authForm, setAuthForm] = useState<"login" | "register" | null>(null);
   const handleSignUpClick = () => {
     setAuthForm("register");
   };
-
   const handleLoginClick = () => {
     setAuthForm("login");
   };
-
-  const { isLoggedIn, user } = useAuth();
-
-  if (isLoggedIn && user) {
-    console.log("User is already logged in:", user);
-    return (
-      <>
-        <h1>You are logged in</h1>
-      </>
-    );
-  }
-
   return (
     <div className="landing-page">
       <div className="landing-page-content">
+        <div className="app-container">
+          <div className="app-background">
+            <Particles />
+          </div>
+        </div>
         <motion.div
           animate={{ scale: 1.2 }}
           transition={{ duration: 0.5 }}

@@ -1,0 +1,47 @@
+@keyframes vibrate3D {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  20% {
+    transform: translate3d(-1.5px, 1.5px, 1.5px) rotate(-0.3deg);
+  }
+  40% {
+    transform: translate3d(-1.5px, -1.5px, -1.5px) rotate(0.3deg);
+  }
+  60% {
+    transform: translate3d(1.5px, 1.5px, 0.5px) rotate(0deg);
+  }
+  80% {
+    transform: translate3d(1.5px, -1.5px, 1.5px) rotate(-0.3deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+.circle-button {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #ff0080;
+  color: #ffffff;
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgb(255, 0, 200);
+  animation: vibrate3D 0.4s infinite;
+}
+
+.circle-button:hover {
+  background-color: #e60073;
+  box-shadow: 0 0 20px rgba(255, 0, 128, 0.6);
+  transform: scale(1.05);
+}
+
+.circle-button:active {
+  transform: scale(0.95);
+}
