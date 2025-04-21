@@ -4,7 +4,7 @@ import RegisterForm from "../components/LandingPage/RegisterForm.tsx";
 import { useEffect, useState } from "react";
 import LoginForm from "../components/LandingPage/LoginForm.tsx";
 import { useAuth } from "../context/AuthContext.tsx";
-import Particles from "../components/Particles.tsx";
+import Particles from "../components/LandingPage/Particles.tsx";
 import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
