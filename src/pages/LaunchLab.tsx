@@ -20,7 +20,7 @@ export default function LaunchLab() {
     const handleSpace = (e: KeyboardEvent) => {
       if (e.code === "Space") {
         e.preventDefault();
-        alert("Launch Lab is not available yet. Please check back later.");
+        navigate("/labtopics", { replace: true });
       }
     };
 
