@@ -1,54 +1,113 @@
-# React + TypeScript + Vite
+# ByteCupids Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**ByteCupids** — *Connecting hearts with machines.*  
+An interactive Virtual OS Lab platform designed to help users learn and explore computer systems, OS fundamentals, Linux internals, and system programming through immersive labs and visual simulations.
 
-Currently, two official plugins are available:
+This repository contains the **frontend** codebase for the ByteCupids project, built with **React.js** and **TypeScript**, following a clean architecture and modular design.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🌌 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 📚 Interactive OS Lab modules  
+- 🌙 Dark-themed UI for better developer aesthetics  
+- 🧠 AI-enhanced explanations and real-time code feedback  
+- ⚙️ Visual simulations of processes, threading, memory, and system calls  
+- 🐧 Linux-first design philosophy  
+- 🔄 Seamless integration with Spring Boot backend  
+- 🧩 Modular components with clean structure and reusable logic  
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🧰 Tech Stack
+
+- **Framework:** React.js (with TypeScript - TSX)  
+- **UI/UX:** TailwindCSS + Framer Motion  
+- **State Management:** React Context / Redux (as needed)  
+- **Routing:** React Router 
+- **Icons & Components:** Lucide, ShadCN UI  
+- **Linting/Formatting:** ESLint + Prettier  
+- **Build Tooling:** Vite  
+
+---
+
+## 🗂️ Project Structure
+
+```
+bytecupids-frontend/
+├── public/                # Static assets
+├── src/
+│   ├── components/        # Reusable UI components
+│   ├── modules/           # Individual lab modules
+│   ├── pages/             # Page-level components
+│   ├── assets/            # Images, icons, etc.
+│   ├── hooks/             # Custom React hooks
+│   ├── context/           # Global state/context providers
+│   ├── utils/             # Utility functions/helpers
+│   ├── services/          # API services
+│   └── App.tsx            # Root component
+├── .env                   # Environment variables
+├── vite.config.ts         # Vite configuration
+├── tsconfig.json          # TypeScript configuration
+└── README.md              # You're here!
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🧪 Running Locally
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/yourusername/bytecupids-frontend.git
+cd bytecupids-frontend
 ```
+
+### 2. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### 3. Start development server
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Visit `http://localhost:5173` to view the app in your browser.
+
+
+## 🧠 Future Enhancements
+
+- Real-time collaboration in labs  
+- Personalized learning paths with user analytics  
+- User mode with progress tracking  
+- In-browser terminal sandbox with kernel-level simulations  
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repo  
+2. Create your feature branch (`git checkout -b feat/awesome-feature`)  
+3. Commit your changes (`git commit -m 'add: awesome feature'`)  
+4. Push to the branch (`git push origin feat/awesome-feature`)  
+5. Open a pull request 🚀  
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## ✨ Credits
+
+Built with 💻, ☕, and a lot of ❤️ by Jenish  
+Designed for those who dream of building from the bare metal up.
