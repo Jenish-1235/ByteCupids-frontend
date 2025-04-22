@@ -2,23 +2,23 @@ import TopicTile from "./TopicTile";
 import "../../styles/components/LabTopicsStyles/TopicsPanel.css";
 
 const topics = [
-  "Operating Systems",
   "Computer Architecture",
-  "Data Structures & Algorithms",
+  "Operating Systems",
   "Database Management Systems",
   "Computer Networking",
-  "Java Internals",
-  "Software Engineering Practices & Workflows",
   "High-Level System Design",
-  "DevOps & Tooling in Practice",
   "Cloud Computing",
-  "Cybersecurity & Ethical Hacking",
   "Artificial Intelligence Fundamentals & MLOps",
+  "Software Engineering Practices & Workflows",
+  "DevOps & Tooling in Practice",
+  "Java Internals",
+  "Cybersecurity & Ethical Hacking",
+  "Data Structures & Algorithms",
 ];
 
 
 const topicImages: Record<(typeof topics)[number], string> = {
-  "Operating Systems": "https://img.icons8.com/color/96/windows-10.png",
+  "Operating Systems": "https://img.icons8.com/color/96/linux--v1.png",
   "Computer Architecture": "https://img.icons8.com/color/96/motherboard.png",
   "Data Structures & Algorithms":
     "https://img.icons8.com/color/96/flow-chart.png",
@@ -29,7 +29,7 @@ const topicImages: Record<(typeof topics)[number], string> = {
   "Software Engineering Practices & Workflows":
     "https://img.icons8.com/color/96/developer.png",
   "High-Level System Design":
-    "https://github.com/Jenish-1235/ByteCupids-frontend/blob/main/public/images/hld.png",
+    "https://img.icons8.com/?size=80&id=zdWxmtYiP4yt&format=png&color=ffffff",
   "DevOps & Tooling in Practice":
     "https://img.icons8.com/color/96/cloud-checked--v1.png",
   "Cloud Computing": "https://img.icons8.com/color/96/cloud.png",
