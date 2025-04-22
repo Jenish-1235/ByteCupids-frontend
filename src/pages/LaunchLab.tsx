@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import OrbitButton from "../components/LaunchLab/OrbitButton";
 import SpaceScene from "../components/LaunchLab/SpaceScene";
 import MainBubble from "../components/LaunchLab/MainBubble";
+import FloatingFacts from "../components/LaunchLab/FloatingFacts";
 
 export default function LaunchLab() {
   const { isLoggedIn, user } = useAuth();
@@ -31,6 +32,7 @@ export default function LaunchLab() {
   return (
     <div className="launch-lab-container">
       <SpaceScene />
+      <FloatingFacts />
       <div className="launch-lab-content">
         <MainBubble>
           <h1 className="launch-lab-title">Hello, {user?.username}</h1>

@@ -22,24 +22,6 @@ body {
   flex-direction: column;
 }
 
-/*.landing-page {*/
-/*  background: linear-gradient(270deg, #000000, #ff0080, #8000ff);*/
-/*  background-size: 400% 400%;*/
-/*  animation: gradientShift 10s ease infinite;*/
-/*}*/
-
-/*@keyframes gradientShift {*/
-/*  0% {*/
-/*    background-position: 0% 50%;*/
-/*  }*/
-/*  50% {*/
-/*    background-position: 100% 50%;*/
-/*  }*/
-/*  100% {*/
-/*    background-position: 0% 50%;*/
-/*  }*/
-/*}*/
-
 .landing-page-content {
   width: 100vw;
   height: 100vh;
