@@ -1,6 +1,25 @@
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { useEffect } from "react";
+import SpaceScene from "../components/LaunchLab/SpaceScene";
+import TopicsPanel from "../components/LabTopics/TopicsPanel";
+import "../styles/pages/LabTopics.css";
+
 export default function LabTopics() {
-    return <>
-    <div>
-        <h1>Here we will show lab LabTopics</h1>
-    </div></>
+  const { isLoggedIn, user } = useAuth();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isLoggedIn || !user) {
+      navigate("/", { replace: true });
+    }
+  }, [isLoggedIn, user, navigate]);
+
+  return (
+    <>
+      <SpaceScene />
+      <div className="lab-topics-content">
+        <TopicsPanel />
+      </div>
+    </>
+  );
 }

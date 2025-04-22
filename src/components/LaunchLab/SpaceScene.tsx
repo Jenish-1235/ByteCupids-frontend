@@ -88,6 +88,7 @@ export default function SpaceScene() {
           width: "100%",
           height: "100%",
           backgroundColor: "#000",
+          zIndex: 1,
         }}
         camera={{ position: [0, 0, 7], fov: 75 }}
       >
@@ -102,7 +103,6 @@ export default function SpaceScene() {
           <ShootingStar key={i} />
         ))}
       </Canvas>
-      <FloatingFacts />
     </>
   );
 }
