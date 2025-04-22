@@ -2,39 +2,43 @@ import TopicTile from "./TopicTile";
 import "../../styles/components/LabTopicsStyles/TopicsPanel.css";
 
 const topics = [
-  "Database Management Systems",
   "Operating Systems",
-  "Computer Networking",
-  "High-Level System Design",
-  "Data Structures & Algorithms",
   "Computer Architecture",
-  "Software Engineering Practices & Workflows",
-  "DevOps & Infrastructure",
-  "Artificial Intelligence Fundamentals & MLOps",
+  "Data Structures & Algorithms",
+  "Database Management Systems",
+  "Computer Networking",
   "Java Internals",
-  "Tools & Infrastructure in Practice",
-  "CUDA Programming",
+  "Software Engineering Practices & Workflows",
+  "High-Level System Design",
+  "DevOps & Tooling in Practice",
+  "Cloud Computing",
+  "Cybersecurity & Ethical Hacking",
+  "Artificial Intelligence Fundamentals & MLOps",
 ];
 
+
 const topicImages: Record<(typeof topics)[number], string> = {
-  "Database Management Systems": "https://img.icons8.com/color/96/database.png",
   "Operating Systems": "https://img.icons8.com/color/96/windows-10.png",
-  "Computer Networking": "https://img.icons8.com/color/96/network.png",
-  "High-Level System Design": "https://img.icons8.com/color/96/system-task.png",
+  "Computer Architecture": "https://img.icons8.com/color/96/motherboard.png",
   "Data Structures & Algorithms":
     "https://img.icons8.com/color/96/flow-chart.png",
-  "Computer Architecture": "https://img.icons8.com/color/96/motherboard.png",
+  "Database Management Systems": "https://img.icons8.com/color/96/database.png",
+  "Computer Networking":
+    "https://img.icons8.com/color/96/networking-manager.png",
+  "Java Internals": "https://img.icons8.com/color/96/java-coffee-cup-logo.png",
   "Software Engineering Practices & Workflows":
     "https://img.icons8.com/color/96/developer.png",
-  "DevOps & Infrastructure":
+  "High-Level System Design":
+    "https://github.com/Jenish-1235/ByteCupids-frontend/blob/main/public/images/hld.png",
+  "DevOps & Tooling in Practice":
     "https://img.icons8.com/color/96/cloud-checked--v1.png",
+  "Cloud Computing": "https://img.icons8.com/color/96/cloud.png",
+  "Cybersecurity & Ethical Hacking":
+    "https://img.icons8.com/color/96/security-checked.png",
   "Artificial Intelligence Fundamentals & MLOps":
     "https://img.icons8.com/color/96/artificial-intelligence.png",
-  "Java Internals": "https://img.icons8.com/color/96/java-coffee-cup-logo.png",
-  "Tools & Infrastructure in Practice":
-    "https://img.icons8.com/color/96/toolbox.png",
-  "CUDA Programming": "https://img.icons8.com/color/96/nvidia.png",
 };
+
 
 export default function TopicsPanel() {
   const tileSize = 160;
