@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 import SpaceScene from "../components/LaunchLab/SpaceScene";
 import TopicsPanel from "../components/LabTopics/TopicsPanel";
-import "../styles/components/LabTopicsStyles/LabTopics.css";
+import "../styles/pages/LabTopics.css";
 
 export default function LabTopics() {
   const { isLoggedIn, user } = useAuth();
