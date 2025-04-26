@@ -1,6 +1,4 @@
 export interface ModuleResponse {
-    moduleName: string;
-    noOfTopics: number;
     message: string;
     status: string;
     error: string;
@@ -11,5 +9,6 @@ export interface ModuleResponse {
         moduleId: string;
         name: string;
         moduleImgUri: string;
+        noOfTopics: number;
     }[];
 }
