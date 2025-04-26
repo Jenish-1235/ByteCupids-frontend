@@ -51,7 +51,7 @@ export default function ModulesPanel() {
         const { left, top } = getGridPosition(index, false);
         return (
           <div key={index} style={{ position: "absolute", left, top }}>
-            <ModuleTile Module={Module.name} image={Module.moduleImgUri} />
+            <ModuleTile Module={Module.name} image={Module.moduleImgUri} moduleId={Module.moduleId} />
           </div>
         );
       })}
@@ -60,7 +60,7 @@ export default function ModulesPanel() {
         const { left, top } = getGridPosition(index, true);
         return (
           <div key={index + 6} style={{ position: "absolute", left, top }}>
-            <ModuleTile Module={Module.name} image={Module.moduleImgUri} />
+            <ModuleTile Module={Module.name} image={Module.moduleImgUri} moduleId={Module.moduleId}/>
           </div>
         );
       })}
