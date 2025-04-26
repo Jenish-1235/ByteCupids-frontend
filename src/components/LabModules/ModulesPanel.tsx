@@ -1,46 +1,26 @@
 import ModuleTile from "./ModuleTile";
 import "../../styles/components/LabModulesStyles/ModulesPanel.css";
+import { getModules } from "../../services/ModuleService";
+import { ModuleResponse } from "../../types/ModuleResponse";
 
-const Modules = [
-  "Computer Architecture",
-  "Operating Systems",
-  "Database Management Systems",
-  "Computer Networking",
-  "High-Level System Design",
-  "Cloud Computing",
-  "Artificial Intelligence Fundamentals & MLOps",
-  "Software Engineering Practices & Workflows",
-  "DevOps & Tooling in Practice",
-  "Java Internals",
-  "Cybersecurity & Ethical Hacking",
-  "Data Structures & Algorithms",
-];
-
-
-const ModuleImages: Record<(typeof Modules)[number], string> = {
-  "Operating Systems": "https://img.icons8.com/color/96/linux--v1.png",
-  "Computer Architecture": "https://img.icons8.com/color/96/motherboard.png",
-  "Data Structures & Algorithms":
-    "https://img.icons8.com/color/96/flow-chart.png",
-  "Database Management Systems": "https://img.icons8.com/color/96/database.png",
-  "Computer Networking":
-    "https://img.icons8.com/color/96/networking-manager.png",
-  "Java Internals": "https://img.icons8.com/color/96/java-coffee-cup-logo.png",
-  "Software Engineering Practices & Workflows":
-    "https://img.icons8.com/color/96/developer.png",
-  "High-Level System Design":
-    "https://img.icons8.com/?size=80&id=zdWxmtYiP4yt&format=png&color=ffffff",
-  "DevOps & Tooling in Practice":
-    "https://img.icons8.com/color/96/cloud-checked--v1.png",
-  "Cloud Computing": "https://img.icons8.com/color/96/cloud.png",
-  "Cybersecurity & Ethical Hacking":
-    "https://img.icons8.com/color/96/security-checked.png",
-  "Artificial Intelligence Fundamentals & MLOps":
-    "https://img.icons8.com/color/96/artificial-intelligence.png",
-};
-
+import { useEffect, useState } from "react";
 
 export default function ModulesPanel() {
+  const [Modules, setModules] = useState<ModuleResponse["modules"]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const response: ModuleResponse = await getModules();
+
+      if (response.code !== 200) {
+        console.error("Error fetching modules:", response.message);
+        return;
+      }
+      console.log("Modules fetched successfully:", response);
+      setModules(response.modules);
+    })();
+  }, []);
+
   const tileSize = 160;
   const spacing = 30;
   const gridHeight = tileSize * 2 + spacing;
@@ -71,7 +51,7 @@ export default function ModulesPanel() {
         const { left, top } = getGridPosition(index, false);
         return (
           <div key={index} style={{ position: "absolute", left, top }}>
-            <ModuleTile Module={Module} image={ModuleImages[Module]} />
+            <ModuleTile Module={Module.name} image={Module.moduleImgUri} />
           </div>
         );
       })}
@@ -80,7 +60,7 @@ export default function ModulesPanel() {
         const { left, top } = getGridPosition(index, true);
         return (
           <div key={index + 6} style={{ position: "absolute", left, top }}>
-            <ModuleTile Module={Module} image={ModuleImages[Module]} />
+            <ModuleTile Module={Module.name} image={Module.moduleImgUri} />
           </div>
         );
       })}
