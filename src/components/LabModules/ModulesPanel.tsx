@@ -1,7 +1,7 @@
-import TopicTile from "./TopicTile";
-import "../../styles/components/LabTopicsStyles/TopicsPanel.css";
+import ModuleTile from "./ModuleTile";
+import "../../styles/components/LabModulesStyles/ModulesPanel.css";
 
-const topics = [
+const Modules = [
   "Computer Architecture",
   "Operating Systems",
   "Database Management Systems",
@@ -17,7 +17,7 @@ const topics = [
 ];
 
 
-const topicImages: Record<(typeof topics)[number], string> = {
+const ModuleImages: Record<(typeof Modules)[number], string> = {
   "Operating Systems": "https://img.icons8.com/color/96/linux--v1.png",
   "Computer Architecture": "https://img.icons8.com/color/96/motherboard.png",
   "Data Structures & Algorithms":
@@ -40,10 +40,9 @@ const topicImages: Record<(typeof topics)[number], string> = {
 };
 
 
-export default function TopicsPanel() {
+export default function ModulesPanel() {
   const tileSize = 160;
   const spacing = 30;
-  const gridWidth = tileSize * 3 + spacing * 2;
   const gridHeight = tileSize * 2 + spacing;
   const centerX = window.innerWidth / 2;
   const centerY = window.innerHeight / 2;
@@ -51,8 +50,8 @@ export default function TopicsPanel() {
   const leftStartX = centerX - 400 - tileSize * 3;
   const rightStartX = centerX + 400;
 
-  const leftTopics = topics.slice(0, 6); // 3x2 = 6 tiles
-  const rightTopics = topics.slice(6); // 4 tiles will center in the grid
+  const leftModules = Modules.slice(0, 6); // 3x2 = 6 tiles
+  const rightModules = Modules.slice(6); // 4 tiles will center in the grid
 
   const getGridPosition = (index: number, isRight: boolean) => {
     const row = Math.floor(index / 3);
@@ -64,25 +63,24 @@ export default function TopicsPanel() {
 
   return (
     <div
-      className="lab-topics-panel"
-      style={{ position: "relative", width: "100vw", height: "100vh" }}
-    >
+      className="lab-Modules-panel"
+      style={{ position: "relative", width: "100vw", height: "100vh" }}>
       <div className="main-bubble">Choose <br></br>Your<br></br> Journey... <br/> 🚀 </div>
 
-      {leftTopics.map((topic, index) => {
+      {leftModules.map((Module, index) => {
         const { left, top } = getGridPosition(index, false);
         return (
           <div key={index} style={{ position: "absolute", left, top }}>
-            <TopicTile topic={topic} image={topicImages[topic]} />
+            <ModuleTile Module={Module} image={ModuleImages[Module]} />
           </div>
         );
       })}
 
-      {rightTopics.map((topic, index) => {
+      {rightModules.map((Module, index) => {
         const { left, top } = getGridPosition(index, true);
         return (
           <div key={index + 6} style={{ position: "absolute", left, top }}>
-            <TopicTile topic={topic} image={topicImages[topic]} />
+            <ModuleTile Module={Module} image={ModuleImages[Module]} />
           </div>
         );
       })}

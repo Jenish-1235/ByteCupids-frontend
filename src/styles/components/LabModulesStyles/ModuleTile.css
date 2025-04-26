@@ -1,4 +1,4 @@
-.topic-tile {
+.Module-tile {
     position: absolute;
     width: 160px;
     height: 160px;
@@ -24,18 +24,18 @@
     z-index: 10;
 }
 
-.topic-tile:hover {
+.Module-tile:hover {
     transform: scale(1.08);
     opacity: 1;
     box-shadow: 0 0 20px rgba(0, 195, 255, 1);
 }
 
-.topic-tile:hover .topic-title {
+.Module-tile:hover .Module-title {
     opacity: 1;
     transform: translateY(0);
 }
 
-.topic-title {
+.Module-title {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.4s ease, transform 0.4s ease;

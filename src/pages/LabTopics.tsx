@@ -2,10 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 import SpaceScene from "../components/LaunchLab/SpaceScene";
-import TopicsPanel from "../components/LabTopics/TopicsPanel";
-import "../styles/pages/LabTopics.css";
+import ModulesPanel from "../components/LabModules/ModulesPanel";
+import "../styles/pages/LabModules.css";
 
-export default function LabTopics() {
+export default function LabModules() {
   const { isLoggedIn, user } = useAuth();
   const navigate = useNavigate();
   useEffect(() => {
@@ -17,8 +17,8 @@ export default function LabTopics() {
   return (
     <>
       <SpaceScene />
-      <div className="lab-topics-content">
-        <TopicsPanel />
+      <div className="lab-Modules-content">
+        <ModulesPanel />
       </div>
     </>
   );
