@@ -2,9 +2,7 @@
     display: flex;
     width: 100vw;
     height: 100vh;
-    /* Full screen */
     overflow: hidden;
-    /* no global scroll */
     position: relative;
     justify-content: space-between;
     z-index: 10;
@@ -14,7 +12,6 @@
 /* Left Panel (Library) */
 .lab-topics-left-panel {
     width: 20%;
-    /* soft background */
     padding: 20px;
     overflow-y: auto;
     background: radial-gradient(circle,
@@ -94,11 +91,26 @@
     text-align: center;
 }
 
-.lab-topics-module-topics div:hover,
-.lab-topics-left-panel div:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    cursor: pointer;
-    transform: scale(1.02);
-    transition: all 0.3s ease;
+.lab-topics-center-scrollable::-webkit-scrollbar {
+    width: 6px;
+}
+
+.lab-topics-center-scrollable::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.lab-topics-center-scrollable::-webkit-scrollbar-thumb {
+    background: rgba(255, 150, 230, 0.5);
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.lab-topics-center-scrollable::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 100, 200, 0.8);
+}
+
+/* For firefox users */
+.lab-topics-center-scrollable {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 150, 230, 0.5) transparent;
 }

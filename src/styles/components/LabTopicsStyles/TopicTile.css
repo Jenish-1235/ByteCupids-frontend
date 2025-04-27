@@ -1,0 +1,53 @@
+.topic-tile {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05), rgba(255, 100, 200, 0));
+    backdrop-filter: blur(2px);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.topic-tile:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 200, 250, 0.2);
+    box-shadow: 0 4px 15px rgba(255, 150, 230, 0.5);
+}
+
+.topic-tile-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.topic-tile-index {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 150, 230, 0.5);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.topic-tile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.topic-tile-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+}
+
+.topic-tile-labs {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 4px;
+}
