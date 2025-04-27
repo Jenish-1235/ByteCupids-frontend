@@ -6,6 +6,8 @@ import TopicTile from "../components/LabTopics/TopicTile";
 import LibraryResourceTile from "../components/LabTopics/LibraryResourceTile";
 import { getTopics } from "../services/TopicService";
 import { Topic } from "../types/Topic";
+import { LibraryResource } from "../types/LibraryResource";
+import { getLibraryResources } from "../services/LibraryResourceService";
 
 export default function LabTopics() {
   const selectedModule = useLocation().state as {
@@ -16,6 +18,7 @@ export default function LabTopics() {
   const navigate = useNavigate();
 
   const [topics, setTopics] = useState<Topic[]>([]);
+  const [resources, setResources] = useState<LibraryResource[]>([]);
 
   useEffect(() => {
     if (!selectedModule) {
@@ -40,27 +43,46 @@ export default function LabTopics() {
 
   }, [selectedModule, navigate]);
 
+  useEffect(() => {
+    const fetchResources = async () => {
+      if (!selectedModule) {
+        console.error("No module selected");
+        navigate("/labmodules", { replace: true });
+      }
+
+      const payload = {
+        moduleId: selectedModule.moduleId,
+        accessToken: "your_access_token_here", // Replace with actual token
+      };
+      try {
+        const response = await getLibraryResources(payload);
+        console.log("Resources fetched successfully:", response);
+        setResources(response.resources);
+      } catch (error) {
+        console.error("Error fetching resources:", error);
+      }
+    }
+    fetchResources();
+  }, []);
+
   return (
     <>
       <SpaceScene />
       <div className="lab-topics-container">
         <div className="lab-topics-left-panel">
           <h1 className="lab-topics-title">Library</h1>
-          <LibraryResourceTile
-            title="Deep Dive into Virtual Memory"
-            url="https://example.com/virtual-memory-paper"
-            type="paper"
-          />
-          <LibraryResourceTile
-            title="Kernel vs User Space Explained"
-            url="https://example.com/kernel-blog"
-            type="blog"
-          />
-          <LibraryResourceTile
-            title="OS Internals - Youtube Lecture"
-            url="https://youtube.com/example"
-            type="video"
-          />
+          {
+            resources.map((resource) => (
+              <LibraryResourceTile
+                key={resource.resourceId}
+                moduleId={selectedModule.moduleId}
+                resourceId={resource.resourceId}
+                resourceName={resource.resourceName}
+                resourceType={resource.resourceType}
+                resourceUri={resource.resourceUri}
+              />
+            ))
+          }
         </div>
 
         <div className="lab-topics-center-panel">

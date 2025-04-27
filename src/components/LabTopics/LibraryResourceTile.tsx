@@ -1,26 +1,19 @@
 import "../../styles/components/LabTopicsStyles/LibraryResourceTile.css"
+import { LibraryResource } from "../../types/LibraryResource";
 type ResourceType = "paper" | "blog" | "video" | "book" | "appendix"; // expand later
 
-type LibraryResourceTileProps = {
-  title: string;
-  url: string;
-  type: ResourceType;
-};
 
-export default function LibraryResourceTile({
-  title,
-  url,
-  type,
-}: LibraryResourceTileProps) {
+export default function LibraryResourceTile({ resourceId, moduleId, resourceType, resourceName, resourceUri}: LibraryResource) {
+  const type: ResourceType = resourceType as ResourceType;
   return (
     <a
-      href={url}
+      href={resourceUri}
       target="_blank"
       rel="noopener noreferrer"
       className="library-tile"
     >
       <div className="library-tile-icon">{getIcon(type)}</div>
-      <div className="library-tile-title">{title}</div>
+      <div className="library-tile-title">{resourceName}</div>
     </a>
   );
 }
