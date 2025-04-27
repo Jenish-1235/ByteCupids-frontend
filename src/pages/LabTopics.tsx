@@ -29,14 +29,15 @@ export default function LabTopics() {
         </div>
 
         <div className="lab-topics-center-panel">
-          <div className="lab-topics-user-progress">
-            <h2>Module: {selectedModule.Module}</h2>
-            <img src={selectedModule.image} alt={selectedModule.Module} />
-            {/* Later: Show Progress Bar, Badges */}
-          </div>
-          <div className="lab-topics-module-topics">
-            <h2>Topics List</h2>
-            {/* Later: Dynamic list of topics */}
+          <div className="lab-topics-center-scrollable">
+            <div className="lab-topics-user-progress">
+              <h2>Module: {selectedModule.Module}</h2>
+              {/* Progress bar, badges */}
+            </div>
+            <div className="lab-topics-module-topics">
+              <h2>Topics List</h2>
+              {/* Dynamic Topics */}
+            </div>
           </div>
         </div>
 

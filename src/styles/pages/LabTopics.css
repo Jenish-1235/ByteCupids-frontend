@@ -2,13 +2,15 @@
     display: flex;
     width: 100vw;
     height: 100vh;
+    /* Full screen */
     overflow: hidden;
+    /* no global scroll */
     position: relative;
     justify-content: space-between;
     z-index: 10;
     padding: 20px;
+    color: white;
 }
-
 /* Left Panel (Library) */
 .lab-topics-left-panel {
     width: 20%;
@@ -18,10 +20,11 @@
     background: radial-gradient(circle,
                 rgba(255, 200, 250, 0.1),
                 rgba(255, 100, 200, 0));
-        backdrop-filter: blur(3px);
-box-shadow: 0 0 5px rgba(255, 150, 230, 0.5),
-        0 0 10px rgba(255, 170, 255, 0.4), 0 0 30px rgba(255, 130, 220, 0.3);
-        border-radius: 15px;
+    backdrop-filter: blur(3px);
+    box-shadow: 0 0 4px rgba(255, 150, 230, 0.4),
+                0 0 8px rgba(255, 170, 255, 0.3),
+                0 0 20px rgba(255, 130, 220, 0.2);
+    border-radius: 15px;
 
 }
 
@@ -31,29 +34,35 @@ box-shadow: 0 0 5px rgba(255, 150, 230, 0.5),
     display: flex;
     flex-direction: column;
     padding: 5px;
-    overflow-y: auto;
+    overflow: hidden;
     background: radial-gradient(circle,
                 rgba(255, 200, 250, 0.1),
                 rgba(255, 100, 200, 0));
         margin-left: 20px;
         margin-right: 20px;
     border-radius: 12px;
-box-shadow: 0 0 5px rgba(255, 150, 230, 0.5),
-        0 0 10px rgba(255, 170, 255, 0.4), 0 0 30px rgba(255, 130, 220, 0.3);
+    box-shadow: 0 0 4px rgba(255, 150, 230, 0.4),
+                0 0 8px rgba(255, 170, 255, 0.3),
+                0 0 20px rgba(255, 130, 220, 0.2);
     border-radius: 15px;
 }
 
+.lab-topics-center-scrollable {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
 .lab-topics-user-progress {
-    flex: 0 0 40%;
-    /* top 40% */
+    flex: 0 0 25%;
     margin-bottom: 20px;
     padding: 10px;
     border-radius: 12px;
+    min-height: 25%;
 }
 
 .lab-topics-module-topics {
     flex: 1;
-    /* bottom 60% */
     padding: 10px;
     border-radius: 12px;
     overflow-y: auto;
@@ -69,8 +78,27 @@ box-shadow: 0 0 5px rgba(255, 150, 230, 0.5),
     background: radial-gradient(circle,
                 rgba(255, 200, 250, 0.1),
                 rgba(255, 100, 200, 0));
-        backdrop-filter: blur(3px);
-box-shadow: 0 0 5px rgba(255, 150, 230, 0.5),
-        0 0 10px rgba(255, 170, 255, 0.4), 0 0 30px rgba(255, 130, 220, 0.3);
-        border-radius: 15px;
+    backdrop-filter: blur(3px);
+    box-shadow: 0 0 4px rgba(255, 150, 230, 0.4),
+                0 0 8px rgba(255, 170, 255, 0.3),
+                0 0 20px rgba(255, 130, 220, 0.2);
+    border-radius: 15px;
+}
+
+.lab-topics-title,
+.lab-topics-ai-chat,
+.lab-topics-user-progress h2,
+.lab-topics-module-topics h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.lab-topics-module-topics div:hover,
+.lab-topics-left-panel div:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    cursor: pointer;
+    transform: scale(1.02);
+    transition: all 0.3s ease;
 }
