@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import SpaceScene from "../components/LaunchLab/SpaceScene";
 import "../styles/pages/LabTopics.css";
 import TopicTile from "../components/LabTopics/TopicTile";
 import LibraryResourceTile from "../components/LabTopics/LibraryResourceTile";
+import { getTopics } from "../services/TopicService";
+import { Topic } from "../types/Topic";
 
 export default function LabTopics() {
   const selectedModule = useLocation().state as {
@@ -13,12 +15,29 @@ export default function LabTopics() {
   };
   const navigate = useNavigate();
 
+  const [topics, setTopics] = useState<Topic[]>([]);
+
   useEffect(() => {
     if (!selectedModule) {
       console.error("No module selected");
       navigate("/labmodules", { replace: true });
     }
-    // (Later) Make API call to get topics for selected module
+
+    const payload = {
+      moduleId: selectedModule.moduleId,
+      accessToken: "your_access_token_here", // Replace with actual token
+    };
+    const fetchTopics = async () => {
+      try {
+        const response = await getTopics(payload);
+        console.log("Topics fetched successfully:", response);
+        setTopics(response.topics);
+      } catch (error) {
+        console.error("Error fetching topics:", error);
+      }
+    }
+    fetchTopics();
+
   }, [selectedModule, navigate]);
 
   return (
@@ -52,54 +71,27 @@ export default function LabTopics() {
             </div>
             <div className="lab-topics-module-topics">
               <h2>Topics List</h2>
-              <TopicTile
-                index={1}
-                topicName="Introduction to Operating Systems"
-                noOfLabs={4}
-                onClick={() => console.log("Clicked Topic 1")}
-              />
-              <TopicTile
-                index={2}
-                topicName="Memory Management"
-                noOfLabs={5}
-                onClick={() => console.log("Clicked Topic 2")}
-              />
-              <TopicTile
-                index={1}
-                topicName="Introduction to Operating Systems"
-                noOfLabs={4}
-                onClick={() => console.log("Clicked Topic 1")}
-              />
-              <TopicTile
-                index={2}
-                topicName="Memory Management"
-                noOfLabs={5}
-                onClick={() => console.log("Clicked Topic 2")}
-              />
-              <TopicTile
-                index={1}
-                topicName="Introduction to Operating Systems"
-                noOfLabs={4}
-                onClick={() => console.log("Clicked Topic 1")}
-              />
-              <TopicTile
-                index={2}
-                topicName="Memory Management"
-                noOfLabs={5}
-                onClick={() => console.log("Clicked Topic 2")}
-              />
-              <TopicTile
-                index={1}
-                topicName="Introduction to Operating Systems"
-                noOfLabs={4}
-                onClick={() => console.log("Clicked Topic 1")}
-              />
-              <TopicTile
-                index={2}
-                topicName="Memory Management"
-                noOfLabs={5}
-                onClick={() => console.log("Clicked Topic 2")}
-              />
+              {
+                topics.map((topic, index) => (
+                  <TopicTile
+                    key={topic.topicId}
+                    index={index + 1}
+                    moduleId={selectedModule.moduleId}
+                    topicId={topic.topicId}
+                    topicName={topic.topicName}
+                    noOfLabs={topic.noOfLabs}
+                    onClick={() => {
+                      navigate("/labtopics/lab", {
+                        state: {
+                          moduleId: selectedModule.moduleId,
+                          topicId: topic.topicId,
+                          topicName: topic.topicName,
+                        },
+                      });
+                    }}
+                  />
+                ))
+              }
             </div>
           </div>
         </div>
