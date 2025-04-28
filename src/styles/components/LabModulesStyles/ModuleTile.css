@@ -1,0 +1,67 @@
+.Module-tile {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.08);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+    box-shadow: 0 0 15px rgba(255, 150, 230, 0.5),
+            0 0 20px rgba(255, 170, 255, 0.4), 0 0 60px rgba(255, 130, 220, 0.3);
+    overflow: hidden;
+    cursor: pointer;
+    animation: wiggle 4s infinite ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    backdrop-filter: blur(4px);
+    z-index: 10;
+}
+
+.Module-tile:hover {
+    transform: scale(1.08);
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(0, 195, 255, 1);
+}
+
+.Module-tile:hover .Module-title {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.Module-title {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+@keyframes wiggle {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(1deg);
+    }
+
+    75% {
+        transform: translate(2px, -1px) rotate(-1deg);
+    }
+}

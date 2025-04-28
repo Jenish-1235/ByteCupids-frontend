@@ -21,7 +21,7 @@ export default function LaunchLab() {
     const handleSpace = (e: KeyboardEvent) => {
       if (e.code === "Space") {
         e.preventDefault();
-        navigate("/labtopics", { replace: true });
+        navigate("/labmodules", { replace: true });
       }
     };
 
