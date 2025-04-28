@@ -16,7 +16,6 @@ export default function ModulesPanel() {
         console.error("Error fetching modules:", response.message);
         return;
       }
-      console.log("Modules fetched successfully:", response);
       setModules(response.modules);
     })();
   }, []);
