@@ -1,0 +1,25 @@
+.scroll-animation {
+  opacity: 0;
+  transition: all 0.8s ease-out;
+}
+
+.scroll-animation.is-visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+}
+
+.fade-up {
+  transform: translateY(30px);
+}
+
+.fade-in {
+  /* Just opacity change, no transform */
+}
+
+.slide-left {
+  transform: translateX(30px);
+}
+
+.slide-right {
+  transform: translateX(-30px);
+}

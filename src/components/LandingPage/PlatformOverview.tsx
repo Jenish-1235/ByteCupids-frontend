@@ -1,22 +1,28 @@
 import React from 'react';
+import ScrollAnimation from './ScrollAnimation';
 import '../../styles/components/LandingPage/PlatformOverview.css';
 
-const PlatformOverview: React.FC = () => {
+interface PlatformOverviewProps {
+  className?: string;
+}
+
+const PlatformOverview: React.FC<PlatformOverviewProps> = ({ className }) => {
   return (
-    <section className="platform-overview">
+    <section className={`platform-overview ${className || ""}`}>
       <div className="platform-overview-container">     
-        <div className="platform-screenshot">
-          <div className="screenshot-container">
-            <div className="screenshot-window">
-              <div className="window-controls">
-                <span className="control-dot red"></span>
-                <span className="control-dot yellow"></span>
-                <span className="control-dot green"></span>
-              </div>
-              <div className="window-content">
-                <div className="platform-demo-visual">
-                  <div className="code-editor">
-                    <pre><code>{`// Optimized inference with ByteCupids
+        <ScrollAnimation animationType="fade-up">
+          <div className="platform-screenshot">
+            <div className="screenshot-container">
+              <div className="screenshot-window">
+                <div className="window-controls">
+                  <span className="control-dot red"></span>
+                  <span className="control-dot yellow"></span>
+                  <span className="control-dot green"></span>
+                </div>
+                <div className="window-content">
+                  <div className="platform-demo-visual">
+                    <div className="code-editor">
+                      <pre><code>{`// Optimized inference with ByteCupids
 import bytecupids from '@bytecupids/sdk';
 
 // Initialize client
@@ -39,21 +45,22 @@ const result = await client.infer({
 });
 
 console.log(result.output); // "Bonjour le monde"`}</code></pre>
-                  </div>
-                  <div className="dashboard-preview">
-                    <div className="chart-placeholder"></div>
-                    <div className="stats">
-                      <div className="stat">
-                        <span className="stat-value">47ms</span>
-                        <span className="stat-label">Avg Latency</span>
-                      </div>
-                      <div className="stat">
-                        <span className="stat-value">99.9%</span>
-                        <span className="stat-label">Uptime</span>
-                      </div>
-                      <div className="stat">
-                        <span className="stat-value">302</span>
-                        <span className="stat-label">Edge Points</span>
+                    </div>
+                    <div className="dashboard-preview">
+                      <div className="chart-placeholder"></div>
+                      <div className="stats">
+                        <div className="stat">
+                          <span className="stat-value">47ms</span>
+                          <span className="stat-label">Avg Latency</span>
+                        </div>
+                        <div className="stat">
+                          <span className="stat-value">99.9%</span>
+                          <span className="stat-label">Uptime</span>
+                        </div>
+                        <div className="stat">
+                          <span className="stat-value">302</span>
+                          <span className="stat-label">Edge Points</span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -61,12 +68,14 @@ console.log(result.output); // "Bonjour le monde"`}</code></pre>
               </div>
             </div>
           </div>
-        </div>
+        </ScrollAnimation>
         
-        <div className="platform-cta">
-          <button className="platform-btn">View Documentation</button>
-          <a href="#pricing" className="platform-link">Compare Plans</a>
-        </div>
+        <ScrollAnimation animationType="fade-up" delay={0.2}>
+          <div className="platform-cta">
+            <button className="platform-btn">View Documentation</button>
+            <a href="#pricing" className="platform-link">Compare Plans</a>
+          </div>
+        </ScrollAnimation>
       </div>
     </section>
   );

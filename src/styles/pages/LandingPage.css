@@ -1,6 +1,14 @@
+/* Global styles for the entire landing page */
 .landing-page {
-    overflow-x: hidden;
-    scroll-behavior: smooth;
+  background: radial-gradient(circle at center, 
+                 #020507 50%,
+                 #0a151b 100%);
+  color: var(--color-primary-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  position: relative;
+  z-index: 1;
 }
 
 /* Enable smooth scrolling for the whole page */
@@ -11,6 +19,33 @@ html {
 /* Fix for mobile sticky scrolling */
 body {
     -webkit-overflow-scrolling: touch;
+}
+
+/* Common section styling with subtle separator */
+.section {
+  position: relative;
+  width: 100%;
+  z-index: 2;
+  padding: 80px 0;
+}
+
+/* Remove any background from Hero to use global background */
+.hero {
+  background: none !important;
+}
+
+/* Remove any background from platform overview to use global background */
+.platform-overview {
+  background: none !important;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Remove any divider elements */
+.hero::after,
+.platform-overview::before,
+.section-transition {
+  display: none !important;
 }
 
 /* Create a visual indicator that there's content below */
@@ -53,4 +88,32 @@ body {
         transform: translateY(0);
         opacity: 0;
     }
+}
+
+/* Add subtle glow effects throughout the page */
+.global-glow {
+  position: absolute;
+  width: 100%;
+  height: 30vh;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 169, 157, 0.05) 0%,
+    rgba(0, 169, 157, 0.02) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(50px);
+}
+
+.glow-top {
+  top: 0;
+}
+
+.glow-middle {
+  top: 50vh;
+}
+
+.glow-bottom {
+  bottom: 0;
 }

@@ -1,12 +1,12 @@
 .hero {
     position: relative;
     width: 100%;
-    min-height: 55vh; /* Reduced from 60vh to 55vh */
-    height: 55vh; /* Reduced from 60vh to 55vh */
+    min-height: 50vh; /* Reduced from 55vh to 50vh */
+    height: 50vh; /* Reduced from 55vh to 50vh */
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow: visible; /* Changed from hidden to visible */
     padding: 0; /* Remove padding to let the hemisphere control spacing */
     color: var(--color-primary-text);
     /* Make background darker and more contained - less gradient transition */
@@ -14,9 +14,9 @@
                                #020507 100%, /* Darkest at center - using your Color 1 */
                                #0a151b 100%, /* Using your Color 2 at greater percentage */
                                #1c232a 100%); /* Using Color 5 only at the very edge */
-    z-index: 0;
+    z-index: 10; /* Ensure proper stacking */
     padding-bottom: 0; /* Remove bottom padding since we're controlling height directly */
-    margin-bottom: -30px; /* Negative margin to pull platform overview up */
+    margin-bottom: 0; /* Ensure no margin */
 }
 
 /* Responsive adjustments for hero on smaller screens */
@@ -50,12 +50,12 @@
 .hero::after {
     content: "";
     position: absolute;
-    bottom: -1px;
+    bottom: -5px; /* Very slight overlap to prevent hairline gaps */
     left: 0;
     width: 100%;
-    height: 100px; /* Increased from 60px to 100px */
-    background: linear-gradient(180deg, transparent 0%, rgba(3, 10, 15, 0.8) 60%, #030A0F 100%);
-    z-index: 10; /* Increased z-index to ensure it's above other elements */
+    height: 10px; /* Much shorter gradient */
+    background: #020507; /* Solid color matching the background */
+    z-index: 10;
     pointer-events: none;
 }
 
@@ -408,10 +408,11 @@
     animation: fadeInSlideUp 1s ease-out 0.3s forwards;
 }
 
-/* Move the CTA buttons outside of the hemisphere */
-.hero-actions { /* Take it out of the normal flow */
-    bottom: 15vh; /* Move buttons higher (was 10vh) */
-    left: 0;
+/* Move the CTA buttons inside the hero-content */
+.hero-actions {
+    position: relative; /* Change from absolute to relative */
+    bottom: auto; /* Remove bottom positioning */
+    left: auto; /* Remove left positioning */
     width: 100%;
     display: flex;
     justify-content: center;
@@ -419,7 +420,8 @@
     flex-wrap: wrap;
     opacity: 0;
     animation: fadeIn 1s ease-out 0.6s forwards;
-    z-index: 20; /* Ensure it's above the gradient overlay */
+    z-index: 20;
+    margin-top: 50px; /* Add top margin for spacing */
 }
 
 /* Responsive button adjustments */
@@ -1084,12 +1086,12 @@
 .hero::after {
     content: "";
     position: absolute;
-    bottom: -1px; /* Ensure no gap */
+    bottom: -5px; /* Very slight overlap to prevent hairline gaps */
     left: 0;
     width: 100%;
-    height: 100px; /* Increased from 60px to 100px */
-    background: linear-gradient(180deg, transparent 0%, rgba(3, 10, 15, 0.8) 60%, #030A0F 100%);
-    z-index: 10; /* Increased z-index to ensure it's above other elements */
+    height: 10px; /* Much shorter gradient */
+    background: #020507; /* Solid color matching the background */
+    z-index: 10;
     pointer-events: none;
 }
 
@@ -1110,9 +1112,9 @@
 }
 
 .connector-dots span {
-    width: 4px;
-    height: 4px;
-    background-color: rgba(0, 169, 157, 0.5);
+    width: 5px; /* Slightly larger */
+    height: 5px; /* Slightly larger */
+    background-color: rgba(0, 169, 157, 0.7); /* More visible */
     border-radius: 50%;
     opacity: 0;
     animation: fadeInOut 2s infinite;

@@ -4,10 +4,10 @@ import Footer from "../components/LandingPage/Footer";
 import Header from "../components/LandingPage/Header";
 import Hero from "../components/LandingPage/Hero";
 import PlatformOverview from "../components/LandingPage/PlatformOverview";
-import '../styles/pages/LandingPage.css'; // You'll need to create this file if it doesn't exist
+import GlobalParticlesBackground from '../components/LandingPage/GlobalParticlesBackground';
+import '../styles/pages/LandingPage.css';
 
 export default function LandingPage() {
-    // This effect ensures smooth scrolling when the page loads
     useEffect(() => {
         // Reset scroll position when the page loads
         window.scrollTo(0, 0);
@@ -16,11 +16,14 @@ export default function LandingPage() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (this: HTMLAnchorElement, e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href')!);
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                const href = this.getAttribute('href');
+                if (href) {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             });
         });
@@ -28,10 +31,18 @@ export default function LandingPage() {
 
     return (
         <div className="landing-page">
+            {/* Global particles background that spans the entire page */}
+            <GlobalParticlesBackground />
+            
+            {/* Global glow effects at different positions */}
+            <div className="global-glow glow-top"></div>
+            <div className="global-glow glow-middle"></div>
+            <div className="global-glow glow-bottom"></div>
+            
             <Header />
-            <Hero />
-            <PlatformOverview />
-            <Feature />
+            <Hero className="section" />
+            <PlatformOverview className="section" />
+            <Feature className="section" />
             <Footer />
         </div>
     );
