@@ -2,47 +2,275 @@
     position: relative;
     width: 100%;
     min-height: 100vh;
-    padding: 140px 20px 100px; /* Increased top/bottom padding */
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    overflow: hidden; /* Important for pseudo-elements and particles */
+    overflow: hidden;
+    padding: 0; /* Remove padding to let the hemisphere control spacing */
     color: var(--color-primary-text);
-    /* Base background with a subtle vignette effect */
+    /* Make background darker and more contained - less gradient transition */
     background: radial-gradient(ellipse at center, 
-                                var(--color-background-deep-space) 60%, 
-                                var(--color-background-midnight) 100%);
-    z-index: 0; /* Establish stacking context */
+                               #020507 50%, /* Darkest at center - using your Color 1 */
+                               #0a151b 100%, /* Using your Color 2 at greater percentage */
+                               #1c232a 100%); /* Using Color 5 only at the very edge */
+    z-index: 0;
+    padding-bottom: 15vh; /* Add padding at bottom to make space for buttons */
 }
 
-/* Edge glow effect, replacing the previous animated ::before */
+/* Edge glow effect - significantly reduced and pushed to edges */
 .hero::before {
     content: "";
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 160%; /* Wider for a broader glow */
-    height: 60%; /* Covers the upper part */
+    width: 160%; /* Still wide to cover edges */
+    height: 60%; 
     background: radial-gradient(
-        ellipse at 50% 0%, /* Glow originates from top-center */
-        var(--color-hero-edge-glow) 0%,
-        transparent 70%
+        ellipse at 50% 0%,
+        rgba(0, 169, 157, 0.08) 0%, /* Much lower opacity - 0.08 */
+        transparent 60% /* Fade out faster */
     );
-    filter: blur(60px); /* Adjust blur for softness */
-    opacity: 0.6; /* Adjust opacity */
-    z-index: 1; /* Above particles, below content */
+    filter: blur(80px); /* More blur for subtlety */
+    opacity: 0.5; /* Lower overall opacity */
+    z-index: 1;
     pointer-events: none;
 }
 
-/* REMOVE @keyframes glowMove and its usage if no longer needed */
+/* Reduce the bottom "planet" glow effect as well */
+.hero::after {
+    content: "";
+    position: absolute;
+    bottom: -5%;
+    left: 0;
+    width: 100%;
+    height: 10%; /* Smaller height to avoid overlap */
+    background: radial-gradient(
+        ellipse at center bottom,
+        rgba(0, 50, 80, 0.15) 0%, /* Lower opacity - 0.15 */
+        transparent 70%
+    );
+    filter: blur(50px);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.3;  /* Reduced from previous value */
+}
 
+/* Reduce the cosmic blob's presence */
+.cosmic-blob {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    background: radial-gradient(
+        ellipse at center,
+        rgba(7, 30, 50, 0.15) 0%, /* Much lower opacity - 0.15 */
+        rgba(4, 15, 30, 0.08) 40%, /* Lower opacity - 0.08 */
+        transparent 80% /* Fade out faster */
+    );
+    filter: blur(70px); /* More blur for subtlety */
+    z-index: 1;
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+/* Add this new element for the hemisphere with glowy circumference */
+.hero-hemisphere {
+    position: absolute;
+    top: 40%; /* Position at 40% from the top */
+    left: 0;
+    width: 100%;
+    height: 100%; /* Full remaining height */
+    overflow: hidden;
+    z-index: 1; /* Above the background gradients but below content */
+    pointer-events: none; /* Don't block interactions */
+}
+
+/* Create the hemisphere shape with pseudo-element */
+.hero-hemisphere::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -15%; /* Extend beyond edges for a wider curve */
+    width: 130%; /* Make wider than the container */
+    height: 100%; /* Tall enough to fill bottom */
+    border-radius: 50% 50% 0 0; /* Top curved edges */
+    border-top: 1px solid rgba(0, 169, 157, 0.15); /* Subtle teal glow at the edge */
+    background: radial-gradient(
+        ellipse at center top,
+        rgba(7, 40, 60, 0.10) 0%, /* Very subtle dark teal */
+        rgba(4, 15, 30, 0.02) 60%,
+        transparent 100%
+    );
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    box-shadow: 
+        0 -10px 70px rgba(0, 169, 157, 0.05), /* Outer glow */
+        0 -5px 25px rgba(0, 169, 157, 0.03); /* Inner glow */
+    transform: translateY(-50%); /* Pull up to create the curve */
+}
+
+/* Add a subtle glowy circumference */
+.hero-hemisphere::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -15%;
+    width: 130%;
+    height: 100%;
+    border-radius: 50% 50% 0 0;
+    border-top: 1.5px solid rgba(0, 169, 157, 0.15); /* Glowy edge */
+    border-left: 1px solid rgba(0, 169, 157, 0.05);
+    border-right: 1px solid rgba(0, 169, 157, 0.05);
+    filter: blur(3px);
+    transform: translateY(-50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Top hemisphere - adjust dimensions to properly contain content */
+.hero-top-hemisphere {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 45vh; /* Reduced from 55vh to only contain text, not buttons */
+    overflow: visible; /* Allow content to be visible */
+    z-index: 1;
+    pointer-events: none;
+    /* Flexbox for content positioning */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 5vh; /* Add padding at the top for better content positioning */
+}
+
+/* Semi-elliptical shape with backdrop filter and glowy border - focused border glow */
+.hero-top-hemisphere::before {
+    content: "";
+    position: absolute;
+    top: -30vh; /* Adjusted from -35vh for better curve position */
+    left: 50%;
+    width: 180vw;
+    height: 80vh; /* Increased from 70vh for a more spacious hemisphere */
+    transform: translateX(-50%);
+    border-radius: 50%;
+    /* Enhanced border with higher opacity */
+    border: 2px solid rgba(0, 169, 157, 0.45); /* Slightly increased opacity */
+    background: transparent; /* Completely transparent background */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    /* Focus glow on the border only with reduced inner glow */
+    box-shadow:
+        0 0 15px rgba(0, 169, 157, 0.1), /* Subtle outer glow */
+        0 0 8px rgba(0, 169, 157, 0.05), /* Very subtle middle glow */
+        inset 0 0 4px rgba(0, 169, 157, 0.15); /* Minimal inward glow - just at edges */
+    z-index: -1;
+}
+
+/* Enhanced glowing circumference effect - focus on border only */
+.hero-top-hemisphere::after {
+    content: "";
+    position: absolute;
+    top: -30vh; /* Match the ::before positioning */
+    left: 50%;
+    width: 180vw;
+    height: 80vh; /* Match the height from ::before */
+    transform: translateX(-50%);
+    border-radius: 50%;
+    /* Enhanced border with shine effect */
+    border: 3px solid rgba(0, 169, 157, 0.4);
+    background: none; /* No background gradient */
+    /* Focus box shadow on edge only */
+    box-shadow: 
+        0 0 10px rgba(0, 169, 157, 0.15),
+        0 0 3px rgba(0, 169, 157, 0.1);
+    filter: blur(2px); /* Reduced blur for sharper edge */
+    z-index: -1;
+}
+
+/* Additional glossy highlight effect for the edge */
+.hero-top-hemisphere-highlight {
+    position: absolute;
+    top: -25vh; /* Position slightly below the main hemisphere edge */
+    left: 50%;
+    width: 178vw; /* Slightly smaller than the main hemisphere */
+    height: 78vh;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    border: none;
+    /* Thin highlight line on top edge */
+    background: 
+        linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 255, 255, 0.08) 1%,
+            rgba(255, 255, 255, 0) 5%,
+            transparent 100%
+        );
+    opacity: 0.4;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Enhanced central glow element with increased spread but lower opacity for glass effect */
+.hero-top-hemisphere-glow {
+    position: absolute;
+    top: 8vh; /* Moved slightly higher for better positioning */
+    left: 50%;
+    width: 85vw; /* Significantly increased width for wider spread */
+    height: 35vh; /* Increased height for larger spread */
+    transform: translateX(-50%);
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0, 169, 157, 0.15) 0%, /* Kept lower opacity */
+        rgba(0, 169, 157, 0.08) 35%, /* Lower opacity with extended reach */
+        rgba(0, 169, 157, 0.04) 70%, /* Added extra step for smoother falloff */
+        transparent 100%
+    );
+    filter: blur(45px); /* Increased blur for more diffusion */
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.85; /* Slightly reduced overall opacity */
+}
+
+/* Add a second, smaller glow with wider spread but maintained translucency */
+.hero-top-hemisphere-inner-glow {
+    position: absolute;
+    top: 10vh;
+    left: 50%;
+    width: 45vw; /* Increased width */
+    height: 22vh; /* Increased height */
+    transform: translateX(-50%);
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0, 169, 157, 0.18) 0%, /* Kept moderate opacity */
+        rgba(0, 169, 157, 0.12) 30%, 
+        rgba(0, 169, 157, 0.06) 60%,
+        rgba(0, 169, 157, 0.02) 85%,
+        transparent 100%
+    );
+    filter: blur(35px); /* Increased blur for softer effect */
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.9; /* Slightly reduced */
+}
+
+/* Adjust hero content positioning within the hemisphere - text only */
 .hero-content {
     position: relative;
-    z-index: 2; /* Above particles and ::before glow */
+    z-index: 15; /* Lower than particles but high enough to be above other elements */
     max-width: 800px;
-    padding: 20px;
+    padding: 10px;
+    padding-top: 80px; /* Remove top padding to align with hemisphere */
+    margin-top: 20;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hero-badge {
@@ -73,34 +301,43 @@
     text-shadow: 0 0 20px rgba(var(--color-accent-dark-teal-rgb), 0.3); 
 }
 
+/* Adjust the hero-subtitle bottom margin since buttons are now outside */
 .hero-subtitle {
     font-size: clamp(1.1rem, 2.5vw, 1.3rem); /* Slightly larger */
     color: var(--color-secondary-text);
     line-height: 1.75;
     max-width: 700px; /* Wider subtitle */
-    margin: 0 auto 40px; /* Increased bottom margin */
+    margin: 0 auto 20px; /* Reduced from 40px to 20px */
     opacity: 0;
     animation: fadeInSlideUp 1s ease-out 0.3s forwards;
 }
 
+/* Move the CTA buttons outside of the hemisphere */
 .hero-actions {
+    position: absolute; /* Take it out of the normal flow */
+    bottom: calc(45vh - 30px); /* Position it just below the hemisphere */
+    left: 0;
+    width: 100%;
     display: flex;
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
     opacity: 0;
     animation: fadeIn 1s ease-out 0.6s forwards;
+    z-index: 15; /* Same as hero content */
 }
 
+/* Enhance the buttons for better visibility outside the hemisphere */
 .hero-btn {
-    padding: 12px 28px; /* Adjusted padding */
-    font-size: 0.95rem; /* Adjusted font size */
+    padding: 14px 30px; /* Slightly larger padding */
+    font-size: 1rem; /* Slightly larger font */
     border-radius: 6px; /* Rounded corners like image */
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 500;
     letter-spacing: 0.3px;
     border: 1px solid transparent; /* Default border */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Added shadow for all buttons */
 }
 
 .hero-btn.primary {
@@ -161,4 +398,42 @@
         transform: scale(1.05);
         box-shadow: 0 0 10px rgba(var(--color-accent-secondary-rgb, 44, 182, 125), 0.4), 0 0 20px rgba(var(--color-accent-secondary-rgb, 44, 182, 125), 0.3);
     }
+}
+
+/* Add a style to target the particles container */
+.hero .particles-bg-canvas-self {
+    position: relative !important;
+    z-index: 20 !important; /* Higher z-index to float above all elements */
+    pointer-events: none !important; /* Prevent particles from blocking interactions */
+}
+
+/* Style the particles container to fill the entire viewport */
+.particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5; /* Above background but below content */
+    pointer-events: none; /* Prevent particles from blocking interactions */
+}
+
+/* Ensure the particles canvas itself fills the container */
+.particles-container canvas {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: inherit !important;
+}
+
+/* Alternative targeting method for the particles canvas */
+.hero .particles-bg-canvas-self {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: inherit !important;
 }
