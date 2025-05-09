@@ -1,7 +1,8 @@
 .hero {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    min-height: 55vh; /* Reduced from 60vh to 55vh */
+    height: 55vh; /* Reduced from 60vh to 55vh */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,7 +15,8 @@
                                #0a151b 100%, /* Using your Color 2 at greater percentage */
                                #1c232a 100%); /* Using Color 5 only at the very edge */
     z-index: 0;
-    padding-bottom: 15vh; /* Add padding at bottom to make space for buttons */
+    padding-bottom: 0; /* Remove bottom padding since we're controlling height directly */
+    margin-bottom: -30px; /* Negative margin to pull platform overview up */
 }
 
 /* Responsive adjustments for hero on smaller screens */
@@ -48,19 +50,13 @@
 .hero::after {
     content: "";
     position: absolute;
-    bottom: -5%;
+    bottom: -1px;
     left: 0;
     width: 100%;
-    height: 10%; /* Smaller height to avoid overlap */
-    background: radial-gradient(
-        ellipse at center bottom,
-        rgba(0, 50, 80, 0.15) 0%, /* Lower opacity - 0.15 */
-        transparent 100%
-    );
-    filter: blur(50px);
-    z-index: 1;
+    height: 100px; /* Increased from 60px to 100px */
+    background: linear-gradient(180deg, transparent 0%, rgba(3, 10, 15, 0.8) 60%, #030A0F 100%);
+    z-index: 10; /* Increased z-index to ensure it's above other elements */
     pointer-events: none;
-    opacity: 0.3;  /* Reduced from previous value */
 }
 
 /* Add this new element for the hemisphere with glowy circumference */
@@ -123,7 +119,7 @@
     top: 0;
     left: 0;
     width: 100%; 
-    height: 45vh; /* Reduced from 55vh to only contain text, not buttons */
+    height: 40vh; /* Adjust hemisphere height to fit within 60vh */
     overflow: visible; /* Allow content to be visible */
     z-index: 1;
     pointer-events: none;
@@ -139,10 +135,10 @@
 .hero-top-hemisphere::before {
     content: "";
     position: absolute;
-    top: -30vh; /* Standard position */
+    top: -25vh; /* Standard position */
     left: 50%;
     width: 180vw;
-    height: 80vh;
+    height: 60vh;
     transform: translateX(-50%);
     border-radius: 100%;
     border: 2px solid rgba(0, 169, 157, 0.45);
@@ -160,10 +156,10 @@
 .hero-top-hemisphere::after {
     content: "";
     position: absolute;
-    top: -30vh; /* EXACTLY match ::before */
+    top: -25vh; /* EXACTLY match ::before */
     left: 50%;
     width: 180vw; /* EXACTLY match ::before */
-    height: 80vh; /* EXACTLY match ::before */
+    height: 60vh; /* EXACTLY match ::before */
     transform: translateX(-50%);
     border-radius: 100%;
     border: 2px solid rgba(0, 169, 157, 0.45);
@@ -253,10 +249,10 @@
 /* Additional glossy highlight effect for the edge */
 .hero-top-hemisphere-highlight {
     position: absolute;
-    top: -25vh; /* Position slightly below the main hemisphere edge */
+    top: -22vh; /* Position slightly below the main hemisphere edge */
     left: 50%;
     width: 178vw; /* Slightly smaller than the main hemisphere */
-    height: 78vh;
+    height: 58vh;
     transform: translateX(-50%);
     border-radius: 50%;
     border: none;
@@ -277,10 +273,10 @@
 /* Enhanced central glow element with increased spread but lower opacity for glass effect */
 .hero-top-hemisphere-glow {
     position: absolute;
-    top: 8vh; /* Moved slightly higher for better positioning */
+    top: 5vh; /* Moved slightly higher for better positioning */
     left: 50%;
     width: 85vw; /* Significantly increased width for wider spread */
-    height: 35vh; /* Increased height for larger spread */
+    height: 25vh; /* Increased height for larger spread */
     transform: translateX(-50%);
     background: radial-gradient(
         ellipse at center,
@@ -313,10 +309,10 @@
 /* Add a second, smaller glow with wider spread but maintained translucency */
 .hero-top-hemisphere-inner-glow {
     position: absolute;
-    top: 10vh;
+    top: 7vh;
     left: 50%;
     width: 45vw; /* Increased width */
-    height: 22vh; /* Increased height */
+    height: 15vh; /* Increased height */
     transform: translateX(-50%);
     background: radial-gradient(
         ellipse at center,
@@ -338,7 +334,7 @@
     z-index: 15; /* Lower than particles but high enough to be above other elements */
     max-width: 800px;
     padding: 10px;
-    padding-top: 80px; /* Remove top padding to align with hemisphere */
+    padding-top: 50px; /* Remove top padding to align with hemisphere */
     margin-top: 20;
     text-align: center;
     display: flex;
@@ -390,11 +386,11 @@
 }
 
 .hero-title {
-    font-size: clamp(3rem, 6.5vw, 4.2rem); /* Slightly larger */
+    font-size: clamp(2.5rem, 5vw, 3.8rem); /* Slightly larger */
     font-weight: 700;
     letter-spacing: -1.5px;
     color: var(--color-primary-text);
-    margin-bottom: 25px; /* Increased margin */
+    margin-bottom: 15px; /* Increased margin */
     opacity: 0;
     animation: fadeInSlideUp 1s ease-out forwards;
     /* Text shadow can be kept or adjusted if it clashes with the new background */
@@ -403,19 +399,18 @@
 
 /* Adjust the hero-subtitle bottom margin since buttons are now outside */
 .hero-subtitle {
-    font-size: clamp(1.1rem, 2.5vw, 1.3rem); /* Slightly larger */
+    font-size: clamp(1rem, 2vw, 1.2rem); /* Slightly larger */
     color: var(--color-secondary-text);
-    line-height: 1.75;
-    max-width: 700px; /* Wider subtitle */
-    margin: 0 auto 20px; /* Reduced from 40px to 20px */
+    line-height: 1.6;
+    max-width: 650px; /* Wider subtitle */
+    margin: 0 auto 15px; /* Reduced from 40px to 20px */
     opacity: 0;
     animation: fadeInSlideUp 1s ease-out 0.3s forwards;
 }
 
 /* Move the CTA buttons outside of the hemisphere */
-.hero-actions {
-    position: absolute; /* Take it out of the normal flow */
-    bottom: calc(45vh - 30px); /* Position it just below the hemisphere */
+.hero-actions { /* Take it out of the normal flow */
+    bottom: 15vh; /* Move buttons higher (was 10vh) */
     left: 0;
     width: 100%;
     display: flex;
@@ -424,7 +419,7 @@
     flex-wrap: wrap;
     opacity: 0;
     animation: fadeIn 1s ease-out 0.6s forwards;
-    z-index: 15; /* Same as hero content */
+    z-index: 20; /* Ensure it's above the gradient overlay */
 }
 
 /* Responsive button adjustments */
@@ -1043,5 +1038,106 @@
         font-size: clamp(0.85rem, 3.5vw, 1rem) !important;
         line-height: 1.5 !important;
         margin-bottom: 2vh !important;
+    }
+}
+
+/* Adjust responsive behavior */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 500px; /* Min-height in pixels for mobile */
+        height: auto; /* Allow it to grow if needed on smaller screens */
+        padding-bottom: 40px; /* Add some bottom padding for mobile */
+    }
+    
+    .hero-content {
+        padding-top: 80px; /* Adjust for mobile */
+        max-width: 90%;
+    }
+    
+    .hero-actions {
+        position: relative;
+        bottom: auto;
+        margin-top: 30px;
+    }
+    
+    .hero-title {
+        font-size: clamp(1.8rem, 7vw, 2.5rem);
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 4vw, 1.1rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        min-height: 450px; /* Even smaller for mobile phones */
+    }
+    
+    .hero-content {
+        padding-top: 70px;
+    }
+}
+
+/* Add this at the end of the file */
+/* Create a connecting element between hero and platform overview */
+.hero::after {
+    content: "";
+    position: absolute;
+    bottom: -1px; /* Ensure no gap */
+    left: 0;
+    width: 100%;
+    height: 100px; /* Increased from 60px to 100px */
+    background: linear-gradient(180deg, transparent 0%, rgba(3, 10, 15, 0.8) 60%, #030A0F 100%);
+    z-index: 10; /* Increased z-index to ensure it's above other elements */
+    pointer-events: none;
+}
+
+/* Add a subtle connector between hero and platform overview */
+.section-connector {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+}
+
+.connector-dots {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.connector-dots span {
+    width: 4px;
+    height: 4px;
+    background-color: rgba(0, 169, 157, 0.5);
+    border-radius: 50%;
+    opacity: 0;
+    animation: fadeInOut 2s infinite;
+}
+
+.connector-dots span:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.connector-dots span:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.8; }
+}
+
+/* Make sure the responsive styles don't break our flow */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 480px; /* Adjust to maintain proper spacing */
+    }
+    
+    .section-connector {
+        bottom: 10px;
     }
 }

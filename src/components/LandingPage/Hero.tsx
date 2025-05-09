@@ -78,9 +78,9 @@ const Hero: React.FC = () => {
         {/* Add layered glows for more depth */}
         <div className="hero-top-hemisphere-glow"></div>
         <div className="hero-top-hemisphere-inner-glow"></div>
-        
+
         <div className="hero-top-hemisphere-highlight"></div>
-        
+
         {/* Text content inside the hemisphere */}
         <div className="hero-content">
           <span className="hero-badge">🚀 Beta released</span>
@@ -91,12 +91,21 @@ const Hero: React.FC = () => {
             cost-efficiency for a best-in-class experience.
           </p>
         </div>
+        <div className="hero-actions">
+          <button className="hero-btn primary">Get started</button>
+          <button className="hero-btn secondary">Book a demo</button>
+        </div>
       </div>
-      
+
       {/* CTA buttons outside the hemisphere */}
-      <div className="hero-actions">
-        <button className="hero-btn primary">Get started</button>
-        <button className="hero-btn secondary">Book a demo</button>
+
+      {/* Add a subtle scroll indicator to connect with platform section */}
+      <div className="section-connector">
+        <div className="connector-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </section>
   );
