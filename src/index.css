@@ -1,68 +1,98 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif; /* Using Inter as primary */
+  line-height: 1.6; /* Slightly increased for better readability */
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  color-scheme: dark; /* Explicitly set to dark */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* New Ultra-Dark Theme Palette */
+  --color-background-deep-space: #020507;         /* Color 1 */
+  --color-background-deep-space-rgb: 2, 5, 7;
+  --color-background-midnight: #0a151b;           /* Color 2 */
+  --color-background-midnight-rgb: 10, 21, 27;
+  --color-background-charcoal: #1c232a;          /* Color 5 */
+  --color-background-charcoal-rgb: 28, 35, 42;
+  
+  --color-accent-dark-teal: #012b36;             /* Color 4 */
+  --color-accent-dark-teal-rgb: 1, 43, 54;
+  --color-text-muted-gray: #4d5d60;              /* Color 3 */
+  --color-text-muted-gray-rgb: 77, 93, 96;
+
+  /* Updated main background variables to use the new palette */
+  --color-background-main: var(--color-background-deep-space);
+  --color-background-elevated: var(--color-background-midnight);
+  /* For glass effect, using a slightly lighter new color with alpha */
+  --color-background-glass: rgba(var(--color-background-charcoal-rgb), 0.75); 
+  
+  --color-primary-text: #EAEBF0; /* Soft, very light gray/white - Stays the same for contrast */
+  --color-secondary-text: #A0AEC0; /* Cool gray for subtitles - Stays the same */
+  
+  --color-accent-primary: #7F5AF0; /* Vibrant purple - Stays the same, ensure it pops on new dark bg */
+  --color-accent-primary-rgb: 127, 90, 240;
+  --color-accent-primary-hover: #926BF4;
+  --color-accent-secondary: #2CB67D; /* Contrasting teal/green - Stays the same */
+  --color-accent-secondary-rgb: 44, 182, 125; /* Bright Green for badge text */
+
+  /* Updated border colors using the new palette */
+  --color-border-subtle: rgba(var(--color-text-muted-gray-rgb), 0.25); 
+  --color-border-interactive: rgba(var(--color-accent-primary-rgb), 0.4); /* Keep accent for interactive borders */
+
+  /* Hero glow colors might need adjustment if they clash with the new very dark theme */
+  /* Consider making them even more subtle or using shades from the new palette */
+  --color-hero-glow-start: #0a151b; /* Example: Using Color 2 */
+  --color-hero-glow-mid: #012b36;   /* Example: Using Color 4 */
+  --color-hero-glow-end: #1c232a;    /* Example: Using Color 5 */
+  --color-hero-edge-glow: rgba(var(--color-accent-dark-teal-rgb), 0.25); /* For the top edge glow */
+  
+  /* Button specific colors based on image */
+  --color-button-primary-bg-start: #00A99D; /* Teal gradient start */
+  --color-button-primary-bg-end: #00767B;   /* Teal gradient end */
+  --color-button-secondary-bg: #102430;     /* Dark bg for secondary button */
+  --color-button-secondary-border: #3A505F; /* Border for secondary button */
+
+  --color-badge-bg: #0A1F2C; /* Dark teal/blue for badge background */
+  --color-badge-border: rgba(var(--color-accent-secondary-rgb), 0.5); /* Brighter green border for badge */
+
+  --color-accent: var(--color-accent-primary);
+  --color-accent-dark: #6B46D2; 
+  
+  --color-success: var(--color-accent-secondary);
+  --color-success-transparent: rgba(var(--color-accent-secondary-rgb), 0.1);
+  --color-success-border: rgba(var(--color-accent-secondary-rgb), 0.2);
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  color: var(--color-accent-primary);
+  text-decoration: none; /* Remove underline by default, add on hover if desired */
+  transition: color 0.3s ease;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--color-accent-primary-hover);
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* display: flex; place-items: center; */ /* Remove these if pages are full-width */
   min-width: 320px;
   min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--color-background-main); /* Updated to new main background */
+  color: var(--color-primary-text);
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  color: var(--color-primary-text); /* Ensure headings use primary text color */
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+/* Remove default button styling if you are styling all buttons via specific classes */
+/* button { ... } */
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+/* Remove light theme overrides if you are committing to a dark-only theme for now */
+/* @media (prefers-color-scheme: light) { ... } */

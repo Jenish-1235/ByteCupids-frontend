@@ -1,12 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import "./styles/pages/App.css";
 import React, { Suspense } from "react";
+import "./App.css";
 
 const LandingPage = React.lazy(()=> import("./pages/LandingPage"))
-const LaunchLab = React.lazy(() => import("./pages/LaunchLab"));
-const LabModules = React.lazy(() => import("./pages/LabModules"));
-const LabTopics = React.lazy(() => import("./pages/LabTopics"));
 
 function App() {
   return (
@@ -15,9 +12,6 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/launchlab" element={<LaunchLab />} />
-          <Route path="/labmodules" element={<LabModules />} />
-          <Route path="/lab/:moduleId/topics" element={<LabTopics />} />
         </Routes>
       </Router>
           </Suspense>

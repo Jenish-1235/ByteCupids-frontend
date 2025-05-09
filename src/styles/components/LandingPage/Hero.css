@@ -1,0 +1,164 @@
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 140px 20px 100px; /* Increased top/bottom padding */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden; /* Important for pseudo-elements and particles */
+    color: var(--color-primary-text);
+    /* Base background with a subtle vignette effect */
+    background: radial-gradient(ellipse at center, 
+                                var(--color-background-deep-space) 60%, 
+                                var(--color-background-midnight) 100%);
+    z-index: 0; /* Establish stacking context */
+}
+
+/* Edge glow effect, replacing the previous animated ::before */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160%; /* Wider for a broader glow */
+    height: 60%; /* Covers the upper part */
+    background: radial-gradient(
+        ellipse at 50% 0%, /* Glow originates from top-center */
+        var(--color-hero-edge-glow) 0%,
+        transparent 70%
+    );
+    filter: blur(60px); /* Adjust blur for softness */
+    opacity: 0.6; /* Adjust opacity */
+    z-index: 1; /* Above particles, below content */
+    pointer-events: none;
+}
+
+/* REMOVE @keyframes glowMove and its usage if no longer needed */
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* Above particles and ::before glow */
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-badge {
+    display: inline-flex; /* For aligning icon and text if you add an icon */
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+    padding: 8px 18px;
+    background-color: var(--color-badge-bg);
+    color: var(--color-accent-secondary); /* Bright green text */
+    border: 1px solid var(--color-badge-border);
+    border-radius: 50px;
+    font-size: 0.85rem; /* Slightly adjusted */
+    font-weight: 500;
+    margin-bottom: 30px; /* Increased margin */
+    opacity: 0;
+    animation: fadeInSlideUp 0.8s ease-out 0.9s forwards, pulseBadge 3s infinite ease-in-out 1.7s;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 6.5vw, 4.2rem); /* Slightly larger */
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    color: var(--color-primary-text);
+    margin-bottom: 25px; /* Increased margin */
+    opacity: 0;
+    animation: fadeInSlideUp 1s ease-out forwards;
+    /* Text shadow can be kept or adjusted if it clashes with the new background */
+    text-shadow: 0 0 20px rgba(var(--color-accent-dark-teal-rgb), 0.3); 
+}
+
+.hero-subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem); /* Slightly larger */
+    color: var(--color-secondary-text);
+    line-height: 1.75;
+    max-width: 700px; /* Wider subtitle */
+    margin: 0 auto 40px; /* Increased bottom margin */
+    opacity: 0;
+    animation: fadeInSlideUp 1s ease-out 0.3s forwards;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.6s forwards;
+}
+
+.hero-btn {
+    padding: 12px 28px; /* Adjusted padding */
+    font-size: 0.95rem; /* Adjusted font size */
+    border-radius: 6px; /* Rounded corners like image */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    border: 1px solid transparent; /* Default border */
+}
+
+.hero-btn.primary {
+    background-image: linear-gradient(45deg, var(--color-button-primary-bg-start), var(--color-button-primary-bg-end));
+    color: var(--color-primary-text);
+    box-shadow: 0 4px 15px rgba(var(--color-button-primary-bg-start), 0.25);
+    border: none; /* Remove border for gradient button */
+}
+
+.hero-btn.primary:hover {
+    background-image: linear-gradient(45deg, var(--color-button-primary-bg-end), var(--color-button-primary-bg-start)); /* Reverse gradient on hover */
+    box-shadow: 0 6px 20px rgba(var(--color-button-primary-bg-start), 0.35);
+    transform: translateY(-2px) scale(1.02);
+}
+
+.hero-btn.secondary {
+    background-color: var(--color-button-secondary-bg);
+    border: 1px solid var(--color-button-secondary-border);
+    color: var(--color-secondary-text); /* Muted text color */
+}
+
+.hero-btn.secondary:hover {
+    border-color: var(--color-accent-secondary); /* Green border on hover */
+    color: var(--color-primary-text);
+    background-color: rgba(var(--color-button-secondary-bg), 0.7);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 4px 15px rgba(var(--color-button-secondary-border), 0.2);
+}
+
+/* Keyframes remain the same */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pulseBadge {
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 5px rgba(var(--color-accent-secondary-rgb, 44, 182, 125), 0.2), 0 0 8px rgba(var(--color-accent-secondary-rgb, 44, 182, 125), 0.1);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px rgba(var(--color-accent-secondary-rgb, 44, 182, 125), 0.4), 0 0 20px rgba(var(--color-accent-secondary-rgb, 44, 182, 125), 0.3);
+    }
+}

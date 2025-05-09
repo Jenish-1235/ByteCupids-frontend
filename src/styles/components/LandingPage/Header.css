@@ -1,0 +1,118 @@
+/* src/styles/components/LandingPage/Header.css */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 5%; /* Slightly more padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background-color: transparent;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease, border-bottom-color 0.4s ease; /* Added border-bottom-color transition */
+    border-bottom: 1px solid transparent; /* Initial transparent border */
+}
+
+.header.scrolled {
+    /* Using one of the new dark colors with alpha for a "glowly" glass effect */
+    background-color: rgba(var(--color-background-charcoal-rgb), 0.8); /* e.g., Color 5 (#1c232a) with alpha */
+    backdrop-filter: blur(12px); /* Slightly increased blur for a more pronounced effect */
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); /* Slightly enhanced shadow for depth */
+    padding: 15px 5%;
+    /* Using a subtle border from the new palette */
+    border-bottom: 1px solid var(--color-border-subtle); 
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700; /* Bolder */
+    color: var(--color-primary-text);
+    text-decoration: none;
+    letter-spacing: -0.5px; /* Slight adjustment */
+}
+
+.nav-menu {
+    display: flex;
+    gap: 35px; /* Increased gap */
+}
+
+.nav-menu a {
+    color: var(--color-secondary-text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 5px; /* Space for underline */
+    transition: color 0.3s ease;
+}
+
+.nav-menu a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0; /* Start underline from left */
+    background-color: var(--color-accent-primary); /* Use new accent color */
+    transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+}
+
+.nav-menu a:hover {
+    color: var(--color-primary-text);
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.cta-btn {
+    padding: 10px 22px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    border: 1px solid transparent; /* Base border */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.cta-btn.primary-btn {
+    background-image: linear-gradient(45deg, var(--color-button-primary-bg-start), var(--color-button-primary-bg-end));
+    color: var(--color-primary-text);
+    box-shadow: 0 3px 10px rgba(var(--color-accent-primary-rgb, 127, 90, 240), 0.2);
+    border: none;
+}
+
+.cta-btn.primary-btn:hover {
+    background-image: linear-gradient(45deg, var(--color-button-primary-bg-end), var(--color-button-primary-bg-start));
+    box-shadow: 0 6px 20px rgba(var(--color-button-primary-bg-start), 0.3);
+    /* Adjusted shadow */
+    transform: translateY(-2px) scale(1.02);
+    /* Consistent hover effect */
+}
+
+.cta-btn.secondary-btn {
+    background-color: var(--color-button-secondary-bg);
+    border: 1px solid var(--color-button-secondary-border);
+    color: var(--color-secondary-text);
+    /* Muted text color consistent with hero */
+}
+
+.cta-btn.secondary-btn:hover {
+    border-color: var(--color-accent-secondary);
+    /* Using accent green for hover border, consistent with hero */
+    color: var(--color-primary-text);
+    background-color: rgba(var(--color-button-secondary-bg-rgb, 16, 36, 48), 0.7);
+    /* Assuming --color-button-secondary-bg-rgb: 16, 36, 48; or adjust as needed */
+    transform: translateY(-2px) scale(1.02);
+    /* Consistent hover effect */
+    box-shadow: 0 4px 15px rgba(var(--color-button-secondary-border-rgb, 58, 80, 95), 0.2);
+    /* Assuming --color-button-secondary-border-rgb or adjust */
+}
