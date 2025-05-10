@@ -1,0 +1,103 @@
+.header {
+  font-size: 1rem;
+  height: 2rem;
+  font-weight: 400;
+  color: #eaf6fb;
+  margin-bottom: 2.5rem;
+  padding: 1.7rem 1rem 1.7rem 3.2rem;
+  border-radius: 22px;
+  background: linear-gradient(90deg, #16232a 0%, #1a232a 100%);
+  box-shadow: 0 6px 32px 0 rgba(10, 30, 40, 0.16);
+  border: 1.5px solid #193c3a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+ width: 100%;
+ max-width: 1410px;
+  
+}
+
+.main {
+  flex: 1;
+  padding: 2rem 3rem;
+  background: transparent;
+  min-width: 0;
+  color: #eaf6fb;
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 15px;
+  height: 100%;
+  background: linear-gradient(180deg, #6fffd2 0%, #1a232a 100%);
+  border-radius: 16px 0 0 16px;
+  opacity: 0.85;
+  z-index: 2;
+}
+
+.header span {
+  color: #6fffd2;
+  text-shadow: 0 2px 8px #0a0e1399;
+}
+
+.greeting {
+  font-size: 1.9rem;
+  font-weight: 400;
+  color: #eaf6fb;
+  letter-spacing: 0.1rem;
+  z-index: 3;
+}
+
+.username {
+  color: #6fffd2;
+  font-weight: 500;
+  text-shadow: 0 2px 7px #0a0e1399;
+  margin-left: 0.3em;
+}
+
+
+.profile {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  padding-right: 0.5rem;
+  background: rgba(34, 52, 58, 0.85);
+  border-radius: 2em;
+  box-shadow: 0 2px 8px #0a0e1322;
+  border: 1.5px solid #233c3a;
+  min-width: 120px;
+  justify-content: flex-end;
+}
+  
+  .profile:hover {
+    box-shadow: 0 4px 16px #6fffd255;
+    border-color: #6fffd2;
+  }
+
+  .profileName {
+    color: #eaf6fb;
+    font-size: 1.08rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    padding: 0.35em 1.1em;
+    border-radius: 1.2em;
+    background: linear-gradient(90deg, #1a232a 60%, #22343a 100%);
+    box-shadow: 0 1px 4px #0a0e1322;
+    border: none;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .profileName::before {
+    content: "User_Name";
+    margin-right: 0.7em;
+    font-size: 1.1em;
+    vertical-align: middle;
+    opacity: 0.8;
+    display: none;
+  }
