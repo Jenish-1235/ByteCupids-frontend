@@ -1,41 +1,64 @@
-import React from "react";
-import ParticlesBg from 'particles-bg'; // Import particles-bg
+import React, { useState, useEffect } from "react";
+import ParticlesBg from 'particles-bg';
 import "../../styles/components/LandingPage/Hero.css";
 
 const Hero: React.FC = () => {
+  // State to track screen size for responsive particles
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  
+  // Update window width when resizing
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  // Adjust particle count based on screen size
+  const getParticleCount = () => {
+    if (windowWidth <= 480) return [20, 30]; // Fewer particles on mobile
+    if (windowWidth <= 768) return [30, 50]; // Medium amount on tablets
+    return [60, 70]; // Full amount on desktop
+  };
+
   // Custom config for particles to better match the image
   const config = {
-    num: [80, 100], // Random amount between 80-100 particles
+    num: getParticleCount(), // Responsive particle count
     rps: 0.1, // Rotation per second
-    radius: [0.5, 2], // Random size between 0.5-2px stars
+    radius: [0.5, windowWidth <= 768 ? 1.5 : 2], // Smaller stars on mobile
     life: [1.5, 3], // Life span of each particle
     v: [0.1, 0.3], // Velocity
     tha: [-180, 180], // Direction angle
     alpha: [0.1, 0.8], // Random opacity
-    scale: [0.1, 0.4], // Random scale
+    scale: [0.1, windowWidth <= 480 ? 0.3 : 0.4], // Smaller scale on mobile
     position: "all", // Position all around
-    color: ["#a0aec0", "#718096", "#ffffff"], // Star colors: gray, light gray, white
+    color: ["#a0aec0", "#718096", "#ffffff"], // Star colors
     cross: "dead", // Crossover behavior
     random: 10, // Randomness
     g: 0.1, // Gravity - make it very light
+    // Use device pixel ratio to optimize rendering
     onParticleUpdate: (ctx: CanvasRenderingContext2D, particle: { p: { x: number; y: number }; radius: number; color: string }) => {
-      // Custom rendering for stars - simple dot with glow
+      // Adjust glow size based on screen size
+      const glowSize = windowWidth <= 480 ? 2 : 3;
+      
       ctx.beginPath();
       ctx.arc(particle.p.x, particle.p.y, particle.radius, 0, Math.PI * 2);
       ctx.fillStyle = particle.color;
       ctx.fill();
       
-      // Add a subtle glow effect
+      // Add a subtle glow effect - smaller on mobile
       const glow = ctx.createRadialGradient(
         particle.p.x, particle.p.y, 0,
-        particle.p.x, particle.p.y, particle.radius * 3
+        particle.p.x, particle.p.y, particle.radius * glowSize
       );
       glow.addColorStop(0, particle.color);
       glow.addColorStop(1, 'transparent');
       
-      ctx.globalAlpha = 0.2;
+      ctx.globalAlpha = windowWidth <= 480 ? 0.15 : 0.2; // Less glow intensity on mobile
       ctx.fillStyle = glow;
-      ctx.arc(particle.p.x, particle.p.y, particle.radius * 3, 0, Math.PI * 2);
+      ctx.arc(particle.p.x, particle.p.y, particle.radius * glowSize, 0, Math.PI * 2);
       ctx.fill();
       ctx.globalAlpha = 1;
       

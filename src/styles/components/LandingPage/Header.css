@@ -1,63 +1,80 @@
 /* src/styles/components/LandingPage/Header.css */
 
+/* Responsive header styling */
 .header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 25px 5%; /* Slightly more padding */
+    height: 80px; /* Slightly taller for better visibility */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1000;
-    background-color: transparent;
-    transition: background-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease, border-bottom-color 0.4s ease; /* Added border-bottom-color transition */
-    border-bottom: 1px solid transparent; /* Initial transparent border */
+    padding: 0 5%;
+    z-index: 100; /* Above everything, including particles */
+    transition: all 0.3s ease-in-out;
+    background: rgba(2, 5, 7, 0); /* Start completely transparent */
 }
 
+/* Scrolled state - add glass effect that matches hero hemisphere */
 .header.scrolled {
-    /* Using one of the new dark colors with alpha for a "glowly" glass effect */
-    background-color: rgba(var(--color-background-charcoal-rgb), 0.8); /* e.g., Color 5 (#1c232a) with alpha */
-    backdrop-filter: blur(12px); /* Slightly increased blur for a more pronounced effect */
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); /* Slightly enhanced shadow for depth */
-    padding: 15px 5%;
-    /* Using a subtle border from the new palette */
-    border-bottom: 1px solid var(--color-border-subtle); 
+    background: rgba(2, 5, 7, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    /* Subtle teal border bottom when scrolled */
+    border-bottom: 1px solid rgba(0, 169, 157, 0.2);
 }
 
+/* Logo sizing and responsive adjustments */
 .logo {
-    font-size: 1.8rem;
-    font-weight: 700; /* Bolder */
-    color: var(--color-primary-text);
-    text-decoration: none;
-    letter-spacing: -0.5px; /* Slight adjustment */
+    height: 40px;
+    display: flex;
+    align-items: center;
 }
 
+.logo img {
+    height: 100%;
+    max-height: 40px;
+    width: auto;
+}
+
+.logo-text {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-primary-text);
+    margin-left: 10px;
+}
+
+/* Main navigation menu */
 .nav-menu {
     display: flex;
-    gap: 35px; /* Increased gap */
+    gap: 40px; /* More space between nav items */
+    align-items: center;
 }
 
+/* Nav links with animated underline effect */
 .nav-menu a {
     color: var(--color-secondary-text);
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 500;
+    padding: 8px 0;
     position: relative;
-    padding-bottom: 5px; /* Space for underline */
-    transition: color 0.3s ease;
+    transition: all 0.3s;
 }
 
+/* Animated underline effect */
 .nav-menu a::after {
     content: "";
     position: absolute;
+    bottom: 0;
+    left: 0;
     width: 0;
     height: 2px;
-    bottom: 0;
-    left: 0; /* Start underline from left */
-    background-color: var(--color-accent-primary); /* Use new accent color */
-    transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+    background: linear-gradient(90deg, rgba(0, 169, 157, 0.8), rgba(44, 182, 125, 0.8));
+    transition: width 0.3s ease;
+    border-radius: 2px;
 }
 
 .nav-menu a:hover {
@@ -68,51 +85,176 @@
     width: 100%;
 }
 
-.cta-buttons {
-    display: flex;
-    gap: 15px;
+/* Active link highlighting */
+.nav-menu a.active {
+    color: var(--color-primary-text);
 }
 
-.cta-btn {
+.nav-menu a.active::after {
+    width: 100%;
+}
+
+/* Nav CTA button styling */
+.nav-cta {
     padding: 10px 22px;
-    font-size: 0.9rem;
+    background: linear-gradient(45deg, var(--color-button-primary-bg-start), var(--color-button-primary-bg-end));
+    color: var(--color-primary-text);
     border-radius: 6px;
-    border: 1px solid transparent; /* Base border */
-    cursor: pointer;
-    transition: all 0.3s ease;
     font-weight: 500;
-}
-
-.cta-btn.primary-btn {
-    background-image: linear-gradient(45deg, var(--color-button-primary-bg-start), var(--color-button-primary-bg-end));
-    color: var(--color-primary-text);
-    box-shadow: 0 3px 10px rgba(var(--color-accent-primary-rgb, 127, 90, 240), 0.2);
+    box-shadow: 0 4px 10px rgba(0, 169, 157, 0.2);
     border: none;
+    transition: all 0.3s;
 }
 
-.cta-btn.primary-btn:hover {
-    background-image: linear-gradient(45deg, var(--color-button-primary-bg-end), var(--color-button-primary-bg-start));
-    box-shadow: 0 6px 20px rgba(var(--color-button-primary-bg-start), 0.3);
-    /* Adjusted shadow */
-    transform: translateY(-2px) scale(1.02);
-    /* Consistent hover effect */
+.nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 169, 157, 0.3);
 }
 
-.cta-btn.secondary-btn {
-    background-color: var(--color-button-secondary-bg);
-    border: 1px solid var(--color-button-secondary-border);
-    color: var(--color-secondary-text);
-    /* Muted text color consistent with hero */
+/* Mobile menu icon (hidden by default on desktop) */
+.menu-icon {
+    display: none;
+    cursor: pointer;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    z-index: 102;
 }
 
-.cta-btn.secondary-btn:hover {
-    border-color: var(--color-accent-secondary);
-    /* Using accent green for hover border, consistent with hero */
-    color: var(--color-primary-text);
-    background-color: rgba(var(--color-button-secondary-bg-rgb, 16, 36, 48), 0.7);
-    /* Assuming --color-button-secondary-bg-rgb: 16, 36, 48; or adjust as needed */
-    transform: translateY(-2px) scale(1.02);
-    /* Consistent hover effect */
-    box-shadow: 0 4px 15px rgba(var(--color-button-secondary-border-rgb, 58, 80, 95), 0.2);
-    /* Assuming --color-button-secondary-border-rgb or adjust */
+.menu-icon span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: var(--color-primary-text);
+    border-radius: 2px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.menu-icon span:nth-child(1) {
+    top: 0px;
+}
+
+.menu-icon span:nth-child(2),
+.menu-icon span:nth-child(3) {
+    top: 10px;
+}
+
+.menu-icon span:nth-child(4) {
+    top: 20px;
+}
+
+/* Mobile menu icon animation when open */
+.menu-icon.open span:nth-child(1) {
+    top: 10px;
+    width: 0%;
+    left: 50%;
+}
+
+.menu-icon.open span:nth-child(2) {
+    transform: rotate(45deg);
+}
+
+.menu-icon.open span:nth-child(3) {
+    transform: rotate(-45deg);
+}
+
+.menu-icon.open span:nth-child(4) {
+    top: 10px;
+    width: 0%;
+    left: 50%;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 1024px) {
+    .header {
+        padding: 0 4%;
+    }
+    
+    .nav-menu {
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        height: 70px;
+        padding: 0 5%;
+    }
+    
+    .logo {
+        height: 35px;
+    }
+    
+    .logo-text {
+        font-size: 1.2rem;
+    }
+    
+    /* Show mobile menu icon */
+    .menu-icon {
+        display: block;
+    }
+    
+    /* Mobile menu - hidden by default */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 80%;
+        max-width: 350px;
+        height: 100vh;
+        background: rgba(2, 7, 15, 0.95);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 101;
+        padding: 50px 0;
+        border-left: 1px solid rgba(0, 169, 157, 0.2);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* When mobile menu is open */
+    .nav-menu.open {
+        transform: translateX(0);
+    }
+    
+    .nav-menu a {
+        font-size: 1.1rem;
+        padding: 15px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-cta {
+        width: 80%;
+        margin-top: 20px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        height: 60px;
+    }
+    
+    .logo {
+        height: 30px;
+    }
+    
+    .logo-text {
+        font-size: 1.1rem;
+    }
+    
+    .nav-menu {
+        width: 100%;
+        max-width: none;
+    }
 }

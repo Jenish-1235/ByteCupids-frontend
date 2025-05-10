@@ -10,11 +10,18 @@
     color: var(--color-primary-text);
     /* Make background darker and more contained - less gradient transition */
     background: radial-gradient(ellipse at center, 
-                               #020507 50%, /* Darkest at center - using your Color 1 */
+                               #020507 100%, /* Darkest at center - using your Color 1 */
                                #0a151b 100%, /* Using your Color 2 at greater percentage */
                                #1c232a 100%); /* Using Color 5 only at the very edge */
     z-index: 0;
     padding-bottom: 15vh; /* Add padding at bottom to make space for buttons */
+}
+
+/* Responsive adjustments for hero on smaller screens */
+@media (max-width: 768px) {
+    .hero {
+        padding-bottom: 25vh; /* More bottom padding on mobile for buttons */
+    }
 }
 
 /* Edge glow effect - significantly reduced and pushed to edges */
@@ -48,32 +55,12 @@
     background: radial-gradient(
         ellipse at center bottom,
         rgba(0, 50, 80, 0.15) 0%, /* Lower opacity - 0.15 */
-        transparent 70%
+        transparent 100%
     );
     filter: blur(50px);
     z-index: 1;
     pointer-events: none;
     opacity: 0.3;  /* Reduced from previous value */
-}
-
-/* Reduce the cosmic blob's presence */
-.cosmic-blob {
-    position: absolute;
-    width: 70%;
-    height: 70%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -60%);
-    background: radial-gradient(
-        ellipse at center,
-        rgba(7, 30, 50, 0.15) 0%, /* Much lower opacity - 0.15 */
-        rgba(4, 15, 30, 0.08) 40%, /* Lower opacity - 0.08 */
-        transparent 80% /* Fade out faster */
-    );
-    filter: blur(70px); /* More blur for subtlety */
-    z-index: 1;
-    pointer-events: none;
-    border-radius: 50%;
 }
 
 /* Add this new element for the hemisphere with glowy circumference */
@@ -152,22 +139,20 @@
 .hero-top-hemisphere::before {
     content: "";
     position: absolute;
-    top: -30vh; /* Adjusted from -35vh for better curve position */
+    top: -30vh; /* Standard position */
     left: 50%;
     width: 180vw;
-    height: 80vh; /* Increased from 70vh for a more spacious hemisphere */
+    height: 80vh;
     transform: translateX(-50%);
-    border-radius: 50%;
-    /* Enhanced border with higher opacity */
-    border: 2px solid rgba(0, 169, 157, 0.45); /* Slightly increased opacity */
-    background: transparent; /* Completely transparent background */
+    border-radius: 100%;
+    border: 2px solid rgba(0, 169, 157, 0.45);
+    background: transparent;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    /* Focus glow on the border only with reduced inner glow */
     box-shadow:
-        0 0 15px rgba(0, 169, 157, 0.1), /* Subtle outer glow */
-        0 0 8px rgba(0, 169, 157, 0.05), /* Very subtle middle glow */
-        inset 0 0 4px rgba(0, 169, 157, 0.15); /* Minimal inward glow - just at edges */
+        0 0 15px rgba(0, 169, 157, 0.1),
+        0 0 8px rgba(0, 169, 157, 0.05),
+        inset 0 0 4px rgba(0, 169, 157, 0.15);
     z-index: -1;
 }
 
@@ -175,21 +160,94 @@
 .hero-top-hemisphere::after {
     content: "";
     position: absolute;
-    top: -30vh; /* Match the ::before positioning */
+    top: -30vh; /* EXACTLY match ::before */
     left: 50%;
-    width: 180vw;
-    height: 80vh; /* Match the height from ::before */
+    width: 180vw; /* EXACTLY match ::before */
+    height: 80vh; /* EXACTLY match ::before */
     transform: translateX(-50%);
-    border-radius: 50%;
-    /* Enhanced border with shine effect */
-    border: 3px solid rgba(0, 169, 157, 0.4);
-    background: none; /* No background gradient */
-    /* Focus box shadow on edge only */
+    border-radius: 100%;
+    border: 2px solid rgba(0, 169, 157, 0.45);
+    background: none;
     box-shadow: 
         0 0 10px rgba(0, 169, 157, 0.15),
         0 0 3px rgba(0, 169, 157, 0.1);
-    filter: blur(2px); /* Reduced blur for sharper edge */
+    filter: blur(1px);
     z-index: -1;
+}
+
+/* Adjust hemisphere dimensions on smaller screens */
+@media (max-width: 768px) {
+    .hero-top-hemisphere::before {
+        width: 220vw; /* Wider on mobile for proper curvature */
+        top: -20vh; /* Set to exactly -20vh */
+        height: 60vh; /* Shorter to maintain proportion */
+        border-radius: 100%; /* Keep consistent border-radius */
+        border: 2px solid rgba(0, 169, 157, 0.45); /* Keep same border */
+    }
+    
+    .hero-top-hemisphere::after {
+        width: 220vw; /* Exactly match before element */
+        top: -20vh; /* EXACTLY match ::before (-20vh) */
+        height: 60vh; /* Exactly match before element */
+        border-radius: 100%; /* Keep consistent border-radius */
+        border: 2px solid rgba(0, 169, 157, 0.45); /* Match border exactly with ::before */
+        filter: blur(1px); /* Reduced blur for consistency */
+        box-shadow: 
+            0 0 10px rgba(0, 169, 157, 0.15),
+            0 0 3px rgba(0, 169, 157, 0.1);
+    }
+
+    .hero-top-hemisphere-highlight {
+        width: 218vw; /* Slightly smaller than main hemisphere */
+        top: -18vh; /* Consistent positioning */
+        height: 58vh;
+        border-radius: 100%; /* Match border-radius */
+    }
+}
+
+/* Add specific adjustments for very small screens */
+@media (max-width: 480px) {
+    .hero-top-hemisphere::before,
+    .hero-top-hemisphere::after {
+        top: -15vh; /* Set to exactly -15vh */
+        width: 250vw; /* Even wider on smaller devices */
+    }
+    
+    .hero-top-hemisphere-highlight {
+        top: -13vh; /* Keep consistent relative positioning */
+        width: 248vw; /* Maintain slightly smaller size */
+    }
+    
+    /* Adjust glow positions for very small screens */
+    .hero-top-hemisphere-glow {
+        width: 100vw;
+        height: 20vh;
+        top: 2vh;
+    }
+    
+    .hero-top-hemisphere-inner-glow {
+        width: 90vw;
+        height: 12vh;
+        top: 5vh;
+    }
+}
+
+/* Add portrait orientation adjustments specifically for the hemisphere */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero-top-hemisphere::before,
+    .hero-top-hemisphere::after {
+        top: -30vh; /* Set to exactly -30vh */
+        height: 80vh; /* Maintain proportional height */
+    }
+    
+    .hero-top-hemisphere-highlight {
+        top: -28vh;
+        height: 78vh;
+    }
+    
+    .hero-top-hemisphere {
+        height: 40vh; /* Shorter in landscape */
+    }
 }
 
 /* Additional glossy highlight effect for the edge */
@@ -237,6 +295,21 @@
     opacity: 0.85; /* Slightly reduced overall opacity */
 }
 
+/* Make glow responsive on smaller screens */
+@media (max-width: 768px) {
+    .hero-top-hemisphere-glow {
+        width: 100vw; /* Full width on mobile */
+        height: 25vh; /* Smaller height on mobile */
+        top: 5vh; /* Adjust position */
+    }
+    
+    .hero-top-hemisphere-inner-glow {
+        width: 80vw; /* Wider on mobile */
+        height: 15vh; /* Smaller height */
+        top: 7vh; /* Adjust position */
+    }
+}
+
 /* Add a second, smaller glow with wider spread but maintained translucency */
 .hero-top-hemisphere-inner-glow {
     position: absolute;
@@ -271,6 +344,33 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 90%; /* Add width constraint for smaller screens */
+}
+
+/* Responsive content adjustments */
+@media (max-width: 768px) {
+    .hero-content {
+        padding-top: 100px; /* More top padding on mobile */
+        max-width: 90%; /* Constrain width */
+    }
+    
+    .hero-title {
+        font-size: clamp(2.2rem, 8vw, 3rem) !important; /* Smaller on mobile */
+        margin-bottom: 20px;
+        letter-spacing: -0.5px; /* Less letter spacing on mobile */
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(1rem, 4vw, 1.1rem) !important; /* Smaller on mobile */
+        line-height: 1.6; /* Tighter line height */
+        margin-bottom: 15px;
+    }
+    
+    .hero-badge {
+        padding: 6px 14px; /* Smaller badge on mobile */
+        font-size: 0.8rem;
+        margin-bottom: 20px;
+    }
 }
 
 .hero-badge {
@@ -325,6 +425,34 @@
     opacity: 0;
     animation: fadeIn 1s ease-out 0.6s forwards;
     z-index: 15; /* Same as hero content */
+}
+
+/* Responsive button adjustments */
+@media (max-width: 768px) {
+    .hero-actions {
+        bottom: 15vh; /* Position higher on mobile screens */
+        gap: 12px; /* Less space between buttons */
+        flex-direction: column; /* Stack buttons on very small screens */
+        align-items: center;
+    }
+    
+    .hero-btn {
+        padding: 12px 25px; /* Slightly smaller buttons */
+        font-size: 0.95rem;
+        width: 85%; /* Wider buttons that scale with screen */
+        max-width: 280px; /* But not too wide */
+    }
+}
+
+/* For medium screens, adjust button layout */
+@media (min-width: 480px) and (max-width: 768px) {
+    .hero-actions {
+        flex-direction: row; /* Side by side on medium screens */
+    }
+    
+    .hero-btn {
+        width: auto; /* Auto width on medium screens */
+    }
 }
 
 /* Enhance the buttons for better visibility outside the hemisphere */
@@ -436,4 +564,484 @@
     width: 100% !important;
     height: 100% !important;
     z-index: inherit !important;
+}
+
+/* Additional optimization for very small screens */
+@media (max-width: 480px) {
+    .hero {
+        align-items: flex-start; /* Align to top on very small screens */
+        padding-top: 5vh; /* Reduce from 15vh to give more space */
+        padding-bottom: 18vh; /* Ensure enough space for buttons */
+    }
+    
+    .hero-top-hemisphere {
+        height: 75vh; /* Increase from 60vh to 75vh to contain text properly */
+        padding-top: 10vh; /* Add more top padding for better content positioning */
+    }
+    
+    .hero-top-hemisphere::before,
+    .hero-top-hemisphere::after {
+        top: -15vh;
+        width: 250vw;
+        height: 70vh; /* Increase from 60vh to 70vh */
+    }
+    
+    .hero-top-hemisphere-highlight {
+        top: -13vh;
+        width: 248vw;
+        height: 68vh; /* Increase from 58vh to 68vh */
+    }
+    
+    /* Adjust content positioning */
+    .hero-content {
+        padding-top: 60px; /* Reduce from 100px to give more space for content */
+        margin-top: 0;
+    }
+    
+    /* Make title and subtitle smaller */
+    .hero-title {
+        font-size: clamp(1.8rem, 7vw, 2.5rem) !important; /* Smaller font */
+        margin-bottom: 15px;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 3.5vw, 1rem) !important; /* Smaller font */
+        line-height: 1.5; /* Reduce line height to take up less space */
+        margin-bottom: 10px;
+    }
+    
+    /* Badge adjustments */
+    .hero-badge {
+        padding: 5px 12px; /* Smaller badge */
+        font-size: 0.75rem;
+        margin-bottom: 12px; /* Less space below badge */
+    }
+    
+    /* Move the buttons higher */
+    .hero-actions {
+        bottom: 10vh; /* Position higher on small screens */
+        gap: 15px; /* More space between buttons */
+    }
+    
+    /* Make buttons more compact */
+    .hero-btn {
+        padding: 10px 20px;
+    }
+    
+    /* Adjust glow positions for very small screens */
+    .hero-top-hemisphere-glow {
+        width: 100vw;
+        height: 25vh; /* Increase height */
+        top: 5vh; /* Move down a bit */
+    }
+    
+    .hero-top-hemisphere-inner-glow {
+        width: 90vw;
+        height: 18vh; /* Increase height */
+        top: 8vh; /* Move down a bit */
+    }
+}
+
+/* Add portrait orientation adjustments */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero-content {
+        padding-top: 50px; /* Less top padding in landscape */
+    }
+    
+    .hero-title {
+        font-size: clamp(2rem, 4vw, 2.5rem) !important;
+        margin-bottom: 10px;
+    }
+    
+    .hero-subtitle {
+        margin-bottom: 10px;
+        font-size: clamp(0.9rem, 2vw, 1rem) !important;
+    }
+    
+    .hero-actions {
+        bottom: 10vh; /* Position higher in landscape */
+    }
+    
+    .hero-badge {
+        margin-bottom: 10px;
+        padding: 5px 12px;
+    }
+}
+
+/* For mobile devices, hide the hemisphere completely and adjust layout */
+@media (max-width: 480px) {
+    /* Hide the hemisphere by removing borders and backdrop filter */
+    .hero-top-hemisphere::before,
+    .hero-top-hemisphere::after,
+    .hero-top-hemisphere-highlight {
+        border: 0 !important; /* Remove borders completely */
+        background: transparent !important; /* Remove any backgrounds */
+        backdrop-filter: none !important; /* Remove backdrop filter */
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important; /* Remove all shadows */
+        opacity: 0 !important; /* Make fully transparent */
+    }
+    
+    /* Hide glows as well */
+    .hero-top-hemisphere-glow,
+    .hero-top-hemisphere-inner-glow {
+        opacity: 0 !important;
+        background: transparent !important;
+    }
+    
+    /* Adjust hero container */
+    .hero {
+        align-items: center !important; /* Center everything */
+        padding-top: 15vh !important; /* Add top padding */
+        padding-bottom: 20vh !important; /* Add bottom padding */
+    }
+    
+    /* Adjust main hemisphere container */
+    .hero-top-hemisphere {
+        position: relative !important; /* Change from absolute */
+        height: auto !important; /* Auto height instead of fixed */
+        padding: 20px !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        overflow: visible !important;
+    }
+    
+    /* Reposition content for better spacing */
+    .hero-content {
+        position: relative !important;
+        padding-top: 10px !important; 
+        padding-bottom: 30px !important;
+        margin: 0 auto !important;
+        max-width: 90% !important;
+    }
+    
+    /* Badge positioning */
+    .hero-badge {
+        margin-bottom: 20px !important;
+    }
+    
+    /* Title adjustments */
+    .hero-title {
+        font-size: clamp(1.8rem, 7vw, 2.2rem) !important;
+        margin-bottom: 20px !important;
+        letter-spacing: -0.5px !important;
+    }
+    
+    /* Subtitle adjustments */
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 3.5vw, 1rem) !important;
+        line-height: 1.5 !important;
+        margin-bottom: 20px !important;
+        max-width: 100% !important;
+    }
+    
+    /* Stack buttons vertically */
+    .hero-actions {
+        position: relative !important; /* No longer absolute */
+        bottom: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 15px !important;
+        width: 100% !important;
+        margin-top: 30px !important;
+    }
+    
+    /* Style buttons to be wider and more prominent */
+    .hero-btn {
+        width: 85% !important;
+        max-width: 300px !important; 
+        padding: 14px 25px !important;
+        font-size: 1rem !important;
+        text-align: center !important;
+    }
+    
+    /* Enhance the primary CTA button */
+    .hero-btn.primary {
+        margin-bottom: 5px !important;
+    }
+}
+
+/* For tablets in portrait mode (between 481px and 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .hero-top-hemisphere {
+        height: 60vh !important; /* Maintain some height */
+    }
+    
+    .hero-actions {
+        flex-direction: column !important;
+        gap: 15px !important;
+        bottom: 20vh !important;
+    }
+    
+    .hero-btn {
+        width: 80% !important;
+        max-width: 250px !important;
+    }
+}
+
+/* For mobile devices, ensure everything stacks properly in a column */
+@media (max-width: 480px) {
+    /* Ensure the hero section is using column layout */
+    .hero {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding-top: 15vh !important;
+        padding-bottom: 20vh !important;
+        text-align: center !important; /* Ensure all text is centered */
+    }
+    
+    /* Force column layout for the content area */
+    .hero-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 90% !important;
+        padding: 0 15px !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+    
+    /* Enforce full width for text elements */
+    .hero-title, .hero-subtitle {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 0 !important;
+    }
+    
+    /* Reset any potential row layouts */
+    .hero > *, .hero-top-hemisphere > * {
+        flex-direction: column !important;
+    }
+    
+    /* Stack buttons vertically with improved spacing */
+    .hero-actions {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 15px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        position: relative !important;
+        bottom: auto !important;
+        padding-top: 20px !important;
+    }
+    
+    /* Make buttons full width for mobile */
+    .hero-btn {
+        width: 85% !important;
+        max-width: 280px !important;
+        margin: 5px 0 !important;
+    }
+    
+    /* Explicitly reset any other layout that might be affecting the stack */
+    .hero-top-hemisphere {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        align-items: center !important;
+    }
+}
+
+/* Hide hemisphere on all devices ≤768px */
+@media (max-width: 768px) {
+    /* Remove all borders, backgrounds, and effects from the hemisphere */
+    .hero-top-hemisphere::before,
+    .hero-top-hemisphere::after,
+    .hero-top-hemisphere-highlight {
+        border: 0 !important; /* Remove borders completely */
+        background: transparent !important; /* Remove any backgrounds */
+        backdrop-filter: none !important; /* Remove backdrop filter */
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important; /* Remove all shadows */
+        opacity: 0 !important; /* Make fully transparent */
+    }
+    
+    /* Hide glows as well */
+    .hero-top-hemisphere-glow,
+    .hero-top-hemisphere-inner-glow {
+        opacity: 0 !important;
+        background: transparent !important;
+    }
+    
+    /* Adjust hero container */
+    .hero {
+        align-items: center !important; /* Center everything */
+    }
+    
+    /* Adjust main hemisphere container */
+    .hero-top-hemisphere {
+        position: relative !important; /* Change from absolute */
+        height: auto !important; /* Auto height instead of fixed */
+        padding: 20px !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow: visible !important;
+    }
+    
+    /* Reposition content for better spacing */
+    .hero-content {
+        position: relative !important;
+        padding-top: 30px !important; 
+        padding-bottom: 30px !important;
+        margin: 0 auto !important;
+    }
+    
+    /* Stack buttons vertically */
+    .hero-actions {
+        position: relative !important; /* No longer absolute */
+        bottom: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 15px !important;
+        width: 100% !important;
+        margin-top: 30px !important;
+    }
+}
+
+/* Consolidated mobile styles to ensure proper column stacking */
+@media (max-width: 768px) {
+    /* Force column layout on ALL mobile views */
+    .hero {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding-top: 10vh !important;
+        padding-bottom: 5vh !important;
+        height: auto !important;
+        min-height: 100vh !important;
+    }
+    
+    /* Force all direct children of hero to stack */
+    .hero > * {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex-direction: column !important;
+    }
+    
+    /* Make hemisphere a standard block with relative positioning */
+    .hero-top-hemisphere {
+        position: relative !important;
+        height: auto !important;
+        min-height: 0 !important;
+        padding-top: 15vh !important;
+        padding-bottom: 5vh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+    }
+    
+    /* Remove all hemisphere styling */
+    .hero-top-hemisphere::before,
+    .hero-top-hemisphere::after,
+    .hero-top-hemisphere-highlight,
+    .hero-top-hemisphere-glow,
+    .hero-top-hemisphere-inner-glow {
+        display: none !important;
+    }
+    
+    /* Ensure content stacks properly */
+    .hero-content {
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 90% !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        text-align: center !important;
+    }
+    
+    /* Force button container to be a column */
+    .hero-actions {
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        margin-top: 5vh !important;
+        padding: 0 !important;
+        bottom: auto !important;
+    }
+    
+    /* Style buttons for mobile */
+    .hero-btn {
+        width: 85% !important;
+        max-width: 280px !important;
+        margin: 8px 0 !important;
+        display: block !important;
+    }
+    
+    /* Text styling */
+    .hero-title {
+        font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
+        text-align: center !important;
+        margin-bottom: 3vh !important;
+        width: 100% !important;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 4vw, 1.1rem) !important;
+        text-align: center !important;
+        margin-bottom: 3vh !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    .hero-badge {
+        margin-bottom: 3vh !important;
+    }
+    
+    /* Ensure proper display order */
+    .hero-content > * {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+/* Additional specific adjustments for very small screens */
+@media (max-width: 480px) {
+    .hero {
+        padding-top: 8vh !important;
+    }
+    
+    .hero-content {
+        width: 92% !important;
+    }
+    
+    .hero-actions {
+        margin-top: 3vh !important;
+        gap: 10px !important;
+    }
+    
+    .hero-btn {
+        width: 90% !important;
+        padding: 12px 20px !important;
+    }
+    
+    /* Smaller text on phones */
+    .hero-title {
+        font-size: clamp(1.6rem, 7vw, 2.2rem) !important;
+        letter-spacing: -0.5px !important;
+        margin-bottom: 2vh !important;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(0.85rem, 3.5vw, 1rem) !important;
+        line-height: 1.5 !important;
+        margin-bottom: 2vh !important;
+    }
 }
