@@ -290,6 +290,9 @@
 .platform-cta {
     text-align: center;
     margin-top: 50px;
+    position: relative;
+    z-index: 100 !important;
+    pointer-events: auto !important;
 }
 
 .platform-btn {
@@ -303,6 +306,10 @@
     cursor: pointer;
     transition: all 0.3s ease;
     margin-right: 20px;
+    position: relative;
+    z-index: 101 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
 }
 
 .platform-btn:hover {
@@ -316,6 +323,10 @@
     position: relative;
     font-weight: 500;
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 101 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
 }
 
 .platform-link:hover {
