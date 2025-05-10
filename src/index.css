@@ -1,3 +1,4 @@
+@import './styles/global/Scrollbar.css';
 :root {
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif; /* Using Inter as primary */
   line-height: 1.6; /* Slightly increased for better readability */

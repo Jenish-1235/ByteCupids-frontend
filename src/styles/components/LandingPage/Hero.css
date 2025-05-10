@@ -135,9 +135,9 @@
 .hero-top-hemisphere::before {
     content: "";
     position: absolute;
-    top: -25vh; /* Standard position */
+    top: -22vh; /* Standard position */
     left: 50%;
-    width: 180vw;
+    width: 150vw;
     height: 60vh;
     transform: translateX(-50%);
     border-radius: 100%;
@@ -156,9 +156,9 @@
 .hero-top-hemisphere::after {
     content: "";
     position: absolute;
-    top: -25vh; /* EXACTLY match ::before */
+    top: -22vh; /* EXACTLY match ::before */
     left: 50%;
-    width: 180vw; /* EXACTLY match ::before */
+    width: 150vw; /* EXACTLY match ::before */
     height: 60vh; /* EXACTLY match ::before */
     transform: translateX(-50%);
     border-radius: 100%;

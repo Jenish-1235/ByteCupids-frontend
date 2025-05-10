@@ -1,0 +1,72 @@
+/* Main scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: #020507;
+}
+
+/* Track (the area behind the thumb) */
+::-webkit-scrollbar-track {
+  background-color: rgba(10, 21, 27, 0.4);
+  border-radius: 10px;
+}
+
+/* Handle (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, rgba(0, 169, 157, 0.5), rgba(0, 169, 157, 0.8));
+  border-radius: 10px;
+  border: 2px solid #020507;
+  transition: all 0.3s ease;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, rgba(0, 169, 157, 0.7), rgba(0, 169, 157, 1));
+}
+
+/* Handle when active/being dragged */
+::-webkit-scrollbar-thumb:active {
+  background: rgba(0, 169, 157, 0.9);
+}
+
+/* Buttons at the ends of the scrollbar */
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Corner where horizontal and vertical scrollbars meet */
+::-webkit-scrollbar-corner {
+  background-color: #020507;
+}
+
+/* Firefox scrollbar styling (newer versions) */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 169, 157, 0.7) rgba(10, 21, 27, 0.4);
+}
+
+/* Add a subtle glow effect to the scrollbar */
+::-webkit-scrollbar-thumb::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 15px rgba(0, 169, 157, 0.5);
+}
+
+/* Add a subtle background scrollbar track when scrolling */
+body::-webkit-scrollbar-track:hover {
+  background-color: rgba(10, 21, 27, 0.6);
+}
+
+/* Make scrollbar slightly transparent when not in use */
+::-webkit-scrollbar-thumb {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+body:hover::-webkit-scrollbar-thumb {
+  opacity: 1;
+}
