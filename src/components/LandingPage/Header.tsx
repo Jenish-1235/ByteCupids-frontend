@@ -1,10 +1,19 @@
 // src/components/LandingPage/Header.tsx
 import React, { useState, useEffect } from 'react';
 import '../../styles/components/LandingPage/Header.css';
+import { useNavigate } from 'react-router';
 
 const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigateTO = useNavigate();
+
+  const handleSignIn = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("Get Started clicked");
+    navigateTO('/onboarding');
+  };
 
   // Handle scroll effect
   useEffect(() => {
@@ -84,7 +93,7 @@ const Header: React.FC = () => {
         <a href="#pricing" onClick={handleMenuItemClick}>Pricing</a>
         <a href="#documentation" onClick={handleMenuItemClick}>Docs</a>
         <a href="#about" onClick={handleMenuItemClick}>About</a>
-        <button className="nav-cta" onClick={handleMenuItemClick}>Sign In</button>
+        <button className="nav-cta" onClick={handleSignIn}>Sign In</button>
       </nav>
     </header>
   );

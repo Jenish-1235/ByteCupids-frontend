@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/components/LandingPage/Hero.css";
+import { useNavigate } from "react-router";
 
 // Accept className prop to apply the section class
 interface HeroProps {
@@ -7,12 +8,15 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ className }) => {
+
+  const navigateTo = useNavigate();
+
   // Handle button clicks
+
   const handleGetStarted = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("Get Started clicked");
-    // Add your navigation or modal trigger here
+    navigateTo("/onboarding");
   };
   
   return (

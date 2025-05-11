@@ -4,6 +4,7 @@ import React, { Suspense } from "react";
 import "./App.css";
 
 const LandingPage = React.lazy(()=> import("./pages/LandingPage"))
+const OnboardingPage = React.lazy(()=> import("./pages/OnboardingPage"))
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/onboarding" element={<OnboardingPage />} />
         </Routes>
       </Router>
           </Suspense>
