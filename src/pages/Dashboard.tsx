@@ -3,14 +3,12 @@ import Sidebar from "../components/Dashboard/Sidebar";
 import Header from "../components/Dashboard/Header";
 import Modules from "../components/Dashboard/Modules";
 import "../styles/pages/Dashboard.css";
-import DashboardParticles from "../components/Dashboard/DashboardParticles";
-import SidebarParticles from "../components/Dashboard/SidebarParticles";
+import GlobalParticlesBackground from "../components/global/GlobalParticlesBackground";
 
 const Dashboard: React.FC = () => {
   return (
     <div className="container">
-      <DashboardParticles />
-      <SidebarParticles />
+      <GlobalParticlesBackground />
       <Sidebar />
       <main className="main">
         <Header />

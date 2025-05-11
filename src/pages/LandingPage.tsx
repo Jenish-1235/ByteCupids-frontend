@@ -4,7 +4,7 @@ import Footer from "../components/LandingPage/Footer";
 import Header from "../components/LandingPage/Header";
 import Hero from "../components/LandingPage/Hero";
 import PlatformOverview from "../components/LandingPage/PlatformOverview";
-import GlobalParticlesBackground from '../components/LandingPage/GlobalParticlesBackground';
+import GlobalParticlesBackground from '../components/global/GlobalParticlesBackground';
 import '../styles/pages/LandingPage.css';
 
 export default function LandingPage() {
