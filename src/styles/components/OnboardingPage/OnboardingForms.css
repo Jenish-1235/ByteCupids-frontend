@@ -1,0 +1,1124 @@
+.onboarding-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 10;
+    overflow: hidden; /* Changed from hidden to allow glows to blend */
+}
+
+/* Left side with heading and skip button */
+.onboarding-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 60px; /* Increased top padding */
+    position: relative;
+    background: transparent; /* Make background fully transparent */
+    z-index: 10;
+    overflow: hidden; /* Contain animations */
+}
+
+.onboarding-heading {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: var(--color-primary-text);
+    margin-bottom: 2rem;
+    line-height: 1.1;
+    text-align: left;
+    font-family: 'Plus Jakarta Sans', sans-serif; /* Premium modern font */
+    letter-spacing: -1px; /* Tighter letter spacing for modern look */
+    position: relative;
+    animation: fadeInSlideUp 1s ease-out forwards;
+    opacity: 0; /* Start invisible for animation */
+    transform: translateY(30px); /* Start below for animation */
+}
+
+/* Tagline text */
+.onboarding-tagline {
+    font-size: 1.2rem;
+    color: var(--color-secondary-text);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+    font-weight: 400;
+    max-width: 85%;
+    animation: fadeInSlideUp 1s ease-out 0.3s forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.skip-btn {
+    display: none; /* Hide the skip button */
+}
+
+/* Button hover effect - light ripple */
+.skip-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+    z-index: -1;
+}
+
+.skip-btn:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Animated elements */
+.animated-element {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 169, 157, 0.1);
+    border: 1px solid rgba(0, 169, 157, 0.2);
+    z-index: -1;
+}
+
+.element-1 {
+    top: 20%;
+    left: 10%;
+    width: 50px;
+    height: 50px;
+    animation: float 8s infinite ease-in-out;
+}
+
+.element-2 {
+    bottom: 15%;
+    left: 25%;
+    width: 70px;
+    height: 70px;
+    animation: float 10s 1s infinite ease-in-out;
+}
+
+.element-3 {
+    top: 45%;
+    left: 40%;
+    width: 40px;
+    height: 40px;
+    animation: float 6s 0.5s infinite ease-in-out;
+}
+
+/* Decorative line element */
+.decorative-line {
+    position: absolute;
+    bottom: 25%;
+    left: 60px;
+    height: 2px;
+    width: 150px;
+    background: linear-gradient(90deg, 
+        rgba(0, 169, 157, 0.7), 
+        rgba(0, 169, 157, 0.1)
+    );
+    animation: expandWidth 1.5s ease-out 0.8s forwards;
+    transform-origin: left;
+    transform: scaleX(0);
+}
+
+/* Add a decorative number to indicate step */
+.step-indicator {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+    font-size: 0.9rem;
+    color: var(--color-secondary-text);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    animation: fadeInSlideUp 1s ease-out forwards;
+    opacity: 0;
+}
+
+.step-indicator::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(0, 169, 157, 0.7), rgba(0, 169, 157, 0.3));
+    margin-right: 10px;
+}
+
+/* Animations */
+@keyframes fadeInSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes expandWidth {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+/* Typing animation for the heading */
+.typing-animation {
+    display: inline-block;
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 2s steps(30) forwards;
+    border-right: 3px solid rgba(0, 169, 157, 0.7);
+    animation: typing 2s steps(30) forwards, blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: rgba(0, 169, 157, 0.7) }
+}
+
+/* Right side with forms */
+.onboarding-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: visible; /* Changed from hidden to allow glows to blend */
+    background: transparent; /* Make background fully transparent */
+}
+
+.form-container {
+    background: rgba(10, 21, 27, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 40px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10;
+    max-height: 95vh; /* Slightly less than viewport to ensure no scrolling */
+    overflow-y: auto; /* Allow internal scrolling if content doesn't fit */
+    scrollbar-width: thin; /* Thin scrollbar for Firefox */
+    scrollbar-color: rgba(0, 169, 157, 0.5) rgba(10, 21, 27, 0.2);
+}
+
+/* Updated glowing circle effects */
+.onboarding-right::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle,
+            rgba(128, 0, 128, 0.4) 0%,
+            rgba(76, 0, 130, 0.2) 50%,
+            rgba(0, 0, 0, 0) 70%);
+    border-radius: 50%;
+    /* Position at the top-left corner of the form */
+    top: 10%; /* Adjust as needed to position near the top of the form */
+    left: 20%; /* Adjust as needed to position near the left of the form */
+    transform: translate(-50%, -50%); /* Center the orb on the position */
+    filter: blur(30px);
+    z-index: 0;
+}
+
+.onboarding-right::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle,
+            rgba(76, 0, 130, 0.3) 0%,
+            rgba(0, 0, 128, 0.2) 50%,
+            rgba(0, 0, 0, 0) 70%);
+    border-radius: 50%;
+    /* Position at the bottom-right corner of the form */
+    bottom: 10%; /* Adjust as needed to position near the bottom of the form */
+    right: 20%; /* Adjust as needed to position near the right of the form */
+    transform: translate(50%, 50%); /* Center the orb on the position */
+    filter: blur(50px);
+    z-index: 0;
+}
+
+/* Form styles */
+.form-title {
+    color: var(--color-primary-text);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-size: min(2rem, 7vh);
+}
+
+.form-subtitle {
+    color: var(--color-secondary-text);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    font-size: min(1rem, 3vh);
+    margin-bottom: min(2rem, 5vh);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 14px 16px;
+    color: var(--color-primary-text);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    padding: min(14px, 2vh) min(16px, 3vw);
+    font-size: min(1rem, 3vh);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: rgba(0, 169, 157, 0.5);
+    box-shadow: 0 0 0 2px rgba(0, 169, 157, 0.25);
+}
+
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: var(--color-accent-primary);
+}
+
+.checkbox-container label {
+    color: var(--color-secondary-text);
+    font-size: 0.9rem;
+}
+
+.form-button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    margin-bottom: 1rem;
+    padding: min(14px, 2vh);
+    font-size: min(1rem, 3vh);
+}
+
+.primary-button {
+    background: linear-gradient(45deg, var(--color-button-primary-bg-start), var(--color-button-primary-bg-end));
+    color: var(--color-primary-text);
+}
+
+.primary-button:hover {
+    box-shadow: 0 8px 15px rgba(0, 169, 157, 0.2);
+    transform: translateY(-2px);
+}
+
+.secondary-button {
+    background: linear-gradient(45deg, #E91E63, #D81B60);
+    color: white;
+}
+
+.secondary-button:hover {
+    box-shadow: 0 8px 15px rgba(233, 30, 99, 0.2);
+    transform: translateY(-2px);
+}
+
+.form-link-center {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.form-link-center a {
+    color: var(--color-secondary-text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.form-link-center a:hover {
+    color: var(--color-primary-text);
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--color-secondary-text);
+    margin: 25px 0;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.separator span {
+    padding: 0 10px;
+    font-size: 0.9rem;
+}
+
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 2rem;
+}
+
+.social-button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.social-button:hover {
+    transform: translateY(-3px);
+}
+
+.google:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.facebook:hover {
+    background-color: rgba(59, 89, 152, 0.2);
+}
+
+.github:hover {
+    background-color: rgba(51, 51, 51, 0.2);
+}
+
+.form-footer {
+    text-align: center;
+    color: var(--color-secondary-text);
+}
+
+.form-footer p {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.form-footer a {
+    color: var(--color-accent-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.form-footer a:hover {
+    color: var(--color-accent-primary-hover);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+    font-size: 0.8rem;
+}
+
+/* Add a subtle gradient fade from left to right */
+.onboarding-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0) 40%,
+        rgba(10, 21, 27, 0.2) 70%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* But keep the page container with hidden overflow */
+.onboarding-page {
+    overflow-x: hidden;
+    position: fixed; /* Fixed position to prevent any scrolling */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh; /* Use viewport height */
+    overflow: hidden; /* Prevent scrolling */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .onboarding-heading {
+        font-size: 3.5rem;
+    }
+
+    .onboarding-container::before {
+        background: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0) 20%,
+            rgba(10, 21, 27, 0.2) 60%
+        );
+    }
+    
+    /* Adjust glow positions for better blending on smaller screens */
+    .onboarding-left::after {
+        width: 350px;
+        height: 350px;
+        right: -50px;
+    }
+    
+    .onboarding-right::before {
+        top: 15%;
+        left: 15%;
+    }
+    
+    .onboarding-right::after {
+        bottom: 15%;
+        right: 15%;
+    }
+}
+
+@media (max-width: 768px) {
+    .onboarding-container {
+        flex-direction: column;
+        overflow: hidden; /* Reset to hidden for mobile */
+    }
+
+    .onboarding-left {
+        height: 30vh;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .onboarding-heading {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .onboarding-right {
+        height: 70vh;
+        padding: 20px;
+    }
+
+    .form-container {
+        padding: 30px;
+        max-width: 90%;
+    }
+
+    .onboarding-container::before {
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0) 20%,
+            rgba(10, 21, 27, 0.2) 60%
+        );
+    }
+    
+    /* Adjust the glow for vertical layout */
+    .onboarding-left::after {
+        width: 300px;
+        height: 300px;
+        bottom: 0;
+        top: auto;
+        right: 50%;
+        transform: translate(50%, 50%);
+    }
+}
+
+/* Add these optimizations for mobile devices */
+
+/* Mobile-first adjustments */
+@media (max-width: 768px) {
+    /* Hide left section completely on mobile */
+    .onboarding-left {
+        display: none;
+    }
+    
+    /* Make right section take full width */
+    .onboarding-right {
+        flex: 1;
+        width: 100%;
+        height: 100vh;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    /* Optimize form container for mobile */
+    .form-container {
+        width: 100%;
+        max-width: 400px;
+        padding: 30px 20px;
+        margin: 0;
+        height: auto;
+        max-height: 90vh;
+        overflow-y: auto; /* Allow scrolling within form if needed */
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Reduce vertical spacing */
+    .form-title {
+        font-size: 1.8rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .form-subtitle {
+        margin-bottom: 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.2rem;
+    }
+    
+    .form-input {
+        padding: 12px 14px;
+        font-size: 0.95rem;
+    }
+    
+    /* Adjust button size */
+    .form-button {
+        padding: 12px;
+        font-size: 0.95rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    /* Reduce space around separator */
+    .separator {
+        margin: 15px 0;
+    }
+    
+    /* Reduce space after social buttons */
+    .social-login {
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Make footer more compact */
+    .footer-links {
+        margin-top: 15px;
+        gap: 10px;
+    }
+    
+    /* Position orbs for better mobile view */
+    .onboarding-right::before {
+        width: 200px;
+        height: 200px;
+        top: 10%;
+        left: 25%;
+    }
+    
+    .onboarding-right::after {
+        width: 250px;
+        height: 250px;
+        bottom: 5%;
+        right: 25%;
+    }
+}
+
+/* Even smaller screens */
+@media (max-width: 480px) {
+    .form-container {
+        padding: 20px 15px;
+    }
+    
+    .form-title {
+        font-size: 1.6rem;
+    }
+    
+    .form-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .form-input {
+        padding: 10px 12px;
+    }
+    
+    .form-button {
+        padding: 10px;
+    }
+    
+    .social-button {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+/* Fix for very short screens (landscape orientation on phones) */
+@media (max-height: 600px) and (max-width: 768px) {
+    .form-container {
+        padding: 15px;
+        height: auto;
+        max-height: 85vh;
+    }
+    
+    .form-group {
+        margin-bottom: 0.8rem;
+    }
+    
+    .form-title {
+        font-size: 1.4rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .form-subtitle {
+        margin-bottom: 0.8rem;
+    }
+    
+    .form-input {
+        padding: 8px 12px;
+    }
+    
+    .social-login {
+        margin-bottom: 1rem;
+    }
+    
+    .footer-links {
+        margin-top: 10px;
+    }
+}
+
+/* Ensure smooth content scaling on intermediate devices */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .onboarding-container {
+        display: flex;
+    }
+    
+    /* Show left div but make it smaller */
+    .onboarding-left {
+        flex: 0.7;
+        display: flex;
+    }
+    
+    /* Make right side larger proportion */
+    .onboarding-right {
+        flex: 1.3;
+    }
+    
+    /* Ensure text fits */
+    .onboarding-heading {
+        font-size: 3rem;
+    }
+}
+
+/* Prevent body scrolling when form is displayed on mobile */
+@media (max-width: 768px) {
+    .onboarding-page {
+        height: 100vh;
+        overflow: hidden;
+    }
+}
+
+/* Override the container styles for mobile */
+@media (max-width: 768px) {
+    .onboarding-container {
+        flex-direction: row; /* Override the column layout */
+        height: 100vh;
+        overflow: hidden;
+    }
+    
+    /* Remove the gradient for mobile */
+    .onboarding-container::before {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .onboarding-heading {
+        font-size: 2.5rem;
+    }
+
+    .skip-btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .form-title {
+        font-size: 1.75rem;
+    }
+
+    .form-container {
+        padding: 25px 20px;
+    }
+
+    .form-input {
+        padding: 12px 14px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+/* Core container adjustments to prevent scrolling */
+.onboarding-page {
+    position: fixed; /* Fixed position to prevent any scrolling */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh; /* Use viewport height */
+    overflow: hidden; /* Prevent scrolling */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.onboarding-container {
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+    display: flex;
+}
+
+/* Webkit scrollbar styling for the form container only */
+.form-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.form-container::-webkit-scrollbar-track {
+    background: rgba(10, 21, 27, 0.2);
+}
+
+.form-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 169, 157, 0.5);
+    border-radius: 4px;
+}
+
+/* Adaptive responsive layouts */
+@media (max-width: 768px) {
+    .onboarding-left {
+        display: none; /* Hide left side on mobile */
+    }
+    
+    .onboarding-right {
+        flex: 1;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px; /* Minimal padding */
+    }
+    
+    .form-container {
+        width: 100%;
+        max-width: 95vw;
+        padding: min(30px, 5vh) min(20px, 4vw);
+        max-height: 90vh;
+    }
+    
+    /* Adaptive form sizing */
+    .form-group {
+        margin-bottom: min(1.2rem, 2.5vh);
+    }
+    
+    .separator {
+        margin: min(15px, 2vh) 0;
+    }
+    
+    .social-login {
+        margin-bottom: min(1.5rem, 3vh);
+    }
+    
+    /* Vertically stack footer links to save space */
+    .footer-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-top: min(15px, 2vh);
+    }
+}
+
+/* For very small screens, further optimize space usage */
+@media (max-width: 480px), (max-height: 600px) {
+    .form-container {
+        padding: min(20px, 3vh) min(15px, 3vw);
+    }
+    
+    /* Scale down all form elements */
+    .form-title {
+        font-size: min(1.6rem, 6vh);
+        margin-bottom: 0.2rem;
+    }
+    
+    .form-subtitle {
+        font-size: min(0.85rem, 2.5vh);
+        margin-bottom: min(1rem, 2vh);
+    }
+    
+    .form-group {
+        margin-bottom: min(0.8rem, 2vh);
+    }
+    
+    .form-input {
+        padding: min(10px, 1.5vh) min(12px, 2.5vw);
+    }
+    
+    .form-row {
+        margin-bottom: min(1rem, 2vh);
+    }
+    
+    .checkbox-container label {
+        font-size: min(0.8rem, 2.5vh);
+    }
+    
+    .form-button {
+        padding: min(10px, 1.5vh);
+        margin-bottom: min(0.6rem, 1vh);
+    }
+    
+    .social-button {
+        width: min(38px, 10vw);
+        height: min(38px, 10vw);
+    }
+    
+    .form-footer p {
+        margin-bottom: min(10px, 1.5vh);
+        font-size: min(0.8rem, 2.5vh);
+    }
+}
+
+/* Handle landscape orientation on phones */
+@media (max-height: 500px) and (orientation: landscape) {
+    .form-container {
+        padding: 10px 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two-column layout in landscape */
+        column-gap: 20px;
+        align-items: start;
+    }
+    
+    .form-title, .form-subtitle {
+        grid-column: 1 / -1; /* Span full width */
+    }
+    
+    .form-group:nth-child(odd) {
+        grid-column: 1;
+    }
+    
+    .form-group:nth-child(even) {
+        grid-column: 2;
+    }
+    
+    .form-row, .form-button, .separator, .social-login, .form-footer {
+        grid-column: 1 / -1; /* Span full width */
+    }
+    
+    /* Even more compact spacing */
+    .form-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.1rem;
+    }
+    
+    .form-subtitle {
+        margin-bottom: 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    .form-group {
+        margin-bottom: 0.6rem;
+    }
+    
+    .social-login {
+        margin-bottom: 0.6rem;
+    }
+    
+    .form-footer {
+        margin-top: 0.6rem;
+    }
+    
+    .footer-links {
+        margin-top: 0.4rem;
+    }
+}
+
+/* Override container styles for all devices to ensure no scrolling */
+html, body {
+    overflow: hidden;
+    height: 100%;
+}
+
+/* Ensure content doesn't get cut off on very small devices */
+@media (max-height: 400px), (max-width: 340px) {
+    .social-login {
+        display: flex;
+        gap: 8px;
+    }
+    
+    .form-footer {
+        font-size: 0.7rem;
+    }
+    
+    .footer-links {
+        display: none; /* Hide footer links on extremely small screens */
+    }
+    
+    .form-container {
+        max-height: 98vh; /* Use almost full height */
+    }
+}
+
+/* Prevent any accidental scrolling from touch gestures */
+.onboarding-page {
+    touch-action: none;
+}
+
+/* Override conflicting media queries */
+@media (max-width: 768px) {
+    .onboarding-container {
+        flex-direction: row;
+        height: 100vh;
+        overflow: hidden;
+    }
+    
+    /* Ensure even in column layout, elements don't cause overflow */
+    .onboarding-page {
+        display: block;
+        height: 100vh;
+        overflow: hidden;
+    }
+}
+
+/* Add ByteCupids logo/text as back button */
+.brand-logo {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary-text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    z-index: 50; /* Make sure it's above other elements */
+    transition: all 0.3s ease;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.brand-logo:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px rgba(0, 169, 157, 0.6);
+}
+
+.brand-logo::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(45deg, var(--color-button-primary-bg-start), var(--color-button-primary-bg-end));
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 0 0 8px rgba(0, 169, 157, 0.6);
+}
+
+/* ByteCupids tagline in the left div to replace button */
+.bytecupids-tagline {
+    margin-top: 1rem;
+    padding: 16px 20px;
+    background: rgba(0, 169, 157, 0.05);
+    border-left: 3px solid rgba(0, 169, 157, 0.5);
+    border-radius: 0 8px 8px 0;
+    max-width: 90%;
+    animation: fadeInSlideUp 1s ease-out 0.7s forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.bytecupids-highlight {
+    color: var(--color-accent-primary);
+    font-weight: 500;
+}
+
+/* Make sure the brand-logo is visible in mobile view */
+@media (max-width: 768px) {
+    .brand-logo {
+        top: 20px;
+        left: 20px;
+        font-size: 1.3rem;
+    }
+    
+    /* Since we're hiding the left div on mobile, make sure the logo is still visible */
+    .onboarding-page .brand-logo {
+        display: flex;
+        
+    }
+    
+
+}
+
+/* Additional CSS for mobile logo visibility */
+@media (max-width: 768px) {
+    .brand-logo {
+        top: 20px;
+        left: 20px;
+        z-index: 100;
+        font-size: 1.2rem;
+    }
+    
+    /* Ensure the form doesn't overlap the logo */
+    .onboarding-right {
+        padding-top: 0px; /* Add top padding to avoid logo overlap */
+        margin-top: -1.2rem;
+    }
+
+    .form-container{
+        padding: 1.5rem 1rem;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
