@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../../styles/components/OnboardingPage/OnboardingForms.css";
 
 interface ForgotPasswordFormProps {
@@ -12,26 +12,52 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
   onSwitchToSignup,
 }) => {
   const [email, setEmail] = useState("");
-  const navigate = useNavigate();
+  const [isTypingDone, setIsTypingDone] = useState(false);
+
+  // Set typing animation to complete after the animation duration
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsTypingDone(true);
+    }, 2000); // Match with the typing animation duration
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle forgot password logic here - for now just log to console
     console.log("Reset password requested for:", email);
-    // TODO: Add actual password reset logic
-  };
-
-  const handleGoBack = () => {
-    onSwitchToLogin();
   };
 
   return (
     <div className="onboarding-container">
+      {/* ByteCupids logo as back button */}
+      <Link to="/" className="brand-logo">
+        ByteCupids
+      </Link>
+
       <div className="onboarding-left">
-        <h1 className="onboarding-heading">No Worries.!!</h1>
-        <button className="skip-btn" onClick={handleGoBack}>
-          Take me back.!
-        </button>
+        {/* Enhanced heading with typing animation */}
+        <h1 className="onboarding-heading" data-text="No Worries.!!">
+          <span>
+            No Worries.!!
+          </span>
+        </h1>
+
+        {/* Added tagline for context */}
+        <p className="onboarding-tagline">
+          We'll help you reset your password quickly and get you back to your
+          learning journey.
+        </p>
+
+        {/* ByteCupids-specific tagline instead of button */}
+        <div className="bytecupids-tagline">
+          <span className="bytecupids-highlight">ByteCupids</span> values your
+          security. After resetting, you'll regain access to your personalized
+          learning experience and conversation history.
+        </div>
+
+        {/* Decorative line */}
+        <div className="decorative-line"></div>
       </div>
 
       <div className="onboarding-right">

@@ -14,35 +14,182 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 0 40px;
+    padding: 80px 60px; /* Increased top padding */
     position: relative;
     background: transparent; /* Make background fully transparent */
     z-index: 10;
+    overflow: hidden; /* Contain animations */
 }
 
 .onboarding-heading {
-    font-size: 4rem;
+    font-size: 4.5rem;
     font-weight: 700;
     color: var(--color-primary-text);
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     line-height: 1.1;
     text-align: left;
+    font-family: 'Plus Jakarta Sans', sans-serif; /* Premium modern font */
+    letter-spacing: -1px; /* Tighter letter spacing for modern look */
+    position: relative;
+    animation: fadeInSlideUp 1s ease-out forwards;
+    opacity: 0; /* Start invisible for animation */
+    transform: translateY(30px); /* Start below for animation */
+}
+
+/* Tagline text */
+.onboarding-tagline {
+    font-size: 1.2rem;
+    color: var(--color-secondary-text);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+    font-weight: 400;
+    max-width: 85%;
+    animation: fadeInSlideUp 1s ease-out 0.3s forwards;
+    opacity: 0;
+    transform: translateY(30px);
 }
 
 .skip-btn {
-    background: none;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    color: var(--color-primary-text);
-    padding: 12px 25px;
-    font-size: 1.1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    display: none; /* Hide the skip button */
 }
 
-.skip-btn:hover {
-    border-color: rgba(255, 255, 255, 0.5);
-    background-color: rgba(255, 255, 255, 0.1);
+/* Button hover effect - light ripple */
+.skip-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+    z-index: -1;
+}
+
+.skip-btn:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Animated elements */
+.animated-element {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 169, 157, 0.1);
+    border: 1px solid rgba(0, 169, 157, 0.2);
+    z-index: -1;
+}
+
+.element-1 {
+    top: 20%;
+    left: 10%;
+    width: 50px;
+    height: 50px;
+    animation: float 8s infinite ease-in-out;
+}
+
+.element-2 {
+    bottom: 15%;
+    left: 25%;
+    width: 70px;
+    height: 70px;
+    animation: float 10s 1s infinite ease-in-out;
+}
+
+.element-3 {
+    top: 45%;
+    left: 40%;
+    width: 40px;
+    height: 40px;
+    animation: float 6s 0.5s infinite ease-in-out;
+}
+
+/* Decorative line element */
+.decorative-line {
+    position: absolute;
+    bottom: 25%;
+    left: 60px;
+    height: 2px;
+    width: 150px;
+    background: linear-gradient(90deg, 
+        rgba(0, 169, 157, 0.7), 
+        rgba(0, 169, 157, 0.1)
+    );
+    animation: expandWidth 1.5s ease-out 0.8s forwards;
+    transform-origin: left;
+    transform: scaleX(0);
+}
+
+/* Add a decorative number to indicate step */
+.step-indicator {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+    font-size: 0.9rem;
+    color: var(--color-secondary-text);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    animation: fadeInSlideUp 1s ease-out forwards;
+    opacity: 0;
+}
+
+.step-indicator::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(0, 169, 157, 0.7), rgba(0, 169, 157, 0.3));
+    margin-right: 10px;
+}
+
+/* Animations */
+@keyframes fadeInSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes expandWidth {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+/* Typing animation for the heading */
+.typing-animation {
+    display: inline-block;
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 2s steps(30) forwards;
+    border-right: 3px solid rgba(0, 169, 157, 0.7);
+    animation: typing 2s steps(30) forwards, blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: rgba(0, 169, 157, 0.7) }
 }
 
 /* Right side with forms */
@@ -310,25 +457,6 @@
     gap: 15px;
     margin-top: 25px;
     font-size: 0.8rem;
-}
-
-/* Updated Left side styling with transparent background and blending */
-.onboarding-left::after {
-    content: "";
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle,
-            rgba(76, 0, 130, 0.2) 0%,
-            rgba(128, 0, 128, 0.1) 40%,
-            rgba(0, 0, 0, 0) 70%);
-    border-radius: 50%;
-    right: 0; /* Position at the right edge of left container */
-    top: 50%;
-    transform: translate(50%, -50%); /* Place half in and half out */
-    filter: blur(60px);
-    z-index: 0;
-    opacity: 0.6;
 }
 
 /* Add a subtle gradient fade from left to right */
@@ -900,4 +1028,89 @@ html, body {
         height: 100vh;
         overflow: hidden;
     }
+}
+
+/* Add ByteCupids logo/text as back button */
+.brand-logo {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary-text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    z-index: 50; /* Make sure it's above other elements */
+    transition: all 0.3s ease;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.brand-logo:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px rgba(0, 169, 157, 0.6);
+}
+
+.brand-logo::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(45deg, var(--color-button-primary-bg-start), var(--color-button-primary-bg-end));
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 0 0 8px rgba(0, 169, 157, 0.6);
+}
+
+/* ByteCupids tagline in the left div to replace button */
+.bytecupids-tagline {
+    margin-top: 1rem;
+    padding: 16px 20px;
+    background: rgba(0, 169, 157, 0.05);
+    border-left: 3px solid rgba(0, 169, 157, 0.5);
+    border-radius: 0 8px 8px 0;
+    max-width: 90%;
+    animation: fadeInSlideUp 1s ease-out 0.7s forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.bytecupids-highlight {
+    color: var(--color-accent-primary);
+    font-weight: 500;
+}
+
+/* Make sure the brand-logo is visible in mobile view */
+@media (max-width: 768px) {
+    .brand-logo {
+        top: 20px;
+        left: 20px;
+        font-size: 1.3rem;
+    }
+    
+    /* Since we're hiding the left div on mobile, make sure the logo is still visible */
+    .onboarding-page .brand-logo {
+        display: flex;
+    }
+}
+
+/* Additional CSS for mobile logo visibility */
+@media (max-width: 768px) {
+    .brand-logo {
+        top: 20px;
+        left: 20px;
+        z-index: 100;
+        font-size: 1.2rem;
+    }
+    
+    /* Ensure the form doesn't overlap the logo */
+    .onboarding-right {
+        padding-top: 70px; /* Add top padding to avoid logo overlap */
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }

@@ -1,6 +1,6 @@
 // filepath: /home/jenu/projects/major-projects/ByteCupids-frontend/src/components/Onboarding/SignupForm.tsx
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import '../../styles/components/OnboardingPage/OnboardingForms.css';
 
 interface SignupFormProps {
@@ -12,29 +12,58 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSwitchToLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [isTypingDone, setIsTypingDone] = useState(false);
   const navigate = useNavigate();
+  
+  // Set typing animation to complete after the animation duration
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsTypingDone(true);
+    }, 2000); // Match with the typing animation duration
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Validation
     if (password !== confirmPassword) {
       alert("Passwords don't match");
       return;
     }
-    // Handle signup logic here - for now just log to console
     console.log('Signup submitted:', { username, email, password });
-    // TODO: Add actual registration logic
-  };
-  
-  const handleSkipSignup = () => {
-    navigate('/');
   };
 
   return (
     <div className="onboarding-container">
+      {/* ByteCupids logo as back button */}
+      <Link to="/" className="brand-logo">
+        ByteCupids
+      </Link>
+      
       <div className="onboarding-left">
-        <h1 className="onboarding-heading">Roll the Carpet.!</h1>
-        <button className="skip-btn" onClick={handleSkipSignup}>Skip the lag ?</button>
+        
+        {/* Enhanced heading with typing animation */}
+        <h1 
+          className="onboarding-heading" 
+          data-text="Roll the Carpet.!"
+        >
+          <span>
+            Roll the Carpet.!
+          </span>
+        </h1>
+        
+        {/* Added tagline for context */}
+        <p className="onboarding-tagline">
+          Begin your learning adventure with a personalized journey through computer science fundamentals and beyond.
+        </p>
+        
+        {/* ByteCupids-specific tagline instead of button */}
+        <div className="bytecupids-tagline">
+          <span className="bytecupids-highlight">ByteCupids</span> offers conversational AI tutoring that adapts to your learning style, helping you master concepts at your own pace.
+        </div>
+        
+        {/* Decorative line */}
+        <div className="decorative-line"></div>
       </div>
 
       <div className="onboarding-right">
