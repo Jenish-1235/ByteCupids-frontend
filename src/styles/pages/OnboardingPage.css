@@ -11,6 +11,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 }
 
 /* Make sure the particles don't block interaction */
