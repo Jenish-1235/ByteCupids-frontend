@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import GlobalParticlesBackground from "../components/LandingPage/GlobalParticlesBackground";
+import React, { useEffect, useState } from 'react';
+import GlobalParticlesBackground from "../components/global/GlobalParticlesBackground";
 import LoginForm from "../components/OnboardingPage/LoginForm";
 import SignupForm from "../components/OnboardingPage/SignupForm";
 import ForgotPasswordForm from "../components/OnboardingPage/ForgotPasswordForm";
 import "../styles/pages/OnboardingPage.css";
 import "../styles/pages/LandingPage.css";
+import { useNavigate } from 'react-router';
 
 enum OnboardingView {
   LOGIN,
@@ -14,6 +15,15 @@ enum OnboardingView {
 
 export default function OnboardingPage() {
   const [currentView, setCurrentView] = useState<OnboardingView>(OnboardingView.LOGIN);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("isLoggedIn") === "true") {
+      console.log("User is already logged in, redirecting to home page.");
+      navigate("/home");
+    }
+    console.log("User is not logged in, staying on onboarding page.");
+  }
+  , []);
 
   const renderCurrentView = () => {
     switch(currentView) {
