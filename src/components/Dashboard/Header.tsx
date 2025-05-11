@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/components/Dashboard/Header.css";
+import "../../styles/components/Dashboard/DashboardHeader.css";
 
 interface HeaderProps {
   topicName?: string;
@@ -20,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({
   prevDisabled,
   nextDisabled,
 }) => (
-  <header className="header">
+  <header className="dashboard-header">
     <div className="greeting">
       {topicName && <span className="header-topic-name">{topicName}</span>}
       {subtopicName && (
