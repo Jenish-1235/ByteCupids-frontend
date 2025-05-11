@@ -1,0 +1,20 @@
+.onboarding-page {
+    background: radial-gradient(circle at center,
+            #020507 50%,
+            #0a151b 100%);
+    color: var(--color-primary-text);
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Make sure the particles don't block interaction */
+.onboarding-page .global-particles-container {
+    pointer-events: none;
+}
+

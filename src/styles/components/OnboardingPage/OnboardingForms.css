@@ -1,0 +1,366 @@
+.onboarding-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+}
+
+/* Left side with heading and skip button */
+.onboarding-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 40px;
+    position: relative;
+}
+
+.onboarding-heading {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color-primary-text);
+    margin-bottom: 2.5rem;
+    line-height: 1.1;
+    text-align: left;
+}
+
+.skip-btn {
+    background: none;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--color-primary-text);
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.skip-btn:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Right side with forms */
+.onboarding-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.form-container {
+    background: rgba(10, 21, 27, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 40px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10;
+}
+
+/* Add glowing circle effects */
+.onboarding-right::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle,
+            rgba(128, 0, 128, 0.4) 0%,
+            rgba(76, 0, 130, 0.2) 50%,
+            rgba(0, 0, 0, 0) 70%);
+    border-radius: 50%;
+    top: -100px;
+    right: -100px;
+    filter: blur(30px);
+    z-index: 0;
+}
+
+.onboarding-right::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle,
+            rgba(76, 0, 130, 0.3) 0%,
+            rgba(0, 0, 128, 0.2) 50%,
+            rgba(0, 0, 0, 0) 70%);
+    border-radius: 50%;
+    bottom: -150px;
+    right: -150px;
+    filter: blur(50px);
+    z-index: 0;
+}
+
+/* Form styles */
+.form-title {
+    color: var(--color-primary-text);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.form-subtitle {
+    color: var(--color-secondary-text);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 14px 16px;
+    color: var(--color-primary-text);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: rgba(0, 169, 157, 0.5);
+    box-shadow: 0 0 0 2px rgba(0, 169, 157, 0.25);
+}
+
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: var(--color-accent-primary);
+}
+
+.checkbox-container label {
+    color: var(--color-secondary-text);
+    font-size: 0.9rem;
+}
+
+.form-button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    margin-bottom: 1rem;
+}
+
+.primary-button {
+    background: linear-gradient(45deg, var(--color-button-primary-bg-start), var(--color-button-primary-bg-end));
+    color: var(--color-primary-text);
+}
+
+.primary-button:hover {
+    box-shadow: 0 8px 15px rgba(0, 169, 157, 0.2);
+    transform: translateY(-2px);
+}
+
+.secondary-button {
+    background: linear-gradient(45deg, #E91E63, #D81B60);
+    color: white;
+}
+
+.secondary-button:hover {
+    box-shadow: 0 8px 15px rgba(233, 30, 99, 0.2);
+    transform: translateY(-2px);
+}
+
+.form-link-center {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.form-link-center a {
+    color: var(--color-secondary-text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.form-link-center a:hover {
+    color: var(--color-primary-text);
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--color-secondary-text);
+    margin: 25px 0;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.separator span {
+    padding: 0 10px;
+    font-size: 0.9rem;
+}
+
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 2rem;
+}
+
+.social-button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.social-button:hover {
+    transform: translateY(-3px);
+}
+
+.google:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.facebook:hover {
+    background-color: rgba(59, 89, 152, 0.2);
+}
+
+.github:hover {
+    background-color: rgba(51, 51, 51, 0.2);
+}
+
+.form-footer {
+    text-align: center;
+    color: var(--color-secondary-text);
+}
+
+.form-footer p {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.form-footer a {
+    color: var(--color-accent-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.form-footer a:hover {
+    color: var(--color-accent-primary-hover);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+    font-size: 0.8rem;
+}
+
+.footer-links a {
+    color: var(--color-secondary-text);
+}
+
+.footer-links a:hover {
+    color: var(--color-primary-text);
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .onboarding-heading {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .onboarding-container {
+        flex-direction: column;
+    }
+
+    .onboarding-left {
+        height: 30vh;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .onboarding-heading {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .onboarding-right {
+        height: 70vh;
+        padding: 20px;
+    }
+
+    .form-container {
+        padding: 30px;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .onboarding-heading {
+        font-size: 2.5rem;
+    }
+
+    .skip-btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .form-title {
+        font-size: 1.75rem;
+    }
+
+    .form-container {
+        padding: 25px 20px;
+    }
+
+    .form-input {
+        padding: 12px 14px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
