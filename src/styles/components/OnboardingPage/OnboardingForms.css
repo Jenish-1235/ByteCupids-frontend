@@ -1092,7 +1092,10 @@ html, body {
     /* Since we're hiding the left div on mobile, make sure the logo is still visible */
     .onboarding-page .brand-logo {
         display: flex;
+        
     }
+    
+
 }
 
 /* Additional CSS for mobile logo visibility */
@@ -1106,7 +1109,12 @@ html, body {
     
     /* Ensure the form doesn't overlap the logo */
     .onboarding-right {
-        padding-top: 70px; /* Add top padding to avoid logo overlap */
+        padding-top: 0px; /* Add top padding to avoid logo overlap */
+        margin-top: -1.2rem;
+    }
+
+    .form-container{
+        padding: 1.5rem 1rem;
     }
 }
 
