@@ -6,125 +6,73 @@ const Sidebar: React.FC = () => {
   const navigate = useNavigate();
   return (
     <aside className="sidebar">
-      <h2>
+      <h2 className="sidebar__logo">
         <span className="logo">ByteCupids</span>
       </h2>
+      
       <div
-        className="menuItem active"
+        className="sidebar__menu-item sidebar__menu-item--active"
         onClick={() => navigate("/")}
-        style={{ cursor: "pointer" }}
       >
-        <span
-          style={{
-            marginRight: "1rem",
-            display: "inline-flex",
-            alignItems: "center",
-          }}
-        >
-          {/* Home icon */}
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            style={{
-              verticalAlign: "middle",
-              paddingLeft: "10px",
-              transform: "translateY(-1px)",
-            }}
-          >
+        <span className="sidebar__icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M3 9.5L10 4L17 9.5"
-              stroke="#fff"
+              stroke="currentColor"
               strokeWidth="2.2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d="M5 17V10.5H15V17"
-              stroke="#fff"
+              stroke="currentColor"
               strokeWidth="2.2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
         </span>
-        Home
+        <span className="sidebar__label">Home</span>
       </div>
-      <div className="menuItem">
-        <span
-          style={{
-            marginRight: "1rem",
-            display: "inline-flex",
-            alignItems: "center",
-          }}
-        >
-          {/* About Us icon */}
-          <svg
-            width="19"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            style={{
-              verticalAlign: "middle",
-              paddingLeft: "10px",
-              transform: "translateY(-1px)",
-            }}
-          >
-            <circle cx="10" cy="10" r="8" stroke="#fff" strokeWidth="2.2" />
-            <rect x="9" y="8" width="2" height="6" rx="1" fill="#fff" />
-            <rect x="9" y="5" width="2" height="2" rx="1" fill="#fff" />
+      
+      <div className="sidebar__menu-item">
+        <span className="sidebar__icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="2.2" />
+            <rect x="9" y="8" width="2" height="6" rx="1" fill="currentColor" />
+            <rect x="9" y="5" width="2" height="2" rx="1" fill="currentColor" />
           </svg>
         </span>
-        About Us
+        <span className="sidebar__label">About Us</span>
       </div>
-      <button className="logoutBtn">
-        <span
-          style={{
-            marginRight: "1rem",
-            display: "inline-flex",
-            alignItems: "center",
-          }}
-        >
-          {/* Logout icon */}
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            style={{
-              verticalAlign: "middle",
-              paddingLeft: "18px",
-              transform: "translateY(2px)",
-            }}
-          >
+      
+      <button className="sidebar__logout-btn">
+        <span className="sidebar__icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M13 15L18 10L13 5"
-              stroke="#fff"
+              stroke="currentColor"
               strokeWidth="2.2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d="M18 10H7"
-              stroke="#fff"
+              stroke="currentColor"
               strokeWidth="2.2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d="M7 3V17"
-              stroke="#fff"
+              stroke="currentColor"
               strokeWidth="2.2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
         </span>
-        Log out
+        <span className="sidebar__label">Log out</span>
       </button>
     </aside>
   );

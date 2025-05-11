@@ -1,5 +1,72 @@
 @import './styles/global/Scrollbar.css';
 :root {
+  /* Typography */
+  --font-family-primary: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+  --font-weight-heavy: 700;
+  --line-height-normal: 1.6;
+  --line-height-tight: 1.2;
+  
+  /* Colors - Core Palette */
+  --color-background-deep-space: #020507;
+  --color-background-deep-space-rgb: 2, 5, 7;
+  --color-background-midnight: #0a151b;
+  --color-background-midnight-rgb: 10, 21, 27;
+  --color-background-charcoal: #1c232a;
+  --color-background-charcoal-rgb: 28, 35, 42;
+  
+  /* Accent Colors */
+  --color-accent-teal: #7fffd4;
+  --color-accent-teal-rgb: 127, 255, 212;
+  --color-accent-teal-light: #b6f3e6;
+  --color-accent-teal-dark: #00a99d;
+  --color-accent-purple: #7F5AF0;
+  --color-accent-purple-rgb: 127, 90, 240;
+  --color-accent-green: #2CB67D;
+  --color-accent-green-rgb: 44, 182, 125;
+  
+  /* Text Colors */
+  --color-text-primary: #EAEBF0;
+  --color-text-secondary: #A0AEC0;
+  --color-text-accent: var(--color-accent-teal);
+  --color-text-accent-light: var(--color-accent-teal-light);
+  
+  /* UI Component Colors */
+  --color-border-subtle: rgba(var(--color-accent-teal-rgb), 0.18);
+  --color-border-accent: rgba(var(--color-accent-teal-rgb), 0.5);
+  --color-shadow-subtle: rgba(0, 0, 0, 0.1);
+  --color-shadow-accent: rgba(var(--color-accent-teal-rgb), 0.09);
+  
+  /* Background Gradients */
+  --gradient-sidebar: linear-gradient(180deg, #181e24 10%, rgba(16, 20, 26, 0.6) 40%);
+  --gradient-tile-default: linear-gradient(120deg, rgba(127, 255, 212, 0.07) 10%, #112d23 100%);
+  --gradient-tile-hover: linear-gradient(120deg, #193c2f 60%, #16232a 100%);
+  --gradient-header: linear-gradient(90deg, #16232a 0%, #1a232a 100%);
+  
+  /* Transitions */
+  --transition-fast: 0.18s;
+  --transition-normal: 0.22s;
+  --transition-slow: 0.3s;
+  
+  /* Border Radius */
+  --border-radius-small: 6px;
+  --border-radius-medium: 10px;
+  --border-radius-large: 16px;
+  --border-radius-xl: 22px;
+  
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem; 
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 2.5rem;
+  
+  /* Component-specific */
+  --sidebar-width: 240px;
+  --header-height: 70px;
+
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif; /* Using Inter as primary */
   line-height: 1.6; /* Slightly increased for better readability */
   font-weight: 400;

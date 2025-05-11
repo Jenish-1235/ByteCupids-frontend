@@ -7,7 +7,7 @@ interface TopicPageContentProps {
 }
 
 const TopicPageContent: React.FC<TopicPageContentProps> = ({ content }) => (
-  <div className="topic-content-outer">
+  <div className="topic-page__content-outer">
     <TopicContent content={content} />
   </div>
 );

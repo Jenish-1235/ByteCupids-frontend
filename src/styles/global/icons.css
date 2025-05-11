@@ -1,0 +1,60 @@
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon--sm {
+  width: 16px;
+  height: 16px;
+}
+
+.icon--md {
+  width: 24px;
+  height: 24px;
+}
+
+.icon--lg {
+  width: 32px;
+  height: 32px;
+}
+
+.icon--primary {
+  color: var(--color-accent-teal);
+}
+
+.icon--secondary {
+  color: var(--color-text-secondary);
+}
+
+.icon--white {
+  color: var(--color-text-primary);
+}
+
+/* Icon button styles */
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background var(--transition-fast);
+}
+
+.icon-btn:hover {
+  background: rgba(var(--color-accent-teal-rgb), 0.08);
+}
+
+.icon-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(var(--color-accent-teal-rgb), 0.4);
+}
+
+.icon-btn[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.4;
+  pointer-events: none;
+}

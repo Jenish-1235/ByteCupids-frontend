@@ -6,7 +6,7 @@ interface TopicContentProps {
 }
 
 const TopicContent: React.FC<TopicContentProps> = ({ content }) => (
-  <div className="topic-content-markdown">
+  <div className="topic-page__content-markdown">
     <ReactMarkdown>
 {`
 ## Index Design in Relational Database Management Systems (RDBMS)

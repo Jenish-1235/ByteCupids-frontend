@@ -9,9 +9,9 @@ const actions = [
 ];
 
 const TopicPageRightbar: React.FC = () => (
-  <div className="topic-actions-panel">
+  <div className="topic-page__actions-panel">
     {actions.map((label, i) => (
-      <div key={i} className="topic-action-tile">
+      <div key={i} className="topic-page__action-tile">
         {label}
       </div>
     ))}
