@@ -1,0 +1,45 @@
+:root {
+  /* Colors */
+  --color-teal: #7fffd4;
+  --color-teal-light: #b6f3e6;
+  --color-teal-dark: #2cb67d;
+  --color-background-dark: #0a151b;
+  --color-background-darker: #020507;
+  --color-background-light: #16232a;
+
+  /* Text */
+  --color-text-primary: #eaf6fb;
+  --color-text-secondary: #b6f3e6;
+  --color-text-accent: #7fffd4;
+  
+  /* Border */
+  --color-border-light: rgba(127, 255, 212, 0.5);
+  --color-border-subtle: rgba(127, 255, 212, 0.2);
+  
+  /* Shadows */
+  --shadow-subtle: 0 0 8px rgba(0, 255, 208, 0.2);
+  --shadow-medium: 0 0 12px rgba(0, 255, 208, 0.3);
+  
+  /* Gradients */
+  --gradient-sidebar: linear-gradient(180deg, #181e24 10%, rgba(16, 20, 26, 0.6) 40%);
+  --gradient-active-item: linear-gradient(120deg, #16232a 80%, #193c2f 100%);
+  
+  /* Layout */
+  --sidebar-width: 240px;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 2.5rem;
+  
+  /* Border Radius */
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  
+  /* Transitions */
+  --transition-fast: 0.18s ease;
+  --transition-normal: 0.22s ease;
+}

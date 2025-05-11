@@ -14,10 +14,8 @@ body {
     height: 100%;
     width: 100%;
     font-family: 'Arial', sans-serif;
-    background-color: var(--color-dark);
-    /* Background color for the entire page */
+    background-color: #0a151b;
     color: white;
-    /* Text color */
 }
 
 /* Apply global styles like background color, general fonts, etc. */
@@ -34,4 +32,23 @@ body {
     flex-direction: column;
     height: 100%;
     width: 100%;
+}
+
+/* Common icon styles */
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fix SVG icons to use currentColor for consistency */
+svg {
+    color: currentColor;
+    fill: currentColor;
+    vertical-align: middle; 
+}
+
+/* Only fill none when explicitly set */
+svg[fill="none"] {
+    fill: none;
 }
