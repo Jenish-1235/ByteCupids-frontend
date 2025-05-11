@@ -10,6 +10,8 @@
 
 .tile {
   background: #1e2a32;
+    background: linear-gradient(120deg, rgba(51, 82, 99, 0.3) 10%, #112d23 100%);
+
   border-radius: 22px;
   padding: 2.7rem 1.5rem;
   text-align: center;
@@ -41,7 +43,7 @@
 .moduleInfo {
   font-size: 0.98rem;
   font-weight: 400;
-  color: #b6f3e6;
+  color: #7fffd4;
   background: rgba(127, 255, 212, 0.07);
   border-radius: 6px;
   padding: 0.18em 0.7em;

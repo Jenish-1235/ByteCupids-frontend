@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/TopicSelectorPopup.css";
 import type { Topic, Subtopic } from "../types/TopicTypes";
 
@@ -13,6 +14,7 @@ const TopicSelectorPopup: React.FC<TopicSelectorPopupProps> = ({
   open,
   onClose,
 }) => {
+  const navigate = useNavigate();
   const [topics, setTopics] = useState<Topic[]>([]);
   const [expandedTopicId, setExpandedTopicId] = useState<string | null>(null);
   const [subtopics, setSubtopics] = useState<{ [topicId: string]: Subtopic[] }>(
@@ -178,7 +180,17 @@ const TopicSelectorPopup: React.FC<TopicSelectorPopupProps> = ({
               {expandedTopicId === topic.id && (
                 <div className="subtopic-list">
                   {(subtopics[topic.id] || []).map((sub) => (
-                    <div key={sub.id} className="subtopic-item">
+                    <div
+                      key={sub.id}
+                      className="subtopic-item"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        navigate(
+                          `/module/${moduleId}/topic/${topic.id}/subtopic/${sub.id}`
+                        );
+                        onClose();
+                      }}
+                    >
                       {sub.name}
                     </div>
                   ))}
