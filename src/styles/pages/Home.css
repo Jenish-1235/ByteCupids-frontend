@@ -1,0 +1,100 @@
+/* Dashboard main container styles */
+.container {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  font-family: 'Inter', 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+  background: radial-gradient(
+    circle at center,
+    #020507 50%,
+    #0a151b 100%
+  );
+  color: var(--color-primary-text, #eaf6fb);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.main {
+  flex: 1;
+  padding: 2rem 3rem;
+  background: transparent;
+  min-width: 0;
+  color: var(--color-primary-text, #eaf6fb);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Add global glow effects similar to onboarding page */
+.global-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.glow-top {
+  top: -10%;
+  right: 15%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(127, 90, 240, 0.7), transparent 70%);
+  animation: float 20s infinite ease-in-out;
+}
+
+.glow-middle {
+  top: 40%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 169, 157, 0.6), transparent 70%);
+  animation: float 25s infinite ease-in-out reverse;
+}
+
+.glow-bottom {
+  bottom: -10%;
+  right: 25%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(44, 182, 125, 0.5), transparent 70%);
+  animation: float 18s infinite ease-in-out;
+}
+
+/* Make sure the particles don't block interaction */
+.container .global-particles-container {
+  pointer-events: none;
+}
+
+/* Float animation for glow effects */
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(20px, -20px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main {
+    padding: 1.5rem 1.5rem;
+  }
+  
+  .global-glow {
+    opacity: 0.1;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding: 1rem;
+  }
+}
