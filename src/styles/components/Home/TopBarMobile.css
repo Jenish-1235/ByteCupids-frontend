@@ -1,0 +1,41 @@
+.topbar-mobile {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .topbar-mobile {
+    display: flex;
+    width: 100vw;
+    height: 56px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: var(--color-bg);
+    z-index: 20;
+    border-bottom: 1.5px solid var(--color-surface-2);
+  }
+  .topbar-mobile__branding {
+    font-family: var(--font-family), sans-serif;
+    font-size: 1.1rem;
+    color: var(--color-white);
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .topbar-mobile__logout-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--border-radius-lg);
+    transition: color 0.2s;
+  }
+  .topbar-mobile__logout-btn:hover {
+    color: var(--color-neon-violet);
+  }
+}

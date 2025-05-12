@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../styles/components/Dashboard/Modules.css";
+import "../../styles/components/Home/Modules.css";
 
 const Modules: React.FC = () => {
   const [selectedModuleIdx, setSelectedModuleIdx] = useState<number | null>(

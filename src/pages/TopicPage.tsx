@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Sidebar from "../components/Dashboard/Sidebar";
-import SidebarParticles from "../components/Dashboard/SidebarParticles";
-import DashboardParticles from "../components/Dashboard/DashboardParticles";
+import Sidebar from "../components/Home/Sidebar";
+import SidebarParticles from "../components/Home/SidebarParticles";
+import DashboardParticles from "../components/Home/DashboardParticles";
 import TopicPageHeader from "../components/TopicPage/TopicPageHeader";
 import TopicPageContent from "../components/TopicPage/TopicPageContent";
 import TopicPageRightbar from "../components/TopicPage/TopicPageRightbar";

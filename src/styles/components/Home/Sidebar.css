@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+@import "../../global/variables.css";
+
+.sidebar {
+  width: 90px;
+  background: var(--color-bg);
+  border-right: 1.5px solid var(--color-surface-2);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 0 24px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.sidebar::after {
+  content: none;
+}
+
+.sidebar__logo {
+  font-family: 'Fredoka One', var(--font-family), sans-serif;
+  font-size: 1.3rem;
+  color: var(--color-white);
+  margin-bottom: 48px;
+  letter-spacing: 1px;
+}
+
+.logo {
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.sidebar__menu-item,
+.sidebar__logout-btn {
+  width: 100%;
+  background: transparent;
+  border-radius: var(--border-radius-lg);
+  color: var(--color-text-secondary);
+  transition: var(--transition-normal);
+  border: 1.2px solid transparent;
+  box-shadow: none;
+  font-size: 1.08rem;
+  font-weight: 600;
+  padding: 0.7rem 1rem;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  box-sizing: border-box;
+  margin-bottom: var(--spacing-md);
+  cursor: pointer;
+}
+
+.sidebar__menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: color 0.2s;
+}
+
+.sidebar__menu-item--active,
+.sidebar__menu-item:hover {
+  color: var(--color-neon-violet);
+}
+
+.sidebar__icon {
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 24px;
+  color: inherit;
+  text-align: center;
+}
+
+.sidebar__label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: inherit;
+  margin-left: var(--spacing-xs);
+  text-align: center;
+}
+
+.sidebar__logout-btn {
+  margin-top: auto;
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.sidebar__logout-btn:hover {
+  color: var(--color-neon-violet);
+}
+
+/* Responsive: Collapse sidebar to top bar or hide on mobile */
+@media (max-width: 900px) {
+  .sidebar {
+    display: none !important;
+  }
+}
+
