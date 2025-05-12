@@ -76,3 +76,28 @@
     right: 0;
   }
 }
+
+/* Responsive: Scrollable tab bar, smaller gap/font */
+@media (max-width: 900px) {
+  .module-tab-bar {
+    gap: 1.2rem;
+    margin: 0 1rem 0.5rem 1rem;
+    width: 100%;
+  }
+  .module-tab {
+    font-size: 0.98rem;
+    padding-bottom: 0.7rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .module-tab-bar {
+    gap: 0.7rem;
+    margin: 0 0.2rem 0.3rem 0.2rem;
+    width: 100%;
+  }
+  .module-tab {
+    font-size: 0.92rem;
+    padding-bottom: 0.5rem;
+  }
+}

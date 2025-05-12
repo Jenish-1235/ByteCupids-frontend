@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  overflow-y: auto;
 }
 
 .home-page {
@@ -88,6 +89,33 @@
   
   .global-glow {
     opacity: 0.1;
+  }
+}
+
+/* Responsive: Stack sidebar and main vertically on small screens */
+@media (max-width: 900px) {
+  .home-page {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .branding-cemented {
+    display: none !important;
+  }
+}
+
+/* On mobile, remove side paddings and shrink glows */
+@media (max-width: 600px) {
+  .home-page {
+    flex-direction: column;
+    padding: 0;
+  }
+  .main {
+    padding: 0.5rem 0.2rem;
+  }
+  .global-glow {
+    width: 220px !important;
+    height: 220px !important;
+    opacity: 0.07;
   }
 }
 

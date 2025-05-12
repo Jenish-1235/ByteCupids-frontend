@@ -101,3 +101,11 @@
 .sidebar__logout-btn:hover {
   color: var(--color-neon-violet);
 }
+
+/* Responsive: Collapse sidebar to top bar or hide on mobile */
+@media (max-width: 900px) {
+  .sidebar {
+    display: none !important;
+  }
+}
+
