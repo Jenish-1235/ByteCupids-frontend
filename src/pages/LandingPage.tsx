@@ -4,7 +4,6 @@ import Footer from "../components/LandingPage/Footer";
 import Header from "../components/LandingPage/Header";
 import Hero from "../components/LandingPage/Hero";
 import PlatformOverview from "../components/LandingPage/PlatformOverview";
-import GlobalParticlesBackground from '../components/global/GlobalParticlesBackground';
 import '../styles/pages/LandingPage.css';
 
 export default function LandingPage() {
@@ -31,10 +30,7 @@ export default function LandingPage() {
 
     return (
         <div className="landing-page">
-            {/* Global particles background that spans the entire page */}
-            <GlobalParticlesBackground />
-            
-            {/* Global glow effects at different positions */}
+            {/* Global glow effects */}
             <div className="global-glow glow-top"></div>
             <div className="global-glow glow-middle"></div>
             <div className="global-glow glow-bottom"></div>
