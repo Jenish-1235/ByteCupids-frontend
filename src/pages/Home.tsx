@@ -4,6 +4,7 @@ import Header from "../components/Home/Header";
 import Modules from "../components/Home/Modules";
 import "../styles/pages/Home.css";
 import ModuleTabBar from "../components/Home/ModuleTabBar";
+import HomeContent from "../components/Home/HomeContent";
 
 const modules = [
   "Introduction to React",
@@ -40,6 +41,7 @@ const Home: React.FC = () => {
         activeModule={activeModule}
         onModuleChange={setActiveModule}
         />
+        <HomeContent/>
       </main>
     </div>
   );
