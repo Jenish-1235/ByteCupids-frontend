@@ -1,0 +1,227 @@
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--spacing-3);
+  height: 48px;
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-primary {
+  background: var(--color-rose-gold);
+  color: var(--color-bg);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid var(--color-neon-violet);
+  color: var(--color-neon-violet);
+}
+
+.btn-secondary:hover {
+  background: rgba(170,0,255,0.1);
+  transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+.btn-text {
+  background: transparent;
+  color: var(--color-text-secondary);
+  padding: 0;
+  height: auto;
+}
+
+.btn-text:hover {
+  color: var(--color-text-primary);
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.btn-icon {
+  display: inline-flex;
+  width: 48px;
+  padding: 0;
+  justify-content: center;
+}
+
+.btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* --- Inputs & Forms --- */
+.input {
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-2);
+  font-size: var(--font-size-body);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--border-radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.input:focus {
+  border-color: var(--color-neon-violet);
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--spacing-1);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.form-field {
+  margin-bottom: var(--spacing-3);
+}
+
+.form-error {
+  color: var(--color-error);
+  font-size: var(--font-size-caption);
+  margin-top: var(--spacing-1);
+}
+
+/* --- Cards & Panels --- */
+.panel {
+  background: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  border: var(--border-light);
+  padding: var(--spacing-3);
+  box-shadow: var(--shadow-subtle);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.panel:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+  background: var(--color-surface-2);
+}
+
+.panel-header {
+  margin-bottom: var(--spacing-3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-title {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+}
+
+.panel-body {
+  color: var(--color-text-secondary);
+}
+
+/* --- Navigation Components --- */
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-width);
+  background: var(--color-surface);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: var(--spacing-3) 0;
+  border-right: var(--border-light);
+  z-index: 100;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-2) var(--spacing-3);
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast), background var(--transition-fast);
+  position: relative;
+}
+
+.sidebar-item:hover {
+  color: var(--color-text-primary);
+  background: rgba(255,255,255,0.03);
+}
+
+.sidebar-item.active {
+  color: var(--color-neon-violet);
+  background: rgba(170,0,255,0.08);
+}
+
+.sidebar-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-neon-violet);
+}
+
+/* Topbar */
+.topbar {
+  height: var(--topbar-height);
+  padding: 0 var(--spacing-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(10, 10, 10, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+/* --- Layout Utilities --- */
+.content-area {
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  padding-top: var(--topbar-height);
+}
+
+/* For pages without sidebar */
+.content-area-full {
+  min-height: 100vh;
+  padding-top: var(--topbar-height);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform var(--transition-normal);
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .content-area {
+    margin-left: 0;
+  }
+}

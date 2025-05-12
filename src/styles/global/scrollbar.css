@@ -2,31 +2,31 @@
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
-  background-color: #020507;
+  background-color: var(--color-bg);
 }
 
 /* Track (the area behind the thumb) */
 ::-webkit-scrollbar-track {
-  background-color: rgba(10, 21, 27, 0.4);
+  background-color: rgba(31, 31, 31, 0.4);
   border-radius: 10px;
 }
 
 /* Handle (the draggable part) */
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, rgba(0, 169, 157, 0.5), rgba(0, 169, 157, 0.8));
+  background: linear-gradient(to bottom, rgba(170, 0, 255, 0.5), rgba(170, 0, 255, 0.8));
   border-radius: 10px;
-  border: 2px solid #020507;
+  border: 2px solid var(--color-bg);
   transition: all 0.3s ease;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, rgba(0, 169, 157, 0.7), rgba(0, 169, 157, 1));
+  background: linear-gradient(to bottom, rgba(170, 0, 255, 0.7), rgba(170, 0, 255, 1));
 }
 
 /* Handle when active/being dragged */
 ::-webkit-scrollbar-thumb:active {
-  background: rgba(0, 169, 157, 0.9);
+  background: rgba(170, 0, 255, 0.9);
 }
 
 /* Buttons at the ends of the scrollbar */
@@ -36,13 +36,13 @@
 
 /* Corner where horizontal and vertical scrollbars meet */
 ::-webkit-scrollbar-corner {
-  background-color: #020507;
+  background-color: var(--color-bg);
 }
 
 /* Firefox scrollbar styling (newer versions) */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 169, 157, 0.7) rgba(10, 21, 27, 0.4);
+  scrollbar-color: rgba(170, 0, 255, 0.7) rgba(31, 31, 31, 0.4);
 }
 
 /* Add a subtle glow effect to the scrollbar */
@@ -53,7 +53,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  box-shadow: 0 0 15px rgba(0, 169, 157, 0.5);
+  box-shadow: 0 0 15px rgba(170, 0, 255, 0.5);
 }
 
 /* Add a subtle background scrollbar track when scrolling */
