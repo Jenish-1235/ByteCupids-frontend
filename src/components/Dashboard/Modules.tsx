@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import TopicSelectorPopup from "./TopicSelectorPopup";
 import "../../styles/components/Dashboard/Modules.css";
 
 const Modules: React.FC = () => {
@@ -26,13 +25,6 @@ const Modules: React.FC = () => {
           <div className="moduleInfo">&bull; {mod.topics} Topics</div>
         </div>
       ))}
-      <TopicSelectorPopup
-        moduleId={
-          selectedModuleIdx !== null ? modules[selectedModuleIdx].id : ""
-        }
-        open={selectedModuleIdx !== null}
-        onClose={() => setSelectedModuleIdx(null)}
-      />
     </div>
   );
 };
