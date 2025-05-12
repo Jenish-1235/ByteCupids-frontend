@@ -1,124 +1,158 @@
 .dashboard-content-section {
-  display: flex;
-  gap: 3rem;
-  width: 100%;
-  margin-top: 2.5rem;
-  padding: 0 2.5rem;
-  align-items: flex-start;
-  background: transparent;
-  border-radius: var(--border-radius-xl);
-  min-height: 340px;
+    display: flex;
+    gap: 3rem;
+    width: 100%;
+    height: 100%;
+    margin-top: 2.5rem;
+    padding: 0 2.5rem;
+    align-items: flex-start;
+    border-radius: var(--border-radius-xl);
+    min-height: 340px;
+    background: transparent;
 }
 
-.topics-section {
-  flex: 2;
-  padding: 2.2rem 0 2.2rem 0;
+/* --- Minimal Topics Section --- */
+.topics-section--minimal {
+    flex: 0 0 60%;
+    max-width: 60%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    margin: 0 auto;
+    width: 100%;
+    max-height: 100%;   
 }
 
-.topic-block:not(:first-child) {
-  margin-top: 2.2rem;
+.topics-list-minimal {
+    width: 100%;    
+    border-radius: var(--border-radius-lg);
+    background: rgba(31, 31, 31, 0.55);
+    border: 1.5px solid var(--color-surface-2);
+    box-shadow: 0 2px 16px 0 rgba(170, 0, 255, 0.06);
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: unset;      /* Allow to shrink if few topics */
+    max-height: 100%;      /* Grow only up to parent height */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-neon-violet) transparent;
+    transition: max-height 0.2s;
+    /* Remove fixed height or height: 100% here */
 }
 
-.topic-title {
-  font-size: var(--font-size-h2);
-  color: var(--color-rose-gold);
-  font-weight: var(--font-weight-bold);
-  margin-top: 1.2rem;
-  margin-bottom: 0.7rem;
-  letter-spacing: 0.5px;
+.topics-list-minimal::-webkit-scrollbar {
+    width: 7px;
+    background: transparent;
 }
 
-.subtopic-list {
-  margin-left: 1.2rem;
-  margin-bottom: 1.2rem;
+.topics-list-minimal::-webkit-scrollbar-thumb {
+    background: var(--color-neon-violet);
+    border-radius: 4px;
 }
 
-.subtopic-item {
-  color: var(--color-white);
-  font-size: 1.08rem;
-  margin-bottom: 0.4rem;
-  position: relative;
-  padding-left: 1.1em;
-  line-height: 1.7;
+.topic-row-minimal {
+    border-bottom: 1.5px solid var(--color-surface-2);
+    background: transparent;
+    transition: background 0.18s;
 }
 
-.subtopic-item::before {
-  content: '';
-  display: inline-block;
-  width: 0.5em;
-  height: 0.5em;
-  background: var(--color-neon-violet);
-  border-radius: 50%;
-  position: absolute;
-  left: 0;
-  top: 0.55em;
-  transform: translateY(-50%);
+.topic-row-minimal:last-child {
+    border-bottom: none;
 }
 
+.topic-title-minimal {
+    font-size: var(--font-size-h2);
+    color: var(--color-rose-gold);
+    font-weight: var(--font-weight-bold);
+    padding: 1.1rem 1.5rem 1.1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.18s, background 0.18s;
+    outline: none;
+}
+
+.topic-row-minimal.open .topic-title-minimal,
+.topic-title-minimal:hover {
+    color: var(--color-text-primary);
+}
+
+.topic-arrow-minimal {
+    margin-left: 1em;
+    display: flex;
+    align-items: center;
+}
+
+.subtopic-list-minimal {
+    list-style: none;
+    padding: 0 2.2rem 0.7rem 2.7rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.subtopic-item-minimal {
+    color: var(--color-white);
+    font-size: 1.08rem;
+    margin-bottom: 0.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    transition: color 0.18s;
+    cursor: pointer;
+    padding: 0.2em 0;
+}
+
+.subtopic-item-minimal:hover {
+    color: var(--color-neon-violet);
+}
+
+.subtopic-dot {
+    width: 0.5em;
+    height: 0.5em;
+    background: var(--color-neon-violet);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.5em;
+    transition: background 0.18s;
+}
+
+.subtopic-item-minimal:hover .subtopic-dot {
+    background: var(--color-rose-gold);
+}
+
+/* --- Achievements Section --- */
 .achievements-section {
-  flex: 1;
-  padding: 2.2rem 0 2.2rem 2.5rem;
-  border-left: 1.5px solid var(--color-surface-2);
-  min-width: 220px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+    flex: 0 0 40%;
+    max-width: 40%;
+    padding: 2.2rem 0 2.2rem 2.5rem;
+    border-left: 1.5px solid var(--color-surface-2);
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .achievements-title {
-  font-size: var(--font-size-h2);
-  color: var(--color-white);
-  font-weight: var(--font-weight-bold);
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.5px;
+    font-size: var(--font-size-h2);
+    color: var(--color-white);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
 }
 
 .achievements-subtitle {
-  color: var(--color-text-secondary);
-  font-size: 1rem;
-  margin-bottom: 1.2rem;
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
 }
 
 .badges-row {
-  display: flex;
-  gap: 1.1rem;
-}
-
-.badge {
-  width: 48px;
-  height: 48px;
-  background: var(--color-surface-2);
-  border: 2.5px solid var(--color-rose-gold);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 12px 0 rgba(183,110,121,0.10);
-  transition: box-shadow 0.2s, border-color 0.2s;
-}
-
-.badge img {
-  width: 28px;
-  height: 28px;
-  filter: drop-shadow(0 2px 6px rgba(170,0,255,0.10));
-}
-
-.badge:hover {
-  border-color: var(--color-neon-violet);
-  box-shadow: 0 4px 18px 0 rgba(170,0,255,0.13);
-}
-
-@media (max-width: 900px) {
-  .dashboard-content-section {
-    flex-direction: column;
-    padding: 0 1.2rem;
-    min-height: unset;
-  }
-  .achievements-section {
-    border-left: none;
-    border-top: 1.5px solid var(--color-surface-2);
-    padding: 2rem 0 0 0;
-    min-width: unset;
-    align-items: flex-start;
-  }
+    display: flex;
+    gap: 1.1rem;
 }
