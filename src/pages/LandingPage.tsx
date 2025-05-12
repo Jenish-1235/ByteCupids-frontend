@@ -4,10 +4,7 @@ import Footer from "../components/LandingPage/Footer";
 import Header from "../components/LandingPage/Header";
 import Hero from "../components/LandingPage/Hero";
 import PlatformOverview from "../components/LandingPage/PlatformOverview";
-import HeroBot from "../components/LandingPage/HeroBot";
 import '../styles/pages/LandingPage.css';
-import BotPeeker from '../components/LandingPage/BotPeeker';
-
 export default function LandingPage() {
     useEffect(() => {
         // Reset scroll position when the page loads

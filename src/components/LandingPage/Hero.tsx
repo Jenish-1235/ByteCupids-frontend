@@ -32,7 +32,7 @@ export const Hero: React.FC = () => {
             <button className="btn primary" onClick={handleGetStarted}>
               Get Started
             </button>
-            <button className="btn secondary">Try Demo</button>
+            <button className="btn secondary">Join community !</button>
           </div>
         </div>
 

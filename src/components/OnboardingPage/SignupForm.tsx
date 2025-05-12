@@ -1,4 +1,3 @@
-// filepath: /home/jenu/projects/major-projects/ByteCupids-frontend/src/components/Onboarding/SignupForm.tsx
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/components/OnboardingPage/OnboardingForms.css";
@@ -9,10 +8,11 @@ interface SignupFormProps {
 }
 
 const SignupForm: React.FC<SignupFormProps> = ({ onSwitchToLogin }) => {
-  const [username, setUsername] = useState("");
+  const [username, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [isTypingDone, setIsTypingDone] = useState(false);
   const navigate = useNavigate();
 
@@ -75,56 +75,77 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSwitchToLogin }) => {
 
       <div className="onboarding-right">
         <div className="form-container">
-          <h2 className="form-title">Signup</h2>
-          <p className="form-subtitle">Just some details to get you in.!</p>
+          <form onSubmit={handleSubmit} className="form-content" autoComplete="off">
+            <h2 className="form-title">Create Account</h2>
+            <p className="form-subtitle">
+              Join ByteCupids today and start your journey.
+            </p>
 
-          <form onSubmit={handleSubmit}>
             <div className="form-group">
               <input
                 type="text"
-                id="username"
+                id="signup-fullname"
                 className="form-input"
-                placeholder="Username"
+                placeholder="Full Name"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => setFullName(e.target.value)}
                 required
+                autoComplete="off" // Or "name", "new-name"
               />
             </div>
 
             <div className="form-group">
               <input
                 type="email"
-                id="email"
+                id="signup-email"
                 className="form-input"
-                placeholder="Email / Phone"
+                placeholder="Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                autoComplete="off" // Or "email", "new-email"
               />
             </div>
 
             <div className="form-group">
               <input
                 type="password"
-                id="password"
+                id="signup-password"
                 className="form-input"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                autoComplete="new-password"
               />
             </div>
 
             <div className="form-group">
               <input
                 type="password"
-                id="confirmPassword"
+                id="signup-confirm-password"
                 className="form-input"
                 placeholder="Confirm Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
+                autoComplete="new-password"
               />
+            </div>
+            
+            <div className="form-group">
+              <div className="checkbox-container">
+                <input 
+                  type="checkbox" 
+                  id="terms-agreement" 
+                  checked={agreedToTerms}
+                  onChange={(e) => setAgreedToTerms(e.target.checked)}
+                  required
+                />
+                <label htmlFor="terms-agreement">
+                  I agree to the <a href="/terms" target="_blank" rel="noopener noreferrer">Terms & Conditions</a>
+                </label>
+              </div>
             </div>
 
             <button type="submit" className="form-button primary-button">
@@ -136,29 +157,14 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSwitchToLogin }) => {
             </div>
 
             <div className="social-login">
-              <button type="button" className="social-button google">
-                <img
-                  src="/images/google-icon.svg"
-                  alt="Google"
-                  width="20"
-                  height="20"
-                />
+              <button type="button" className="social-button google" aria-label="Sign up with Google">
+                <img src="/images/google-icon.svg" alt="Google" width={20} height={20} />
               </button>
-              <button type="button" className="social-button facebook">
-                <img
-                  src="/images/facebook-icon.svg"
-                  alt="Facebook"
-                  width="20"
-                  height="20"
-                />
+              <button type="button" className="social-button facebook" aria-label="Sign up with Facebook">
+                <img src="/images/facebook-icon.svg" alt="Facebook" width={20} height={20} />
               </button>
-              <button type="button" className="social-button github">
-                <img
-                  src="/images/github-icon.svg"
-                  alt="GitHub"
-                  width="20"
-                  height="20"
-                />
+              <button type="button" className="social-button github" aria-label="Sign up with Github">
+                <img src="/images/github-icon.svg" alt="Github" width={20} height={20} />
               </button>
             </div>
 

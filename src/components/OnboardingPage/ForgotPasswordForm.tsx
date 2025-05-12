@@ -9,7 +9,6 @@ interface ForgotPasswordFormProps {
 
 const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
   onSwitchToLogin,
-  onSwitchToSignup,
 }) => {
   const [email, setEmail] = useState("");
   const [isTypingDone, setIsTypingDone] = useState(false);
@@ -25,7 +24,8 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Reset password requested for:", email);
+    console.log("Forgot password attempt for:", email);
+    alert("Password reset link sent to your email (if account exists).");
   };
 
   return (
@@ -62,45 +62,36 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
 
       <div className="onboarding-right">
         <div className="form-container">
-          <h2 className="form-title">Forgot Password ?</h2>
-          <p className="form-subtitle">Please enter you're email</p>
+          <form onSubmit={handleSubmit} className="form-content" autoComplete="off">
+            <h2 className="form-title">Reset Password</h2>
+            <p className="form-subtitle">
+              Enter your email to receive a password reset link.
+            </p>
 
-          <form onSubmit={handleSubmit}>
             <div className="form-group">
               <input
                 type="email"
-                id="email"
+                id="forgot-email"
                 className="form-input"
-                placeholder="example@mail.com"
+                placeholder="Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                autoComplete="off" // Or "email", "new-email"
               />
             </div>
 
-            <button type="submit" className="form-button secondary-button">
-              Reset Password
+            <button type="submit" className="form-button secondary-button"> {/* Changed to secondary-button for theme consistency */}
+              Send Reset Link
             </button>
 
             <div className="form-footer">
               <p>
-                Don't have an account?{" "}
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onSwitchToSignup();
-                  }}
-                >
-                  Signup
+                Remember your password?{" "}
+                <a href="#" onClick={(e) => { e.preventDefault(); onSwitchToLogin(); }}>
+                  Log In
                 </a>
               </p>
-
-              <div className="footer-links">
-                <a href="#">Terms & Conditions</a>
-                <a href="#">Support</a>
-                <a href="#">Customer Care</a>
-              </div>
             </div>
           </form>
         </div>

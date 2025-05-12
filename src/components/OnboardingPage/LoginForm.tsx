@@ -78,29 +78,31 @@ const LoginForm: React.FC<LoginFormProps> = ({
           <p className="form-subtitle">Glad you're back.!</p>
 
           {/* Rest of the form */}
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="form-content" autoComplete="off">
             {/* Existing form elements */}
             <div className="form-group">
               <input
                 type="email"
-                id="email"
+                id="login-email"
                 className="form-input"
-                placeholder="Email"
+                placeholder="Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                autoComplete="off" // Or "username", "new-email"
               />
             </div>
 
             <div className="form-group">
               <input
                 type="password"
-                id="password"
+                id="login-password"
                 className="form-input"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                autoComplete="new-password" // Specifically for password fields
               />
             </div>
 
@@ -108,72 +110,42 @@ const LoginForm: React.FC<LoginFormProps> = ({
               <div className="checkbox-container">
                 <input
                   type="checkbox"
-                  id="rememberMe"
+                  id="remember-me"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
                 />
-                <label htmlFor="rememberMe">Remember me</label>
+                <label htmlFor="remember-me">Remember me</label>
               </div>
-            </div>
-
-            <button type="submit" className="form-button primary-button">
-              Login
-            </button>
-
-            <div className="form-link-center">
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onSwitchToForgotPassword();
-                }}
-              >
-                Forgot password ?
+              <a href="#" onClick={(e) => { e.preventDefault(); onSwitchToForgotPassword(); }} className="form-link">
+                Forgot Password?
               </a>
             </div>
 
+            <button type="submit" className="form-button primary-button">
+              Log In
+            </button>
+
             <div className="separator">
-              <span>Or</span>
+              <span>OR</span>
             </div>
 
             <div className="social-login">
-              <button type="button" className="social-button google">
-                <img
-                  src="/images/google-icon.svg"
-                  alt="Google"
-                  width="20"
-                  height="20"
-                />
+              <button type="button" className="social-button google" aria-label="Login with Google">
+                <img src="/images/google-icon.svg" alt="Google" width={20} height={20} />
               </button>
-              <button type="button" className="social-button facebook">
-                <img
-                  src="/images/facebook-icon.svg"
-                  alt="Facebook"
-                  width="20"
-                  height="20"
-                />
+              <button type="button" className="social-button facebook" aria-label="Login with Facebook">
+                <img src="/images/facebook-icon.svg" alt="Facebook" width={20} height={20} />
               </button>
-              <button type="button" className="social-button github">
-                <img
-                  src="/images/github-icon.svg"
-                  alt="GitHub"
-                  width="20"
-                  height="20"
-                />
+              <button type="button" className="social-button github" aria-label="Login with Github">
+                <img src="/images/github-icon.svg" alt="Github" width={20} height={20} />
               </button>
             </div>
 
             <div className="form-footer">
               <p>
                 Don't have an account?{" "}
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onSwitchToSignup();
-                  }}
-                >
-                  Signup
+                <a href="#" onClick={(e) => { e.preventDefault(); onSwitchToSignup(); }}>
+                  Sign Up
                 </a>
               </p>
 
