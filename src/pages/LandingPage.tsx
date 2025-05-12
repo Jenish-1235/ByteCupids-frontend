@@ -4,7 +4,9 @@ import Footer from "../components/LandingPage/Footer";
 import Header from "../components/LandingPage/Header";
 import Hero from "../components/LandingPage/Hero";
 import PlatformOverview from "../components/LandingPage/PlatformOverview";
+import HeroBot from "../components/LandingPage/HeroBot";
 import '../styles/pages/LandingPage.css';
+import BotPeeker from '../components/LandingPage/BotPeeker';
 
 export default function LandingPage() {
     useEffect(() => {
@@ -36,7 +38,9 @@ export default function LandingPage() {
             <div className="global-glow glow-bottom"></div>
             
             <Header />
-            <Hero className="section" />
+            <section className="section hero-section">
+                <Hero className="section" />
+            </section>
             <PlatformOverview className="section" />
             <Feature className="section" />
             <Footer />

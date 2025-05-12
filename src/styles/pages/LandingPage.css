@@ -25,237 +25,19 @@ body {
   width: 100%;
   z-index: 2;
   padding: var(--spacing-6) 0;
+  display: flex;
+  justify-content: center; /* Center all sections horizontally */
 }
 
 .container {
   width: 100%;
   max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: var(--container-padding);
+  padding: 0 var(--spacing-4);
 }
 
 /* Hero section specific styling */
-.hero {
-  background: none !important;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  position: relative;
-  padding-top: 120px;
-  padding-bottom: 120px;
-}
 
-.hero-content {
-  max-width: 540px;
-  position: relative;
-  z-index: 10;
-}
-
-.hero-title {
-  font-size: var(--font-size-display);
-  line-height: var(--line-height-display);
-  font-weight: var(--font-weight-bold);
-  margin-bottom: var(--spacing-3);
-  color: var(--color-text-primary);
-  letter-spacing: -0.02em;
-}
-
-.hero-subtitle {
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-5);
-  max-width: 480px;
-}
-
-.hero-badge {
-  display: inline-block;
-  background: rgba(170, 0, 255, 0.1);
-  color: var(--color-neon-violet);
-  padding: 6px 12px;
-  border-radius: var(--border-radius-sm);
-  font-size: var(--font-size-caption);
-  font-weight: var(--font-weight-medium);
-  margin-bottom: var(--spacing-3);
-  border: 1px solid rgba(170, 0, 255, 0.2);
-}
-
-.hero-actions {
-  display: flex;
-  gap: var(--spacing-3);
-  margin-top: var(--spacing-4);
-}
-
-.hero-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 var(--spacing-4);
-  height: 48px;
-  border-radius: var(--border-radius-md);
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-body);
-  transition: all var(--transition-fast);
-  border: none;
-  cursor: pointer;
-}
-
-.hero-btn.primary {
-  background: var(--color-rose-gold);
-  color: var(--color-bg);
-}
-
-.hero-btn.primary:hover {
-  filter: brightness(1.05);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-medium);
-}
-
-.hero-btn.secondary {
-  background: transparent;
-  border: 2px solid var(--color-neon-violet);
-  color: var(--color-neon-violet);
-}
-
-.hero-btn.secondary:hover {
-  background: rgba(170,0,255,0.1);
-  transform: translateY(-2px);
-}
-
-/* Hero Mini Bot styling */
-.hero-bot {
-  position: absolute;
-  top: 16px;
-  right: -40px;
-  width: 200px;
-  height: 200px;
-  pointer-events: none;
-  z-index: 5;
-  animation: botWave 4s ease-in-out infinite;
-}
-
-.bot-arm {
-  stroke-dashoffset: 0;
-  transition: stroke-dashoffset 0.4s ease;
-}
-
-.hero:hover .bot-arm {
-  stroke-dashoffset: 16;
-}
-
-@keyframes botWave {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-8px); }
-}
-
-/* Code preview panel */
-.hero-code-panel {
-  background: var(--color-surface);
-  border-radius: var(--border-radius-lg);
-  border: var(--border-light);
-  padding: var(--spacing-3);
-  box-shadow: var(--shadow-medium);
-  position: relative;
-  z-index: 4;
-  margin-left: var(--spacing-4);
-  overflow: hidden;
-}
-
-.code-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: var(--spacing-3);
-}
-
-.code-dots {
-  display: flex;
-  gap: 6px;
-}
-
-.code-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-
-.code-dot.red { background-color: #FF5F56; }
-.code-dot.yellow { background-color: #FFBD2E; }
-.code-dot.green { background-color: #27C93F; }
-
-.code-content {
-  font-family: monospace;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--color-text-secondary);
-}
-
-.code-content .comment {
-  color: var(--color-text-tertiary);
-}
-
-.code-content .keyword {
-  color: var(--color-neon-violet);
-}
-
-.code-content .string {
-  color: var(--color-rose-gold);
-}
-
-/* Platform overview section */
-.platform-overview {
-  background: none !important;
-  margin-top: 0;
-  padding-top: 0;
-}
-
-/* Remove any divider elements */
-.hero::after,
-.platform-overview::before,
-.section-transition {
-  display: none !important;
-}
-
-/* Create a visual indicator that there's content below */
-.hero-scroll-indicator {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 50px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    padding-top: 8px;
-    z-index: 50;
-}
-
-.hero-scroll-indicator::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    background: var(--color-text-primary);
-    border-radius: 50%;
-    animation: scrollIndicator 2s infinite;
-}
-
-@keyframes scrollIndicator {
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-
-    70% {
-        transform: translateY(18px);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateY(0);
-        opacity: 0;
-    }
-}
 
 /* Global glow effects */
 .global-glow {
@@ -307,44 +89,36 @@ body {
   }
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .hero {
-    grid-template-columns: 1fr;
-    padding: var(--spacing-5) var(--spacing-3);
-  }
-  
-  .hero-bot {
-    display: none;
-  }
-  
-  .hero-code-panel {
-    margin: var(--spacing-4) 0 0 0;
-  }
-  
-  .hero-title {
-    font-size: 36px;
-    line-height: 44px;
-  }
-  
-  .hero-actions {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-2);
-  }
-  
-  .hero-btn {
-    width: 100%;
-  }
-  
-  .global-glow {
-    opacity: 0.1;
-  }
+.bot-peek-container {
+  width: 120px;
+  height: 120px;
+  will-change: transform, opacity;
+  opacity: 0;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 20;
+  pointer-events: none;
+  transition: transform 2.5s cubic-bezier(.68,-0.55,.27,1.55), opacity 1.5s;
+}
 
-  .section {
-    padding: var(--spacing-5) 0;
+.bot-peek-container.visible {
+  opacity: 1;
+  animation: bot-peek-in 1.8s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+}
+
+@keyframes bot-peek-in {
+  from {
+    /* Start off-screen, direction handled inline via transform */
+    /* No extra transform here, handled by inline style */
+  }
+  to {
+    /* End at the edge, direction handled inline via transform */
+    /* No extra transform here, handled by inline style */
   }
 }
+
+
 
 @media (max-width: 480px) {
   .section {
