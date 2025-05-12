@@ -9,7 +9,7 @@ const Header: React.FC = () => {
 
   const handleSignIn = (e: React.MouseEvent) => {
     e.preventDefault();
-    navigateTo("/signin");
+    navigateTo("/onboarding");
   };
   
   // Close mobile menu when clicking on links

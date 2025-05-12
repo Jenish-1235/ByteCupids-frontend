@@ -1,23 +1,80 @@
+/* Main background and layout */
 .onboarding-page {
-    background: radial-gradient(circle at center,
-            #020507 50%,
-            #0a151b 100%);
-    color: var(--color-primary-text);
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
     min-height: 100vh;
-    width: 100%;
-    overflow-x: hidden;
+    width: 100vw;
+    overflow: hidden;
     position: relative;
     z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
 }
 
 /* Make sure the particles don't block interaction */
 .onboarding-page .global-particles-container {
     pointer-events: none;
+    position: absolute; /* Ensure it's positioned correctly */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Behind other content but above page background */
+}
+
+/* Global glow effects - match LandingPage.css */
+.global-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+    animation: float 20s infinite ease-in-out;
+}
+
+.glow-top {
+    top: -10%;
+    right: 15%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(170, 0, 255, 0.7), transparent 70%);
+    animation-delay: 0s;
+}
+
+.glow-middle {
+    top: 40%;
+    left: -5%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(183, 110, 121, 0.6), transparent 70%);
+    animation-delay: 5s;
+    opacity: 0.2;
+}
+
+.glow-bottom {
+    bottom: -10%;
+    right: 25%;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(170, 0, 255, 0.5), transparent 70%);
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(20px, -20px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Onboarding container and form styling remain as before for readability */
+.onboarding-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
 }
 

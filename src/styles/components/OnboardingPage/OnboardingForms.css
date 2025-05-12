@@ -24,7 +24,7 @@
 .onboarding-heading {
     font-size: 4.5rem;
     font-weight: 700;
-    color: var(--color-primary-text);
+    color: var(--color-text-primary); /* Changed from --color-primary-text */
     margin-bottom: 2rem;
     line-height: 1.1;
     text-align: left;
@@ -39,7 +39,7 @@
 /* Tagline text */
 .onboarding-tagline {
     font-size: 1.2rem;
-    color: var(--color-secondary-text);
+    color: var(--color-text-secondary); /* Changed from --color-secondary-text */
     margin-bottom: 3rem;
     line-height: 1.6;
     font-weight: 400;
@@ -114,8 +114,8 @@
     height: 2px;
     width: 150px;
     background: linear-gradient(90deg, 
-        rgba(0, 169, 157, 0.7), 
-        rgba(0, 169, 157, 0.1)
+        var(--color-neon-violet), 
+        rgba(170, 0, 255, 0.1) /* var(--color-neon-violet) with alpha */
     );
     animation: expandWidth 1.5s ease-out 0.8s forwards;
     transform-origin: left;
@@ -128,7 +128,7 @@
     top: 40px;
     left: 60px;
     font-size: 0.9rem;
-    color: var(--color-secondary-text);
+    color: var(--color-text-secondary);
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -141,7 +141,7 @@
     display: inline-block;
     width: 20px;
     height: 2px;
-    background: linear-gradient(90deg, rgba(0, 169, 157, 0.7), rgba(0, 169, 157, 0.3));
+    background: linear-gradient(90deg, var(--color-neon-violet), rgba(170, 0, 255, 0.3)); /* var(--color-neon-violet) with alpha */
     margin-right: 10px;
 }
 
@@ -178,7 +178,7 @@
     overflow: hidden;
     white-space: nowrap;
     animation: typing 2s steps(30) forwards;
-    border-right: 3px solid rgba(0, 169, 157, 0.7);
+    border-right: 3px solid var(--color-neon-violet);
     animation: typing 2s steps(30) forwards, blink-caret 0.75s step-end infinite;
 }
 
@@ -189,7 +189,7 @@
 
 @keyframes blink-caret {
     from, to { border-color: transparent }
-    50% { border-color: rgba(0, 169, 157, 0.7) }
+    50% { border-color: var(--color-neon-violet) }
 }
 
 /* Right side with forms */
@@ -204,62 +204,26 @@
 }
 
 .form-container {
-    background: rgba(10, 21, 27, 0.4);
+    background: var(--color-surface); /* Changed from rgba(10, 21, 27, 0.4) */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 40px;
+    border-radius: var(--border-radius-lg); /* Use variable */
+    padding: var(--spacing-5); /* Use variable */
     width: 90%;
     max-width: 450px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: var(--border-light); /* Use variable */
     z-index: 10;
     max-height: 95vh; /* Slightly less than viewport to ensure no scrolling */
     overflow-y: auto; /* Allow internal scrolling if content doesn't fit */
     scrollbar-width: thin; /* Thin scrollbar for Firefox */
-    scrollbar-color: rgba(0, 169, 157, 0.5) rgba(10, 21, 27, 0.2);
+    scrollbar-color: var(--color-neon-violet) var(--color-surface-2); /* Use variables */
 }
 
-/* Updated glowing circle effects */
-.onboarding-right::before {
-    content: "";
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle,
-            rgba(128, 0, 128, 0.4) 0%,
-            rgba(76, 0, 130, 0.2) 50%,
-            rgba(0, 0, 0, 0) 70%);
-    border-radius: 50%;
-    /* Position at the top-left corner of the form */
-    top: 10%; /* Adjust as needed to position near the top of the form */
-    left: 20%; /* Adjust as needed to position near the left of the form */
-    transform: translate(-50%, -50%); /* Center the orb on the position */
-    filter: blur(30px);
-    z-index: 0;
-}
-
-.onboarding-right::after {
-    content: "";
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle,
-            rgba(76, 0, 130, 0.3) 0%,
-            rgba(0, 0, 128, 0.2) 50%,
-            rgba(0, 0, 0, 0) 70%);
-    border-radius: 50%;
-    /* Position at the bottom-right corner of the form */
-    bottom: 10%; /* Adjust as needed to position near the bottom of the form */
-    right: 20%; /* Adjust as needed to position near the right of the form */
-    transform: translate(50%, 50%); /* Center the orb on the position */
-    filter: blur(50px);
-    z-index: 0;
-}
 
 /* Form styles */
 .form-title {
-    color: var(--color-primary-text);
+    color: var(--color-text-primary); /* Changed from --color-primary-text */
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
@@ -268,7 +232,7 @@
 }
 
 .form-subtitle {
-    color: var(--color-secondary-text);
+    color: var(--color-text-secondary); /* Changed from --color-secondary-text */
     text-align: center;
     margin-bottom: 2rem;
     font-size: 1rem;
@@ -282,25 +246,26 @@
 
 .form-input {
     width: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
+    background: var(--color-surface-2); /* Changed from rgba(0,0,0,0.3) */
+    border: 1px solid var(--color-surface); /* Changed from rgba(255,255,255,0.2) */
+    border-radius: var(--border-radius-sm); /* Use variable */
     padding: 14px 16px;
-    color: var(--color-primary-text);
+    color: var(--color-text-primary); /* Changed from --color-primary-text */
     font-size: 1rem;
     transition: all 0.3s ease;
     padding: min(14px, 2vh) min(16px, 3vw);
     font-size: min(1rem, 3vh);
+    ;
 }
 
 .form-input:focus {
     outline: none;
-    border-color: rgba(0, 169, 157, 0.5);
-    box-shadow: 0 0 0 2px rgba(0, 169, 157, 0.25);
+    border-color: var(--color-neon-violet); /* Changed from rgba(0,169,157,0.5) */
+    box-shadow: var(--shadow-focus); /* Use variable */
 }
 
 .form-input::placeholder {
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--color-text-tertiary); /* Changed from rgba(255,255,255,0.4) */
 }
 
 .form-row {
@@ -317,11 +282,11 @@
 
 .checkbox-container input[type="checkbox"] {
     margin-right: 8px;
-    accent-color: var(--color-accent-primary);
+    accent-color: var(--color-neon-violet); /* Changed from --color-accent-primary */
 }
 
 .checkbox-container label {
-    color: var(--color-secondary-text);
+    color: var(--color-text-secondary);
     font-size: 0.9rem;
 }
 
@@ -340,22 +305,22 @@
 }
 
 .primary-button {
-    background: linear-gradient(45deg, var(--color-button-primary-bg-start), var(--color-button-primary-bg-end));
-    color: var(--color-primary-text);
+    background: var(--color-rose-gold); /* Changed from gradient */
+    color: var(--color-text-primary); /* Changed from --color-primary-text */
 }
 
 .primary-button:hover {
-    box-shadow: 0 8px 15px rgba(0, 169, 157, 0.2);
+    box-shadow: 0 8px 15px rgba(183, 110, 121, 0.2); /* var(--color-rose-gold) with alpha */
     transform: translateY(-2px);
 }
 
 .secondary-button {
-    background: linear-gradient(45deg, #E91E63, #D81B60);
-    color: white;
+    background: var(--color-neon-violet); /* Changed from gradient */
+    color: var(--color-text-primary); /* Changed from white */
 }
 
 .secondary-button:hover {
-    box-shadow: 0 8px 15px rgba(233, 30, 99, 0.2);
+    box-shadow: 0 8px 15px rgba(170, 0, 255, 0.2); /* var(--color-neon-violet) with alpha */
     transform: translateY(-2px);
 }
 
@@ -365,21 +330,21 @@
 }
 
 .form-link-center a {
-    color: var(--color-secondary-text);
+    color: var(--color-text-secondary);
     text-decoration: none;
     font-size: 0.9rem;
     transition: color 0.3s ease;
 }
 
 .form-link-center a:hover {
-    color: var(--color-primary-text);
+    color: var(--color-neon-violet); /* Changed from --color-primary-text */
 }
 
 .separator {
     display: flex;
     align-items: center;
     text-align: center;
-    color: var(--color-secondary-text);
+    color: var(--color-text-secondary);
     margin: 25px 0;
 }
 
@@ -387,7 +352,7 @@
 .separator::after {
     content: '';
     flex: 1;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: var(--border-light); /* Changed from rgba(255,255,255,0.1) */
 }
 
 .separator span {
@@ -412,7 +377,7 @@
     cursor: pointer;
     border: none;
     transition: all 0.3s ease;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--color-surface-2); /* Changed from rgba(255,255,255,0.1) */
 }
 
 .social-button:hover {
@@ -420,20 +385,20 @@
 }
 
 .google:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--color-surface); /* Changed from rgba(255,255,255,0.2) */
 }
 
 .facebook:hover {
-    background-color: rgba(59, 89, 152, 0.2);
+    background-color: rgba(59, 89, 152, 0.3); /* Kept specific for brand, slightly darker */
 }
 
 .github:hover {
-    background-color: rgba(51, 51, 51, 0.2);
+    background-color: var(--color-surface); /* Changed from rgba(51,51,51,0.2) */
 }
 
 .form-footer {
     text-align: center;
-    color: var(--color-secondary-text);
+    color: var(--color-text-secondary);
 }
 
 .form-footer p {
@@ -442,13 +407,13 @@
 }
 
 .form-footer a {
-    color: var(--color-accent-primary);
+    color: var(--color-neon-violet); /* Changed from --color-accent-primary */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .form-footer a:hover {
-    color: var(--color-accent-primary-hover);
+    color: var(--color-rose-gold); /* Changed from --color-accent-primary-hover */
 }
 
 .footer-links {
@@ -457,23 +422,6 @@
     gap: 15px;
     margin-top: 25px;
     font-size: 0.8rem;
-}
-
-/* Add a subtle gradient fade from left to right */
-.onboarding-container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0) 40%,
-        rgba(10, 21, 27, 0.2) 70%
-    );
-    pointer-events: none;
-    z-index: 1;
 }
 
 /* But keep the page container with hidden overflow */
@@ -495,15 +443,6 @@
     .onboarding-heading {
         font-size: 3.5rem;
     }
-
-    .onboarding-container::before {
-        background: linear-gradient(
-            to right,
-            rgba(0, 0, 0, 0) 20%,
-            rgba(10, 21, 27, 0.2) 60%
-        );
-    }
-    
     /* Adjust glow positions for better blending on smaller screens */
     .onboarding-left::after {
         width: 350px;
@@ -548,14 +487,6 @@
     .form-container {
         padding: 30px;
         max-width: 90%;
-    }
-
-    .onboarding-container::before {
-        background: linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0) 20%,
-            rgba(10, 21, 27, 0.2) 60%
-        );
     }
     
     /* Adjust the glow for vertical layout */
@@ -762,11 +693,6 @@
         height: 100vh;
         overflow: hidden;
     }
-    
-    /* Remove the gradient for mobile */
-    .onboarding-container::before {
-        display: none;
-    }
 }
 
 @media (max-width: 480px) {
@@ -826,11 +752,11 @@
 }
 
 .form-container::-webkit-scrollbar-track {
-    background: rgba(10, 21, 27, 0.2);
+    background: var(--color-surface-2); /* Use variable */
 }
 
 .form-container::-webkit-scrollbar-thumb {
-    background: rgba(0, 169, 157, 0.5);
+    background: var(--color-neon-violet); /* Use variable */
     border-radius: 4px;
 }
 
@@ -1037,7 +963,7 @@ html, body {
     left: 40px;
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--color-primary-text);
+    color: var(--color-text-primary); /* Changed from --color-primary-text */
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -1049,7 +975,7 @@ html, body {
 
 .brand-logo:hover {
     transform: translateY(-2px);
-    text-shadow: 0 0 10px rgba(0, 169, 157, 0.6);
+    text-shadow: 0 0 10px var(--color-neon-violet); /* var(--color-neon-violet) with alpha */
 }
 
 .brand-logo::before {
@@ -1057,18 +983,18 @@ html, body {
     display: inline-block;
     width: 8px;
     height: 8px;
-    background: linear-gradient(45deg, var(--color-button-primary-bg-start), var(--color-button-primary-bg-end));
+    background: var(--color-neon-violet); /* Changed from gradient */
     border-radius: 50%;
     margin-right: 10px;
-    box-shadow: 0 0 8px rgba(0, 169, 157, 0.6);
+    box-shadow: 0 0 8px var(--color-neon-violet); /* var(--color-neon-violet) with alpha */
 }
 
 /* ByteCupids tagline in the left div to replace button */
 .bytecupids-tagline {
     margin-top: 1rem;
     padding: 16px 20px;
-    background: rgba(0, 169, 157, 0.05);
-    border-left: 3px solid rgba(0, 169, 157, 0.5);
+    background: rgba(170, 0, 255, 0.05); /* var(--color-neon-violet) with low alpha */
+    border-left: 3px solid var(--color-neon-violet); /* var(--color-neon-violet) with alpha */
     border-radius: 0 8px 8px 0;
     max-width: 90%;
     animation: fadeInSlideUp 1s ease-out 0.7s forwards;
@@ -1077,7 +1003,7 @@ html, body {
 }
 
 .bytecupids-highlight {
-    color: var(--color-accent-primary);
+    color: var(--color-neon-violet); /* Changed from --color-accent-primary */
     font-weight: 500;
 }
 

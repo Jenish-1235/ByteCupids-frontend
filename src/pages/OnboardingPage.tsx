@@ -51,10 +51,7 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="onboarding-page">
-      {/* Global particles background that spans the entire page */}
-      <GlobalParticlesBackground />
-      
+    <div className="onboarding-page cursor-bg">
       {/* Global glow effects at different positions */}
       <div className="global-glow glow-top"></div>
       <div className="global-glow glow-middle"></div>

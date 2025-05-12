@@ -8,25 +8,53 @@ function isBackground(el: Element | null): boolean {
   return false;
 }
 
+function isTouchDevice() {
+  return (
+    "ontouchstart" in window ||
+    navigator.maxTouchPoints > 0 ||
+    // @ts-ignore
+    navigator.msMaxTouchPoints > 0
+  );
+}
+
 const CustomCursor: React.FC = () => {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [hovering, setHovering] = useState(false);
+  const [visible, setVisible] = useState(true);
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (isTouchDevice()) {
+      setVisible(false);
+      return;
+    }
+
     const move = (e: MouseEvent) => {
       setPos({ x: e.clientX, y: e.clientY });
-
       const el = document.elementFromPoint(e.clientX, e.clientY);
       if (el && !isBackground(el)) {
-        setHovering(true); // violet
+        setHovering(true);
       } else {
-        setHovering(false); // white
+        setHovering(false);
       }
+      setVisible(true);
     };
+
+    const handleMouseLeave = () => setVisible(false);
+    const handleMouseEnter = () => setVisible(true);
+
     window.addEventListener("mousemove", move);
-    return () => window.removeEventListener("mousemove", move);
+    document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("mouseenter", handleMouseEnter);
+
+    return () => {
+      window.removeEventListener("mousemove", move);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("mouseenter", handleMouseEnter);
+    };
   }, []);
+
+  if (!visible) return null;
 
   return (
     <div
