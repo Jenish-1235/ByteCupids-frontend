@@ -4,8 +4,9 @@ import Footer from "../components/LandingPage/Footer";
 import Header from "../components/LandingPage/Header";
 import Hero from "../components/LandingPage/Hero";
 import PlatformOverview from "../components/LandingPage/PlatformOverview";
-import GlobalParticlesBackground from '../components/global/GlobalParticlesBackground';
+import HeroBot from "../components/LandingPage/HeroBot";
 import '../styles/pages/LandingPage.css';
+import BotPeeker from '../components/LandingPage/BotPeeker';
 
 export default function LandingPage() {
     useEffect(() => {
@@ -30,17 +31,16 @@ export default function LandingPage() {
     }, []);
 
     return (
-        <div className="landing-page">
-            {/* Global particles background that spans the entire page */}
-            <GlobalParticlesBackground />
-            
-            {/* Global glow effects at different positions */}
+        <div className="landing-page cursor-bg">
+            {/* Global glow effects */}
             <div className="global-glow glow-top"></div>
             <div className="global-glow glow-middle"></div>
             <div className="global-glow glow-bottom"></div>
             
             <Header />
-            <Hero className="section" />
+            <section className="section hero-section">
+                <Hero className="section" />
+            </section>
             <PlatformOverview className="section" />
             <Feature className="section" />
             <Footer />

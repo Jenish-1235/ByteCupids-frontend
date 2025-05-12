@@ -1,1197 +1,490 @@
+/* src/styles/components/LandingPage/Hero.css */
+
+/* Hero Container */
+/* ... existing styles ... */
+
 .hero {
     position: relative;
     width: 100%;
-    min-height: 50vh; /* Reduced from 55vh to 50vh */
-    height: 50vh; /* Reduced from 55vh to 50vh */
+    min-height: 700px; /* Make hero section tall */
+    padding: 0;
+    color: var(--color-text-primary);
     display: flex;
-    justify-content: center;
     align-items: center;
-    overflow: visible; /* Changed from hidden to visible */
-    padding: 0; /* Remove padding to let the hemisphere control spacing */
-    color: var(--color-primary-text);
-    /* Make background darker and more contained - less gradient transition */
-    background: radial-gradient(ellipse at center, 
-                               #020507 100%, /* Darkest at center - using your Color 1 */
-                               #0a151b 100%, /* Using your Color 2 at greater percentage */
-                               #1c232a 100%); /* Using Color 5 only at the very edge */
-    z-index: 10; /* Ensure proper stacking */
-    padding-bottom: 0; /* Remove bottom padding since we're controlling height directly */
-    margin-bottom: 0; /* Ensure no margin */
-}
-
-/* Responsive adjustments for hero on smaller screens */
-@media (max-width: 768px) {
-    .hero {
-        padding-bottom: 25vh; /* More bottom padding on mobile for buttons */
-    }
-}
-
-/* Edge glow effect - significantly reduced and pushed to edges */
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 160%; /* Still wide to cover edges */
-    height: 60%; 
-    background: radial-gradient(
-        ellipse at 50% 0%,
-        rgba(0, 169, 157, 0.08) 0%, /* Much lower opacity - 0.08 */
-        transparent 60% /* Fade out faster */
-    );
-    filter: blur(80px); /* More blur for subtlety */
-    opacity: 0.5; /* Lower overall opacity */
-    z-index: 1;
-    pointer-events: none;
-}
-
-/* Reduce the bottom "planet" glow effect as well */
-.hero::after {
-    content: "";
-    position: absolute;
-    bottom: -5px; /* Very slight overlap to prevent hairline gaps */
-    left: 0;
-    width: 100%;
-    height: 10px; /* Much shorter gradient */
-    background: #020507; /* Solid color matching the background */
-    z-index: 10;
-    pointer-events: none;
-}
-
-/* Add this new element for the hemisphere with glowy circumference */
-.hero-hemisphere {
-    position: absolute;
-    top: 40%; /* Position at 40% from the top */
-    left: 0;
-    width: 100%;
-    height: 100%; /* Full remaining height */
-    overflow: hidden;
-    z-index: 1; /* Above the background gradients but below content */
-    pointer-events: none; /* Don't block interactions */
-}
-
-/* Create the hemisphere shape with pseudo-element */
-.hero-hemisphere::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -15%; /* Extend beyond edges for a wider curve */
-    width: 130%; /* Make wider than the container */
-    height: 100%; /* Tall enough to fill bottom */
-    border-radius: 50% 50% 0 0; /* Top curved edges */
-    border-top: 1px solid rgba(0, 169, 157, 0.15); /* Subtle teal glow at the edge */
-    background: radial-gradient(
-        ellipse at center top,
-        rgba(7, 40, 60, 0.10) 0%, /* Very subtle dark teal */
-        rgba(4, 15, 30, 0.02) 60%,
-        transparent 100%
-    );
-    backdrop-filter: blur(40px);
-    -webkit-backdrop-filter: blur(40px);
-    box-shadow: 
-        0 -10px 70px rgba(0, 169, 157, 0.05), /* Outer glow */
-        0 -5px 25px rgba(0, 169, 157, 0.03); /* Inner glow */
-    transform: translateY(-50%); /* Pull up to create the curve */
-}
-
-/* Add a subtle glowy circumference */
-.hero-hemisphere::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -15%;
-    width: 130%;
-    height: 100%;
-    border-radius: 50% 50% 0 0;
-    border-top: 1.5px solid rgba(0, 169, 157, 0.15); /* Glowy edge */
-    border-left: 1px solid rgba(0, 169, 157, 0.05);
-    border-right: 1px solid rgba(0, 169, 157, 0.05);
-    filter: blur(3px);
-    transform: translateY(-50%);
-    z-index: 0;
-    pointer-events: none;
-}
-
-/* Top hemisphere - adjust dimensions to properly contain content */
-.hero-top-hemisphere {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%; 
-    height: 40vh; /* Adjust hemisphere height to fit within 60vh */
-    overflow: visible; /* Allow content to be visible */
-    z-index: 1;
-    pointer-events: none;
-    /* Flexbox for content positioning */
-    display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding-top: 5vh; /* Add padding at the top for better content positioning */
-}
-
-/* Semi-elliptical shape with backdrop filter and glowy border - focused border glow */
-.hero-top-hemisphere::before {
-    content: "";
-    position: absolute;
-    top: -22vh; /* Standard position */
-    left: 50%;
-    width: 150vw;
-    height: 60vh;
-    transform: translateX(-50%);
-    border-radius: 100%;
-    border: 2px solid rgba(0, 169, 157, 0.45);
     background: transparent;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow:
-        0 0 15px rgba(0, 169, 157, 0.1),
-        0 0 8px rgba(0, 169, 157, 0.05),
-        inset 0 0 4px rgba(0, 169, 157, 0.15);
-    z-index: -1;
 }
 
-/* Enhanced glowing circumference effect - focus on border only */
-.hero-top-hemisphere::after {
-    content: "";
-    position: absolute;
-    top: -22vh; /* EXACTLY match ::before */
-    left: 50%;
-    width: 150vw; /* EXACTLY match ::before */
-    height: 60vh; /* EXACTLY match ::before */
-    transform: translateX(-50%);
-    border-radius: 100%;
-    border: 2px solid rgba(0, 169, 157, 0.45);
-    background: none;
-    box-shadow: 
-        0 0 10px rgba(0, 169, 157, 0.15),
-        0 0 3px rgba(0, 169, 157, 0.1);
-    filter: blur(1px);
-    z-index: -1;
-}
-
-/* Adjust hemisphere dimensions on smaller screens */
-@media (max-width: 768px) {
-    .hero-top-hemisphere::before {
-        width: 220vw; /* Wider on mobile for proper curvature */
-        top: -20vh; /* Set to exactly -20vh */
-        height: 60vh; /* Shorter to maintain proportion */
-        border-radius: 100%; /* Keep consistent border-radius */
-        border: 2px solid rgba(0, 169, 157, 0.45); /* Keep same border */
-    }
-    
-    .hero-top-hemisphere::after {
-        width: 220vw; /* Exactly match before element */
-        top: -20vh; /* EXACTLY match ::before (-20vh) */
-        height: 60vh; /* Exactly match before element */
-        border-radius: 100%; /* Keep consistent border-radius */
-        border: 2px solid rgba(0, 169, 157, 0.45); /* Match border exactly with ::before */
-        filter: blur(1px); /* Reduced blur for consistency */
-        box-shadow: 
-            0 0 10px rgba(0, 169, 157, 0.15),
-            0 0 3px rgba(0, 169, 157, 0.1);
-    }
-
-    .hero-top-hemisphere-highlight {
-        width: 218vw; /* Slightly smaller than main hemisphere */
-        top: -18vh; /* Consistent positioning */
-        height: 58vh;
-        border-radius: 100%; /* Match border-radius */
-    }
-}
-
-/* Add specific adjustments for very small screens */
-@media (max-width: 480px) {
-    .hero-top-hemisphere::before,
-    .hero-top-hemisphere::after {
-        top: -15vh; /* Set to exactly -15vh */
-        width: 250vw; /* Even wider on smaller devices */
-    }
-    
-    .hero-top-hemisphere-highlight {
-        top: -13vh; /* Keep consistent relative positioning */
-        width: 248vw; /* Maintain slightly smaller size */
-    }
-    
-    /* Adjust glow positions for very small screens */
-    .hero-top-hemisphere-glow {
-        width: 100vw;
-        height: 20vh;
-        top: 2vh;
-    }
-    
-    .hero-top-hemisphere-inner-glow {
-        width: 90vw;
-        height: 12vh;
-        top: 5vh;
-    }
-}
-
-/* Add portrait orientation adjustments specifically for the hemisphere */
-@media (max-height: 600px) and (orientation: landscape) {
-    .hero-top-hemisphere::before,
-    .hero-top-hemisphere::after {
-        top: -30vh; /* Set to exactly -30vh */
-        height: 80vh; /* Maintain proportional height */
-    }
-    
-    .hero-top-hemisphere-highlight {
-        top: -28vh;
-        height: 78vh;
-    }
-    
-    .hero-top-hemisphere {
-        height: 40vh; /* Shorter in landscape */
-    }
-}
-
-/* Additional glossy highlight effect for the edge */
-.hero-top-hemisphere-highlight {
-    position: absolute;
-    top: -22vh; /* Position slightly below the main hemisphere edge */
-    left: 50%;
-    width: 178vw; /* Slightly smaller than the main hemisphere */
-    height: 58vh;
-    transform: translateX(-50%);
-    border-radius: 50%;
-    border: none;
-    /* Thin highlight line on top edge */
-    background: 
-        linear-gradient(
-            to bottom,
-            rgba(255, 255, 255, 0.15) 0%,
-            rgba(255, 255, 255, 0.08) 1%,
-            rgba(255, 255, 255, 0) 5%,
-            transparent 100%
-        );
-    opacity: 0.4;
-    z-index: -1;
-    pointer-events: none;
-}
-
-/* Enhanced central glow element with increased spread but lower opacity for glass effect */
-.hero-top-hemisphere-glow {
-    position: absolute;
-    top: 5vh; /* Moved slightly higher for better positioning */
-    left: 50%;
-    width: 85vw; /* Significantly increased width for wider spread */
-    height: 25vh; /* Increased height for larger spread */
-    transform: translateX(-50%);
-    background: radial-gradient(
-        ellipse at center,
-        rgba(0, 169, 157, 0.15) 0%, /* Kept lower opacity */
-        rgba(0, 169, 157, 0.08) 35%, /* Lower opacity with extended reach */
-        rgba(0, 169, 157, 0.04) 70%, /* Added extra step for smoother falloff */
-        transparent 100%
-    );
-    filter: blur(45px); /* Increased blur for more diffusion */
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.85; /* Slightly reduced overall opacity */
-}
-
-/* Make glow responsive on smaller screens */
-@media (max-width: 768px) {
-    .hero-top-hemisphere-glow {
-        width: 100vw; /* Full width on mobile */
-        height: 25vh; /* Smaller height on mobile */
-        top: 5vh; /* Adjust position */
-    }
-    
-    .hero-top-hemisphere-inner-glow {
-        width: 80vw; /* Wider on mobile */
-        height: 15vh; /* Smaller height */
-        top: 7vh; /* Adjust position */
-    }
-}
-
-/* Add a second, smaller glow with wider spread but maintained translucency */
-.hero-top-hemisphere-inner-glow {
-    position: absolute;
-    top: 7vh;
-    left: 50%;
-    width: 45vw; /* Increased width */
-    height: 15vh; /* Increased height */
-    transform: translateX(-50%);
-    background: radial-gradient(
-        ellipse at center,
-        rgba(0, 169, 157, 0.18) 0%, /* Kept moderate opacity */
-        rgba(0, 169, 157, 0.12) 30%, 
-        rgba(0, 169, 157, 0.06) 60%,
-        rgba(0, 169, 157, 0.02) 85%,
-        transparent 100%
-    );
-    filter: blur(35px); /* Increased blur for softer effect */
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.9; /* Slightly reduced */
-}
-
-/* Adjust hero content positioning within the hemisphere - text only */
-.hero-content {
-    position: relative;
-    z-index: 15; /* Lower than particles but high enough to be above other elements */
-    max-width: 800px;
-    padding: 10px;
-    padding-top: 50px; /* Remove top padding to align with hemisphere */
-    margin-top: 20;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
+.hero-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--spacing-7);
     align-items: center;
-    width: 90%; /* Add width constraint for smaller screens */
-    pointer-events: auto !important;
-    z-index: 99 !important;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 var(--spacing-6);
+    min-height: 700px;
 }
 
-/* Responsive content adjustments */
-@media (max-width: 768px) {
-    .hero-content {
-        padding-top: 100px; /* More top padding on mobile */
-        max-width: 90%; /* Constrain width */
-    }
-    
-    .hero-title {
-        font-size: clamp(2.2rem, 8vw, 3rem) !important; /* Smaller on mobile */
-        margin-bottom: 20px;
-        letter-spacing: -0.5px; /* Less letter spacing on mobile */
-    }
-    
-    .hero-subtitle {
-        font-size: clamp(1rem, 4vw, 1.1rem) !important; /* Smaller on mobile */
-        line-height: 1.6; /* Tighter line height */
-        margin-bottom: 15px;
-    }
-    
-    .hero-badge {
-        padding: 6px 14px; /* Smaller badge on mobile */
-        font-size: 0.8rem;
-        margin-bottom: 20px;
-    }
-}
-
-.hero-badge {
-    display: inline-flex; /* For aligning icon and text if you add an icon */
-    align-items: center;
-    gap: 8px; /* Space between icon and text */
-    padding: 8px 18px;
-    background-color: var(--color-badge-bg);
-    color: var(--color-accent-secondary); /* Bright green text */
-    border: 1px solid var(--color-badge-border);
-    border-radius: 50px;
-    font-size: 0.85rem; /* Slightly adjusted */
-    font-weight: 500;
-    margin-bottom: 30px; /* Increased margin */
-    opacity: 0;
-    animation: fadeInSlideUp 0.8s ease-out 0.9s forwards, pulseBadge 3s infinite ease-in-out 1.7s;
+/* Left Side */
+.hero-left {
+    z-index: 2;
+    max-width: 600px;
 }
 
 .hero-title {
-    font-size: clamp(2.3rem, 4vw, 3.6rem); /* Slightly larger */
-    font-weight: 700;
-    letter-spacing: -1.5px;
-    color: var(--color-primary-text);
-    margin-bottom: 15px; /* Increased margin */
-    opacity: 0;
-    animation: fadeInSlideUp 1s ease-out forwards;
-    /* Text shadow can be kept or adjusted if it clashes with the new background */
-    text-shadow: 0 0 20px rgba(var(--color-accent-dark-teal-rgb), 0.3); 
+    font-size: 3.2rem;
+    line-height: 1.1;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-3);
 }
 
-/* Adjust the hero-subtitle bottom margin since buttons are now outside */
 .hero-subtitle {
-    font-size: clamp(1rem, 2vw, 1.2rem); /* Slightly larger */
-    color: var(--color-secondary-text);
-    line-height: 1.6;
-    max-width: 650px; /* Wider subtitle */
-    margin: 0 auto 15px; /* Reduced from 40px to 20px */
-    opacity: 0;
-    animation: fadeInSlideUp 1s ease-out 0.3s forwards;
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-5);
+    max-width: 480px;
 }
 
-/* Move the CTA buttons inside the hero-content */
 .hero-actions {
-    position: relative; /* Change from absolute to relative */
-    bottom: auto; /* Remove bottom positioning */
-    left: auto; /* Remove left positioning */
-    width: 100%;
     display: flex;
+    gap: var(--spacing-3);
+    margin-top: var(--spacing-4);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeIn 1s ease-out 0.6s forwards;
-    z-index: 20;
-    margin-top: 50px; /* Add top margin for spacing */
-    z-index: 100 !important; /* Very high z-index */
-    pointer-events: auto !important;
-}
-
-/* Responsive button adjustments */
-@media (max-width: 768px) {
-    .hero-actions {
-        bottom: 15vh; /* Position higher on mobile screens */
-        gap: 12px; /* Less space between buttons */
-        flex-direction: column; /* Stack buttons on very small screens */
-        align-items: center;
-    }
-    
-    .hero-btn {
-        padding: 12px 25px; /* Slightly smaller buttons */
-        font-size: 0.95rem;
-        width: 85%; /* Wider buttons that scale with screen */
-        max-width: 280px; /* But not too wide */
-    }
-}
-
-/* For medium screens, adjust button layout */
-@media (min-width: 480px) and (max-width: 768px) {
-    .hero-actions {
-        flex-direction: row; /* Side by side on medium screens */
-    }
-    
-    .hero-btn {
-        width: auto; /* Auto width on medium screens */
-    }
-}
-
-/* Enhance the buttons for better visibility outside the hemisphere */
-.hero-btn {
-    padding: 14px 30px; /* Slightly larger padding */
-    font-size: 1rem; /* Slightly larger font */
-    border-radius: 6px; /* Rounded corners like image */
+    padding: 0 var(--spacing-3);
+    height: 48px;
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-semibold);
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-    border: 1px solid transparent; /* Default border */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Added shadow for all buttons */
-    z-index: 51 !important;
+    transition: all var(--transition-fast);
+    min-width: 140px;
+    border: none;
+}
+
+.btn.primary {
+    background: var(--color-rose-gold);
+    color: var(--color-bg);
+    box-shadow: 0 4px 12px rgba(183, 110, 121, 0.3);
+}
+
+.btn.primary:hover {
+    filter: brightness(1.05);
+    transform: translateY(-2px);
+}
+
+.btn.secondary {
+    background: transparent;
+    border: 1px solid var(--color-neon-violet);
+    color: var(--color-neon-violet);
+}
+
+.btn.secondary:hover {
+    background: rgba(170, 0, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Hero Bot Animations */
+@keyframes botFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+}
+
+@keyframes armWave {
+    0%, 100% { transform: rotate(0deg);}
+    25% { transform: rotate(18deg);}
+    50% { transform: rotate(-12deg);}
+    75% { transform: rotate(10deg);}
+}
+
+/*
+  The .hero-bot class is on the <svg> element itself.
+  The parent div <div ref={botRef}> is what the useEffect hook targets to add the 'animate' class,
+  but the animations themselves are applied to .hero-bot and .bot-arm.
+  The 'animate' class in your JS isn't directly used by these CSS rules,
+  but it ensures the bot is rendered and visible when it comes into view.
+  If you wanted the animations to *only* start when 'animate' is present, you'd do:
+  .animate .hero-bot { animation: botFloat 6s ease-in-out infinite; }
+  .animate .bot-arm { animation: armWave 4s ease-in-out infinite; }
+  However, your current CSS will have them animating as soon as they are rendered.
+  The triggerOnce: true on useInView means 'animate' is added once and stays.
+*/
+
+.hero-bot {
+    width: 320px;
+    height: 320px;
+    display: block;
+    animation: botFloat 6s ease-in-out infinite;
+    filter: drop-shadow(0 0 18px rgba(170, 0, 255, 0.4));
+}
+
+.bot-arm {
+    transform-origin: 280px 120px;
+    animation: armWave 4s ease-in-out infinite;
+}
+
+/* Hover Effects */
+/* These will work as .hero-right is the parent hovered, and .hero-bot / .bot-arm are descendants */
+
+.hero-right:hover .bot-arm {
+    animation-duration: 2s;
+    /* Faster wave on hover */
+}
+
+/* Code Panel */
+/* ... existing styles ... */
+.hero-code-panel {
+    background: var(--color-surface);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    width: 100%;
+    max-width: 420px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 180px; /* Adjust so the bot's torso sits on the code panel */
     position: relative;
-    z-index: 101 !important; /* Even higher z-index */
-    pointer-events: auto !important;
-    cursor: pointer !important;
+    z-index: 2;
 }
 
-.hero-btn.primary {
-    background-image: linear-gradient(45deg, var(--color-button-primary-bg-start), var(--color-button-primary-bg-end));
-    color: var(--color-primary-text);
-    box-shadow: 0 4px 15px rgba(var(--color-button-primary-bg-start), 0.25);
-    border: none; /* Remove border for gradient button */
+.code-header {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px 12px;
 }
 
-.hero-btn.primary:hover {
-    background-image: linear-gradient(45deg, var(--color-button-primary-bg-end), var(--color-button-primary-bg-start)); /* Reverse gradient on hover */
-    box-shadow: 0 6px 20px rgba(var(--color-button-primary-bg-start), 0.35);
-    transform: translateY(-2px) scale(1.02);
+.code-dots {
+    display: flex;
+    gap: 6px;
 }
 
-.hero-btn.secondary {
-    background-color: var(--color-button-secondary-bg);
-    border: 1px solid var(--color-button-secondary-border);
-    color: var(--color-secondary-text); /* Muted text color */
+.code-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
 }
 
-.hero-btn.secondary:hover {
-    border-color: var(--color-accent-secondary); /* Green border on hover */
-    color: var(--color-primary-text);
-    background-color: rgba(var(--color-button-secondary-bg), 0.7);
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 4px 15px rgba(var(--color-button-secondary-border), 0.2);
+.code-dot.red {
+    background: #FF5F56;
 }
 
-/* Keyframes remain the same */
-@keyframes fadeInSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.code-dot.yellow {
+    background: #FFBD2E;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.code-dot.green {
+    background: #27C93F;
 }
 
-@keyframes pulseBadge {
-    0%,
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 5px rgba(var(--color-accent-secondary-rgb, 44, 182, 125), 0.2), 0 0 8px rgba(var(--color-accent-secondary-rgb, 44, 182, 125), 0.1);
-    }
-    50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 10px rgba(var(--color-accent-secondary-rgb, 44, 182, 125), 0.4), 0 0 20px rgba(var(--color-accent-secondary-rgb, 44, 182, 125), 0.3);
-    }
+.code-content {
+    padding: var(--spacing-3);
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #B3B3B3;
 }
 
-/* Add a style to target the particles container */
-.hero .particles-bg-canvas-self {
-    position: relative !important;
-    z-index: 20 !important; /* Higher z-index to float above all elements */
-    pointer-events: none !important; /* Prevent particles from blocking interactions */
+.code-title {
+    color: #6A7280;
+    margin-bottom: 16px;
 }
 
-/* Style the particles container to fill the entire viewport */
-.particles-container {
+/* Hero Right Section - Bot and Code Panel */
+.hero-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-width: 400px;
+    min-height: 400px;
+}
+
+.hero-right-content {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    min-height: 400px;
+}
+
+/* Bot Container */
+.bot-container {
     position: absolute;
+    left: 50%;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 5; /* Above background but below content */
-    pointer-events: none; /* Prevent particles from blocking interactions */
-}
-
-/* Ensure the particles canvas itself fills the container */
-.particles-container canvas {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: inherit !important;
-}
-
-/* Alternative targeting method for the particles canvas */
-.hero .particles-bg-canvas-self {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: inherit !important;
-}
-
-/* Additional optimization for very small screens */
-@media (max-width: 480px) {
-    .hero {
-        align-items: flex-start; /* Align to top on very small screens */
-        padding-top: 5vh; /* Reduce from 15vh to give more space */
-        padding-bottom: 18vh; /* Ensure enough space for buttons */
-    }
-    
-    .hero-top-hemisphere {
-        height: 75vh; /* Increase from 60vh to 75vh to contain text properly */
-        padding-top: 10vh; /* Add more top padding for better content positioning */
-    }
-    
-    .hero-top-hemisphere::before,
-    .hero-top-hemisphere::after {
-        top: -15vh;
-        width: 250vw;
-        height: 70vh; /* Increase from 60vh to 70vh */
-    }
-    
-    .hero-top-hemisphere-highlight {
-        top: -13vh;
-        width: 248vw;
-        height: 68vh; /* Increase from 58vh to 68vh */
-    }
-    
-    /* Adjust content positioning */
-    .hero-content {
-        padding-top: 60px; /* Reduce from 100px to give more space for content */
-        margin-top: 0;
-    }
-    
-    /* Make title and subtitle smaller */
-    .hero-title {
-        font-size: clamp(1.8rem, 7vw, 2.5rem) !important; /* Smaller font */
-        margin-bottom: 15px;
-    }
-    
-    .hero-subtitle {
-        font-size: clamp(0.9rem, 3.5vw, 1rem) !important; /* Smaller font */
-        line-height: 1.5; /* Reduce line height to take up less space */
-        margin-bottom: 10px;
-    }
-    
-    /* Badge adjustments */
-    .hero-badge {
-        padding: 5px 12px; /* Smaller badge */
-        font-size: 0.75rem;
-        margin-bottom: 12px; /* Less space below badge */
-    }
-    
-    /* Move the buttons higher */
-    .hero-actions {
-        bottom: 10vh; /* Position higher on small screens */
-        gap: 15px; /* More space between buttons */
-    }
-    
-    /* Make buttons more compact */
-    .hero-btn {
-        padding: 10px 20px;
-    }
-    
-    /* Adjust glow positions for very small screens */
-    .hero-top-hemisphere-glow {
-        width: 100vw;
-        height: 25vh; /* Increase height */
-        top: 5vh; /* Move down a bit */
-    }
-    
-    .hero-top-hemisphere-inner-glow {
-        width: 90vw;
-        height: 18vh; /* Increase height */
-        top: 8vh; /* Move down a bit */
-    }
-}
-
-/* Add portrait orientation adjustments */
-@media (max-height: 600px) and (orientation: landscape) {
-    .hero-content {
-        padding-top: 50px; /* Less top padding in landscape */
-    }
-    
-    .hero-title {
-        font-size: clamp(2rem, 4vw, 2.5rem) !important;
-        margin-bottom: 10px;
-    }
-    
-    .hero-subtitle {
-        margin-bottom: 10px;
-        font-size: clamp(0.9rem, 2vw, 1rem) !important;
-    }
-    
-    .hero-actions {
-        bottom: 10vh; /* Position higher in landscape */
-    }
-    
-    .hero-badge {
-        margin-bottom: 10px;
-        padding: 5px 12px;
-    }
-}
-
-/* For mobile devices, hide the hemisphere completely and adjust layout */
-@media (max-width: 480px) {
-    /* Hide the hemisphere by removing borders and backdrop filter */
-    .hero-top-hemisphere::before,
-    .hero-top-hemisphere::after,
-    .hero-top-hemisphere-highlight {
-        border: 0 !important; /* Remove borders completely */
-        background: transparent !important; /* Remove any backgrounds */
-        backdrop-filter: none !important; /* Remove backdrop filter */
-        -webkit-backdrop-filter: none !important;
-        box-shadow: none !important; /* Remove all shadows */
-        opacity: 0 !important; /* Make fully transparent */
-    }
-    
-    /* Hide glows as well */
-    .hero-top-hemisphere-glow,
-    .hero-top-hemisphere-inner-glow {
-        opacity: 0 !important;
-        background: transparent !important;
-    }
-    
-    /* Adjust hero container */
-    .hero {
-        align-items: center !important; /* Center everything */
-        padding-top: 15vh !important; /* Add top padding */
-        padding-bottom: 20vh !important; /* Add bottom padding */
-    }
-    
-    /* Adjust main hemisphere container */
-    .hero-top-hemisphere {
-        position: relative !important; /* Change from absolute */
-        height: auto !important; /* Auto height instead of fixed */
-        padding: 20px !important;
-        width: 100% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        overflow: visible !important;
-    }
-    
-    /* Reposition content for better spacing */
-    .hero-content {
-        position: relative !important;
-        padding-top: 10px !important; 
-        padding-bottom: 30px !important;
-        margin: 0 auto !important;
-        max-width: 90% !important;
-    }
-    
-    /* Badge positioning */
-    .hero-badge {
-        margin-bottom: 20px !important;
-    }
-    
-    /* Title adjustments */
-    .hero-title {
-        font-size: clamp(1.8rem, 7vw, 2.2rem) !important;
-        margin-bottom: 20px !important;
-        letter-spacing: -0.5px !important;
-    }
-    
-    /* Subtitle adjustments */
-    .hero-subtitle {
-        font-size: clamp(0.9rem, 3.5vw, 1rem) !important;
-        line-height: 1.5 !important;
-        margin-bottom: 20px !important;
-        max-width: 100% !important;
-    }
-    
-    /* Stack buttons vertically */
-    .hero-actions {
-        position: relative !important; /* No longer absolute */
-        bottom: auto !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 15px !important;
-        width: 100% !important;
-        margin-top: 30px !important;
-    }
-    
-    /* Style buttons to be wider and more prominent */
-    .hero-btn {
-        width: 85% !important;
-        max-width: 300px !important; 
-        padding: 14px 25px !important;
-        font-size: 1rem !important;
-        text-align: center !important;
-    }
-    
-    /* Enhance the primary CTA button */
-    .hero-btn.primary {
-        margin-bottom: 5px !important;
-    }
-}
-
-/* For tablets in portrait mode (between 481px and 768px) */
-@media (min-width: 481px) and (max-width: 768px) {
-    .hero-top-hemisphere {
-        height: 60vh !important; /* Maintain some height */
-    }
-    
-    .hero-actions {
-        flex-direction: column !important;
-        gap: 15px !important;
-        bottom: 20vh !important;
-    }
-    
-    .hero-btn {
-        width: 80% !important;
-        max-width: 250px !important;
-    }
-}
-
-/* For mobile devices, ensure everything stacks properly in a column */
-@media (max-width: 480px) {
-    /* Ensure the hero section is using column layout */
-    .hero {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        padding-top: 15vh !important;
-        padding-bottom: 20vh !important;
-        text-align: center !important; /* Ensure all text is centered */
-    }
-    
-    /* Force column layout for the content area */
-    .hero-content {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        width: 100% !important;
-        max-width: 90% !important;
-        padding: 0 15px !important;
-        margin: 0 auto !important;
-        text-align: center !important;
-    }
-    
-    /* Enforce full width for text elements */
-    .hero-title, .hero-subtitle {
-        width: 100% !important;
-        text-align: center !important;
-        padding: 0 !important;
-    }
-    
-    /* Reset any potential row layouts */
-    .hero > *, .hero-top-hemisphere > * {
-        flex-direction: column !important;
-    }
-    
-    /* Stack buttons vertically with improved spacing */
-    .hero-actions {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 15px !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        position: relative !important;
-        bottom: auto !important;
-        padding-top: 20px !important;
-    }
-    
-    /* Make buttons full width for mobile */
-    .hero-btn {
-        width: 85% !important;
-        max-width: 280px !important;
-        margin: 5px 0 !important;
-    }
-    
-    /* Explicitly reset any other layout that might be affecting the stack */
-    .hero-top-hemisphere {
-        display: flex !important;
-        flex-direction: column !important;
-        width: 100% !important;
-        align-items: center !important;
-    }
-}
-
-/* Hide hemisphere on all devices ≤768px */
-@media (max-width: 768px) {
-    /* Remove all borders, backgrounds, and effects from the hemisphere */
-    .hero-top-hemisphere::before,
-    .hero-top-hemisphere::after,
-    .hero-top-hemisphere-highlight {
-        border: 0 !important; /* Remove borders completely */
-        background: transparent !important; /* Remove any backgrounds */
-        backdrop-filter: none !important; /* Remove backdrop filter */
-        -webkit-backdrop-filter: none !important;
-        box-shadow: none !important; /* Remove all shadows */
-        opacity: 0 !important; /* Make fully transparent */
-    }
-    
-    /* Hide glows as well */
-    .hero-top-hemisphere-glow,
-    .hero-top-hemisphere-inner-glow {
-        opacity: 0 !important;
-        background: transparent !important;
-    }
-    
-    /* Adjust hero container */
-    .hero {
-        align-items: center !important; /* Center everything */
-    }
-    
-    /* Adjust main hemisphere container */
-    .hero-top-hemisphere {
-        position: relative !important; /* Change from absolute */
-        height: auto !important; /* Auto height instead of fixed */
-        padding: 20px !important;
-        width: 100% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        overflow: visible !important;
-    }
-    
-    /* Reposition content for better spacing */
-    .hero-content {
-        position: relative !important;
-        padding-top: 30px !important; 
-        padding-bottom: 30px !important;
-        margin: 0 auto !important;
-    }
-    
-    /* Stack buttons vertically */
-    .hero-actions {
-        position: relative !important; /* No longer absolute */
-        bottom: auto !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 15px !important;
-        width: 100% !important;
-        margin-top: 30px !important;
-    }
-}
-
-/* Consolidated mobile styles to ensure proper column stacking */
-@media (max-width: 768px) {
-    /* Force column layout on ALL mobile views */
-    .hero {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        padding-top: 10vh !important;
-        padding-bottom: 5vh !important;
-        height: auto !important;
-        min-height: 100vh !important;
-    }
-    
-    /* Force all direct children of hero to stack */
-    .hero > * {
-        width: 100% !important;
-        max-width: 100% !important;
-        flex-direction: column !important;
-    }
-    
-    /* Make hemisphere a standard block with relative positioning */
-    .hero-top-hemisphere {
-        position: relative !important;
-        height: auto !important;
-        min-height: 0 !important;
-        padding-top: 15vh !important;
-        padding-bottom: 5vh !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-    }
-    
-    /* Remove all hemisphere styling */
-    .hero-top-hemisphere::before,
-    .hero-top-hemisphere::after,
-    .hero-top-hemisphere-highlight,
-    .hero-top-hemisphere-glow,
-    .hero-top-hemisphere-inner-glow {
-        display: none !important;
-    }
-    
-    /* Ensure content stacks properly */
-    .hero-content {
-        position: relative !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        width: 90% !important;
-        margin: 0 auto !important;
-        padding: 0 !important;
-        text-align: center !important;
-    }
-    
-    /* Force button container to be a column */
-    .hero-actions {
-        position: relative !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        width: 100% !important;
-        margin-top: 5vh !important;
-        padding: 0 !important;
-        bottom: auto !important;
-    }
-    
-    /* Style buttons for mobile */
-    .hero-btn {
-        width: 85% !important;
-        max-width: 280px !important;
-        margin: 8px 0 !important;
-        display: block !important;
-    }
-    
-    /* Text styling */
-    .hero-title {
-        font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
-        text-align: center !important;
-        margin-bottom: 3vh !important;
-        width: 100% !important;
-    }
-    
-    .hero-subtitle {
-        font-size: clamp(0.9rem, 4vw, 1.1rem) !important;
-        text-align: center !important;
-        margin-bottom: 3vh !important;
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-    
-    .hero-badge {
-        margin-bottom: 3vh !important;
-    }
-    
-    /* Ensure proper display order */
-    .hero-content > * {
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
-}
-
-/* Additional specific adjustments for very small screens */
-@media (max-width: 480px) {
-    .hero {
-        padding-top: 8vh !important;
-    }
-    
-    .hero-content {
-        width: 92% !important;
-    }
-    
-    .hero-actions {
-        margin-top: 3vh !important;
-        gap: 10px !important;
-    }
-    
-    .hero-btn {
-        width: 90% !important;
-        padding: 12px 20px !important;
-    }
-    
-    /* Smaller text on phones */
-    .hero-title {
-        font-size: clamp(1.6rem, 7vw, 2.2rem) !important;
-        letter-spacing: -0.5px !important;
-        margin-bottom: 2vh !important;
-    }
-    
-    .hero-subtitle {
-        font-size: clamp(0.85rem, 3.5vw, 1rem) !important;
-        line-height: 1.5 !important;
-        margin-bottom: 2vh !important;
-    }
-}
-
-/* Adjust responsive behavior */
-@media (max-width: 768px) {
-    .hero {
-        min-height: 500px; /* Min-height in pixels for mobile */
-        height: auto; /* Allow it to grow if needed on smaller screens */
-        padding-bottom: 40px; /* Add some bottom padding for mobile */
-    }
-    
-    .hero-content {
-        padding-top: 80px; /* Adjust for mobile */
-        max-width: 90%;
-    }
-    
-    .hero-actions {
-        position: relative;
-        bottom: auto;
-        margin-top: 30px;
-    }
-    
-    .hero-title {
-        font-size: clamp(1.8rem, 7vw, 2.5rem);
-    }
-    
-    .hero-subtitle {
-        font-size: clamp(0.9rem, 4vw, 1.1rem);
-    }
-}
-
-@media (max-width: 480px) {
-    .hero {
-        min-height: 450px; /* Even smaller for mobile phones */
-    }
-    
-    .hero-content {
-        padding-top: 70px;
-    }
-}
-
-/* Add this at the end of the file */
-/* Create a connecting element between hero and platform overview */
-.hero::after {
-    content: "";
-    position: absolute;
-    bottom: -5px; /* Very slight overlap to prevent hairline gaps */
-    left: 0;
-    width: 100%;
-    height: 10px; /* Much shorter gradient */
-    background: #020507; /* Solid color matching the background */
-    z-index: 10;
+    transform: translate(-50%, 0);
+    z-index: 3;
     pointer-events: none;
 }
 
-/* Add a subtle connector between hero and platform overview */
-.section-connector {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 20;
+.bot-behind-code {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, -45%) scale(1.1); /* Adjust scale and translate for best peek effect */
+  z-index: 1; /* Behind the code panel */
+  pointer-events: none;
 }
 
-.connector-dots {
+/* Responsive */
+@media (max-width: 1200px) {
+    .hero{
+        margin-top: 100px;
+    }
+  .hero-container {
+    max-width: 1000px;
+    padding: 0 var(--spacing-4);
+    gap: var(--spacing-5);
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    min-height: 600px;
+  }
+  .hero-left {
+    max-width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    align-items: center;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+  }
+  .hero-title {
+    font-size: 2.2rem;
+    line-height: 1.15;
+    margin-bottom: var(--spacing-2);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .hero-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-4);
+    color: var(--color-text-secondary);
+    max-width: 90vw;
+    line-height: 1.6;
+  }
+  .hero-actions {
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--spacing-3);
+    margin-top: var(--spacing-3);
+    width: 100%;
     align-items: center;
-    gap: 4px;
+  }
+  .btn {
+    min-width: 120px;
+    font-size: 1rem;
+    height: 44px;
+  }
+  .bot-behind-code {
+    display: none !important;
+  }
+  .hero-right,
+  .hero-right-content {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .hero-code-panel {
+    margin-top: 32px;
+    max-width: 420px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
-.connector-dots span {
-    width: 5px; /* Slightly larger */
-    height: 5px; /* Slightly larger */
-    background-color: rgba(0, 169, 157, 0.7); /* More visible */
-    border-radius: 50%;
-    opacity: 0;
-    animation: fadeInOut 2s infinite;
+@media (max-width: 1024px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        min-height: 600px;
+        padding: 0 var(--spacing-4);
+    }
+    .hero-right {
+        align-items: center;
+        min-width: 0;
+    }
+    .hero-right-content {
+        margin: 0 auto;
+        min-height: 320px;
+    }
+    .bot-container {
+        position: static;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+    }
+    .hero-code-panel {
+        margin-top: 40px;
+        max-width: 100%;
+    }
 }
 
-.connector-dots span:nth-child(2) {
-    animation-delay: 0.3s;
+@media (max-width: 900px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    min-height: 500px;
+    padding: 0 var(--spacing-3);
+    gap: var(--spacing-4);
+  }
+  .hero-left {
+    max-width: 100%;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .hero-title {
+    font-size: 1.6rem;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: var(--spacing-3);
+  }
+  .hero-actions {
+    flex-direction: column;
+    gap: var(--spacing-2);
+    align-items: center;
+    width: 100%;
+  }
+  .btn {
+    width: 90%;
+    min-width: 0;
+    font-size: 0.98rem;
+    height: 42px;
+  }
+  .hero-right {
+    align-items: center;
+    min-width: 0;
+    width: 100%;
+    margin-top: var(--spacing-4);
+  }
+  .hero-right-content {
+    margin: 0 auto;
+    min-height: 260px;
+    width: 100%;
+    max-width: 400px;
+  }
+  .hero-code-panel {
+    margin-top: 20px;
+    font-size: 13px;
+    max-width: 98vw;
+  }
+  .bot-behind-code {
+    /* Hide bot on tablets and below */
+    display: none;
+  }
 }
 
-.connector-dots span:nth-child(3) {
-    animation-delay: 0.6s;
-}
-
-@keyframes fadeInOut {
-    0%, 100% { opacity: 0.2; }
-    50% { opacity: 0.8; }
-}
-
-/* Make sure the responsive styles don't break our flow */
 @media (max-width: 768px) {
-    .hero {
-        min-height: 480px; /* Adjust to maintain proper spacing */
+    .hero-bot {
+        display: none;
+        /* Hides bot on small screens as per your original CSS */
     }
-    
-    .section-connector {
-        bottom: 10px;
+
+    .hero-container {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        gap: var(--spacing-2);
+        align-items: center;
+        width: 100%;
+    }
+
+    .hero-right {
+        margin-top: var(--spacing-4);
+        /* justify-content: center; */
+        /* This was on hero-right, might affect code panel centering */
+        display: flex;
+        /* Added to allow centering of its children if needed */
+        flex-direction: column;
+        /* Stack children vertically */
+        align-items: center;
+        /* Center children like the code panel */
+        padding-top: 20px;
+    }
+
+    .hero-right-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bot-container {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin-bottom: -80px; /* Negative margin to pull up the code panel */
+        display: none; /* Hide on mobile as per your previous design */
+    }
+
+    .hero-code-panel {
+        margin-top: 20px;
     }
 }
 
-/* Fix clickable buttons by adding explicit CSS */
-.hero-actions {
-    position: relative;
-    z-index: 100 !important; /* Very high z-index */
-    pointer-events: auto !important;
+@media (max-width: 600px) {
+  .hero {
+    min-height: 340px;
+    padding: var(--spacing-1) 0;
+  }
+  .hero-container {
+    min-height: 340px;
+    padding: 0 var(--spacing-1);
+    gap: var(--spacing-1);
+  }
+  .hero-title {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-1);
+  }
+  .hero-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-2);
+  }
+  .hero-actions {
+    flex-direction: column;
+    gap: var(--spacing-1);
+    align-items: center;
+    width: 100%;
+  }
+  .btn {
+    width: 100%;
+    font-size: 0.95rem;
+    height: 40px;
+    min-width: 0;
+  }
+  .hero-code-panel {
+    margin-top: 12px;
+    font-size: 11px;
+    max-width: 100vw;
+    padding: var(--spacing-1);
+  }
+  .bot-behind-code {
+    display: none !important;
+  }
 }
 
-.hero-btn {
-    position: relative;
-    z-index: 101 !important; /* Even higher z-index */
-    pointer-events: auto !important;
-    cursor: pointer !important;
+@media (max-width: 480px) {
+    .bot-container {
+        display: none;
+    }
 }
 
-/* Fix particles blocking clicks */
-.global-particles-container {
-    pointer-events: none !important;
-}
-
-.global-particles-container canvas {
-    pointer-events: none !important;
-}
-
-/* Ensure decorative elements don't block clicks */
-.global-glow {
-    pointer-events: none !important;
-}
-
-/* Fix hemisphere elements that might be blocking clicks */
-.hero-top-hemisphere {
-    pointer-events: none !important;
-}
-
-.hero-top-hemisphere > * {
-    pointer-events: none !important;
-}
-
-/* But allow pointer events on content */
-.hero-content {
-    pointer-events: auto !important;
-    z-index: 99 !important;
+@media (max-width: 400px) {
+  .hero-title {
+    font-size: 1.1rem;
+  }
+  .hero-code-panel {
+    font-size: 11px;
+    padding: var(--spacing-1);
+  }
 }

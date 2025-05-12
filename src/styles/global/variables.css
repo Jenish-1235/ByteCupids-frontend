@@ -1,45 +1,101 @@
 :root {
-  /* Colors */
-  --color-teal: #7fffd4;
-  --color-teal-light: #b6f3e6;
-  --color-teal-dark: #2cb67d;
-  --color-background-dark: #0a151b;
-  --color-background-darker: #020507;
-  --color-background-light: #16232a;
+  /* Core Palette */
+  --color-bg: #0A0A0A;          /* Matte Black background */
+  --color-surface: #1F1F1F;     /* Elevated panels, cards */
+  --color-surface-2: #2B2B2B;   /* Deep card hover background */
 
-  /* Text */
-  --color-text-primary: #eaf6fb;
-  --color-text-secondary: #b6f3e6;
-  --color-text-accent: #7fffd4;
+  /* Accent & Brand */
+  --color-neon-violet: #AA00FF;  /* Primary highlights */
+  --color-rose-gold: #B76E79;    /* Primary CTA fill */
+  --color-white: #FFFFFF;        /* Headings & body text */
+
+  /* Text & UI */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B3B3B3;
+  --color-text-tertiary: rgba(255,255,255,0.6);
+
+  /* Feedback */
+  --color-success: #4CAF50;
+  --color-error: #F44336;
+  --color-warning: #FFB300;
   
-  /* Border */
-  --color-border-light: rgba(127, 255, 212, 0.5);
-  --color-border-subtle: rgba(127, 255, 212, 0.2);
+  /* Typography */
+  --font-family: 'Inter', sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Font Sizes */
+  --font-size-display: 48px;
+  --font-size-h1: 36px;
+  --font-size-h2: 28px;
+  --font-size-h3: 20px;
+  --font-size-body: 16px;
+  --font-size-caption: 12px;
+  
+  /* Line Heights */
+  --line-height-display: 56px;
+  --line-height-h1: 44px;
+  --line-height-h2: 36px;
+  --line-height-h3: 28px;
+  --line-height-body: 24px;
+  --line-height-caption: 16px;
+  
+  /* Spacing - Based on 8px unit */
+  --spacing-1: 8px;
+  --spacing-2: 16px;
+  --spacing-3: 24px;
+  --spacing-4: 32px;
+  --spacing-5: 40px;
+  --spacing-6: 48px;
+  
+  /* Border Radius */
+  --border-radius-sm: 6px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  
+  /* Borders */
+  --border-light: 1px solid rgba(255,255,255,0.1);
+  --border-accent: 2px solid var(--color-neon-violet);
   
   /* Shadows */
-  --shadow-subtle: 0 0 8px rgba(0, 255, 208, 0.2);
-  --shadow-medium: 0 0 12px rgba(0, 255, 208, 0.3);
+  --shadow-subtle: 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-medium: 0 4px 12px rgba(0,0,0,0.6);
+  --shadow-focus: 0 0 0 3px rgba(170, 0, 255, 0.2);
   
-  /* Gradients */
-  --gradient-sidebar: linear-gradient(180deg, #181e24 10%, rgba(16, 20, 26, 0.6) 40%);
-  --gradient-active-item: linear-gradient(120deg, #16232a 80%, #193c2f 100%);
+  /* Transitions */
+  --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
   
   /* Layout */
   --sidebar-width: 240px;
+  --topbar-height: 64px;
+  --container-max-width: 1280px;
+  --container-padding: 0 24px;
+}
+
+/* Legacy variable mappings for backward compatibility */
+:root {
+  /* Map old color variables to new ones */
+  --color-background-dark: var(--color-bg);
+  --color-background-darker: var(--color-bg);
+  --color-background-light: var(--color-surface);
   
-  /* Spacing */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 2.5rem;
+  --color-teal: var(--color-neon-violet);
+  --color-teal-light: var(--color-neon-violet);
+  --color-teal-dark: var(--color-rose-gold);
   
-  /* Border Radius */
-  --border-radius-sm: 8px;
-  --border-radius-md: 12px;
-  --border-radius-lg: 16px;
+  --color-text-accent: var(--color-neon-violet);
   
-  /* Transitions */
-  --transition-fast: 0.18s ease;
-  --transition-normal: 0.22s ease;
+  --color-border-light: var(--border-accent);
+  --color-border-subtle: var(--border-light);
+  
+  /* Map old spacing to new */
+  --spacing-xs: var(--spacing-1);
+  --spacing-sm: var(--spacing-2);
+  --spacing-md: var(--spacing-3);
+  --spacing-lg: var(--spacing-4);
+  --spacing-xl: var(--spacing-6);
 }
