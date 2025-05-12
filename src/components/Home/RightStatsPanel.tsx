@@ -100,7 +100,7 @@ const RightStatsPanel: React.FC = () => {
                 strokeLinecap="round"
                 strokeDasharray={pathLength}
                 strokeDashoffset={dashOffset}
-                style={{ transition: 'stroke-dashoffset 0.3s ease-in-out' }} // Optional: for smooth animation
+                style={{ transition: "stroke-dashoffset 0.3s ease-in-out" }} // Optional: for smooth animation
               />
             )}
           </svg>
@@ -120,61 +120,93 @@ const RightStatsPanel: React.FC = () => {
         {/* Streak Tile */}
         <div className="stats-tile stats-streak">
           <div className="streak-icon">
-            {/* Updated Fire Icon */}
+            {/* Fire Icon from provided SVG */}
             <svg
-              width="38"
-              height="38"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              width="48" // You can adjust this size as needed
+              height="48" // You can adjust this size as needed
+              viewBox="0 0 1200 1200" // ViewBox from the provided SVG
+              xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M12 2c0 0-2.5 2.5-2.5 5S12 12.5 12 12.5s2.5-2.5 2.5-5S12 2 12 2z"
-                fill="var(--color-rose-gold)"
-                stroke="var(--color-rose-gold)"
-              />
-              <path
-                d="M12 12.5c-2.5 2.5-2.5 6.25 0 8.75s6.25.0 6.25-3.75c0-3.75-3.75-5-6.25-5zM12 12.5c2.5 2.5 2.5 6.25 0 8.75s-6.25.0-6.25-3.75c0-3.75 3.75-5 6.25-5z"
-                fill="rgba(170,0,255,0.2)"
-                stroke="var(--color-neon-violet)"
+                d="M381.64,1200C135.779,1061.434,71.049,930.278,108.057,751.148 c27.321-132.271,116.782-239.886,125.36-371.903c38.215,69.544,54.183,119.691,58.453,192.364 C413.413,422.695,493.731,216.546,498.487,0c0,0,316.575,186.01,337.348,466.98c27.253-57.913,40.972-149.892,13.719-209.504 c81.757,59.615,560.293,588.838-64.818,942.524c117.527-228.838,30.32-537.611-173.739-680.218 c13.628,61.319-10.265,290.021-100.542,390.515c25.014-167.916-23.8-238.918-23.8-238.918s-16.754,94.054-81.758,189.065 C345.537,947.206,304.407,1039.291,381.64,1200L381.64,1200z"
+                fill="var(--color-neon-violet)"
+                stroke="var(--color-neon-violet)" // Optional: adjust or remove stroke
+                strokeWidth="10" // Optional: adjust stroke width or remove
               />
             </svg>
           </div>
-          <div className="streak-value">8 days</div>
-          <div className="streak-label">Current streak</div>
+          <div className="streak-value">9 days</div>
+          <div className="streak-label">streak</div>
         </div>
 
         {/* Leaderboard Tile */}
         <div className="stats-tile stats-leaderboard">
           <div className="leaderboard-icon">
-            {/* Updated Trophy Icon */}
+            {/* New Trophy Icon */}
             <svg
-              width="38"
-              height="38"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              width="42" // Adjusted size for the new icon
+              height="42" // Adjusted size for the new icon
+              viewBox="0 0 32 32" // ViewBox from the provided SVG
+              xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M12 2L8 6H5v5l-3 3 3 3v5h3l4 4 4-4h3v-5l3-3-3-3V6h-3L12 2z"
-                fill="rgba(170,0,255,0.15)"
-                stroke="var(--color-neon-violet)"
+                id="XMLID_450_"
+                style={{
+                  fill: "none",
+                  stroke: "var(--color-neon-violet)",
+                  strokeWidth: 2,
+                  strokeLinejoin: "round",
+                  strokeMiterlimit: 10,
+                }}
+                d="M22.786,6 c0,0,0.715-1,2.214-1c1.377,0,3,1.05,3,3c0,3.21-5,4.242-5,8c0,0.982,1,1.993,1,1.993"
               />
               <path
-                d="M12 11a2 2 0 100-4 2 2 0 000 4z"
-                fill="var(--color-rose-gold)"
-                stroke="var(--color-rose-gold)"
+                id="XMLID_365_"
+                style={{
+                  fill: "none",
+                  stroke: "var(--color-neon-violet)",
+                  strokeWidth: 2,
+                  strokeLinejoin: "round",
+                  strokeMiterlimit: 10,
+                }}
+                d="M8,17.993 c0,0,1-1.011,1-1.993c0-3.758-5-4.79-5-8c0-1.95,1.623-3,3-3c1.498,0,2.214,1,2.214,1"
               />
-              <path d="M9 22V12h6v10" stroke="var(--color-neon-violet)" />
+              <path
+                id="XMLID_435_"
+                style={{
+                  fill: "rgba(170,0,255,0.15)", // Light fill for the cup body
+                  stroke: "var(--color-neon-violet)",
+                  strokeWidth: 2,
+                  strokeMiterlimit: 10,
+                }}
+                d="M9,6c0,6.528,3.689,17,6.983,17 S23,12.568,23,6H9z"
+              />
+              <path
+                id="XMLID_377_"
+                style={{
+                  fill: "rgba(170,0,255,0.15)", // Light fill for the base
+                  stroke: "var(--color-neon-violet)",
+                  strokeWidth: 2,
+                  strokeMiterlimit: 10,
+                }}
+                d="M18,24h-4c-1.657,0-3,1.343-3,3v0 h10v0C21,25.343,19.657,24,18,24z"
+              />
+              <line
+                id="XMLID_378_"
+                style={{
+                  fill: "none",
+                  stroke: "var(--color-rose-gold)", // Accent color for the line
+                  strokeWidth: 2,
+                  strokeMiterlimit: 10,
+                }}
+                x1="16"
+                y1="15"
+                x2="16"
+                y2="10"
+              />
             </svg>
           </div>
-          <div className="leaderboard-label">Mini Leaderboard</div>
+          <div className="leaderboard-label">Leaderboard</div>
           <div className="leaderboard-coming-soon">Coming soon</div>
         </div>
       </div>
