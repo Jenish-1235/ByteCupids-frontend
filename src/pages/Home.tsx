@@ -1,15 +1,12 @@
 import React from "react";
-import Sidebar from "../components/Dashboard/Sidebar";
-import Header from "../components/Dashboard/Header";
-import Modules from "../components/Dashboard/Modules";
+import Sidebar from "../components/Home/Sidebar";
+import Header from "../components/Home/Header";
+import Modules from "../components/Home/Modules";
 import "../styles/pages/Home.css";
-import GlobalParticlesBackground from "../components/global/GlobalParticlesBackground";
 
 const Home: React.FC = () => {
   return (
-    <div className="container">
-      <GlobalParticlesBackground />
-      
+    <div className="container cursor-bg">
       {/* Global glow effects at different positions */}
       <div className="global-glow glow-top"></div>
       <div className="global-glow glow-middle"></div>

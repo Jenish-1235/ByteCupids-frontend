@@ -1,18 +1,14 @@
 /* Dashboard main container styles */
 .container {
-  display: flex;
   min-height: 100vh;
   width: 100vw;
-  box-sizing: border-box;
-  font-family: 'Inter', 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
-  background: radial-gradient(
-    circle at center,
-    #020507 50%,
-    #0a151b 100%
-  );
-  color: var(--color-primary-text, #eaf6fb);
+  background: var(--color-bg);
+  color: var(--color-text-primary);
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  font-family: var(--font-family);
 }
 
 .main {
@@ -20,21 +16,23 @@
   padding: 2rem 3rem;
   background: transparent;
   min-width: 0;
-  color: var(--color-primary-text, #eaf6fb);
+  color: var(--color-text-primary);
   z-index: 2;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-/* Add global glow effects similar to onboarding page */
+/* Global glow effects (reuse from LandingPage.css/OnboardingPage.css) */
 .global-glow {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
   opacity: 0.15;
-  z-index: 1;
+  z-index: 0;
   pointer-events: none;
+  animation: float 20s infinite ease-in-out;
 }
 
 .glow-top {
@@ -42,8 +40,8 @@
   right: 15%;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(127, 90, 240, 0.7), transparent 70%);
-  animation: float 20s infinite ease-in-out;
+  background: radial-gradient(circle, rgba(170, 0, 255, 0.7), transparent 70%);
+  animation-delay: 0s;
 }
 
 .glow-middle {
@@ -51,8 +49,9 @@
   left: -5%;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(0, 169, 157, 0.6), transparent 70%);
-  animation: float 25s infinite ease-in-out reverse;
+  background: radial-gradient(circle, rgba(183, 110, 121, 0.6), transparent 70%);
+  animation-delay: 5s;
+  opacity: 0.2;
 }
 
 .glow-bottom {
@@ -60,8 +59,8 @@
   right: 25%;
   width: 450px;
   height: 450px;
-  background: radial-gradient(circle, rgba(44, 182, 125, 0.5), transparent 70%);
-  animation: float 18s infinite ease-in-out;
+  background: radial-gradient(circle, rgba(170, 0, 255, 0.5), transparent 70%);
+  animation-delay: 2s;
 }
 
 /* Make sure the particles don't block interaction */

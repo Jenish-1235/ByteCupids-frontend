@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../../styles/components/Dashboard/Sidebar.css";
+import "../../styles/components/Home/Sidebar.css";
 
 const Sidebar: React.FC = () => {
   const navigate = useNavigate();

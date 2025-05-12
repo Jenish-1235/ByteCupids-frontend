@@ -1,7 +1,7 @@
 .modules {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3.2rem 2.5rem;
+  gap: var(--spacing-5) var(--spacing-4);
   margin-top: 60px;
   max-width: 900px;
   margin-left: 50px;
@@ -9,16 +9,15 @@
 }
 
 .tile {
-  background: #1e2a32;
-    background: linear-gradient(120deg, rgba(51, 82, 99, 0.3) 10%, #112d23 100%);
-
-  border-radius: 22px;
+  background: var(--color-surface-2);
+  background: linear-gradient(120deg, rgba(170,0,255,0.08) 10%, var(--color-surface) 100%);
+  border-radius: var(--border-radius-lg);
   padding: 2.7rem 1.5rem;
   text-align: center;
   font-size: 1.25rem;
-  color: #eaf6fb;
-  box-shadow: 0 4px 18px 0 rgba(26, 255, 140, 0.1);
-  border: 1.2px solid #193c2f;
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-medium);
+  border: var(--border-light);
   transition: transform 0.22s cubic-bezier(0.4, 2, 0.6, 1),
     box-shadow 0.22s cubic-bezier(0.4, 2, 0.6, 1), border-color 0.22s,
     background 0.22s;
@@ -35,7 +34,7 @@
 .moduleTitle {
   font-size: 1.18rem;
   font-weight: 600;
-  color: #7fffd4;
+  color: var(--color-neon-violet);
   margin-bottom: 0.1rem;
   letter-spacing: 0.4px;
 }
@@ -43,9 +42,9 @@
 .moduleInfo {
   font-size: 0.98rem;
   font-weight: 400;
-  color: #7fffd4;
-  background: rgba(127, 255, 212, 0.07);
-  border-radius: 6px;
+  color: var(--color-text-secondary);
+  background: rgba(170,0,255,0.07);
+  border-radius: var(--border-radius-sm);
   padding: 0.18em 0.7em;
   margin-top: 0.1em;
   letter-spacing: 0.3px;
@@ -55,9 +54,9 @@
 
 .tile:hover {
   transform: translateY(-3px) scale(1.04);
-  box-shadow: 0 12px 26px 0 rgba(127, 255, 212, 0.22);
-  border-color: #7fffd4;
-  background: linear-gradient(120deg, rgba(22, 35, 42, 0.3) 10%, #112d23 100%);
-  color: #7fffd4;
+  box-shadow: 0 12px 26px 0 rgba(170,0,255,0.22);
+  border-color: var(--color-neon-violet);
+  background: linear-gradient(120deg, rgba(170,0,255,0.13) 10%, var(--color-surface) 100%);
+  color: var(--color-neon-violet);
   filter: brightness(1.08) saturate(1.2);
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/components/Dashboard/DashboardHeader.css";
+import "../../styles/components/Home/DashboardHeader.css";
 
 interface HeaderProps {
   topicName?: string;
