@@ -1,0 +1,65 @@
+.topic-page-sidebar {
+  width: 260px;
+  background: var(--color-surface);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-medium);
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  min-height: 70vh;
+}
+
+.sidebar-back-btn {
+  background: none;
+  border: none;
+  color: var(--color-neon-violet);
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.sidebar-module-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 0.7rem;
+}
+
+.sidebar-topics-toggle {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  user-select: none;
+}
+
+.sidebar-topics-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  transition: max-height 0.3s;
+  overflow: hidden;
+  max-height: 400px;
+}
+
+.sidebar-topics-list.collapsed {
+  max-height: 0;
+}
+
+.sidebar-topic-item {
+  padding: 0.5rem 0.7rem;
+  border-radius: var(--border-radius-md);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  margin-bottom: 0.2rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sidebar-topic-item.active,
+.sidebar-topic-item:hover {
+  background: var(--color-neon-violet);
+  color: var(--color-white);
+}
