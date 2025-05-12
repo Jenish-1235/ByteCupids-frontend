@@ -1,12 +1,12 @@
 import React from "react";
 import "../../styles/components/Home/HomeContent.css";
 import Topics from "../Home/Topics";
-import Achievements from "./Achievements";
+import RightStatsPanel from "./RightStatsPanel";
 
 const HomeContent: React.FC = () => (
   <div className="dashboard-content-section">
     <Topics />
-    <Achievements />
+    <RightStatsPanel />
   </div>
 );
 

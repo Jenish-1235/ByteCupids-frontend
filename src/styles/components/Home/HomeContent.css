@@ -126,33 +126,146 @@
     background: var(--color-rose-gold);
 }
 
-/* --- Achievements Section --- */
-.achievements-section {
-    flex: 0 0 40%;
-    max-width: 40%;
-    padding: 2.2rem 0 2.2rem 2.5rem;
-    border-left: 1.5px solid var(--color-surface-2);
-    min-width: 220px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.right-stats-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Slightly reduced gap for tighter packing */
+  width: 100%;  /* Takes width from parent column (40%) */
+  height: 100%; /* Crucial for full height */
+  justify-content: stretch; /* Ensures children stretch */
 }
 
-.achievements-title {
-    font-size: var(--font-size-h2);
-    color: var(--color-white);
-    font-weight: var(--font-weight-bold);
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.5px;
+.stats-tile {
+  background: rgba(31,31,31,0.75); /* Slightly more opaque */
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 3px 18px 0 rgba(170,0,255,0.07); /* Softer shadow */
+  border: 1.5px solid var(--color-surface-2);
+  padding: 1.2rem 1.5rem; /* Adjusted padding */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center content vertically in tiles */
+  min-width: 0; /* For flexbox */
+  flex: 1 1 0;  /* Distribute space evenly */
+  text-align: center;
 }
 
-.achievements-subtitle {
-    color: var(--color-text-secondary);
-    font-size: 1rem;
-    margin-bottom: 1.2rem;
+/* Progress Tile Specifics */
+.stats-progress {
+  flex-grow: 0.8; /* Give slightly more space to the progress tile if needed */
+  min-height: 180px; /* Ensure a minimum height */
 }
 
-.badges-row {
-    display: flex;
-    gap: 1.1rem;
+.progress-gauge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.progress-text-container {
+  margin-top: 1rem; /* Adjusted from 0.8rem for better spacing with top semi-circle */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.5rem; 
+}
+
+.progress-value {
+  display: flex;
+  align-items: baseline;
+  font-size: 2.8rem; /* Increased from 2.2rem */
+  font-weight: var(--font-weight-bold);
+  color: var(--color-rose-gold);
+  letter-spacing: 0.5px;
+}
+
+.progress-separator {
+  font-size: 1.5rem; /* Slightly increased to match larger value text */
+  color: var(--color-text-secondary);
+  margin: 0 0.25rem;
+}
+
+.progress-label {
+  font-size: 1.1rem; /* Increased from 1rem */
+  color: var(--color-text-secondary);
+  margin-top: 0.2rem;
+}
+
+/* Styles for additional content in progress tile */
+.progress-additional-info {
+  margin-top: auto; /* Pushes this content towards the bottom if space allows */
+  padding-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  width: 100%;
+}
+
+.progress-additional-info p {
+  margin: 0 0 0.25rem 0;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.progress-additional-info span {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* Row for bottom two tiles */
+.stats-row {
+  display: flex;
+  gap: 1.2rem;
+  width: 100%;
+  flex: 1 1 0; /* Distribute space for the row */
+}
+
+/* Streak and Leaderboard Tiles */
+.stats-streak, .stats-leaderboard {
+  flex: 1 1 0; /* Each takes half of the row's space */
+  padding: 1rem; /* Slightly less padding for smaller tiles */
+}
+
+.streak-icon, .leaderboard-icon {
+  margin-bottom: 0.6rem; /* Increased margin */
+  color: var(--color-neon-violet); /* Default icon color */
+  display: flex; /* Helps in centering if needed */
+  align-items: center;
+  justify-content: center;
+}
+
+.streak-icon svg, .leaderboard-icon svg {
+  display: block; /* Removes extra space below SVG */
+}
+
+.streak-value {
+  font-size: 1.3rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-neon-violet);
+  margin-bottom: 0.1rem;
+}
+
+.streak-label, .leaderboard-coming-soon {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+}
+
+.leaderboard-label {
+  font-size: 1.05rem;
+  color: var(--color-white);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 0.2rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .right-stats-panel {
+    height: auto; /* Allow height to be determined by content on mobile */
+  }
+  .stats-row {
+    flex-direction: column; /* Stack bottom tiles on mobile */
+  }
+  .stats-progress {
+    min-height: 160px; /* Adjust min-height for mobile */
+  }
 }
