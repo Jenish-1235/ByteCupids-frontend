@@ -2,15 +2,161 @@
 
 /* Responsive header styling */
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: var(--topbar-height);
-    z-index: 100; /* Above everything, including particles */
-    transition: background var(--transition-normal), box-shadow var(--transition-normal);
-    background: rgba(10, 10, 10, 0.8); /* Start with a slight opacity */
-    backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--topbar-height);
+  z-index: 100;
+  transition: all var(--transition-normal);
+  background: transparent; /* Completely transparent - blend with page background */
+  width: 100%; /* Ensure full width */
 }
 
-/* Scrolled state - add glass effect that
+/* Scrolled state - only add subtle border when scrolled */
+.header.scrolled {
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: var(--border-light);
+}
+
+/* Container for header content - using full width with padding */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 var(--spacing-4);
+  width: 100%; /* Take full width */
+  max-width: 100%; /* Override any max-width from container class */
+}
+
+/* Remove the container class to avoid any max-width limitations */
+.header .container {
+  max-width: 100%;
+  padding: 0 var(--spacing-4);
+}
+
+/* Logo styling */
+.logo {
+  color: var(--color-neon-violet);
+  font-size: 24px;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  position: relative; /* For potential hover effects */
+  padding-left: var(--spacing-3); /* Add some padding from the edge */
+}
+
+/* Navigation menu */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4); /* Space between nav items */
+  padding-right: var(--spacing-3); /* Add some padding from the edge */
+}
+
+/* Navigation links */
+.nav-menu a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-fast);
+  font-size: var(--font-size-body);
+}
+
+.nav-menu a:hover {
+  color: var(--color-text-primary);
+}
+
+/* Button styling specific to header */
+.header .btn.primary {
+  height: 40px;
+  padding: 0 var(--spacing-3);
+  border-radius: var(--border-radius-md);
+  background: var(--color-rose-gold);
+  color: var(--color-bg);
+  font-weight: var(--font-weight-medium);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-left: var(--spacing-2); /* Add a bit more spacing before the button */
+}
+
+.header .btn.primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: var(--shadow-subtle);
+}
+
+/* Mobile menu icon */
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.menu-icon span {
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  transition: all 0.3s ease;
+}
+
+/* Mobile responsive styling */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: flex;
+  }
+  
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 240px;
+    height: 100vh;
+    background: var(--color-surface);
+    padding: var(--spacing-6) var(--spacing-3);
+    transform: translateX(100%);
+    transition: transform var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-4);
+    box-shadow: var(--shadow-medium);
+    z-index: 101;
+  }
+  
+  .nav-menu.open {
+    transform: translateX(0);
+  }
+  
+  /* Animate hamburger to X */
+  .menu-icon.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .menu-icon.open span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-icon.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+  
+  /* Full-width button in mobile menu */
+  .nav-menu .btn.primary {
+    width: 100%;
+    margin-left: 0;
+    margin-top: var(--spacing-2);
+  }
+  
+  /* Make mobile menu items take full width */
+  .nav-menu a {
+    width: 100%;
+    padding: var(--spacing-2) 0;
+  }
+}
