@@ -1,0 +1,78 @@
+.module-tab-bar-wrapper {
+  width: 100%;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.module-tab-bar {
+  display: flex;
+  gap: 2.5rem;
+  margin: 0 2.5rem 0.5rem 2.5rem;
+  border-bottom: 1.5px solid var(--color-surface-2);
+  position: relative;
+  z-index: 2;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin; /* Show a thin scrollbar for Firefox */
+  scrollbar-color: var(--color-neon-violet) transparent; /* Only thumb, no track */
+  width: 90%;
+  scroll-behavior: smooth;
+}
+
+.module-tab-bar::-webkit-scrollbar {
+  height: 6px;
+  background: transparent; /* Remove background */
+  border-radius: 4px;
+}
+
+.module-tab-bar::-webkit-scrollbar-thumb {
+  background: var(--color-neon-violet);
+  border-radius: 4px;
+}
+
+.module-tab {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: 1.08rem;
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  padding: 0 0 1.1rem 0;
+  border-bottom: 2.5px solid transparent;
+  position: relative;
+  transition: color 0.22s, border-color 0.22s;
+  outline: none;
+  white-space: nowrap;
+}
+
+.module-tab.active,
+.module-tab:hover {
+  color: var(--color-neon-violet);
+}
+
+.module-tab-underline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-neon-violet), var(--color-rose-gold));
+  animation: tab-underline-in 0.35s cubic-bezier(0.4, 2, 0.6, 1);
+}
+
+@keyframes tab-underline-in {
+  from {
+    width: 0;
+    opacity: 0.2;
+    left: 50%;
+    right: 50%;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+    left: 0;
+    right: 0;
+  }
+}
