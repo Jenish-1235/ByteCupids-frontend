@@ -119,7 +119,6 @@ body {
 }
 
 
-
 @media (max-width: 480px) {
   .section {
     padding: var(--spacing-4) 0;

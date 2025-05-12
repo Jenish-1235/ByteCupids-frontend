@@ -31,7 +31,7 @@ export default function LandingPage() {
     }, []);
 
     return (
-        <div className="landing-page">
+        <div className="landing-page cursor-bg">
             {/* Global glow effects */}
             <div className="global-glow glow-top"></div>
             <div className="global-glow glow-middle"></div>

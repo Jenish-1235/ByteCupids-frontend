@@ -5,3 +5,10 @@
 
 /* Any additional overrides or page-specific styles can go here */
 /* This file primarily serves to import and organize our CSS modules */
+
+body,
+.landing-page,
+.section,
+* {
+    cursor: none !important;
+}

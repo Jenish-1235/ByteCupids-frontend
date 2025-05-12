@@ -133,11 +133,6 @@
 
 /* Hover Effects */
 /* These will work as .hero-right is the parent hovered, and .hero-bot / .bot-arm are descendants */
-.hero-right:hover .hero-bot {
-    animation-duration: 3s;
-    /* Faster float on hover */
-    filter: drop-shadow(0 0 18px rgba(170, 0, 255, 0.5));
-}
 
 .hero-right:hover .bot-arm {
     animation-duration: 2s;
