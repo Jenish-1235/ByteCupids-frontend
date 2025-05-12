@@ -6,7 +6,7 @@ import "../styles/pages/Home.css";
 
 const Home: React.FC = () => {
   return (
-    <div className="container cursor-bg">
+    <div className="home-page cursor-bg">
       {/* Global glow effects at different positions */}
       <div className="global-glow glow-top"></div>
       <div className="global-glow glow-middle"></div>

@@ -1,16 +1,3 @@
-/* Dashboard main container styles */
-.container {
-  min-height: 100vh;
-  width: 100vw;
-  background: var(--color-bg);
-  color: var(--color-text-primary);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: stretch;
-  font-family: var(--font-family);
-}
-
 .main {
   flex: 1;
   padding: 2rem 3rem;
@@ -22,6 +9,18 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.home-page {
+  min-height: 100vh;
+  width: 100vw;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  font-family: var(--font-family);
 }
 
 /* Global glow effects (reuse from LandingPage.css/OnboardingPage.css) */
