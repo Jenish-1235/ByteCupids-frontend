@@ -12,9 +12,12 @@ const Home: React.FC = () => {
       <div className="global-glow glow-middle"></div>
       <div className="global-glow glow-bottom"></div>
       
+      <div className="branding-cemented">
+        <span>ByteCupids</span>
+      </div>
       <Sidebar />
       <main className="main">
-        <Header />
+        <Header userName="Jenish-1235"/>
         <Modules />
       </main>
     </div>

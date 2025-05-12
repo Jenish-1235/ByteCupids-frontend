@@ -96,3 +96,33 @@
     padding: 1rem;
   }
 }
+
+.branding-cemented {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  height: 200px;
+  width: 48px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 10px;
+  justify-content: center;
+  z-index: 100;
+  pointer-events: none;
+  background: var(--color-bg);
+  border-radius: 10px 10px 10px 10px;
+  border: 1px solid var(--color-surface-2);
+  box-shadow: 0px 0px 10px var(--color-surface-2);
+}
+
+.branding-cemented span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-family), sans-serif;
+  font-size: var(--font-size-h2);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 2px;
+  opacity: 0.7;
+  user-select: none;
+}
