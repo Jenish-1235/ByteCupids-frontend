@@ -9,11 +9,8 @@ function isBackground(el: Element | null): boolean {
 }
 
 function isTouchDevice() {
-  return (
-    "ontouchstart" in window ||
-    navigator.maxTouchPoints > 0 ||
-    // @ts-ignore
-    navigator.msMaxTouchPoints > 0
+  return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
   );
 }
 
@@ -68,7 +65,6 @@ const CustomCursor: React.FC = () => {
         pointerEvents: "none",
         zIndex: 2147483647,
         transform: "translate(-50%, -50%)",
-        mixBlendMode: "screen",
       }}
     >
       <div
