@@ -109,7 +109,7 @@
 /* Decorative line element */
 .decorative-line {
     position: absolute;
-    bottom: 25%;
+    bottom: 5%;
     left: 60px;
     height: 2px;
     width: 150px;
@@ -120,6 +120,7 @@
     animation: expandWidth 1.5s ease-out 0.8s forwards;
     transform-origin: left;
     transform: scaleX(0);
+   
 }
 
 /* Add a decorative number to indicate step */
@@ -992,14 +993,38 @@ html, body {
 /* ByteCupids tagline in the left div to replace button */
 .bytecupids-tagline {
     margin-top: 1rem;
-    padding: 16px 20px;
+    padding: 16px 20px 24px 20px; /* Extra bottom padding for underline */
     background: rgba(170, 0, 255, 0.05); /* var(--color-neon-violet) with low alpha */
     border-left: 3px solid var(--color-neon-violet); /* var(--color-neon-violet) with alpha */
     border-radius: 0 8px 8px 0;
     max-width: 90%;
+    position: relative;
     animation: fadeInSlideUp 1s ease-out 0.7s forwards;
     opacity: 0;
     transform: translateY(30px);
+    
+}
+
+.bytecupids-tagline hr,
+.bytecupids-tagline .bytecupids-underline {
+    display: none !important;
+}
+
+.bytecupids-tagline::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 8px;
+    height: 2px;
+    width: 96%;
+    margin: 0 auto;
+    background: linear-gradient(90deg, var(--color-neon-violet), transparent 80%);
+    border-radius: 2px;
+    z-index: 2;
+    margin-bottom: -3rem;
+    margin-left: -0.1rem;
 }
 
 .bytecupids-highlight {
@@ -1047,4 +1072,55 @@ html, body {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+/* Responsive styles for login left panel heading and paragraph */
+.login-left-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 80px 60px;
+  background: transparent;
+  min-height: 100vh;
+}
+.login-heading {
+  font-size: 3.75rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 2rem;
+  line-height: 1.1;
+  text-align: left;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -1px;
+}
+.login-paragraph {
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  font-weight: 400;
+  max-width: 85%;
+}
+@media (max-width: 1535px) {
+  .login-heading { font-size: 3rem; }
+}
+@media (max-width: 1199px) {
+  .login-heading { font-size: 2.25rem; }
+}
+@media (max-width: 1023px) {
+  .login-heading { font-size: 1.875rem; }
+}
+@media (max-width: 767px) {
+  .login-heading { font-size: 1.5rem; }
+  .login-paragraph { font-size: 1rem; }
+  .login-left-panel { padding: 40px 20px; align-items: center; }
+}
+@media (max-width: 639px) {
+  .login-heading { font-size: 1.25rem; }
+  .login-paragraph { font-size: 0.875rem; }
+}
+@media (max-width: 480px) {
+  .login-paragraph { font-size: 0.75rem; }
+  .login-left-panel { padding: 20px 8px; }
 }

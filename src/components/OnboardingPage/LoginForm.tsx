@@ -68,7 +68,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
         </div>
 
         {/* Decorative line */}
-        <div className="decorative-line"></div>
+        {/* <div className="decorative-line"></div> */}
       </div>
 
       <div className="onboarding-right">
