@@ -1,0 +1,198 @@
+/* Tooltip for ActionsPanel problem tiles */
+.actions-panel-tooltip {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%) translateY(8px);
+  min-width: 220px;
+  max-width: 320px;
+  background: linear-gradient(
+    135deg,
+    var(--color-surface-2) 80%,
+    var(--color-neon-violet) 100%
+  );
+  color: var(--color-text-primary);
+  border-radius: var(--border-radius-md, 10px);
+  box-shadow: 0 4px 24px rgba(170, 0, 255, 0.13);
+  padding: 1rem 1.1rem 0.9rem 1.1rem;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.18s, transform 0.18s;
+  white-space: pre-line;
+  overflow: visible;
+  text-overflow: ellipsis;
+  user-select: none;
+  border: 1.5px solid var(--color-neon-violet);
+}
+.actions-panel-tooltip.visible {
+  opacity: 1;
+  pointer-events: auto;
+  width: 90%;
+  transform: translateX(-50%) translateY(16px) scale(1.02);
+}
+.actions-panel-tooltip__arrow {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg); /* Flip the arrow upside down */
+  width: 22px;
+  height: 12px;
+  overflow: visible;
+}
+.actions-panel-tooltip__arrow::after {
+  content: "";
+  display: block;
+  margin: 0 auto;
+  width: 18px;
+  height: 12px;
+  background: linear-gradient(
+    135deg,
+    var(--color-surface-2) 80%,
+    var(--color-neon-violet) 100%
+  );
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 8px rgba(170, 0, 255, 0.08);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+.actions-panel-tooltip__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 0.3em;
+}
+.actions-panel-tooltip__title {
+  color: var(--color-neon-violet);
+  font-size: 1.05em;
+  font-weight: 700;
+}
+.actions-panel-tooltip__close {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: 1.2em;
+  cursor: pointer;
+  margin-left: 0.7em;
+  border-radius: 50%;
+  width: 1.7em;
+  height: 1.7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+.actions-panel-tooltip__close:hover {
+  background: var(--color-surface);
+  color: var(--color-error);
+}
+.actions-panel-tooltip__content {
+  max-height: 5.2em;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  line-clamp: 4;
+  text-overflow: ellipsis;
+  margin-bottom: 0.7em;
+}
+.actions-panel-tooltip__footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 0.2em;
+}
+.actions-panel-tooltip__visit {
+  background: var(--color-neon-violet);
+  color: var(--color-white);
+  border: none;
+  border-radius: 6px;
+  padding: 0.38em 1.2em;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(170, 0, 255, 0.1);
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+}
+.actions-panel-tooltip__visit:hover {
+  background: var(--color-rose-gold);
+  color: var(--color-white);
+}
+@media (max-width: 600px) {
+  .actions-panel-tooltip {
+    min-width: 160px;
+    max-width: 90vw;
+    font-size: 0.93rem;
+    padding: 0.7rem 0.7rem 0.7rem 0.7rem;
+  }
+}
+.actions-panel-discussion-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 420px;
+  margin: 1rem auto 1.5rem auto;
+  background: linear-gradient(90deg, #a000ff 0%, #6e00c2 100%);
+  border: none;
+  outline: none;
+  border-radius: 999px;
+  box-shadow: 0 4px 24px rgba(170, 0, 255, 0.13),
+    0 2px 8px rgba(80, 0, 120, 0.08);
+  cursor: pointer;
+  transition: transform 0.18s cubic-bezier(0.4, 2, 0.6, 1), box-shadow 0.18s,
+    background 0.18s;
+  padding: 0.7em 0.7em 0.7em 1.5em;
+  position: relative;
+  z-index: 2;
+}
+.actions-panel-discussion-pill:focus-visible,
+.actions-panel-discussion-pill:hover {
+  transform: translateY(-3px) scale(1.035);
+  box-shadow: 0 8px 32px 0 rgba(170, 0, 255, 0.18),
+    0 2px 16px rgba(80, 0, 120, 0.13);
+  outline: 2px solid var(--color-neon-violet);
+}
+.discussion-pill-bg {
+  background: none;
+  border-radius: 999px 0 0 999px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.discussion-pill-text {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.13em;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.discussion-pill-arrow {
+  background: #fff;
+  border-radius: 50%;
+  width: 2.6em;
+  height: 2.6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -0.7em;
+  margin-right: 0.2em;
+  box-shadow: 0 2px 8px rgba(170, 0, 255, 0.1);
+  transition: background 0.18s;
+}
+.actions-panel-discussion-pill:hover .discussion-pill-arrow,
+.actions-panel-discussion-pill:focus-visible .discussion-pill-arrow {
+  background: #f3e6ff;
+}
+.arrow-circle {
+  color: #a000ff;
+  font-size: 1.5em;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.2rem;
+}
