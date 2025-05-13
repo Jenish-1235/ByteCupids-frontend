@@ -2,6 +2,7 @@ import React from "react";
 import TopicPageSidebar from "../components/TopicPage/TopicPageSidebar";
 import TopBarMobile from "../components/Home/TopBarMobile";
 import "../styles/pages/TopicPage.css";
+import TopicPageHeader from "../components/TopicPage/TopicPageHeader";
 
 // Dummy data for demonstration
 const topics = ["CAP Theorem", "Quoram"];
@@ -27,11 +28,7 @@ const TopicPage: React.FC = () => {
         onSubtopicSelect={(currentSubtopic) => console.log(`Selected topic: ${currentSubtopic}`)}
       />
       <main className="main">
-        {/* Add TopicPageHeader, ModuleTabBar (if needed), TopicPageContent, TopicPageRightbar here */}
-        {/* Example placeholders: */}
-        {/* <TopicPageHeader ... /> */}
-        {/* <TopicPageContent ... /> */}
-        {/* <TopicPageRightbar ... /> */}
+        <TopicPageHeader moduleName="System Design" userName="Jenish-1235" selectedTopic="CAP Theorem" />
       </main>
     </div>
   );

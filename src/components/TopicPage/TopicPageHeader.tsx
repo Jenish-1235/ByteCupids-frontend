@@ -1,59 +1,24 @@
 import React from "react";
+import "../../styles/components/TopicPage/TopicPageHeader.css";
 
 interface TopicPageHeaderProps {
-  topicName: string;
-  subtopicName: string;
-  onPrev: () => void;
-  onNext: () => void;
-  prevDisabled: boolean;
-  nextDisabled: boolean;
+  moduleName: string;
+  userName: string;
+  selectedTopic: string;
 }
 
 const TopicPageHeader: React.FC<TopicPageHeaderProps> = ({
-  topicName,
-  subtopicName,
-  onPrev,
-  onNext,
-  prevDisabled,
-  nextDisabled,
+  moduleName,
+  userName,
+  selectedTopic
 }) => (
-  <header className="header">
-    <div className="greeting">
-      <span className="header-topic-name">{topicName}</span>
-      <span>→</span>
-      <span className="subtopic">{subtopicName}</span>
+  <header className="topic-header">
+    <div className="topic-header__bar">
+      <span className="topic-header__module">{moduleName}</span>
+      <span className="topic-header__user">{userName}</span>
     </div>
-    <div className="profile topic-header-nav">
-      <span
-        className="header-nav-btn"
-        aria-disabled={prevDisabled}
-        onClick={prevDisabled ? undefined : onPrev}
-      >
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M15 18l-6-6 6-6"
-            stroke="#7fffd4"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </span>
-      <span
-        className="header-nav-btn"
-        aria-disabled={nextDisabled}
-        onClick={nextDisabled ? undefined : onNext}
-      >
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M9 6l6 6-6 6"
-            stroke="#7fffd4"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </span>
+    <div className="topic-header__topic-bar">
+      <span className="topic-header__topic">{selectedTopic}</span>
     </div>
   </header>
 );
