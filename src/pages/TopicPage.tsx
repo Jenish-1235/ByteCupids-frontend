@@ -6,8 +6,8 @@ import TopicPageHeader from "../components/TopicPage/TopicPageHeader";
 import TopicContent from "../components/TopicPage/TopicContent";
 
 // Dummy data for demonstration
-const topics = ["CAP Theorem", "Quoram"];
-const moduleName = "System Design";
+const topics = ["CRUD Operations", "Index Design", "Normalization", "Joins", "Transactions"];
+const moduleName = "Relational Database Management System";
 
 const TopicPage: React.FC = () => {
   return (
@@ -24,12 +24,12 @@ const TopicPage: React.FC = () => {
       <TopBarMobile />
       <TopicPageSidebar
         topic={moduleName}
-        currentSubtopic={topics[0]}
+        currentSubtopic={topics[1]}
         subtopics={topics}
         onSubtopicSelect={(currentSubtopic) => console.log(`Selected topic: ${currentSubtopic}`)}
       />
       <main className="main">
-        <TopicPageHeader moduleName="System Design" userName="Jenish-1235" selectedTopic="CAP Theorem" />
+        <TopicPageHeader moduleName="Indexes and Design" userName="Jenish-1235" selectedTopic="Index Design in RDBMS" />
         <TopicContent/>
       </main>
     </div>

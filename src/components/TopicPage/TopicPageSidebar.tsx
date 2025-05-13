@@ -19,27 +19,33 @@ const TopicPageSidebar: React.FC<TopicPageSidebarProps> = ({
 
   return (
     <aside className="topic-page-sidebar">
-      <button className="sidebar-back-btn" onClick={() => navigate(-1)} aria-label="Back to Home">
-        <span className="sidebar__icon">
-          <svg width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M3 9.5L10 4L17 9.5"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M5 17V10.5H15V17"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </span>
-      </button>
-      <div className="sidebar-topic-title">{topic}</div>
+      <div className="sidebar-topic-row">
+        <button
+          className="sidebar-back-btn-inline"
+          onClick={() => navigate("/home")}
+          aria-label="Back to Home"
+        >
+          <span className="sidebar__icon">
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M3 9.5L10 4L17 9.5"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M5 17V10.5H15V17"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+        </button>
+        <div className="sidebar-topic-title" title={topic}>{topic}</div>
+      </div>
       <ul className="sidebar-subtopics-list">
         {subtopics.map((sub) => (
           <li
@@ -49,6 +55,7 @@ const TopicPageSidebar: React.FC<TopicPageSidebarProps> = ({
               (sub === currentSubtopic ? " active" : "")
             }
             onClick={() => onSubtopicSelect(sub)}
+            title={sub} // Tooltip for long names
           >
             {sub}
           </li>

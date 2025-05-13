@@ -34,6 +34,7 @@
     white-space: nowrap;
     line-height: 1.18;
     font-family: var(--font-family), sans-serif;
+    padding: 0.45em 0 0 0;
 }
 
 .topic-header__user {
@@ -71,6 +72,28 @@
     font-family: var(--font-family), sans-serif;
 }
 
+.topic-page-mobile-back {
+  display: none;
+  background: var(--color-surface-2);
+  color: var(--color-neon-violet);
+  border: none;
+  border-radius: var(--border-radius-lg);
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  margin: 0.7rem auto 0.5rem auto;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+
+.topic-page-mobile-back:hover,
+.topic-page-mobile-back:focus {
+  background: var(--color-neon-violet);
+  color: var(--color-white);
+}
+
 /* Tablet: Reduce padding and font sizes, and further restrict module name width */
 @media (max-width: 900px) {
     .topic-header {
@@ -102,6 +125,11 @@
     .topic-header__topic {
         font-size: 1.05rem;
         max-width: 65vw;
+    }
+
+    .topic-page-mobile-back {
+        display: flex;
+        justify-content: flex-start;
     }
 }
 
