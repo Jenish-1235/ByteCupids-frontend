@@ -1,6 +1,4 @@
 import React from "react";
-import "../../styles/components/TopicPage/TopicContent.css";
-
 const actions = [
   "Learn with discussion",
   "problem 1",
@@ -8,7 +6,7 @@ const actions = [
   "problem 3",
 ];
 
-const TopicPageRightbar: React.FC = () => (
+const ActionsPanel: React.FC = () => (
   <div className="topic-page__actions-panel">
     {actions.map((label, i) => (
       <div key={i} className="topic-page__action-tile">
@@ -18,4 +16,4 @@ const TopicPageRightbar: React.FC = () => (
   </div>
 );
 
-export default TopicPageRightbar;
+export default ActionsPanel;

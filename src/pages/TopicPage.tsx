@@ -3,6 +3,7 @@ import TopicPageSidebar from "../components/TopicPage/TopicPageSidebar";
 import TopBarMobile from "../components/Home/TopBarMobile";
 import "../styles/pages/TopicPage.css";
 import TopicPageHeader from "../components/TopicPage/TopicPageHeader";
+import TopicContent from "../components/TopicPage/TopicContent";
 
 // Dummy data for demonstration
 const topics = ["CAP Theorem", "Quoram"];
@@ -29,6 +30,7 @@ const TopicPage: React.FC = () => {
       />
       <main className="main">
         <TopicPageHeader moduleName="System Design" userName="Jenish-1235" selectedTopic="CAP Theorem" />
+        <TopicContent/>
       </main>
     </div>
   );

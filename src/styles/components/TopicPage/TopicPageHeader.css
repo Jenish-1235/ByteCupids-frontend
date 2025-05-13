@@ -76,7 +76,7 @@
     .topic-header {
         max-width: 100%;
         padding: 0;
-        margin-bottom: 1.2rem;
+        margin-bottom: 0rem;
         min-height: 3.2rem;
     }
 
@@ -108,14 +108,13 @@
 /* Mobile: Stack, shrink, and tighten */
 @media (max-width: 600px) {
     .topic-header {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0;
         border-radius: var(--border-radius-md);
-        min-height: 2.2rem;
     }
 
     .topic-header__bar {
         align-items: flex-start;
-        padding: 0.7rem 0.5rem 0rem 0.5rem;
+        padding: 0;
         gap: 0.3rem;
         min-height: 1.5rem;
     }
