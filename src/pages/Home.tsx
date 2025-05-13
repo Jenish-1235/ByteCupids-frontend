@@ -1,7 +1,6 @@
 import React from "react";
 import Sidebar from "../components/Home/Sidebar";
 import Header from "../components/Home/Header";
-import Modules from "../components/Home/Modules";
 import "../styles/pages/Home.css";
 import ModuleTabBar from "../components/Home/ModuleTabBar";
 import HomeContent from "../components/Home/HomeContent";

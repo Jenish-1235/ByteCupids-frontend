@@ -1,0 +1,223 @@
+html,
+body {
+  overflow: hidden !important;
+  height: 100%;
+}
+.topic-page-container {
+  min-height: 100vh;
+  width: 100vw;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  overflow : hidden;
+}
+
+.topic-page {
+  min-height: 100vh;
+  width: 100vw;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  font-family: var(--font-family);
+}
+
+.topic-page__content-outer {
+  background: var(--color-surface);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-medium);
+  border: 1.5px solid var(--color-surface-2);
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  min-height: 70vh;
+  max-height: 77.6vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.topic-page-main {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2.5rem 0;
+  box-sizing: border-box;
+}
+
+.topic-page-inner {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  min-height: 70vh;
+  align-items: flex-start;
+}
+
+.global-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  z-index: 0;
+  pointer-events: none;
+  animation: float 20s infinite ease-in-out;
+}
+
+.glow-top {
+  top: -10%;
+  right: 15%; 
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(170, 0, 255, 0.7), transparent 70%);
+  animation-delay: 0s;
+}
+
+.glow-middle {
+  top: 40%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(183, 110, 121, 0.6), transparent 70%);
+  animation-delay: 5s;
+  opacity: 0.2;
+}
+
+.glow-bottom {
+  bottom: -10%;
+  right: 25%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(170, 0, 255, 0.5), transparent 70%);
+  animation-delay: 2s;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(20px, -20px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.branding-cemented {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  height: 200px;
+  width: 48px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 10px;
+  justify-content: center;
+  z-index: 100;
+  pointer-events: none;
+  background: var(--color-bg);
+  border-radius: 10px 10px 10px 10px;
+  border: 1px solid var(--color-surface-2);
+  box-shadow: 0px 0px 10px var(--color-surface-2);
+}
+
+.branding-cemented span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-family), sans-serif;
+  font-size: var(--font-size-h2);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 2px;
+  opacity: 0.7;
+  user-select: none;
+}
+
+@media (max-width: 1200px) {
+  .topic-page-inner {
+    max-width: 100vw;
+    padding: 0 1.2rem;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .branding-cemented {
+    display: none !important;
+  }
+  .topic-page-main {
+    padding: 1.2rem 0 0 0;
+  }
+  .topic-page-inner {
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 0 0.5rem;
+    min-height: unset;
+  }
+  .topic-page {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 1.5rem 1.5rem;
+  }
+  .global-glow {
+    opacity: 0.1;
+  }
+}
+
+@media (max-width: 600px) {
+  .topic-page {
+    flex-direction: column;
+    padding: 0;
+  }
+  .main {
+    padding: 0.5rem 0.2rem;
+  }
+  .global-glow {
+    width: 220px !important;
+    height: 220px !important;
+    opacity: 0.07;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding: 1rem;
+  }
+}
+
+/* Main content area */
+.main {
+  flex: 1;
+  padding: 2rem 3rem;
+  background: transparent;
+  min-width: 0;
+  color: var(--color-text-primary);
+  z-index: 2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: auto;
+}
+
+/* Make sure the particles don't block interaction */
+.container .global-particles-container {
+  pointer-events: none;
+}
