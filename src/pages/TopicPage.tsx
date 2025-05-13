@@ -21,10 +21,10 @@ const TopicPage: React.FC = () => {
       </div>
       <TopBarMobile />
       <TopicPageSidebar
-        moduleName={moduleName}
-        currentTopic={topics[0]}
-        topics={topics}
-        onTopicSelect={(topic) => console.log(`Selected topic: ${topic}`)}
+        topic={moduleName}
+        currentSubtopic={topics[0]}
+        subtopics={topics}
+        onSubtopicSelect={(currentSubtopic) => console.log(`Selected topic: ${currentSubtopic}`)}
       />
       <main className="main">
         {/* Add TopicPageHeader, ModuleTabBar (if needed), TopicPageContent, TopicPageRightbar here */}

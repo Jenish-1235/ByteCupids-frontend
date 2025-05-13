@@ -1,46 +1,56 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/components/TopicPage/TopicPageSidebar.css";
 
 interface TopicPageSidebarProps {
-  moduleName: string;
-  topics: string[];
-  currentTopic: string;
-  onTopicSelect: (topic: string) => void;
+  topic: string;
+  subtopics: string[];
+  currentSubtopic: string;
+  onSubtopicSelect: (subtopic: string) => void;
 }
 
 const TopicPageSidebar: React.FC<TopicPageSidebarProps> = ({
-  moduleName,
-  topics,
-  currentTopic,
-  onTopicSelect,
+  topic,
+  subtopics,
+  currentSubtopic,
+  onSubtopicSelect,
 }) => {
   const navigate = useNavigate();
-  const [collapsed, setCollapsed] = useState(true);
 
   return (
     <aside className="topic-page-sidebar">
-      <button className="sidebar-back-btn" onClick={() => navigate(-1)}>
-        ← Back
+      <button className="sidebar-back-btn" onClick={() => navigate(-1)} aria-label="Back to Home">
+        <span className="sidebar__icon">
+          <svg width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M3 9.5L10 4L17 9.5"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M5 17V10.5H15V17"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
       </button>
-      <div className="sidebar-module-name">{moduleName}</div>
-      <div
-        className="sidebar-topics-toggle"
-        onClick={() => setCollapsed((c) => !c)}
-      >
-        Topics {collapsed ? "▼" : "▲"}
-      </div>
-      <ul className={`sidebar-topics-list${collapsed ? " collapsed" : ""}`}>
-        {topics.map((topic) => (
+      <div className="sidebar-topic-title">{topic}</div>
+      <ul className="sidebar-subtopics-list">
+        {subtopics.map((sub) => (
           <li
-            key={topic}
+            key={sub}
             className={
-              "sidebar-topic-item" +
-              (topic === currentTopic ? " active" : "")
+              "sidebar-subtopic-item" +
+              (sub === currentSubtopic ? " active" : "")
             }
-            onClick={() => onTopicSelect(topic)}
+            onClick={() => onSubtopicSelect(sub)}
           >
-            {topic}
+            {sub}
           </li>
         ))}
       </ul>
