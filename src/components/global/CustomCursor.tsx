@@ -63,8 +63,8 @@ const CustomCursor: React.FC = () => {
         position: "fixed",
         left: pos.x,
         top: pos.y,
-        width: 18,
-        height: 18,
+        width: 10,
+        height: 10,
         pointerEvents: "none",
         zIndex: 2147483647,
         transform: "translate(-50%, -50%)",
@@ -73,13 +73,13 @@ const CustomCursor: React.FC = () => {
     >
       <div
         style={{
-          width: 18,
-          height: 18,
+          width: 10,
+          height: 10,
           borderRadius: "50%",
           background: hovering ? "var(--color-neon-violet)" : "#fff",
           boxShadow: hovering
-            ? "0 0 80px 32px var(--color-neon-violet), 0 0 0 4px var(--color-neon-violet)"
-            : "0 0 80px 32px #fff8",
+            ? "0 0 60px 12px var(--color-neon-violet), 0 0 0 4px var(--color-neon-violet)"
+            : "0 0 60px 12px #fff8",
           transition: "background 0.2s, box-shadow 0.2s",
         }}
       />
