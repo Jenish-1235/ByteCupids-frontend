@@ -19,7 +19,6 @@ const modules = [
   "C",
   "HTML",
   "CSS",
-  
 ];
 const Home: React.FC = () => {
   const [activeModule, setActiveModule] = React.useState(modules[0]);
@@ -29,20 +28,25 @@ const Home: React.FC = () => {
       <div className="global-glow glow-top"></div>
       <div className="global-glow glow-middle"></div>
       <div className="global-glow glow-bottom"></div>
-      
+
       <div className="branding-cemented">
         <span>ByteCupids</span>
       </div>
-      <TopBarMobile/>
-      <Sidebar />
+      <TopBarMobile
+        userName="Jenish-1235"
+        onLogout={() => alert("Logged out!")}
+        children={<Sidebar />}
+      />
+
+      <div className="home-page-sidebar-desktop">{<Sidebar />}</div>
       <main className="main">
-        <Header userName="Jenish-1235"/>
+        <Header userName="Jenish-1235" />
         <ModuleTabBar
-        modules={modules}
-        activeModule={activeModule}
-        onModuleChange={setActiveModule}
+          modules={modules}
+          activeModule={activeModule}
+          onModuleChange={setActiveModule}
         />
-        <HomeContent/>
+        <HomeContent />
       </main>
     </div>
   );

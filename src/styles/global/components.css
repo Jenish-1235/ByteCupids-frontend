@@ -35,7 +35,7 @@
 }
 
 .btn-secondary:hover {
-  background: rgba(170,0,255,0.1);
+  background: rgba(170, 0, 255, 0.1);
   transform: translateY(-2px);
 }
 
@@ -77,11 +77,12 @@
   width: 100%;
   padding: var(--spacing-2) var(--spacing-2);
   font-size: var(--font-size-body);
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--border-radius-sm);
   background: var(--color-surface);
   color: var(--color-text-primary);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .input:focus {
@@ -114,7 +115,8 @@
   border: var(--border-light);
   padding: var(--spacing-3);
   box-shadow: var(--shadow-subtle);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition: transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .panel:hover {
@@ -164,16 +166,16 @@
 
 .sidebar-item:hover {
   color: var(--color-text-primary);
-  background: rgba(255,255,255,0.03);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .sidebar-item.active {
   color: var(--color-neon-violet);
-  background: rgba(170,0,255,0.08);
+  background: rgba(170, 0, 255, 0.08);
 }
 
 .sidebar-item.active::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -212,15 +214,10 @@
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
-  .sidebar {
-    transform: translateX(-100%);
-    transition: transform var(--transition-normal);
-  }
-  
   .sidebar.open {
     transform: translateX(0);
   }
-  
+
   .content-area {
     margin-left: 0;
   }

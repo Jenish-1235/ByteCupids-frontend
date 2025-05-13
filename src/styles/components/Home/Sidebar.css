@@ -19,7 +19,7 @@
 }
 
 .sidebar__logo {
-  font-family: 'Fredoka One', var(--font-family), sans-serif;
+  font-family: "Fredoka One", var(--font-family), sans-serif;
   font-size: 1.3rem;
   color: var(--color-white);
   margin-bottom: 48px;
@@ -100,12 +100,5 @@
 
 .sidebar__logout-btn:hover {
   color: var(--color-neon-violet);
-}
-
-/* Responsive: Collapse sidebar to top bar or hide on mobile */
-@media (max-width: 900px) {
-  .sidebar {
-    display: none !important;
-  }
 }
 

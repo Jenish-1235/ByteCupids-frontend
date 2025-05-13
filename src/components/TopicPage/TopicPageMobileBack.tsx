@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const TopicPageMobileBack: React.FC = () => {
   const navigate = useNavigate();
+  
   return (
     <button
       className="topic-page-mobile-back"
@@ -31,3 +32,5 @@ const TopicPageMobileBack: React.FC = () => {
     </button>
   );
 };
+
+export default TopicPageMobileBack;

@@ -114,8 +114,7 @@
     }
 
     .topic-header__user {
-        font-size: 1rem;
-        padding: 0.18em 0.7em;
+       display: none;
     }
 
     .topic-header__topic-bar {

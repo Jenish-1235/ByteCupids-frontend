@@ -17,12 +17,156 @@
     z-index: 20;
     border-bottom: 1.5px solid var(--color-surface-2);
   }
+  .topbar-mobile__hamburger {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    padding: 0;
+  }
+  .hamburger-bar {
+    width: 24px;
+    height: 3px;
+    background: var(--color-text-primary);
+    border-radius: 2px;
+    margin: 2.5px 0;
+    transition: all 0.2s;
+  }
   .topbar-mobile__branding {
+    flex: 1;
+    text-align: center;
     font-family: var(--font-family), sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: var(--color-white);
     font-weight: 700;
     letter-spacing: 1px;
+  }
+  .topbar-mobile__profile-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    transition: background 0.2s;
+  }
+  .topbar-mobile__profile-btn:focus,
+  .topbar-mobile__profile-btn:hover {
+    background: rgba(170, 0, 255, 0.08);
+  }
+  .profile-icon {
+    color: var(--color-text-secondary);
+  }
+  .topbar-mobile__profile-dropdown {
+    position: absolute;
+    top: 56px;
+    right: 1rem;
+    background: var(--color-surface-2);
+    color: var(--color-text-primary);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13);
+    min-width: 160px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    animation: fadeInDropdown 0.18s ease;
+  }
+  @keyframes fadeInDropdown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .profile-dropdown__username {
+    padding: 1rem 1.2rem 0.5rem 1.2rem;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--color-neon-violet);
+  }
+  .profile-dropdown__logout {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.7rem 1.2rem 1rem 1.2rem;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+    transition: color 0.2s;
+  }
+  .profile-dropdown__logout:hover {
+    color: var(--color-rose-gold);
+  }
+  .topbar-mobile__sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.45);
+    z-index: 99;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    animation: fadeInOverlay 0.18s;
+  }
+  @keyframes fadeInOverlay {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .topbar-mobile__sidebar-drawer {
+    width: 80vw;
+    max-width: 320px;
+    height: 100vh;
+    background: var(--color-bg);
+    box-shadow: 2px 0 16px rgba(0, 0, 0, 0.13);
+    position: relative;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    animation: slideInDrawer 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0.5rem 0.5rem 0 0.5rem;
+    margin-right: 0;
+  }
+  @keyframes slideInDrawer {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  .topbar-mobile__sidebar-close {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: 2.2rem;
+    font-weight: 700;
+    align-self: flex-end;
+    margin: 1rem 1.2rem 0.5rem 0;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .topbar-mobile__sidebar-close:hover {
+    color: var(--color-neon-violet);
   }
   .topbar-mobile__logout-btn {
     background: none;
@@ -37,5 +181,16 @@
   }
   .topbar-mobile__logout-btn:hover {
     color: var(--color-neon-violet);
+  }
+  .topbar-mobile__sidebar-drawer {
+    width: 21vw;
+    max-width: 10vw;
+  }
+}
+
+@media (max-width: 768px) {
+ .topbar-mobile__sidebar-drawer {
+    width: 21vw;
+    max-width: 30vw;
   }
 }
