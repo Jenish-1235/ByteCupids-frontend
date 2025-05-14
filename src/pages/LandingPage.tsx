@@ -5,6 +5,7 @@ import Header from "../components/LandingPage/Header";
 import Hero from "../components/LandingPage/Hero";
 import PlatformOverview from "../components/LandingPage/PlatformOverview";
 import '../styles/pages/LandingPage.css';
+import Pricing from '../components/LandingPage/Pricing';
 export default function LandingPage() {
     useEffect(() => {
         // Reset scroll position when the page loads
@@ -40,6 +41,7 @@ export default function LandingPage() {
             </section>
             <PlatformOverview className="section" />
             <Feature className="section" />
+            <Pricing className="section" />
             <Footer />
         </div>
     );

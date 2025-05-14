@@ -5,7 +5,12 @@ import { HeroBot } from "./HeroBot"; // Ensure this path is correct
 import "../../styles/components/LandingPage/Hero.css"; // Ensure this path is correct
 import { useNavigate } from "react-router";
 
-export const Hero: React.FC = () => {
+interface HeroProps {
+  className?: string;
+}
+
+
+export const Hero: React.FC<HeroProps> = ({className}) => {
   const navigate = useNavigate();
   const { ref } = useInView({ threshold: 0.5, triggerOnce: true });
 
