@@ -33,7 +33,7 @@ const features: Feature[] = [
 ];
 
 export const FeaturesSection: React.FC = () => (
-  <section className="features-section">
+  <section className="features-section" id="features">
     <div className="features-header">
       <h2 className="features-title">Explore Our Core Features</h2>
       <p className="features-hook">

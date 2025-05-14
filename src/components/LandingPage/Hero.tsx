@@ -57,21 +57,40 @@ export const Hero: React.FC<HeroProps> = ({className}) => {
               </div>
               <div className="code-content">
                 <div className="code-title">
-                  # Optimized inference with ByteCupids
+                  # Learning where mistakes are celebrated
                 </div>
                 <pre>
                   <code>
-                    <span className="function-decorator">@deco_event</span>
+                    <span className="comment">
+                      // Our conversational learning style:
+                    </span>
                     <br />
-                    <span className="function-def">async def process</span>()
-                    <span className="punctuation">:</span>
+                    <span className="function-def">def on_your_insight</span>(
+                    <span className="param">idea</span>){" "}
+                    <span className="punctuation">&#123;</span>
                     <br />
+                    <span className="indent"> </span>
+                    <span className="indent"> </span>
+                    <span className="keyword">if</span> idea.
+                    <span className="param">is_a_creative_leap</span>: <br />
+                    <span className="indent"> </span>
+                    <span className="indent"> </span>
+                    <span className="function-call">celebrate_attempt</span>()
                     <br />
-                    <span className="indent"> </span>model.forward(
-                    <span className="param">input</span>){" "}
-                    <span className="punctuation">-&gt;</span>{" "}
-                    <span className="return-type">tensor</span>
-                    <span className="punctuation">:</span>
+                    <span className="indent"> </span>
+                    <span className="indent"> </span>
+                    <span className="function-call">gently_guide</span>(
+                    <br />
+                    <span className="indent"> </span>
+                    <span className="indent"> </span>
+                    <span className="indent"> </span>
+                    <span className="string">
+                      "Love the thinking! Let's refine it."
+                    </span>
+                    <br />
+                    <span className="indent"> </span>
+                    <span className="indent"> </span>
+                    )
                     <br />
                     <span className="punctuation">&#125;</span>
                   </code>

@@ -4,7 +4,7 @@
 
 .pricing-section {
   max-width: 100%;
-  margin-top: 4rem; /* Reduced top margin by 2rem */
+  margin-top: 5rem; /* Reduced top margin by 2rem */
   padding: var(--spacing-4) var(--spacing-8);
   text-align: center;
   background: transparent; /* Keeping background consistent with landing page */
