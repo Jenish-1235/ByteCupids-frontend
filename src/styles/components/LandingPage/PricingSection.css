@@ -588,8 +588,7 @@ input:checked+.slider:before {
   right: 4px;
   /* Adjusted position */
   top: 4px;
-  bottom: 4px;
-  background: linear-gradient(135deg, var(--color-neon-violet), var(--color-rose-gold));
+  bottom: 4px;background: linear-gradient(135deg, #B76E79, #FFB3A7);
   color: var(--color-bg);
   border: none;
   border-radius: calc(var(--border-radius-md) - 4px);
@@ -871,6 +870,6 @@ input:checked+.slider:before {
   }
   .newsletter-button {
     font-size: 0.9rem;
-    padding: 0 var(--spacing-3);
+    padding: 0.6rem 0.7rem;
   }
 }

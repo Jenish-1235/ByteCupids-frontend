@@ -1,0 +1,89 @@
+.themed-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  background-color: var(--color-bg); /* Fallback to black */
+}
+
+
+.particle-burst-loader {
+  position: relative;
+  width: 80px; /* Overall size of the loader area */
+  height: 80px;
+  /* For centering in a suspense fallback, you might wrap this in a flex container */
+  /* e.g., margin: 20px auto; for standalone demo */
+}
+
+.particle-arm {
+  position: absolute;
+  top: 50%; /* Center the rotation origin */
+  left: 50%;
+  width: 1px; /* Arms are essentially rotation points */
+  height: 1px;
+  /* The color variable will be inherited by the particle-head's currentColor */
+}
+
+.particle-head {
+  position: absolute;
+  /* top: 0; left: 0; /* Positioned at the start of the arm */
+  width: 10px;   /* Size of the particle */
+  height: 10px;
+  background-color: currentColor; /* Inherits color from .particle-arm */
+  border-radius: 50%;
+  opacity: 0; /* Start invisible */
+  /* transform-origin: center center; /* Scale from its center */
+  animation: burstAndGlow 1.5s infinite ease-out;
+}
+
+/* Assign theme colors and rotation to each arm */
+/* The transform: rotate() sets the direction of the burst for each arm */
+.particle-arm.p1 { 
+  color: var(--color-neon-violet, #aa00ff); 
+  transform: rotate(0deg); 
+}
+.particle-arm.p2 { 
+  color: var(--color-rose-gold, #b76e79); 
+  transform: rotate(72deg); 
+}
+.particle-arm.p3 { 
+  color: var(--color-neon-violet, #aa00ff); 
+  transform: rotate(144deg); 
+}
+.particle-arm.p4 { 
+  color: var(--color-rose-gold, #b76e79); 
+  transform: rotate(216deg); 
+}
+.particle-arm.p5 { 
+  color: var(--color-neon-violet, #aa00ff); 
+  transform: rotate(288deg); 
+}
+
+/* Stagger the animation for each particle's head */
+.particle-arm.p1 .particle-head { animation-delay: 0s; }
+.particle-arm.p2 .particle-head { animation-delay: 0.15s; }
+.particle-arm.p3 .particle-head { animation-delay: 0.3s; }
+.particle-arm.p4 .particle-head { animation-delay: 0.45s; }
+.particle-arm.p5 .particle-head { animation-delay: 0.6s; }
+
+@keyframes burstAndGlow {
+  0% {
+    opacity: 0;
+    /* Start at the arm's origin (0,0), small and transparent */
+    transform: translateX(0px) scale(0.3); 
+    box-shadow: 0 0 4px currentColor;
+  }
+  50% {
+    opacity: 1;
+    /* Burst outwards along the arm's direction, reach full size, and glow intensely */
+    transform: translateX(25px) scale(1); /* 25px is the burst radius */
+    box-shadow: 0 0 12px currentColor, 0 0 20px currentColor, 0 0 5px rgba(255,255,255,0.3);
+  }
+  100% {
+    opacity: 0;
+    /* Continue further outwards, shrink, and fade */
+    transform: translateX(40px) scale(0.4); 
+    box-shadow: 0 0 4px currentColor;
+  }
+}
