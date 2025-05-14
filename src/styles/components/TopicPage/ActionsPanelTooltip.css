@@ -134,7 +134,8 @@
   width: 100%;
   max-width: 420px;
   margin: 1rem auto 1.5rem auto;
-  background: linear-gradient(90deg, #a000ff 0%, #6e00c2 100%);
+  /* background: linear-gradient(90deg, #a000ff 0%, #6e00c2 100%); */
+    background: linear-gradient(135deg,#b76e79,#ffb3a7);
   border: none;
   outline: none;
   border-radius: 999px;
@@ -149,10 +150,9 @@
 }
 .actions-panel-discussion-pill:focus-visible,
 .actions-panel-discussion-pill:hover {
-  transform: translateY(-3px) scale(1.035);
+  transform: translateY(-2px) scale(1.027);
   box-shadow: 0 8px 32px 0 rgba(170, 0, 255, 0.18),
     0 2px 16px rgba(80, 0, 120, 0.13);
-  outline: 2px solid var(--color-neon-violet);
 }
 .discussion-pill-bg {
   background: none;
@@ -188,7 +188,7 @@
   background: #f3e6ff;
 }
 .arrow-circle {
-  color: #a000ff;
+  color:#ff8b79;
   font-size: 1.5em;
   font-weight: 700;
   display: flex;
