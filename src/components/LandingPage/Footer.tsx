@@ -5,8 +5,75 @@ import {
   FaGithub,
   FaDiscord,
   FaLinkedin,
-  FaArrowUp,
+  // FaArrowUp, // This icon was imported but not used in the original JSX.
+               // If you have a "Back to Top" button, you can re-add it.
 } from "react-icons/fa";
+
+interface SocialLink {
+  href: string;
+  label: string;
+  Icon: FC; // react-icons components are functional components
+}
+
+interface NavItem {
+  href: string;
+  text: string;
+}
+
+interface NavColumn {
+  title: string;
+  items: NavItem[];
+}
+
+interface LegalLink {
+  href: string;
+  text: string;
+}
+
+const socialLinksData: SocialLink[] = [
+  { href: "https://twitter.com/bytecupids", label: "Twitter", Icon: FaTwitter },
+  { href: "https://github.com/bytecupids", label: "GitHub", Icon: FaGithub },
+  { href: "https://discord.gg/bytecupids", label: "Discord", Icon: FaDiscord },
+  { href: "https://linkedin.com/company/bytecupids", label: "LinkedIn", Icon: FaLinkedin },
+];
+
+const navColumnsData: NavColumn[] = [
+  {
+    title: "Product",
+    items: [
+      { href: "#features", text: "Features" },
+      { href: "#pricing", text: "Pricing" },
+      { href: "/case-studies", text: "Case Studies" },
+      { href: "/roadmap", text: "Roadmap" },
+      { href: "/changelog", text: "Changelog" },
+    ],
+  },
+  {
+    title: "Resources",
+    items: [
+      { href: "/blog", text: "Blog" },
+      { href: "/documentation", text: "Documentation" },
+      { href: "/community", text: "Community" },
+      { href: "/faq", text: "FAQs" },
+      { href: "/support", text: "Support" },
+    ],
+  },
+  {
+    title: "Company",
+    items: [
+      { href: "/about", text: "About Us" },
+      { href: "/careers", text: "Careers" },
+      { href: "/contact", text: "Contact" },
+      { href: "/partners", text: "Partners" },
+    ],
+  },
+];
+
+const legalLinksData: LegalLink[] = [
+  { href: "/privacy", text: "Privacy Policy" },
+  { href: "/terms", text: "Terms of Service" },
+  { href: "/cookies", text: "Cookie Policy" },
+];
 
 export const Footer: FC = () => {
   const scrollToTop = () => {
@@ -16,10 +83,15 @@ export const Footer: FC = () => {
     });
   };
 
+  // Note: If you have a "Back to Top" button, you can add its JSX here,
+  // for example, using the FaArrowUp icon and the scrollToTop function.
+  // <button onClick={scrollToTop} className="back-to-top" aria-label="Back to top">
+  //   <FaArrowUp />
+  // </button>
+
   return (
     <footer className="footer">
       <div className="footer-container">
-        
         <div className="footer-content">
           {/* Brand column */}
           <div className="footer-brand">
@@ -29,109 +101,35 @@ export const Footer: FC = () => {
               computer science through natural dialogue and personalized
               guidance.
             </p>
-
             <div className="social-links">
-              <a
-                href="https://twitter.com/bytecupids"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon"
-                aria-label="Twitter"
-              >
-                <FaTwitter />
-              </a>
-              <a
-                href="https://github.com/bytecupids"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon"
-                aria-label="GitHub"
-              >
-                <FaGithub />
-              </a>
-              <a
-                href="https://discord.gg/bytecupids"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon"
-                aria-label="Discord"
-              >
-                <FaDiscord />
-              </a>
-              <a
-                href="https://linkedin.com/company/bytecupids"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedin />
-              </a>
+              {socialLinksData.map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon"
+                  aria-label={label}
+                >
+                  <Icon />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Product column */}
-          <nav className="footer-nav">
-            <h3>Product</h3>
-            <ul>
-              <li>
-                <a href="#features">Features</a>
-              </li>
-              <li>
-                <a href="#pricing">Pricing</a>
-              </li>
-              <li>
-                <a href="/case-studies">Case Studies</a>
-              </li>
-              <li>
-                <a href="/roadmap">Roadmap</a>
-              </li>
-              <li>
-                <a href="/changelog">Changelog</a>
-              </li>
-            </ul>
-          </nav>
-
-          {/* Resources column */}
-          <nav className="footer-nav">
-            <h3>Resources</h3>
-            <ul>
-              <li>
-                <a href="/blog">Blog</a>
-              </li>
-              <li>
-                <a href="/documentation">Documentation</a>
-              </li>
-              <li>
-                <a href="/community">Community</a>
-              </li>
-              <li>
-                <a href="/faq">FAQs</a>
-              </li>
-              <li>
-                <a href="/support">Support</a>
-              </li>
-            </ul>
-          </nav>
-
-          {/* Company column */}
-          <nav className="footer-nav">
-            <h3>Company</h3>
-            <ul>
-              <li>
-                <a href="/about">About Us</a>
-              </li>
-              <li>
-                <a href="/careers">Careers</a>
-              </li>
-              <li>
-                <a href="/contact">Contact</a>
-              </li>
-              <li>
-                <a href="/partners">Partners</a>
-              </li>
-            </ul>
-          </nav>
+          {/* Navigation columns */}
+          {navColumnsData.map(({ title, items }) => (
+            <nav key={title} className="footer-nav">
+              <h3>{title}</h3>
+              <ul>
+                {items.map(({ href, text }) => (
+                  <li key={text}>
+                    <a href={href}>{text}</a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
         </div>
 
         {/* Bottom section */}
@@ -140,14 +138,12 @@ export const Footer: FC = () => {
             <div className="copyright">
               &copy; {new Date().getFullYear()} ByteCupids. All rights reserved.
             </div>
-
             <div className="legal-links">
-              <a href="/privacy">Privacy Policy</a>
-              <a href="/terms">Terms of Service</a>
-              <a href="/cookies">Cookie Policy</a>
+              {legalLinksData.map(({ href, text }) => (
+                <a key={text} href={href}>{text}</a>
+              ))}
             </div>
           </div>
-
           <div className="footer-bottom-right">
             Made with{" "}
             <span role="img" aria-label="love">

@@ -113,7 +113,7 @@
 /* Responsive */
 
 /* For screens smaller than 1200px */
-@media (max-width: 1199px) {
+@media (max-width: 1300px) {
     .landing-teaser.swapped {
         grid-template-columns: 1fr; /* Stack image and text */
         text-align: center; /* Center the text content */
@@ -168,7 +168,7 @@
 }
 
 /* Tablet: Further refinements for screens up to 1024px */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .landing-teaser.swapped {
         grid-template-columns: 1fr; /* Stack image and text */
         text-align: center; /* Center the text content */
