@@ -65,6 +65,67 @@
   }
 }
 
+
+
+@media (max-width: 998px) {
+  .dashboard-header {
+    max-width: 100%;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+  .dashboard-header__branding-bar,
+  .dashboard-header__welcome-bar {
+    padding: 1rem 1.2rem 0.7rem 1.2rem;
+  }
+  .dashboard-header__branding {
+    font-size: 1.2rem;
+  }
+  .greeting {
+    margin-top: -0.2rem;
+    font-size: 1.3rem;
+    margin-left: 0.7rem;
+  }
+  .dashboard-header__welcome-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: -0.91rem;
+    gap: 0.2rem;
+  }
+  .dashboard-header__user {
+    display: none;
+  }
+}
+
+
+@media (max-width: 900px) {
+  .dashboard-header {
+    max-width: 100%;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+  .dashboard-header__branding-bar,
+  .dashboard-header__welcome-bar {
+    padding: 1rem 1.2rem 0.7rem 1.2rem;
+  }
+  .dashboard-header__branding {
+    font-size: 1.2rem;
+  }
+  .greeting {
+    margin-top: -0.2rem;
+    font-size: 1.3rem;
+    margin-left: 0.7rem;
+  }
+  .dashboard-header__welcome-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: -0.91rem;
+    gap: 0.2rem;
+  }
+  .dashboard-header__user {
+    display: none;
+  }
+}
+
 /* Mobile: Stack, shrink, and tighten */
 @media (max-width: 600px) {
   .dashboard-header {
@@ -88,67 +149,13 @@
     padding: 0.7rem 0.5rem 0.5rem 0.5rem;
   }
   .greeting {
-    font-size: 1rem;
+    font-size: 1.24rem;
     margin-bottom: 0.1rem;
+    margin-left: 0.6rem;
   }
   .dashboard-header__user {
     font-size: 0.92rem;
     margin-top: 0.1rem;
     padding: 0.25em 0.7em;
-  }
-}
-
-@media (max-width: 998px) {
-  .dashboard-header {
-    max-width: 100%;
-    padding: 0;
-    margin-bottom: 1rem;
-  }
-  .dashboard-header__branding-bar,
-  .dashboard-header__welcome-bar {
-    padding: 1rem 1.2rem 0.7rem 1.2rem;
-  }
-  .dashboard-header__branding {
-    font-size: 1.2rem;
-  }
-  .greeting {
-    font-size: 1.1rem;
-  }
-  .dashboard-header__welcome-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.2rem;
-  }
-  .dashboard-header__user {
-    font-size: 1rem;
-    margin-top: 0.2rem;
-    padding: 0.15em 0.5em;
-  }
-}
-
-
-@media (max-width: 900px) {
-  .dashboard-header {
-    max-width: 100%;
-    padding: 0;
-    margin-bottom: 1rem;
-  }
-  .dashboard-header__branding-bar,
-  .dashboard-header__welcome-bar {
-    padding: 1rem 1.2rem 0.7rem 1.2rem;
-  }
-  .dashboard-header__branding {
-    font-size: 1.2rem;
-  }
-  .greeting {
-    font-size: 1.1rem;
-  }
-  .dashboard-header__welcome-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.2rem;
-  }
-  .dashboard-header__user {
-    display: none;
   }
 }

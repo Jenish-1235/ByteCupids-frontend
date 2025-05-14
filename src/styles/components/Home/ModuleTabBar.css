@@ -14,16 +14,18 @@
   z-index: 2;
   overflow-x: auto;
   overflow-y: hidden;
-  scrollbar-width: thin; /* Show a thin scrollbar for Firefox */
+  scrollbar-width: none; /* Show a thin scrollbar for Firefox */
   scrollbar-color: var(--color-neon-violet) transparent; /* Only thumb, no track */
   width: 90%;
   scroll-behavior: smooth;
+  
 }
 
 .module-tab-bar::-webkit-scrollbar {
   height: 6px;
   background: transparent; /* Remove background */
   border-radius: 4px;
+  overflow: hidden;
 }
 
 .module-tab-bar::-webkit-scrollbar-thumb {
@@ -100,4 +102,5 @@
     font-size: 0.92rem;
     padding-bottom: 0.5rem;
   }
+  
 }

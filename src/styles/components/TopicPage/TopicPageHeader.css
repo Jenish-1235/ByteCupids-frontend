@@ -147,8 +147,8 @@
     }
 
     .topic-header__module {
-        font-size: 1.02rem;
-        margin-bottom: 0.1rem;
+        font-size: 1.2rem;
+        padding-left: 0.1rem;
         max-width: 90vw;
     }
 
@@ -160,11 +160,14 @@
     }
 
     .topic-header__topic-bar {
-        padding: 0 0.5rem 0.3rem 0.5rem;
+        /* padding: 0 0.5rem 0.3rem 0.5rem; */
+        margin-top: 0.4rem;
+        padding-left: 0.1rem;
+        max-width: 90vw;
     }
 
     .topic-header__topic {
-        font-size: 0.97rem;
+        font-size: 1.3rem;
         max-width: 90vw;
     }
 }
