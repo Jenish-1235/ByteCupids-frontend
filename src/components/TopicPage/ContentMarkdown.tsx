@@ -1,5 +1,5 @@
-import ReactMarkdown from 'react-markdown';
-import "../../styles/components/TopicPage/ContentMarkdown.css"
+import ReactMarkdown from "react-markdown";
+import "../../styles/components/TopicPage/ContentMarkdown.css";
 
 const markdownContent = `## Index Design in Relational Database Management Systems (RDBMS)
 
@@ -418,20 +418,17 @@ Key takeaways:
 Understanding the types of indexes, their underlying data structures, and how they interact with query processing and transactional properties is essential for any database developer or administrator aiming to build efficient and scalable database systems.
 `;
 
-
 function ContentMarkdown() {
   return (
     <ReactMarkdown
       components={{
-        code({node, className, children, ...props}) {
+        code({ node, className, children, ...props }) {
           // If it's a code block and language is sql, add language-sql class
-          const match = /language-(\w+)/.exec(className || '');
+          const match = /language-(\w+)/.exec(className || "");
           return match ? (
             <code
               className={
-                match[1] === 'sql'
-                  ? `${className} language-sql`
-                  : className
+                match[1] === "sql" ? `${className} language-sql` : className
               }
               {...props}
             >

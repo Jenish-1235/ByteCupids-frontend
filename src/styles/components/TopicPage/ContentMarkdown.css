@@ -5,22 +5,26 @@
 */
 
 /* General markdown container (if you use a wrapper, add the class here) */
-.markdown-body, .topic-page__content-markdown {
-  font-family: var(--font-family), 'Segoe UI', Arial, sans-serif;
+.markdown-body,
+.topic-page__content-markdown {
+  font-family: var(--font-family), "Segoe UI", Arial, sans-serif;
   color: var(--color-text-primary);
   background: transparent;
 }
 
 /* Headings */
-.markdown-body h1, .topic-page__content-markdown h1 {
+.markdown-body h1,
+.topic-page__content-markdown h1 {
   color: var(--color-white);
   font-size: 2.1rem;
   font-weight: 800;
   margin-top: 2.2rem;
   margin-bottom: 1.2rem;
 }
-.markdown-body h2, .topic-page__content-markdown h2,
-.markdown-body h3, .topic-page__content-markdown h3 {
+.markdown-body h2,
+.topic-page__content-markdown h2,
+.markdown-body h3,
+.topic-page__content-markdown h3 {
   color: var(--color-neon-violet);
   font-weight: 700;
   margin-top: 1.5rem;
@@ -28,40 +32,46 @@
 }
 
 /* Paragraphs */
-.markdown-body p, .topic-page__content-markdown p {
+.markdown-body p,
+.topic-page__content-markdown p {
   margin-bottom: 1em;
 }
 
 /* Lists */
-.markdown-body ul, .topic-page__content-markdown ul,
-.markdown-body ol, .topic-page__content-markdown ol {
+.markdown-body ul,
+.topic-page__content-markdown ul,
+.markdown-body ol,
+.topic-page__content-markdown ol {
   margin-left: 1.5em;
   margin-bottom: 1em;
 }
 
 /* Inline code */
-.markdown-body code, .topic-page__content-markdown code {
+.markdown-body code,
+.topic-page__content-markdown code {
   background: var(--color-surface-2);
   border-radius: var(--border-radius-md);
   padding: 0.2em 0.5em;
   font-size: 0.98em;
   color: var(--color-neon-violet);
-  font-family: 'Fira Mono', 'Fira Code', 'Consolas', monospace;
+  font-family: "Fira Mono", "Fira Code", "Consolas", monospace;
 }
 
 /* Code blocks (default: purple text) */
-.markdown-body pre, .topic-page__content-markdown pre {
+.markdown-body pre,
+.topic-page__content-markdown pre {
   background: var(--color-surface-2);
   border-radius: var(--border-radius-lg);
   padding: 1.1em 1.2em;
   margin: 1.2em 0;
   overflow-x: auto;
 }
-.markdown-body pre code, .topic-page__content-markdown pre code {
+.markdown-body pre code,
+.topic-page__content-markdown pre code {
   color: var(--color-white) !important;
   background: none;
   font-size: 1em;
-  font-family: 'Fira Mono', 'Fira Code', 'Consolas', monospace;
+  font-family: "Fira Mono", "Fira Code", "Consolas", monospace;
 }
 
 /* --- NEW: SQL code blocks in white text --- */
@@ -71,15 +81,17 @@
 }
 
 /* Optional: Add a subtle border or shadow for code blocks */
-.markdown-body pre, .topic-page__content-markdown pre {
+.markdown-body pre,
+.topic-page__content-markdown pre {
   box-shadow: 0 2px 12px rgba(170, 0, 255, 0.07);
   border: 1.5px solid var(--color-surface);
 }
 
 /* Blockquotes */
-.markdown-body blockquote, .topic-page__content-markdown blockquote {
+.markdown-body blockquote,
+.topic-page__content-markdown blockquote {
   border-left: 4px solid var(--color-neon-violet);
-  background: rgba(170,0,255,0.07);
+  background: rgba(170, 0, 255, 0.07);
   color: var(--color-text-secondary);
   padding: 0.7em 1.2em;
   margin: 1.2em 0;
@@ -87,34 +99,41 @@
 }
 
 /* Tables */
-.markdown-body table, .topic-page__content-markdown table {
+.markdown-body table,
+.topic-page__content-markdown table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.2em 0;
 }
-.markdown-body th, .topic-page__content-markdown th,
-.markdown-body td, .topic-page__content-markdown td {
+.markdown-body th,
+.topic-page__content-markdown th,
+.markdown-body td,
+.topic-page__content-markdown td {
   border: 1px solid var(--color-surface-2);
   padding: 0.5em 0.8em;
 }
 
 /* Links */
-.markdown-body a, .topic-page__content-markdown a {
+.markdown-body a,
+.topic-page__content-markdown a {
   color: var(--color-neon-violet);
   text-decoration: underline;
   transition: color 0.2s;
 }
-.markdown-body a:hover, .topic-page__content-markdown a:hover {
+.markdown-body a:hover,
+.topic-page__content-markdown a:hover {
   color: var(--color-rose-gold);
 }
 
 /* Responsive adjustments */
 @media (max-width: 900px) {
-  .markdown-body, .topic-page__content-markdown {
+  .markdown-body,
+  .topic-page__content-markdown {
     padding: 1.1rem 0.5rem;
     font-size: 0.98rem;
   }
-  .markdown-body pre, .topic-page__content-markdown pre {
+  .markdown-body pre,
+  .topic-page__content-markdown pre {
     padding: 0.7em 0.5em;
     font-size: 0.95em;
   }
