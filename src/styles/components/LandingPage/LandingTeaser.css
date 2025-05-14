@@ -94,18 +94,143 @@
     height: auto;
 }
 
+/* Keyframes for continuous shine effect */
+@keyframes continuousShineEffect {
+    0% {
+        transform: rotate(25deg) translateX(-150%);
+        opacity: 0.25;
+    }
+    50% {
+        transform: rotate(25deg) translateX(150%);
+        opacity: 0.55; /* Adjust peak glow opacity as needed */
+    }
+    100% {
+        transform: rotate(25deg) translateX(-150%);
+        opacity: 0.25;
+    }
+}
+
 /* Responsive */
+
+/* For screens smaller than 1200px */
+@media (max-width: 1199px) {
+    .landing-teaser.swapped {
+        grid-template-columns: 1fr; /* Stack image and text */
+        text-align: center; /* Center the text content */
+        /* Adjust padding and gap for this breakpoint range if needed,
+           otherwise, it will inherit from base or be overridden by more specific queries.
+           Example:
+           padding: var(--spacing-14) var(--spacing-7);
+           gap: var(--spacing-7);
+        */
+    }
+
+    .teaser-right { /* Text content */
+        grid-row: 1; /* Place text on top */
+        margin: 0 auto; /* Center block, gap will handle spacing */
+        max-width: 520px; /* Consistent with tablet */
+        margin-left: auto; /* Overrides base margin-left */
+    }
+
+    .teaser-frame { /* Image container */
+        grid-row: 2; /* Place image below text */
+        transform: none; /* Remove 3D tilt - JS might override this on interaction */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Simpler flat shadow - JS might override */
+        margin: 0 auto; /* Center frame */
+        margin-top: 3rem;
+        width: 70%;
+        box-shadow: 0 20px 50px rgba(170, 0, 255, 0.25), 20px 20px 80px rgba(255, 182, 145, 0.35);
+    }
+
+    /* Attempt to counter JS hover effects on the frame itself.
+       For full removal of JS-driven tilt, JS modification is required. */
+    .teaser-frame:hover {
+        transform: none;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .shine-overlay {
+        opacity: 1; /* Make it visible for the animation to run */
+        animation: continuousShineEffect 5s infinite linear; /* Apply continuous animation */
+        transition: none; /* Disable existing hover transitions for opacity and transform */
+        /* You might want to adjust the shine overlay's dimensions for this effect */
+        /* width: 60%; */
+        /* height: 220%; */
+        /* top: -60%; */
+        /* left: -80%; */
+    }
+
+    /* Disable the original hover effect on shine-overlay as it's now animated */
+    .teaser-frame:hover .shine-overlay {
+        opacity: unset; /* Let animation control opacity */
+        transform: unset; /* Let animation control transform */
+    }
+}
+
+/* Tablet: Further refinements for screens up to 1024px */
 @media (max-width: 1024px) {
     .landing-teaser.swapped {
-        grid-template-columns: 1fr;
-        text-align: center;
+        grid-template-columns: 1fr; /* Stack image and text */
+        text-align: center; /* Center the text content */
+        padding: var(--spacing-12) var(--spacing-6); /* Adjust padding for tablet */
+        gap: var(--spacing-6); /* Adjust gap for tablet */
     }
 
     .teaser-right {
-        margin: var(--spacing-8) 0 0;
+        margin: var(--spacing-6) auto 0; /* Adjust top margin, center block */
+        max-width: 520px; /* Optional: adjust max-width if needed */
+        /* margin-left: auto; and margin-right: auto; are applied via 'auto' in margin shorthand */
     }
 
     .teaser-frame {
-        margin: 0 auto;
+        margin: 0 auto var(--spacing-4); /* Center frame and add some bottom margin */
+    }
+
+    .teaser-title {
+        font-size: 2rem; /* Reduce font size for tablet */
+    }
+
+    .teaser-subtitle {
+        font-size: 1rem; /* Reduce font size for tablet */
+    }
+}
+
+/* Mobile: Further refinements for screens up to 767px */
+@media (max-width: 767px) {
+    .landing-teaser.swapped {
+        padding: var(--spacing-8) var(--spacing-4); /* Further reduce padding for mobile */
+        gap: var(--spacing-4); /* Further reduce gap for mobile */
+    }
+
+    .teaser-frame {
+        /* The 3D transform effect is generally subtle. If it causes issues on mobile, */
+        /* you might consider simplifying its base state here, but JavaScript interactions */
+        /* will still apply their own transforms. */
+        /* For example, to make it flatter by default on mobile: */
+        /* transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1); */
+        /* box-shadow: 0 10px 20px rgba(0,0,0,0.3); */
+        max-width: 95%; /* Ensure frame doesn't touch edges if padding is very small */
+        margin-bottom: var(--spacing-6); /* Ensure space below frame */
+    }
+
+    .teaser-right {
+        margin-top: var(--spacing-4); /* Adjust top margin */
+        padding-left: var(--spacing-2); /* Add slight horizontal padding */
+        padding-right: var(--spacing-2); /* Add slight horizontal padding */
+    }
+
+    .teaser-title {
+        font-size: 1.75rem; /* Further reduce font size for mobile */
+        line-height: 1.3;
+    }
+
+    .teaser-subtitle {
+        font-size: 0.9rem; /* Further reduce font size for mobile */
+        line-height: 1.6;
+    }
+
+    .gradient-btn {
+        padding: var(--spacing-2_5) var(--spacing-4); /* Adjust button padding for mobile */
+        font-size: 0.9rem; /* Adjust button font size for mobile */
     }
 }

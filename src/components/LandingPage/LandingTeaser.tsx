@@ -5,6 +5,15 @@ export const LandingTeaser: React.FC = () => {
   const frameRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
+    if (window.innerWidth < 1200) {
+      // Optionally, you could implement a different, simpler effect here
+      // or ensure the element remains static.
+      if (frameRef.current) {
+        frameRef.current.style.transform = 'none';
+        frameRef.current.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.15)';
+      }
+      return;
+    }
     if (!frameRef.current) return;
     const el = frameRef.current;
     const { left, top, width, height } = el.getBoundingClientRect();
@@ -30,6 +39,14 @@ export const LandingTeaser: React.FC = () => {
   };
 
   const handleMouseLeave = () => {
+    if (window.innerWidth < 1200) {
+      if (frameRef.current) {
+        // Ensure it resets to the flat state defined in CSS for this screen size
+        frameRef.current.style.transform = 'none';
+        frameRef.current.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.15)'; // Match CSS
+      }
+      return;
+    }
     if (!frameRef.current) return;
     const el = frameRef.current;
     // Reset to inward tilt
