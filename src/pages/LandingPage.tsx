@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
-import Feature from "../components/LandingPage/Feature";
+import Feature, { FeaturesSection } from "../components/LandingPage/FeatureSection";
 import Footer from "../components/LandingPage/Footer";
 import Header from "../components/LandingPage/Header";
 import Hero from "../components/LandingPage/Hero";
 import PlatformOverview from "../components/LandingPage/PlatformOverview";
 import '../styles/pages/LandingPage.css';
+import Pricing, { PricingSection } from '../components/LandingPage/PricingSection';
+import LandingTeaser from '../components/LandingPage/LandingTeaser';
 export default function LandingPage() {
     useEffect(() => {
         // Reset scroll position when the page loads
@@ -38,8 +40,9 @@ export default function LandingPage() {
             <section className="section hero-section">
                 <Hero className="section" />
             </section>
-            <PlatformOverview className="section" />
-            <Feature className="section" />
+            <LandingTeaser/>
+            <FeaturesSection/>
+            <PricingSection/>
             <Footer />
         </div>
     );

@@ -3,7 +3,7 @@ import "../../styles/components/LandingPage/Header.css";
 import { useNavigate } from "react-router";
 
 const Header: React.FC = () => {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const navigateTo = useNavigate();
 
@@ -49,8 +49,6 @@ const Header: React.FC = () => {
         <nav className={`nav-menu ${menuOpen ? "open" : ""}`}>
           <a href="#features" onClick={handleNavLinkClick}>Features</a>
           <a href="#pricing" onClick={handleNavLinkClick}>Pricing</a>
-          <a href="#docs" onClick={handleNavLinkClick}>Docs</a>
-          <a href="#about" onClick={handleNavLinkClick}>About Us</a>
           <button className="btn primary" onClick={handleSignIn}>
             Sign In
           </button>

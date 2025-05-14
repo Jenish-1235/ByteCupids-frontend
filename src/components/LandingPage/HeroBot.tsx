@@ -24,9 +24,9 @@ export const HeroBot: React.FC = () => {
       {/* Smile */}
       <path d="M88 72 Q100 85 112 72" stroke="var(--color-neon-violet)" strokeWidth="3" fill="none" />
       {/* Neck */}
-      <rect x="92" y="98" width="16" height="18" rx="6" fill="var(--color-neon-violet)" opacity="0.3" stroke="none" />
+      <rect x="92" y="98" width="16" height="14" rx="6" fill="var(--color-neon-violet)" opacity="0.3" stroke="none" />
       {/* Torso - now an ellipse for a rounded look */}
-      <ellipse cx="100" cy="145" rx="36" ry="32" fill="var(--color-surface)" />
+      <ellipse cx="100" cy="140" rx="36" ry="32" fill="var(--color-surface)" />
       {/* Torso details */}
       <ellipse cx="100" cy="145" rx="14" ry="7" fill="var(--color-neon-violet)" opacity="0.10" stroke="none" />
       {/* Left Arm (static) */}
@@ -34,13 +34,13 @@ export const HeroBot: React.FC = () => {
       {/* Right Arm (waving, animated) */}
       <g>
         <path
-          d="M136 130 Q165 110 150 70"
+          d="M136 130 Q170 120 160 70"
           stroke="var(--color-neon-violet)"
           strokeWidth="4"
           fill="none"
         />
         {/* Hand */}
-        <ellipse cx="150" cy="70" rx="8" ry="6" fill="var(--color-neon-violet)" />
+        <ellipse cx="160" cy="70" rx="8" ry="6" fill="var(--color-neon-violet)" />
       </g>
     </svg>
   );

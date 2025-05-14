@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <!-- Axes -->
+  <path d="M3 3v18h18"/>
+  <!-- Bars -->
+  <rect x="9"  y="13" width="2" height="6"/>
+  <rect x="13" y="9"  width="2" height="10"/>
+  <rect x="17" y="5"  width="2" height="14"/>
+</svg>
