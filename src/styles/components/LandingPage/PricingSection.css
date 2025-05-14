@@ -536,6 +536,74 @@ input:checked+.slider:before {
   margin-top: var(--spacing-3);
 }
 
+/* Newsletter Section - Polished inputs */
+.newsletter {
+  margin-top: var(--spacing-6);
+  width: 100%;
+  max-width: 100%;
+  /* Ensure it doesn't get too wide */
+}
+
+.newsletter p {
+  margin-bottom: var(--spacing-3);
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+
+.newsletter-form {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.newsletter-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  /* Adjusted border */
+  border-radius: var(--border-radius-md);
+  padding: 1rem;
+  /* Increased padding */
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  /* Smooth transition for all properties */
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: var(--color-neon-violet);
+  box-shadow: 0 0 0 3px rgba(170, 0, 255, 0.2), 0 0 15px rgba(170, 0, 255, 0.15);
+  /* Enhanced focus */
+}
+
+.newsletter-button {
+  position: absolute;
+  right: 4px;
+  /* Adjusted position */
+  top: 4px;
+  bottom: 4px;
+  background: linear-gradient(135deg, var(--color-neon-violet), var(--color-rose-gold));
+  color: var(--color-bg);
+  border: none;
+  border-radius: calc(var(--border-radius-md) - 4px);
+  /* Adjusted for inner fit */
+  padding: 0 var(--spacing-4);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(170, 0, 255, 0.25);
+}
+
+.newsletter-button:hover {
+  filter: brightness(1.15);
+  box-shadow: 0 5px 15px rgba(170, 0, 255, 0.35);
+  transform: scale(1.02);
+  /* Subtle scale on hover */
+}
+
 /* ----------------------
    Responsive
 ----------------------- */

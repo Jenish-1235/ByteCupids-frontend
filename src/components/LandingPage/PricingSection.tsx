@@ -110,7 +110,7 @@ export const PricingSection: React.FC = () => {
                   </span>
                 </div>
               </div>
-              
+
               <ul className="plan-features">
                 {plan.features.map((feature) => (
                   <li
@@ -121,7 +121,7 @@ export const PricingSection: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              
+
               <button className="btn plan-cta">{plan.ctaText}</button>
             </div>
             <div className="shine-overlay"></div>
@@ -134,6 +134,20 @@ export const PricingSection: React.FC = () => {
         <p className="guarantee">
           30-day money-back guarantee, no questions asked!
         </p>
+        <div className="newsletter">
+          <p>For exclusive content and articles, subscribe to our news letter :</p>
+          <form className="newsletter-form">
+            <input
+              type="email"
+              className="newsletter-input"
+              placeholder="Your email"
+              aria-label="Your email for newsletter"
+            />
+            <button type="submit" className="newsletter-button">
+              Subscribe
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   );
