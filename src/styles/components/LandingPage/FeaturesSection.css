@@ -4,14 +4,14 @@
     margin: var(--spacing-16) auto;
     /* top/bottom from LandingTeaser, horizontal auto */
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 0.2rem;
     align-items: center;
     justify-items: center;
     padding: 2rem;
     /* horizontal padding only */
     background: transparent;
-    margin-top: 3rem;
+    margin-top: 4rem;
 }
 
 /* Header (left) */

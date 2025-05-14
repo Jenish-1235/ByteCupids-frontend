@@ -5,7 +5,7 @@ import Header from "../components/LandingPage/Header";
 import Hero from "../components/LandingPage/Hero";
 import PlatformOverview from "../components/LandingPage/PlatformOverview";
 import '../styles/pages/LandingPage.css';
-import Pricing from '../components/LandingPage/Pricing';
+import Pricing, { PricingSection } from '../components/LandingPage/PricingSection';
 import LandingTeaser from '../components/LandingPage/LandingTeaser';
 export default function LandingPage() {
     useEffect(() => {
@@ -42,6 +42,7 @@ export default function LandingPage() {
             </section>
             <LandingTeaser/>
             <FeaturesSection/>
+            <PricingSection/>
             <Footer />
         </div>
     );

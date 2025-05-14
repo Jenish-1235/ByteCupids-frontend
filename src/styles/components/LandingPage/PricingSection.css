@@ -1,0 +1,636 @@
+/* ======================
+   Pricing Section Styles
+========================= */
+
+.pricing-section {
+  max-width: 100%;
+  margin-top: 4rem; /* Reduced top margin by 2rem */
+  padding: var(--spacing-4) var(--spacing-8);
+  text-align: center;
+  background: transparent; /* Keeping background consistent with landing page */
+  color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ----------------------
+   Decorative elements - kept subtle
+----------------------- */
+.pricing-section::before,
+.pricing-section::after {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.12; /* Reduced opacity */
+  z-index: -1;
+}
+
+.pricing-section::before {
+  background: var(--color-neon-violet);
+  top: 10%;
+  left: 5%;
+  animation: floatBlob 20s infinite alternate ease-in-out;
+}
+
+.pricing-section::after {
+  background: var(--color-rose-gold);
+  bottom: 10%;
+  right: 5%;
+  animation: floatBlob 17s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes floatBlob {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, 15px) scale(1.1); }
+  100% { transform: translate(-15px, 30px) scale(0.95); }
+}
+
+/* ----------------------
+   Header - Kept same elegant style
+----------------------- */
+.pricing-header {
+  margin-bottom: var(--spacing-10); /* Reduced bottom margin */
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.pricing-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(183, 110, 121, 0.3), rgba(170, 0, 255, 0.3));
+  color: var(--color-rose-gold);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  margin-bottom: var(--spacing-4);
+  border-radius: 20px;
+  border: 1px solid rgba(183, 110, 121, 0.5);
+}
+
+.pricing-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin-bottom: var(--spacing-3);
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, var(--color-white), var(--color-neon-violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pricing-subtitle {
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-8);
+}
+
+/* ----------------------
+   Monthly/Annual Toggle - Keep existing styles
+----------------------- */
+.pricing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-6);
+  margin-bottom: var(--spacing-6);
+}
+
+.pricing-toggle span {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  transition: color 0.3s ease;
+}
+
+.pricing-toggle span.active {
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.08);
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--color-neon-violet);
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked+.slider {
+  background-color: rgba(255, 182, 145, 0.3);
+}
+
+input:checked+.slider:before {
+  transform: translateX(24px);
+  background-color: var(--color-rose-gold);
+}
+
+.save-badge {
+  background: var(--color-rose-gold);
+  color: var(--color-bg);
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: 5px;
+  font-weight: 600;
+}
+
+/* ----------------------
+   Framed Glow Wrapper
+----------------------- */
+.pricing-frame {
+  padding: var(--spacing-8);
+  border-radius: var(--border-radius-xl);
+  animation: frameGlow 5s ease-in-out infinite alternate;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* Glow Pulse Animation */
+@keyframes frameGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(170, 0, 255, 0.3);
+    border-color: rgba(170, 0, 255, 0.4);
+  }
+
+  100% {
+    box-shadow: 0 0 25px rgba(170, 0, 255, 0.6);
+    border-color: rgba(170, 0, 255, 0.7);
+  }
+}
+
+/* ----------------------
+   Grid - Adjusted for more even sizing
+----------------------- */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(250px, 320px)); /* More controlled sizing */
+  gap: var(--spacing-5);
+  margin: 0 auto; /* Center the grid */
+  justify-content: center;
+  max-width: 1100px; /* Prevent excessive width */
+}
+
+/* ----------------------
+   Individual Card - Improved individual animations
+----------------------- */
+.pricing-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-5) var(--spacing-4);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure consistent height */
+  min-height: 480px; /* Set minimum height */
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.4s ease;
+  transform: translateZ(0);
+  overflow: hidden;
+  /* Individual animations instead of collective */
+  animation: cardEntrance 0.7s ease forwards;
+  opacity: 0;
+}
+
+/* Staggered entrance animation for cards */
+.pricing-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.pricing-card:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.pricing-card:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 15px 30px rgba(170, 0, 255, 0.15),
+    0 0 15px rgba(170, 0, 255, 0.2);
+  border-color: rgba(170, 0, 255, 0.3);
+}
+
+/* Card content container */
+.card-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%; /* Take full height */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Highlighted Pro Card - Individual animation - FIX VISIBILITY ISSUES */
+.pricing-card.recommended {
+  border: 2px solid var(--color-rose-gold);
+  background: linear-gradient(
+    135deg, 
+    rgba(170, 0, 255, 0.08), 
+    rgba(183, 110, 121, 0.08)
+  );
+  position: relative;
+  z-index: 3;
+}
+
+/* Fix the hover state to not interfere with visibility */
+.pricing-card.recommended:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 15px 30px rgba(255, 182, 145, 0.2),
+    0 0 20px rgba(255, 182, 145, 0.15);
+  z-index: 3; /* Maintain z-index on hover */
+}
+
+/* Fix the ::before pseudo-element that might be covering content */
+.pricing-card.recommended::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  z-index: -1; /* Below the card content */
+  border-radius: inherit;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(183, 110, 121, 0.6),
+    rgba(170, 0, 255, 0.6),
+    transparent
+  );
+  background-size: 200% 200%;
+  animation: borderGlow 3s linear infinite;
+  opacity: 0.3;
+}
+
+/* Ensure the badge isn't causing layout issues */
+.pricing-card .badge {
+  position: absolute;
+  top: 12px;
+  right: 0;
+  background: linear-gradient(135deg, #B76E79, #FFB3A7);
+  color: var(--color-bg);
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transform: translateX(30%) rotate(45deg);
+  width: 150px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(183, 110, 121, 0.4);
+  z-index: 4; /* Ensure the badge is visible */
+}
+
+@keyframes borderGlow {
+  0% {
+    border: 0% 50%;
+  }
+  100% {
+    border: 200% 50%;
+  }
+}
+
+.pricing-card.recommended:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 15px 30px rgba(255, 182, 145, 0.2),
+    0 0 20px rgba(255, 182, 145, 0.15);
+}
+
+@keyframes recommendedPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 182, 145, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 182, 145, 0.3);
+  }
+}
+
+/* Badge */
+.pricing-card .badge {
+  position: absolute;
+  top: 12px;
+  right: 0;
+  background: linear-gradient(135deg, #B76E79, #FFB3A7);
+  color: var(--color-bg);
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transform: translateX(30%) rotate(45deg);
+  width: 150px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(183, 110, 121, 0.4);
+}
+
+/* ----------------------
+   Text - Better spacing
+----------------------- */
+.plan-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-neon-violet);
+  margin-bottom: var(--spacing-2);
+  text-align: center;
+}
+
+.plan-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-4);
+  text-align: center;
+  transition: all 0.5s ease;
+}
+
+.price-amount {
+  font-size: 2.25rem;
+}
+
+.price-period {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  font-weight: normal;
+}
+
+/* Features List */
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: var(--spacing-5);
+  width: 100%;
+  text-align: left;
+  flex-grow: 1; /* Allow features to take available space */
+}
+
+.plan-features li {
+  position: relative;
+  padding-left: var(--spacing-6);
+  margin-bottom: var(--spacing-3);
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  transition: all 0.3s ease;
+}
+
+.plan-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  background: rgba(170, 0, 255, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-neon-violet);
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.pricing-card:hover .plan-features li::before {
+  background: rgba(170, 0, 255, 0.25);
+}
+
+.plan-features li.highlighted {
+  color: var(--color-white);
+}
+
+.plan-features li.highlighted::before {
+  background: var(--color-neon-violet);
+  color: var(--color-bg);
+  box-shadow: 0 0 10px rgba(170, 0, 255, 0.5);
+}
+
+/* ----------------------
+   CTA Button
+----------------------- */
+.plan-cta {
+  background: linear-gradient(135deg, #B76E79, #FFB3A7);
+  color: var(--color-bg);
+  border: none;
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-3) var(--spacing-4);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(255, 182, 145, 0.15);
+  width: 100%;
+  margin-top: auto;
+}
+
+.plan-cta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(255, 182, 145, 0.3);
+  filter: brightness(1.1);
+}
+
+/* Shine overlay effect on individual cards */
+.shine-overlay {
+  pointer-events: none;
+  position: absolute;
+  top: -50%;
+  left: -75%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg) translateX(-100%);
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.9s ease;
+  z-index: 1;
+}
+
+.pricing-card:hover .shine-overlay {
+  opacity: 1;
+  transform: rotate(25deg) translateX(300%);
+}
+
+/* ----------------------
+   Pricing footer - Simplified
+----------------------- */
+.pricing-footer {
+  margin-top: var(--spacing-8);
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.payment-icons {
+  display: flex;
+  gap: var(--spacing-3);
+}
+
+.payment-icons span {
+  padding: 4px 8px;
+  border-radius: var(--border-radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.75rem;
+}
+
+.guarantee {
+  color: var(--color-rose-gold);
+  font-weight: 500;
+  font-size: 0.875rem;
+  margin-top: var(--spacing-3);
+}
+
+/* ----------------------
+   Responsive
+----------------------- */
+@media (max-width: 1200px) {
+  .pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-3);
+    max-width: 95%;
+  }
+  
+  .pricing-card {
+    padding: var(--spacing-4);
+    min-height: 450px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-3);
+  }
+  
+  .plan-features li {
+    font-size: 0.85rem;
+    padding-left: var(--spacing-5);
+  }
+  
+  .plan-price {
+    font-size: 1.4rem;
+  }
+  
+  .price-amount {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .pricing-grid {
+    grid-template-columns: repeat(2, minmax(250px, 350px));
+  }
+  
+  .pricing-card.recommended {
+    grid-column: span 2;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .pricing-grid {
+    grid-template-columns: minmax(250px, 400px);
+  }
+  
+  .pricing-card {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .pricing-card.recommended {
+    grid-column: auto;
+  }
+  
+  .pricing-title {
+    font-size: 2.25rem;
+  }
+  
+  .pricing-subtitle {
+    font-size: 1rem;
+  }
+  
+  .pricing-toggle {
+    flex-direction: row;
+    gap: var(--spacing-2);
+  }
+}
+
+@media (max-width: 480px) {
+  .pricing-section {
+    padding: var(--spacing-4) var(--spacing-3);
+  }
+  
+  .pricing-grid {
+    max-width: 100%;
+  }
+  
+  .plan-price {
+    font-size: 1.3rem;
+  }
+  
+  .price-amount {
+    font-size: 1.8rem;
+  }
+  
+  .pricing-card {
+    padding: var(--spacing-4) var(--spacing-3);
+  }
+}
