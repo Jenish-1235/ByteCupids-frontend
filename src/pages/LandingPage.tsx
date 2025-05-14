@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Feature from "../components/LandingPage/Feature";
+import Feature, { FeaturesSection } from "../components/LandingPage/FeatureSection";
 import Footer from "../components/LandingPage/Footer";
 import Header from "../components/LandingPage/Header";
 import Hero from "../components/LandingPage/Hero";
@@ -41,6 +41,7 @@ export default function LandingPage() {
                 <Hero className="section" />
             </section>
             <LandingTeaser/>
+            <FeaturesSection/>
             <Footer />
         </div>
     );
