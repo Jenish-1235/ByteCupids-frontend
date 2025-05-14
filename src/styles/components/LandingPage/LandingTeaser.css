@@ -1,0 +1,236 @@
+/* Swap image/text order */
+.landing-teaser.swapped {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: var(--spacing-8);
+    padding: var(--spacing-16) var(--spacing-8);
+    background: var(--color-bg);
+}
+
+/* Frame Styles – larger, default inward tilt */
+.teaser-frame {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--color-surface);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+    transform: perspective(1000px) rotateY(3deg) rotateX(-6deg) scale(1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform, box-shadow;
+}
+
+/* ... rest of the styles remain unchanged ... */
+
+/* Text side */
+.teaser-right {
+    max-width: 480px;
+    margin-left: var(--spacing-6);
+}
+
+.teaser-title {
+    font-size: 2.5rem;
+    /* bump up */
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: var(--spacing-4);
+}
+
+.teaser-subtitle {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-6);
+}
+
+/* Gradient button styling */
+.gradient-btn {
+    background: linear-gradient(135deg, #B76E79, #FFB3A7);
+    color: var(--color-bg);
+    padding: var(--spacing-3) var(--spacing-5);
+    border-radius: var(--border-radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(183, 110, 121, 0.4);
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.gradient-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.15);
+}
+
+/* Shine Overlay */
+.shine-overlay {
+    pointer-events: none;
+    position: absolute;
+    top: -50%;
+    left: -75%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(to right,
+            transparent 0%,
+            rgba(255, 255, 255, 0.2) 50%,
+            transparent 100%);
+    transform: rotate(25deg) translateX(-100%);
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.teaser-frame:hover .shine-overlay {
+    opacity: 1;
+    transform: rotate(25deg) translateX(200%);
+}
+
+/* Image */
+.frame-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Keyframes for continuous shine effect */
+@keyframes continuousShineEffect {
+    0% {
+        transform: rotate(25deg) translateX(-150%);
+        opacity: 0.25;
+    }
+    50% {
+        transform: rotate(25deg) translateX(150%);
+        opacity: 0.55; /* Adjust peak glow opacity as needed */
+    }
+    100% {
+        transform: rotate(25deg) translateX(-150%);
+        opacity: 0.25;
+    }
+}
+
+/* Responsive */
+
+/* For screens smaller than 1200px */
+@media (max-width: 1300px) {
+    .landing-teaser.swapped {
+        grid-template-columns: 1fr; /* Stack image and text */
+        text-align: center; /* Center the text content */
+        /* Adjust padding and gap for this breakpoint range if needed,
+           otherwise, it will inherit from base or be overridden by more specific queries.
+           Example:
+           padding: var(--spacing-14) var(--spacing-7);
+           gap: var(--spacing-7);
+        */
+    }
+
+    .teaser-right { /* Text content */
+        grid-row: 1; /* Place text on top */
+        margin: 0 auto; /* Center block, gap will handle spacing */
+        max-width: 520px; /* Consistent with tablet */
+        margin-left: auto; /* Overrides base margin-left */
+    }
+
+    .teaser-frame { /* Image container */
+        grid-row: 2; /* Place image below text */
+        transform: none; /* Remove 3D tilt - JS might override this on interaction */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Simpler flat shadow - JS might override */
+        margin: 0 auto; /* Center frame */
+        margin-top: 3rem;
+        width: 70%;
+        box-shadow: 0 20px 50px rgba(170, 0, 255, 0.25), 20px 20px 80px rgba(255, 182, 145, 0.35);
+    }
+
+    /* Attempt to counter JS hover effects on the frame itself.
+       For full removal of JS-driven tilt, JS modification is required. */
+    .teaser-frame:hover {
+        transform: none;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .shine-overlay {
+        opacity: 1; /* Make it visible for the animation to run */
+        animation: continuousShineEffect 5s infinite linear; /* Apply continuous animation */
+        transition: none; /* Disable existing hover transitions for opacity and transform */
+        /* You might want to adjust the shine overlay's dimensions for this effect */
+        /* width: 60%; */
+        /* height: 220%; */
+        /* top: -60%; */
+        /* left: -80%; */
+    }
+
+    /* Disable the original hover effect on shine-overlay as it's now animated */
+    .teaser-frame:hover .shine-overlay {
+        opacity: unset; /* Let animation control opacity */
+        transform: unset; /* Let animation control transform */
+    }
+}
+
+/* Tablet: Further refinements for screens up to 1024px */
+@media (max-width: 1200px) {
+    .landing-teaser.swapped {
+        grid-template-columns: 1fr; /* Stack image and text */
+        text-align: center; /* Center the text content */
+        padding: var(--spacing-12) var(--spacing-6); /* Adjust padding for tablet */
+        gap: var(--spacing-6); /* Adjust gap for tablet */
+    }
+
+    .teaser-right {
+        margin: var(--spacing-6) auto 0; /* Adjust top margin, center block */
+        max-width: 520px; /* Optional: adjust max-width if needed */
+        /* margin-left: auto; and margin-right: auto; are applied via 'auto' in margin shorthand */
+    }
+
+    .teaser-frame {
+        margin: 0 auto var(--spacing-4); /* Center frame and add some bottom margin */
+    }
+
+    .teaser-title {
+        font-size: 2rem; /* Reduce font size for tablet */
+    }
+
+    .teaser-subtitle {
+        font-size: 1rem; /* Reduce font size for tablet */
+    }
+}
+
+/* Mobile: Further refinements for screens up to 767px */
+@media (max-width: 767px) {
+    .landing-teaser.swapped {
+        padding: var(--spacing-8) var(--spacing-4); /* Further reduce padding for mobile */
+        gap: var(--spacing-4); /* Further reduce gap for mobile */
+    }
+
+    .teaser-frame {
+        /* The 3D transform effect is generally subtle. If it causes issues on mobile, */
+        /* you might consider simplifying its base state here, but JavaScript interactions */
+        /* will still apply their own transforms. */
+        /* For example, to make it flatter by default on mobile: */
+        /* transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1); */
+        /* box-shadow: 0 10px 20px rgba(0,0,0,0.3); */
+        max-width: 95%; /* Ensure frame doesn't touch edges if padding is very small */
+        margin-bottom: var(--spacing-6); /* Ensure space below frame */
+    }
+
+    .teaser-right {
+        margin-top: var(--spacing-4); /* Adjust top margin */
+        padding-left: var(--spacing-2); /* Add slight horizontal padding */
+        padding-right: var(--spacing-2); /* Add slight horizontal padding */
+    }
+
+    .teaser-title {
+        font-size: 1.75rem; /* Further reduce font size for mobile */
+        line-height: 1.3;
+    }
+
+    .teaser-subtitle {
+        font-size: 0.9rem; /* Further reduce font size for mobile */
+        line-height: 1.6;
+    }
+
+    .gradient-btn {
+        padding: var(--spacing-2_5) var(--spacing-4); /* Adjust button padding for mobile */
+        font-size: 0.9rem; /* Adjust button font size for mobile */
+    }
+}

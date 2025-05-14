@@ -3,17 +3,53 @@ import { AuthProvider } from "./context/AuthContext";
 import React, { Suspense } from "react";
 import "./App.css";
 import CustomCursor from "./components/global/CustomCursor";
+import "./styles/global/themedloadercomponent.css"
 
-const LandingPage = React.lazy(()=> import("./pages/LandingPage"))
-const OnboardingPage = React.lazy(()=> import("./pages/OnboardingPage"))
+const lazyWithMinTime = (
+  factory: () => Promise<any>,
+  minDisplayTimeMs = 2000
+) => {
+  return React.lazy(() =>
+    Promise.all([
+      factory(),
+      new Promise((resolve) => setTimeout(resolve, minDisplayTimeMs)),
+    ]).then(([moduleExports]) => moduleExports)
+  );
+};
+
+
+const LandingPage = lazyWithMinTime(()=> import("./pages/LandingPage"))
+const OnboardingPage = lazyWithMinTime(()=> import("./pages/OnboardingPage"))
 const Home = React.lazy(()=> import("./pages/Home"))
 const TopicPage = React.lazy(()=> import("./pages/TopicPage"))
+
+const ThemedLoaderComponent = () => (
+  <div className="themed-loader cursor-bg">
+    <div className="particle-burst-loader">
+      <div className="particle-arm p1">
+        <div className="particle-head"></div>
+      </div>
+      <div className="particle-arm p2">
+        <div className="particle-head"></div>
+      </div>
+      <div className="particle-arm p3">
+        <div className="particle-head"></div>
+      </div>
+      <div className="particle-arm p4">
+        <div className="particle-head"></div>
+      </div>
+      <div className="particle-arm p5">
+        <div className="particle-head"></div>
+      </div>
+    </div>
+  </div>
+);
 
 function App() {
   return (
     <AuthProvider>
       <CustomCursor/>
-      <Suspense fallback={<h1>Loading Labs...</h1>}>
+      <Suspense fallback={<ThemedLoaderComponent/>}>
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />

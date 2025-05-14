@@ -15,8 +15,8 @@
 
 /* Scrolled state - only add subtle border when scrolled */
 .header.scrolled {
-  background: rgba(10, 10, 10, 0.7);
-  backdrop-filter: blur(10px);
+  background: var(--color-bg);
+  backdrop-filter: blur(3px);
   border-bottom: var(--border-light);
 }
 
@@ -74,7 +74,7 @@
   height: 40px;
   padding: 0 var(--spacing-3);
   border-radius: var(--border-radius-md);
-  background: var(--color-rose-gold);
+  background: linear-gradient(135deg, #B76E79, #FFB3A7);
   color: var(--color-bg);
   font-weight: var(--font-weight-medium);
   border: none;
