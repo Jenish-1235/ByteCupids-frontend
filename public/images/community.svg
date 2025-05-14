@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <!-- Center user -->
+  <circle cx="12" cy="7" r="4"/>
+  <path d="M16 21v-2a4 4 0 0 0-8 0v2"/>
+  <!-- Left user -->
+  <circle cx="6" cy="11" r="3"/>
+  <path d="M8.5 21v-1a3 3 0 0 0-6 0v1"/>
+  <!-- Right user -->
+  <circle cx="18" cy="11" r="3"/>
+  <path d="M20.5 21v-1a3 3 0 0 0-6 0v1"/>
+</svg>

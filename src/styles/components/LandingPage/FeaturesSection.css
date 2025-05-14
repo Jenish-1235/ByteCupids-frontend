@@ -1,0 +1,172 @@
+.features-section {
+    /* center section & constrain width */
+    max-width: 100%;
+    margin: var(--spacing-16) auto;
+    /* top/bottom from LandingTeaser, horizontal auto */
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 0.2rem;
+    align-items: center;
+    justify-items: center;
+    padding: 2rem;
+    /* horizontal padding only */
+    background: transparent;
+    margin-top: 3rem;
+}
+
+/* Header (left) */
+.features-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.features-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: var(--spacing-3);
+    letter-spacing: 0.5px;
+}
+
+.features-hook {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    max-width: 420px;
+}
+
+/* Grid (right) */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 0.5fr);
+    gap: 2rem;
+    perspective: 800px;
+}
+
+/* Base card: invisible until fadeInUp */
+.feature-card {
+    background: transparent;
+    border-radius: var(--border-radius-lg);
+    cursor: pointer;
+    opacity: 0;
+    /* Fade-in then infinite animations */
+    animation:
+        fadeInUp 0.8s ease forwards,
+        pulseGlow 3s ease-in-out 0.8s infinite alternate;
+}
+
+/* Diagonal pairs tilt animations */
+.feature-card:nth-child(1),
+.feature-card:nth-child(4) {
+    animation:
+        fadeInUp 0.8s ease forwards,
+        tiltA 6s ease-in-out 0.8s infinite alternate,
+        pulseGlow 3s ease-in-out 0.8s infinite alternate;
+}
+
+.feature-card:nth-child(2),
+.feature-card:nth-child(3) {
+    animation:
+        fadeInUp 0.8s ease forwards,
+        tiltB 6s ease-in-out 0.8s infinite alternate,
+        pulseGlow 3s ease-in-out 0.8s infinite alternate;
+}
+
+/* Fade-in entry from below, keeping inward baseline */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: perspective(800px) rotateY(6deg) rotateX(-6deg) translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: perspective(800px) rotateY(6deg) rotateX(-6deg) translateY(0);
+    }
+}
+
+/* Diagonal tilt animations */
+@keyframes tiltA {
+    from {
+        transform: perspective(800px) rotateY(-6deg) rotateX(6deg);
+    }
+
+    to {
+        transform: perspective(800px) rotateY(12deg) rotateX(-12deg);
+    }
+}
+
+@keyframes tiltB {
+    from {
+        transform: perspective(800px) rotateY(6deg) rotateX(-6deg);
+    }
+
+    to {
+        transform: perspective(800px) rotateY(0deg) rotateX(0deg);
+    }
+}
+
+/* Continuous neon glow */
+@keyframes pulseGlow {
+    from {
+        box-shadow: 0 0 8px rgba(170, 0, 255, 0.5);
+    }
+
+    to {
+        box-shadow: 0 0 20px rgba(170, 0, 255, 0.8);
+    }
+}
+
+/* Inner hover lift (optional) */
+.feature-card-inner {
+    padding: var(--spacing-6);
+    text-align: center;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.feature-card:hover .feature-card-inner {
+    box-shadow:
+        0 16px 32px rgba(170, 0, 255, 0.25),
+        0 0 16px rgba(255, 182, 145, 0.25);
+}
+
+/* Icon & text */
+.feature-icon {
+    color: var(--color-neon-violet);
+    margin-bottom: var(--spacing-4);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    color: var(--color-rose-gold);
+}
+
+.feature-title {
+    font-size: var(--font-size-h4);
+    color: var(--color-neon-violet);
+    margin-bottom: var(--spacing-2);
+}
+
+.feature-desc {
+    font-size: var(--font-size-body);
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .features-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr 1fr;
+        margin-top: var(--spacing-8);
+    }
+
+    .feature-card-inner {
+        transform: none !important;
+    }
+}
