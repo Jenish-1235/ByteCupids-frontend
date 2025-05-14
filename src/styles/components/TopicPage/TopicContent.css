@@ -116,11 +116,19 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .dashboard-content-section {
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1.5rem;
     min-height: unset;
+    margin: 0;
+    padding: 0 1.2rem;
+  }
+
+  .topic-content-section {
+    margin-top: 2rem;
+    padding: 0;
+    gap: 1.2rem;
   }
 
   .topic-page__content-markdown,
@@ -130,6 +138,51 @@
     max-width: 100%;
     border-radius: var(--border-radius-lg);
     box-shadow: 0 1px 8px rgba(170, 0, 255, 0.06);
+    margin: 1.2rem 1.2rem;
+    padding: 1.2rem 1.2rem;
+  }
+
+  .topic-page__actions-panel {
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem 0.7rem;
+    justify-content: flex-start;
+    align-items: stretch;
+    overflow-x: auto;
+  }
+
+  .topic-page__action-tile {
+    min-width: 160px;
+    font-size: 1.02rem;
+    padding: 1rem 0.8rem;
+  }
+}
+
+/* it is responsive but the margin and padding is in the way that it distorts the overall look TODO fix it */
+@media (max-width: 900px) {
+  .dashboard-content-section {
+    flex-direction: column;
+    gap: 1.2rem;
+    min-height: unset;
+    margin: 0;
+    padding: 0 0.5rem;
+  }
+
+  .topic-content-section {
+    margin-top: 1.2rem;
+    padding: 0;
+    gap: 0.7rem;
+  }
+
+  .topic-page__content-markdown,
+  .topic-page__actions-panel {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 1px 8px rgba(170, 0, 255, 0.06);
+    margin: 1rem 1rem;
+    padding: 1rem 1.7rem;
   }
 
   .topic-page__actions-panel {
@@ -148,22 +201,91 @@
   }
 }
 
-@media (max-width: 600px) {
-  .topic-content-section {
-    margin-top: 2rem;
-  }
-  .topic-page__content-markdown {
-    padding: 0.7rem 0.3rem;
-    font-size: 0.93rem;
+@media (max-width: 786px) {
+  .dashboard-content-section {
+    flex-direction: column;
+    gap: 1.1rem;
+    min-height: unset;
+    margin: 0;
+    padding: 0 0.3rem;
   }
 
-  .topic-page__actions-panel {
-    padding: 0.5rem 0.1rem;
+  .topic-content-section {
+    margin-top: 1rem;
+    padding: 0;
     gap: 0.5rem;
   }
 
+  .topic-page__content-markdown,
+  .topic-page__actions-panel {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 1px 8px rgba(170, 0, 255, 0.06);
+    margin: 0.7rem 0.5rem;
+  }
+
+  .topic-page__actions-panel {
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 0.5rem 0rem;
+    justify-content: flex-start;
+    align-items: stretch;
+    overflow-x: auto;
+  }
+
   .topic-page__action-tile {
-    font-size: 0.92rem;
+    min-width: 120px;
+    font-size: 0.95rem;
     padding: 0.6rem 0.3rem;
   }
+}
+
+
+@media (max-width: 600px) {
+  .dashboard-content-section {
+    flex-direction: column;
+    gap: 0.7rem;
+    min-height: unset;
+    margin: 0;
+    padding: 0 0.1rem;
+  }
+
+  .topic-content-section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.7rem;
+    padding: 0;
+    gap: 0.3rem;
+    padding-bottom: 4rem;  
+    min-height: 100%;
+  }
+
+  .topic-page__content-markdown,
+  .topic-page__actions-panel {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 1px 8px rgba(170, 0, 255, 0.06);
+    margin: 0.1rem 0rem;
+    padding: 0rem 0.8rem;
+  }
+
+  .topic-page__actions-panel {
+    flex-direction: row;
+    gap: 0.3rem;
+    /* padding: 0.3rem 0.05rem; */
+    justify-content: flex-start;
+    align-items: stretch;
+    overflow-x: auto;
+  }
+
+  .topic-page__action-tile {
+    min-width: 100px;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.1rem;
+  }
+  
 }
