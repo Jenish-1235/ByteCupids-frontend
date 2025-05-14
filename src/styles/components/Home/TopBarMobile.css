@@ -2,8 +2,6 @@
   display: none;
 }
 
-
-
 @media (max-width: 900px) {
   .topbar-mobile {
     display: flex;
@@ -146,7 +144,6 @@
     flex-direction: column;
     animation: slideInDrawer 0.22s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 0.5rem 0.5rem 0 0.5rem;
-    margin-right: 0;
   }
   @keyframes slideInDrawer {
     from {
@@ -157,14 +154,17 @@
     }
   }
   .topbar-mobile__sidebar-close {
+    min-width: fit-content;
     background: none;
     border: none;
     color: var(--color-text-secondary);
     font-size: 2.2rem;
     font-weight: 700;
+    display: flex;
     align-self: flex-end;
     margin: 1rem 1.2rem 0.5rem 0;
     cursor: pointer;
+    padding-left: 13rem;
     transition: color 0.2s;
   }
   .topbar-mobile__sidebar-close:hover {
@@ -185,15 +185,12 @@
     color: var(--color-neon-violet);
   }
   .topbar-mobile__sidebar-drawer {
-   min-width: fit-content;
+    min-width: fit-content;
   }
 }
 
 @media (max-width: 768px) {
- .topbar-mobile__sidebar-drawer {
-  min-width: fit-content;
-}
-.topbar-mobile__sidebar-close{
-  margin-right: 2.2rem;
-}
+  .topbar-mobile__sidebar-drawer {
+    min-width: 62vw;
+  }
 }

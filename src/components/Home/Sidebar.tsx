@@ -28,6 +28,7 @@ const Sidebar: React.FC = () => {
             />
           </svg>
         </span>
+        <span className="sidebar__label">Home</span>
       </div>
       
       <div className="sidebar__menu-item">
@@ -38,6 +39,7 @@ const Sidebar: React.FC = () => {
             <rect x="9" y="5" width="2" height="2" rx="1" fill="currentColor" />
           </svg>
         </span>
+        <span className="sidebar__label">About Us</span>
       </div>
       
       <button className="sidebar__logout-btn">
@@ -66,6 +68,7 @@ const Sidebar: React.FC = () => {
             />
           </svg>
         </span>
+        <span className="sidebar__label">Logout</span>
       </button>
     </aside>
   );
