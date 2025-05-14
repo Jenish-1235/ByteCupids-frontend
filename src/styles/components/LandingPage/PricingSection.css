@@ -4,13 +4,13 @@
 
 .pricing-section {
   max-width: 100%;
-  margin-top: 5rem; /* Reduced top margin by 2rem */
-  padding: var(--spacing-4) var(--spacing-8);
+  margin-top: 5rem; 
+  padding: var(--spacing-10) var(--spacing-8); /* Consistent vertical and horizontal padding */
   text-align: center;
-  background: transparent; /* Keeping background consistent with landing page */
+  background: transparent; 
   color: var(--color-white);
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Keep for ::before/::after blobs */
 }
 
 /* ----------------------
@@ -200,11 +200,12 @@ input:checked+.slider:before {
 ----------------------- */
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(250px, 320px)); /* More controlled sizing */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
   gap: var(--spacing-5);
-  margin: 0 auto; /* Center the grid */
+  margin: 0 auto; 
   justify-content: center;
-  max-width: 1100px; /* Prevent excessive width */
+  max-width: 1300px; 
+  /* No explicit padding here, section padding will provide outer spacing */
 }
 
 /* ----------------------
@@ -236,11 +237,15 @@ input:checked+.slider:before {
 }
 
 .pricing-card:nth-child(2) {
-  animation-delay: 0.3s;
+  animation-delay: 0.2s; /* Adjusted delay */
 }
 
 .pricing-card:nth-child(3) {
-  animation-delay: 0.5s;
+  animation-delay: 0.3s; /* Adjusted delay */
+}
+
+.pricing-card:nth-child(4) { /* Added for the 4th card */
+  animation-delay: 0.4s; 
 }
 
 @keyframes cardEntrance {
@@ -607,23 +612,37 @@ input:checked+.slider:before {
 /* ----------------------
    Responsive
 ----------------------- */
-@media (max-width: 1200px) {
+
+@media (max-width: 1401px) { /* For very wide screens, go to a 2x2 grid */
   .pricing-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-3);
-    max-width: 95%;
+    grid-template-columns: repeat(2, minmax(300px, 1fr)); /* Two columns */
+    max-width: 900px; /* Constrain the 2x2 grid width and center it */
+    /* margin: 0 auto; is inherited from the base .pricing-grid style */
+  }
+}
+
+@media (max-width: 1200px) {
+  .pricing-section {
+    padding: var(--spacing-10) var(--spacing-6); /* Slightly reduce horizontal padding */
+  }
+  .pricing-grid {
+    gap: var(--spacing-4); 
+    max-width: 100%; /* Allow grid to use full width defined by section padding */
+    padding: 3rem;
   }
   
   .pricing-card {
-    padding: var(--spacing-4);
+    /* padding: var(--spacing-4); */ /* Already set in base .pricing-card */
     min-height: 450px;
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px) { 
+  .pricing-section {
+    padding: var(--spacing-8) var(--spacing-6); /* Adjust section padding */
+  }
   .pricing-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-3);
+    gap: var(--spacing-4); 
   }
   
   .plan-features li {
@@ -641,30 +660,67 @@ input:checked+.slider:before {
 }
 
 @media (max-width: 900px) {
+  .pricing-section {
+    padding: var(--spacing-8) var(--spacing-5); /* Adjust section padding */
+  }
   .pricing-grid {
-    grid-template-columns: repeat(2, minmax(250px, 350px));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-4); 
   }
   
   .pricing-card.recommended {
-    grid-column: span 2;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
+    /* Ensure recommended card doesn't try to span if not desired in a 2-column layout */
+    grid-column: auto; 
+  }
+   .pricing-card {
+    min-height: 460px; 
+  }
+
+  .newsletter{
+    padding: 3rem;
   }
 }
 
 @media (max-width: 768px) {
+  .pricing-section {
+    padding: var(--spacing-8) var(--spacing-4); /* Adjust section padding for carousel view */
+    /* overflow-x: hidden; */ /* Add if you want to be absolutely sure no horizontal scrollbar appears on the section itself */
+  }
+
+  .pricing-section::before,
+  .pricing-section::after {
+    opacity: 0.05;
+    filter: blur(120px);
+  }
+
   .pricing-grid {
-    grid-template-columns: minmax(250px, 400px);
+    display: flex;
+    scroll-behavior: smooth;
+    overflow-x:scroll;
+    gap: var(--spacing-4); 
+    width: 100%; /* Full width for carousel */
+    
+    grid-template-columns: none; 
+    justify-content: flex-start; 
+    
+    padding-left: 3rem; 
+    padding-right: 3rem;
+
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+  }
+  .pricing-grid::-webkit-scrollbar { 
+    display: none;
   }
   
   .pricing-card {
-    max-width: 400px;
-    margin: 0 auto;
+    flex: 0 0 80%; 
+    scroll-snap-align: center; 
+    margin: 0; 
   }
   
   .pricing-card.recommended {
-    grid-column: auto;
+    grid-column: auto; /* Reset grid-column if it was set */
   }
   
   .pricing-title {
@@ -673,21 +729,33 @@ input:checked+.slider:before {
   
   .pricing-subtitle {
     font-size: 1rem;
+    margin-bottom: var(--spacing-6); /* Adjust margin */
   }
   
   .pricing-toggle {
-    flex-direction: row;
+    flex-direction: column; /* Stack toggle elements */
     gap: var(--spacing-2);
+    align-items: center;
+    margin-bottom: var(--spacing-8); /* Increase bottom margin */
   }
 }
 
 @media (max-width: 480px) {
   .pricing-section {
-    padding: var(--spacing-4) var(--spacing-3);
+    padding: var(--spacing-6) var(--spacing-3); /* Further adjust section padding */
   }
   
   .pricing-grid {
-    max-width: 100%;
+    gap: var(--spacing-3); 
+    /* Carousel styles from 768px are mostly inherited here */
+    /* Negative margins and padding for carousel alignment are inherited */
+  }
+
+  .pricing-card {
+    flex: 0 0 90%; /* Slightly less than 95% to show a hint of other cards if desired, or 95% is fine */
+    max-width: calc(100vw - (var(--spacing-3) * 2) - var(--spacing-3)); /* Ensure it fits with some peek */
+    min-height: auto; 
+    /* padding: var(--spacing-4) var(--spacing-3); */ /* Already set in base .pricing-card, or adjust if needed */
   }
   
   .plan-price {
@@ -697,8 +765,112 @@ input:checked+.slider:before {
   .price-amount {
     font-size: 1.8rem;
   }
-  
+
+  .plan-features li {
+    font-size: 0.9rem;
+    padding-left: var(--spacing-5);
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+  .newsletter-button {
+    position: static; /* Remove absolute positioning */
+    width: 100%; /* Make button full width */
+    margin-top: var(--spacing-2); /* Add some space if needed, or rely on gap */
+  }
+  .newsletter-input {
+    text-align: center;
+  }
+  .newsletter-input::placeholder {
+    text-align: center;
+  }
+}
+
+/* Styles for very small screens - stacked layout */
+@media (max-width: 500px) {
+  .pricing-section {
+    padding: var(--spacing-5) var(--spacing-2); /* Minimal padding */
+  }
+
+  .pricing-grid {
+    display: grid; /* Switch from flex (carousel) to grid */
+    grid-template-columns: 1fr; /* Each card takes full width */
+    gap: var(--spacing-4); /* Vertical gap between stacked cards */
+    
+    /* Reset carousel-specific properties */
+    overflow-x: visible;
+    scroll-snap-type: none;
+    margin-left: 0; 
+    margin-right: 0;
+    padding-left: 0; 
+    padding-right: 0;
+    width: 100%; /* Ensure it takes the full width of its container */
+  }
+
   .pricing-card {
-    padding: var(--spacing-4) var(--spacing-3);
+    flex: none; /* Remove flex property from carousel */
+    width: 100%; /* Card takes full width of the grid column */
+    max-width: 100%; /* Override previous max-width */
+    min-height: auto; /* Allow height to adjust to content */
+    scroll-snap-align: none; /* Remove scroll snap */
+    padding: var(--spacing-4) var(--spacing-3); /* Adjust padding if needed */
+    margin-bottom: 0; /* Gap is handled by grid */
+  }
+
+  .plan-name {
+    font-size: 1.3rem;
+  }
+
+  .plan-price {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-3);
+  }
+  
+  .price-amount {
+    font-size: 1.6rem;
+  }
+
+  .plan-features li {
+    font-size: 0.85rem;
+    padding-left: var(--spacing-4); /* Slightly reduce icon padding */
+    margin-bottom: var(--spacing-2_5);
+  }
+
+  .plan-features li::before {
+    width: 20px; /* Adjust checkmark icon size */
+    height: 20px;
+    font-size: 0.8rem;
+  }
+
+  .plan-cta {
+    padding: var(--spacing-2_5) var(--spacing-3);
+    font-size: 0.9rem;
+  }
+
+  .pricing-title {
+    font-size: 2rem; /* Adjust section title */
+  }
+
+  .pricing-subtitle {
+    font-size: 0.9rem; /* Adjust section subtitle */
+  }
+
+  .pricing-toggle {
+    margin-bottom: var(--spacing-6);
+  }
+
+  /* Newsletter adjustments for very small screens */
+  .newsletter p {
+    font-size: 1.1rem;
+  }
+  .newsletter-input {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+  .newsletter-button {
+    font-size: 0.9rem;
+    padding: 0 var(--spacing-3);
   }
 }

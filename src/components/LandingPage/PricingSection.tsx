@@ -36,8 +36,22 @@ export const PricingSection: React.FC = () => {
       name: "Pro",
       monthlyPrice: "$19",
       annualPrice: "$14",
-      recommended: true,
+      recommended: false,
       ctaText: "Get Pro",
+      features: [
+        { text: "Unlimited AI chat", highlighted: true },
+        { text: "All deep-dive articles", highlighted: true },
+        { text: "Advanced analytics & streaks", highlighted: true },
+        { text: "Complete topic access", highlighted: false },
+        { text: "Priority response time", highlighted: false },
+      ],
+    },
+    {
+      name: "Premium",
+      monthlyPrice: "$29",
+      annualPrice: "$24",
+      recommended: true,
+      ctaText: "Get Premium",
       features: [
         { text: "Unlimited AI chat", highlighted: true },
         { text: "All deep-dive articles", highlighted: true },
@@ -46,6 +60,7 @@ export const PricingSection: React.FC = () => {
         { text: "Priority response time", highlighted: false },
       ],
     },
+
     {
       name: "Enterprise",
       monthlyPrice: "$49",
