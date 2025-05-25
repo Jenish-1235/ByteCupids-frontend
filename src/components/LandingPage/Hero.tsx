@@ -35,7 +35,7 @@ export const Hero: React.FC<HeroProps> = ({className}) => {
           </p>
           <div className="hero-actions">
             <button className="btn primary" onClick={handleGetStarted}>
-              Get Started
+              Let's Discuss
             </button>
             <button className="btn secondary">Join community !</button>
           </div>

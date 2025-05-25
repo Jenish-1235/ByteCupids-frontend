@@ -2,7 +2,6 @@ import React from "react";
 import Sidebar from "../components/Home/Sidebar";
 import Header from "../components/Home/Header";
 import "../styles/pages/Home.css";
-import ModuleTabBar from "../components/Home/ModuleTabBar";
 import HomeContent from "../components/Home/HomeContent";
 import TopBarMobile from "../components/Home/TopBarMobile";
 
@@ -40,12 +39,6 @@ const Home: React.FC = () => {
 
       <div className="home-page-sidebar-desktop">{<Sidebar />}</div>
       <main className="main">
-        <Header userName="Jenish-1235" />
-        <ModuleTabBar
-          modules={modules}
-          activeModule={activeModule}
-          onModuleChange={setActiveModule}
-        />
         <HomeContent />
       </main>
     </div>

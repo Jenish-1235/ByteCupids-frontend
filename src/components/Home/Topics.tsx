@@ -1,25 +1,15 @@
 import React, { useState } from "react";
 
-const topics = [
-  {
-    title: "Topic 1",
-    subtopics: ["Sub-topic 1", "Sub-topic 2"],
-  },
-  {
-    title: "DSA",
-    subtopics: ["Sub-topic 1", "Sub-topic 2"],
-  },
-  {
-    title: "System Design",
-    subtopics: ["Sub-topic 1", "Sub-topic 2"],
-  },
-  {
-    title: "Operating System",
-    subtopics: ["Sub-topic 1", "Sub-topic 2"],
-  },
-];
+interface Topic {
+  title: string;
+  subtopics: string[];
+}
 
-const Topics: React.FC = () => {
+interface TopicsProps {
+  topics: Topic[];
+}
+
+const Topics: React.FC<TopicsProps> = ({ topics }) => {
   const [openIdx, setOpenIdx] = useState(0);
 
   return (
