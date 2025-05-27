@@ -32,7 +32,7 @@
 }
 
 .greeting-highlight {
-  color: var(--color-rose-gold);
+  color: var(--color-rose-gold) ;
 }
 
 .dashboard-header__user {

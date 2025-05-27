@@ -69,8 +69,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSwitchToLogin }) => {
           you master concepts at your own pace.
         </div>
 
-        {/* Decorative line */}
-        <div className="decorative-line"></div>
+      
       </div>
 
       <div className="onboarding-right">
