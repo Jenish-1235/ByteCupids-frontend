@@ -6,9 +6,9 @@ export interface TopicResponse {
   code: number;
   success: boolean;
   topics: {
-    topicId: string;
+    subTopicName: string;
     topicName: string;
-    moduleId: string;
-    noOfLabs: number;
+    moduleId: number;
+    subTopicId: number;
   }[];
 }

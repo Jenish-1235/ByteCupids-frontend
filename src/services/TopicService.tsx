@@ -6,7 +6,7 @@ import { TopicResponse } from "../types/TopicResponse";
 export const getTopics = async (payload: TopicPayload): Promise<TopicResponse> => {
   try {
     const response = await axios.post<TopicResponse>(
-      "http://localhost:8080/bytecupids/lab/get_topics",
+      "http://localhost:8000/bytecupids/lab/get_topics",
       payload,
       {
         headers: {

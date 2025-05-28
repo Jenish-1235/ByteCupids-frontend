@@ -1,93 +1,80 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getModules } from "../../services/ModuleService";
+import { getTopics } from "../../services/TopicService";
 import "../../styles/components/Home/HomeContent.css";
-
-const DUMMY_MODULES = [
-  { id: "MOD001", name: "Introduction to React" },
-  { id: "MOD002", name: "Advanced TypeScript" },
-  { id: "MOD003", name: "CSS Animations" },
-  { id: "MOD004", name: "Node.js Fundamentals" },
-  { id: "MOD005", name: "Database Design" },
-  { id: "MOD006", name: "API Development" },
-  { id: "MOD007", name: "Testing Strategies" },
-  { id: "MOD008", name: "DevOps Basics" },
-  { id: "MOD009", name: "React Native" },
-  { id: "MOD010", name: "GraphQL Fundamentals" },
-  { id: "MOD011", name: "MongoDB Basics" },
-  { id: "MOD012", name: "Docker Containers" },
-  { id: "MOD013", name: "Advanced Machine Learning" },
-  { id: "MOD014", name: "Microservices Architecture" },
-];
-
-// Dummy topics and subtopics for demonstration
-const DUMMY_TOPICS = [
-  {
-    id: "T1",
-    name: "Topic 1",
-    subtopics: [
-      { id: "S1", name: "Subtopic 1.1" },
-      { id: "S2", name: "Subtopic 1.2" },
-      { id: "S3", name: "Subtopic 1.3" },
-      { id: "S4", name: "Subtopic 1.4" },
-      { id: "S5", name: "Subtopic 1.5" },
-    ],
-  },
-  {
-    id: "T2",
-    name: "Topic 2",
-    subtopics: [
-      { id: "S6", name: "Subtopic 2.1" },
-      { id: "S7", name: "Subtopic 2.2" },
-      { id: "S8", name: "Subtopic 2.3" },
-      { id: "S9", name: "Subtopic 2.4" },
-      { id: "S10", name: "Subtopic 2.5" },
-    ],
-  },
-  {
-    id: "T3",
-    name: "Topic 3",
-    subtopics: [
-      { id: "S11", name: "Subtopic 3.1" },
-      { id: "S12", name: "Subtopic 3.2" },
-      { id: "S13", name: "Subtopic 3.3" },
-      { id: "S14", name: "Subtopic 3.4" },
-      { id: "S15", name: "Subtopic 3.5" },
-    ],
-  },
-  {
-    id: "T4",
-    name: "Topic 4",
-    subtopics: [
-      { id: "S16", name: "Subtopic 4.1" },
-      { id: "S17", name: "Subtopic 4.2" },
-      { id: "S18", name: "Subtopic 4.3" },
-      { id: "S19", name: "Subtopic 4.4" },
-      { id: "S20", name: "Subtopic 4.5" },
-    ],
-  },
-  {
-    id: "T5",
-    name: "Topic 5",
-    subtopics: [
-      { id: "S21", name: "Subtopic 5.1" },
-      { id: "S22", name: "Subtopic 5.2" },
-      { id: "S23", name: "Subtopic 5.3" },
-      { id: "S24", name: "Subtopic 5.4" },
-      { id: "S25", name: "Subtopic 5.5" },
-    ],
-  },
-];
 
 const HomeContent: React.FC = () => {
   const [search, setSearch] = useState("");
-  const [selectedModule, setSelectedModule] = useState<
-    null | (typeof DUMMY_MODULES)[0]
-  >(null);
+  const [selectedModule, setSelectedModule] = useState<null | {
+    moduleId: string;
+    name: string;
+    noOfTopics: number;
+    noOfSubTopics: number;
+  }>(null);
   const [difficulty, setDifficulty] = useState<{ [id: string]: string }>({});
+  const [modules, setModules] = useState<
+    {
+      moduleId: string;
+      name: string;
+      noOfTopics: number;
+      noOfSubTopics: number;
+    }[]
+  >([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [topicsByName, setTopicsByName] = useState<{
+    [topicName: string]: { subTopicName: string; subTopicId: number }[];
+  }>({});
+  const [topicsLoading, setTopicsLoading] = useState(false);
+  const [topicsError, setTopicsError] = useState<string | null>(null);
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
-  const [selectedSubtopic, setSelectedSubtopic] = useState<string | null>(null);
+  const [selectedSubtopic, setSelectedSubtopic] = useState<number | null>(null);
 
-  const filteredModules = DUMMY_MODULES.filter((mod) =>
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
+    getModules()
+      .then((res) => {
+        setModules(res.modules);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError("Failed to load modules");
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (selectedModule) {
+      setTopicsLoading(true);
+      setTopicsError(null);
+      getTopics({ moduleId: selectedModule.moduleId, accessToken: "" })
+        .then((res) => {
+          // Group subtopics by topicName
+          const grouped: {
+            [topicName: string]: { subTopicName: string; subTopicId: number }[];
+          } = {};
+          res.topics.forEach((item) => {
+            if (!grouped[item.topicName]) grouped[item.topicName] = [];
+            grouped[item.topicName].push({
+              subTopicName: item.subTopicName,
+              subTopicId: item.subTopicId,
+            });
+          });
+          setTopicsByName(grouped);
+          setTopicsLoading(false);
+        })
+        .catch(() => {
+          setTopicsError("Failed to load topics");
+          setTopicsLoading(false);
+        });
+    } else {
+      setTopicsByName({});
+    }
+  }, [selectedModule]);
+
+  const filteredModules = modules.filter((mod) =>
     mod.name.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -114,103 +101,132 @@ const HomeContent: React.FC = () => {
 
       {/* Module Selection Panel */}
       <div className="module-grid">
-        {filteredModules.map((mod) => {
-          // Pick color based on first letter (E: green, M: yellow, H: red, default: purple)
-          const firstLetter = mod.name[0].toUpperCase();
-          let circleColor = "#b983ff"; // default purple
-          if (firstLetter === "E" || firstLetter === "I" || firstLetter === "N")
-            circleColor = "#3ecf8e"; // green
-          else if (
-            firstLetter === "M" ||
-            firstLetter === "D" ||
-            firstLetter === "C"
-          )
-            circleColor = "#ffd166"; // yellow
-          else if (
-            firstLetter === "H" ||
-            firstLetter === "A" ||
-            firstLetter === "G" ||
-            firstLetter === "R"
-          )
-            circleColor = "#ff5e5e"; // red
+        {loading ? (
+          <div>Loading modules...</div>
+        ) : error ? (
+          <div style={{ color: "red" }}>{error}</div>
+        ) : filteredModules.length === 0 ? (
+          <div>No modules found.</div>
+        ) : (
+          filteredModules.map((mod) => {
+            const firstLetter = mod.name[0].toUpperCase();
+            let circleColor = "#b983ff"; // default purple
+            if (
+              firstLetter === "E" ||
+              firstLetter === "I" ||
+              firstLetter === "N"
+            )
+              circleColor = "#3ecf8e"; // green
+            else if (
+              firstLetter === "M" ||
+              firstLetter === "D" ||
+              firstLetter === "C"
+            )
+              circleColor = "#ffd166"; // yellow
+            else if (
+              firstLetter === "H" ||
+              firstLetter === "A" ||
+              firstLetter === "G" ||
+              firstLetter === "R"
+            )
+              circleColor = "#ff5e5e"; // red
 
-          return (
-            <div
-              key={mod.id}
-              className="module-tile"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                paddingRight: "1.5rem",
-                position: "relative",
-              }}
-            >
-              {/* Difficulty Selector styled as button, beside Start, both hidden on popup */}
-              {!selectedModule && (
-                <>
-                  <div className="module-tile__difficulty">
-                    <select
-                      value={difficulty[mod.id] || "Easy"}
-                      onClick={(e) => e.stopPropagation()}
-                      onChange={(e) =>
-                        setDifficulty({
-                          ...difficulty,
-                          [mod.id]: e.target.value,
-                        })
-                      }
-                      aria-label="Select difficulty"
-                    >
-                      <option value="Easy">Easy</option>
-                      <option value="Medium">Medium</option>
-                      <option value="Hard">Hard</option>
-                    </select>
-                  </div>
-                  <button
-                    className="module-tile__discuss"
-                    title="Start Module"
-                    tabIndex={-1}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedModule(mod); // open popup only on Start
-                    }}
-                    aria-label="Start Module"
-                  >
-                    <span className="module-tile__discuss-text">Start</span>
-                    <span className="module-tile__discuss-arrow-circle">→</span>
-                  </button>
-                </>
-              )}
+            return (
               <div
-                style={{ display: "flex", alignItems: "center", gap: "1.2rem" }}
+                key={mod.moduleId}
+                className="module-tile"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  paddingRight: "1.5rem",
+                  position: "relative",
+                }}
               >
-                <span
-                  className="module-tile__circle"
-                  style={{ background: circleColor }}
-                  aria-label={firstLetter}
-                >
-                  {firstLetter}
-                </span>
+                {/* Difficulty Selector styled as button, beside Start, both hidden on popup */}
+                {!selectedModule && (
+                  <>
+                    <div className="module-tile__difficulty">
+                      <select
+                        value={difficulty[mod.moduleId] || "Easy"}
+                        onClick={(e) => e.stopPropagation()}
+                        onChange={(e) =>
+                          setDifficulty({
+                            ...difficulty,
+                            [mod.moduleId]: e.target.value,
+                          })
+                        }
+                        aria-label="Select difficulty"
+                      >
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                      </select>
+                    </div>
+                    <button
+                      className="module-tile__discuss"
+                      title="Start Module"
+                      tabIndex={-1}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedModule(mod); // open popup only on Start
+                      }}
+                      aria-label="Start Module"
+                    >
+                      <span className="module-tile__discuss-text">Start</span>
+                      <span className="module-tile__discuss-arrow-circle">
+                        →
+                      </span>
+                    </button>
+                  </>
+                )}
                 <div
                   style={{
                     display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
+                    alignItems: "center",
+                    gap: "1.2rem",
                   }}
                 >
-                  <div className="module-tile__name">{mod.name}</div>
-                  <div className="module-tile__id">{mod.id}</div>
+                  <span
+                    className="module-tile__circle"
+                    style={{ background: circleColor }}
+                    aria-label={firstLetter}
+                  >
+                    {firstLetter}
+                  </span>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <div className="module-tile__name">{mod.name}</div>
+                    <div className="module-tile__id">{mod.moduleId}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
 
       {/* Topic Selection Panel */}
       {selectedModule && (
         <div
           className="topic-selection-overlay"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            background: "rgba(0,0,0,0.7)",
+            zIndex: 1000,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
           onClick={(e) => {
             if (
               (e.target as HTMLElement).classList.contains(
@@ -221,66 +237,149 @@ const HomeContent: React.FC = () => {
             }
           }}
         >
-          <div className="topic-selection-panel">
+          <div
+            className="topic-selection-panel"
+            style={{
+              background: "#18181b",
+              borderRadius: 16,
+              minWidth: 400,
+              maxWidth: 480,
+              width: "90vw",
+              maxHeight: "80vh",
+              overflowY: "auto",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.45)",
+              padding: "2.5rem 2rem 2rem 2rem",
+              color: "#fff",
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              gap: "1.2rem",
+            }}
+          >
             <button
               className="close-button"
+              style={{
+                position: "absolute",
+                top: 18,
+                right: 18,
+                background: "none",
+                border: "none",
+                color: "#fff",
+                fontSize: 28,
+                cursor: "pointer",
+                transition: "color 0.2s",
+                zIndex: 2,
+              }}
               onClick={() => setSelectedModule(null)}
+              aria-label="Close"
             >
               &times;
             </button>
-            <h2>{selectedModule.name}</h2>
-            <ul className="topic-list">
-              {DUMMY_TOPICS.map((topic) => (
-                <li
-                  key={topic.id}
-                  className={selectedTopic === topic.id ? "selected" : ""}
-                  onClick={() => {
-                    setExpandedTopic(
-                      expandedTopic === topic.id ? null : topic.id
-                    );
-                    setSelectedTopic(topic.id);
-                  }}
-                  style={{ position: "relative" }}
-                >
-                  <span
+            <h2
+              style={{
+                fontWeight: 600,
+                fontSize: 24,
+                marginBottom: 8,
+                color: "#fff",
+              }}
+            >
+              {selectedModule.name}
+            </h2>
+            {topicsLoading ? (
+              <div style={{ color: "#bbb" }}>Loading topics...</div>
+            ) : topicsError ? (
+              <div style={{ color: "#ff5e5e" }}>{topicsError}</div>
+            ) : Object.keys(topicsByName).length === 0 ? (
+              <div style={{ color: "#bbb" }}>No topics found.</div>
+            ) : (
+              <ul
+                className="topic-list"
+                style={{ listStyle: "none", padding: 0, margin: 0 }}
+              >
+                {Object.entries(topicsByName).map(([topicName, subtopics]) => (
+                  <li
+                    key={topicName}
+                    className={selectedTopic === topicName ? "selected" : ""}
                     style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
+                      background:
+                        expandedTopic === topicName ? "#23232a" : "transparent",
+                      borderRadius: 10,
+                      marginBottom: 8,
+                      padding: "0.7rem 1.1rem",
+                      cursor: "pointer",
+                      color: "#fff",
+                      fontWeight: 500,
+                      transition: "background 0.18s",
+                    }}
+                    onClick={() => {
+                      setExpandedTopic(
+                        expandedTopic === topicName ? null : topicName
+                      );
+                      setSelectedTopic(topicName);
                     }}
                   >
-                    {topic.name}
                     <span
                       style={{
-                        marginLeft: 8,
-                        fontSize: 18,
-                        transition: "transform 0.2s",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
                       }}
                     >
-                      {expandedTopic === topic.id ? "▾" : "▸"}
+                      {topicName}
+                      <span
+                        style={{
+                          marginLeft: 8,
+                          fontSize: 18,
+                          transition: "transform 0.2s",
+                        }}
+                      >
+                        {expandedTopic === topicName ? "▾" : "▸"}
+                      </span>
                     </span>
-                  </span>
-                  {expandedTopic === topic.id && (
-                    <ul className="subtopic-list">
-                      {topic.subtopics.map((subtopic) => (
-                        <li
-                          key={subtopic.id}
-                          className={
-                            selectedSubtopic === subtopic.id ? "selected" : ""
-                          }
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setSelectedSubtopic(subtopic.id);
-                          }}
-                        >
-                          {subtopic.name}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ul>
+                    {expandedTopic === topicName && (
+                      <ul
+                        className="subtopic-list"
+                        style={{
+                          listStyle: "none",
+                          padding: 0,
+                          margin: "0.5rem 0 0 0.5rem",
+                        }}
+                      >
+                        {subtopics.map((sub) => (
+                          <li
+                            key={sub.subTopicId}
+                            className={
+                              selectedSubtopic === sub.subTopicId
+                                ? "selected"
+                                : ""
+                            }
+                            style={{
+                              background:
+                                selectedSubtopic === sub.subTopicId
+                                  ? "#2d2d36"
+                                  : "transparent",
+                              borderRadius: 8,
+                              marginBottom: 4,
+                              padding: "0.5rem 1rem",
+                              color: "#e0e0e0",
+                              fontWeight: 400,
+                              cursor: "pointer",
+                              transition: "background 0.18s, color 0.18s",
+                            }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedSubtopic(sub.subTopicId);
+                            }}
+                          >
+                            {sub.subTopicName}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       )}
