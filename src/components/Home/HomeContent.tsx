@@ -11,7 +11,6 @@ const HomeContent: React.FC = () => {
     noOfTopics: number;
     noOfSubTopics: number;
   }>(null);
-  const [difficulty, setDifficulty] = useState<{ [id: string]: string }>({});
   const [modules, setModules] = useState<
     {
       moduleId: string;
@@ -30,6 +29,7 @@ const HomeContent: React.FC = () => {
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const [selectedSubtopic, setSelectedSubtopic] = useState<number | null>(null);
+  const [difficultyFilter, setDifficultyFilter] = useState<string>("All");
 
   useEffect(() => {
     setLoading(true);
@@ -80,12 +80,15 @@ const HomeContent: React.FC = () => {
 
   return (
     <div className="dashboard-content-section">
+      {" "}
       {/* Header */}
       <div className="dashboard-header">
-        <div className="dashboard-header__welcome-bar">
-          <span className="greeting">
-            <span className="greeting-highlight">Modules</span>
-          </span>
+        <div className="dashboard-header__top">
+          <div className="dashboard-header__welcome-bar">
+            <span className="greeting">
+              <span className="greeting-highlight">Modules</span>
+            </span>
+          </div>
           <div className="dashboard-header__actions">
             <input
               className="dashboard-header__search"
@@ -97,8 +100,47 @@ const HomeContent: React.FC = () => {
             <i className="fas fa-user-circle dashboard-header__profile"></i>
           </div>
         </div>
-      </div>
 
+        {/* Topic Filter Chips Row */}
+        <div className="module-topic-chips-container">
+          <div
+            className={`module-topic-chip${
+              difficultyFilter === "All" ? " module-topic-chip--active" : ""
+            }`}
+            onClick={() => setDifficultyFilter("All")}
+          >
+            <i className="fas fa-archive module-topic-chip__icon"></i>
+            All Topics
+          </div>
+          <div
+            className={`module-topic-chip${
+              difficultyFilter === "Easy" ? " module-topic-chip--active" : ""
+            }`}
+            onClick={() => setDifficultyFilter("Easy")}
+          >
+            <i className="fas fa-project-diagram module-topic-chip__icon"></i>
+            Beginner
+          </div>
+          <div
+            className={`module-topic-chip${
+              difficultyFilter === "Medium" ? " module-topic-chip--active" : ""
+            }`}
+            onClick={() => setDifficultyFilter("Medium")}
+          >
+            <i className="fas fa-database module-topic-chip__icon"></i>
+            Intermediate
+          </div>
+          <div
+            className={`module-topic-chip${
+              difficultyFilter === "Hard" ? " module-topic-chip--active" : ""
+            }`}
+            onClick={() => setDifficultyFilter("Hard")}
+          >
+            <i className="fas fa-dollar-sign module-topic-chip__icon"></i>
+            Advanced
+          </div>
+        </div>
+      </div>
       {/* Module Selection Panel */}
       <div className="module-grid">
         {loading ? (
@@ -108,60 +150,29 @@ const HomeContent: React.FC = () => {
         ) : filteredModules.length === 0 ? (
           <div>No modules found.</div>
         ) : (
-          filteredModules.map((mod) => {
-            const firstLetter = mod.name[0].toUpperCase();
-            let circleColor = "#b983ff"; // default purple
-            if (
-              firstLetter === "E" ||
-              firstLetter === "I" ||
-              firstLetter === "N"
-            )
-              circleColor = "#3ecf8e"; // green
-            else if (
-              firstLetter === "M" ||
-              firstLetter === "D" ||
-              firstLetter === "C"
-            )
-              circleColor = "#ffd166"; // yellow
-            else if (
-              firstLetter === "H" ||
-              firstLetter === "A" ||
-              firstLetter === "G" ||
-              firstLetter === "R"
-            )
-              circleColor = "#ff5e5e"; // red
-
-            return (
-              <div
-                key={mod.moduleId}
-                className="module-tile"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  paddingRight: "1.5rem",
-                  position: "relative",
-                }}
-              >
-                {/* Difficulty Selector styled as button, beside Start, both hidden on popup */}
-                {!selectedModule && (
-                  <>
-                    <div className="module-tile__difficulty">
-                      <select
-                        value={difficulty[mod.moduleId] || "Easy"}
-                        onClick={(e) => e.stopPropagation()}
-                        onChange={(e) =>
-                          setDifficulty({
-                            ...difficulty,
-                            [mod.moduleId]: e.target.value,
-                          })
-                        }
-                        aria-label="Select difficulty"
-                      >
-                        <option value="Easy">Easy</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Hard">Hard</option>
-                      </select>
+          filteredModules.flatMap((mod) => {
+            const difficulties = [
+              { label: "Easy", color: "easy" },
+              { label: "Medium", color: "medium" },
+              { label: "Hard", color: "hard" },
+            ];
+            return difficulties
+              .filter(
+                (diff) =>
+                  difficultyFilter === "All" || diff.label === difficultyFilter
+              )
+              .map((diff) => {
+                const firstLetter = mod.name[0].toUpperCase();
+                return (
+                  <div
+                    key={mod.moduleId + "-" + diff.label}
+                    className="module-tile"
+                  >
+                    {/* Difficulty Tag instead of dropdown */}
+                    <div
+                      className={`module-tile__difficulty-tag module-tile__difficulty-tag--${diff.color}`}
+                    >
+                      {diff.label}
                     </div>
                     <button
                       className="module-tile__discuss"
@@ -178,39 +189,24 @@ const HomeContent: React.FC = () => {
                         →
                       </span>
                     </button>
-                  </>
-                )}
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "1.2rem",
-                  }}
-                >
-                  <span
-                    className="module-tile__circle"
-                    style={{ background: circleColor }}
-                    aria-label={firstLetter}
-                  >
-                    {firstLetter}
-                  </span>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                    }}
-                  >
-                    <div className="module-tile__name">{mod.name}</div>
-                    <div className="module-tile__id">{mod.moduleId}</div>
+                    <div className="module-tile__main-content">
+                      <span
+                        className={`module-tile__circle module-tile__circle--${diff.color}`}
+                        aria-label={firstLetter}
+                      >
+                        {firstLetter}
+                      </span>
+                      <div className="module-tile__info">
+                        <div className="module-tile__name">{mod.name}</div>
+                        <div className="module-tile__id">{mod.moduleId}</div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            );
+                );
+              });
           })
         )}
       </div>
-
       {/* Topic Selection Panel */}
       {selectedModule && (
         <div

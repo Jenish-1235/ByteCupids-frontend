@@ -7,7 +7,7 @@ export const registerUser = async (
 ): Promise<RegisterResponse> => {
   try {
     const response = await axios.post<RegisterResponse>(
-      "http://localhost:8080/bytecupids/auth/register",
+      "http://localhost:8000/bytecupids/auth/register",
       payload,
       {
         headers: {

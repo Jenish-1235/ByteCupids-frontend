@@ -10,20 +10,24 @@
 
 .dashboard-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   background: transparent;
-  padding-top: 0;
-  margin-top: -1rem;
   padding: 0.2rem 1.8rem;
+  margin-top: -1rem;
   margin-bottom: 1.5rem;
+  gap: 1.5rem;
 }
 
-.dashboard-header__welcome-bar {
+.dashboard-header__top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+}
+
+.dashboard-header__welcome-bar {
+  display: flex;
+  align-items: center;
 }
 
 .greeting {
@@ -141,6 +145,74 @@
   color: #b0b0b8;
   margin-bottom: 0;
   text-align: left;
+}
+
+/* Difficulty Tag Styles */
+.module-tile__difficulty-tag {
+  position: absolute;
+  right: 8.5rem;
+  bottom: 1.2rem;
+  border-radius: 2rem;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.4rem 1.1rem 0.4rem 1.1rem;
+  box-shadow: 0 0 5px #e7a6b180, 0 2px 8px #0008;
+  z-index: 2;
+  margin-right: 0.5rem;
+  margin-bottom: 0.6rem;
+  min-width: 70px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.module-tile__difficulty-tag--easy {
+  background-color: #3ecf8e;
+}
+.module-tile__difficulty-tag--medium {
+  background-color: #ffd166;
+  color: #222;
+}
+.module-tile__difficulty-tag--hard {
+  background-color: #ff5e5e;
+}
+
+.module-tile__main-content {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.module-tile__circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  background: #b983ff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.module-tile__circle--easy {
+  background: #3ecf8e;
+}
+.module-tile__circle--medium {
+  background: #ffd166;
+  color: #222;
+}
+.module-tile__circle--hard {
+  background: #ff5e5e;
+}
+
+.module-tile__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .module-tile__difficulty {
@@ -401,8 +473,106 @@
   font-weight: bold;
   color: #19191c;
   box-shadow: 0 2px 8px #0006;
-  margin-right: 0.5rem;
   letter-spacing: 0.02em;
   margin-left: 1rem;
+  margin-right: 0.5rem;
   background-color: rgb(255, 160, 182) !important;
+  padding: 1rem;
+}
+
+/* Filter Boxes */
+.module-filters-row {
+  display: flex;
+  gap: 1.2rem;
+  margin: 1.2rem 0 2.2rem 0;
+  justify-content: flex-start;
+}
+
+.module-filter-box {
+  background: #23232a;
+  color: #fff;
+  border-radius: 1.2rem;
+  padding: 0.85rem 2.1rem;
+  font-size: 1.08rem;
+  font-weight: 500;
+  box-shadow: 0 2px 12px #0002;
+  border: 1.5px solid #23232b;
+  min-width: 120px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+}
+
+.module-filter-box:hover {
+  background: #282832;
+  color: #fff;
+  box-shadow: 0 4px 18px #0003;
+}
+
+/* Topic Chips */
+.module-topic-chips-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.module-topic-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.4rem;
+  margin: 0.2rem 0;
+  padding-left: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2rem;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.module-topic-chip:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.module-topic-chip--active {
+  background: rgba(255, 160, 182, 0.15);
+  border-color: rgba(255, 160, 182, 0.3);
+  color: rgb(255, 160, 182);
+}
+
+.module-topic-chip--active:hover {
+  background: rgba(255, 160, 182, 0.2);
+}
+
+.module-topic-chip__icon {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 696px) {
+  .dashboard-header__search {
+    width: 100%;
+    margin-right: -2rem;
+    font-size: 0.95rem;
+  }
+  .module-topic-chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem 1rem;
+    justify-content: flex-start;
+    margin-top: 0.7rem;
+  }
+  .module-topic-chip {
+    flex: 1 1 45%;
+    min-width: 120px;
+    max-width: 30%;
+    box-sizing: border-box;
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+  }
 }
