@@ -2,6 +2,36 @@ import React, { useState, useEffect } from "react";
 import { getModules } from "../../services/ModuleService";
 import { getTopics } from "../../services/TopicService";
 import "../../styles/components/Home/HomeContent.css";
+import Toast from "../global/Toast";
+
+const getReadableError = (error: any): string => {
+  // Network errors
+  if (!navigator.onLine) {
+    return "You appear to be offline. Please check your internet connection.";
+  }
+
+  // Handle specific error types
+  if (error?.response?.status === 401) {
+    return "Your session has expired. Please log in again.";
+  }
+  if (error?.response?.status === 403) {
+    return "You don't have permission to access these modules.";
+  }
+  if (error?.response?.status === 404) {
+    return "The requested modules could not be found.";
+  }
+  if (error?.response?.status >= 500) {
+    return "We're having trouble connecting to our servers. Please try again in a few minutes.";
+  }
+
+  // If we have a specific error message, use it
+  if (error?.message && typeof error.message === "string") {
+    return error.message;
+  }
+
+  // Default fallback
+  return "Unable to load modules. Please try again later.";
+};
 
 const HomeContent: React.FC = () => {
   const [search, setSearch] = useState("");
@@ -20,7 +50,10 @@ const HomeContent: React.FC = () => {
     }[]
   >([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [toast, setToast] = useState<{
+    message: string;
+    type: "success" | "error" | "warning" | "info";
+  } | null>(null);
   const [topicsByName, setTopicsByName] = useState<{
     [topicName: string]: { subTopicName: string; subTopicId: number }[];
   }>({});
@@ -33,14 +66,20 @@ const HomeContent: React.FC = () => {
 
   useEffect(() => {
     setLoading(true);
-    setError(null);
     getModules()
       .then((res) => {
+        if (!res.modules || res.modules.length === 0) {
+          throw new Error("No modules are currently available.");
+        }
         setModules(res.modules);
         setLoading(false);
       })
-      .catch(() => {
-        setError("Failed to load modules");
+      .catch((err) => {
+        const errorMessage = getReadableError(err);
+        setToast({
+          message: errorMessage,
+          type: "error",
+        });
         setLoading(false);
       });
   }, []);
@@ -51,7 +90,9 @@ const HomeContent: React.FC = () => {
       setTopicsError(null);
       getTopics({ moduleId: selectedModule.moduleId, accessToken: "" })
         .then((res) => {
-          // Group subtopics by topicName
+          if (!res.topics || res.topics.length === 0) {
+            throw new Error("No topics are available for this module yet.");
+          }
           const grouped: {
             [topicName: string]: { subTopicName: string; subTopicId: number }[];
           } = {};
@@ -65,9 +106,15 @@ const HomeContent: React.FC = () => {
           setTopicsByName(grouped);
           setTopicsLoading(false);
         })
-        .catch(() => {
-          setTopicsError("Failed to load topics");
+        .catch((err) => {
+          const errorMessage = getReadableError(err);
+          setToast({
+            message: errorMessage,
+            type: "error",
+          });
           setTopicsLoading(false);
+          // Close the popup when there's an error
+          setSelectedModule(null);
         });
     } else {
       setTopicsByName({});
@@ -80,7 +127,13 @@ const HomeContent: React.FC = () => {
 
   return (
     <div className="dashboard-content-section">
-      {" "}
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
       {/* Header */}
       <div className="dashboard-header">
         <div className="dashboard-header__top">
@@ -140,13 +193,11 @@ const HomeContent: React.FC = () => {
             Advanced
           </div>
         </div>
-      </div>
+      </div>{" "}
       {/* Module Selection Panel */}
       <div className="module-grid">
         {loading ? (
           <div>Loading modules...</div>
-        ) : error ? (
-          <div style={{ color: "red" }}>{error}</div>
         ) : filteredModules.length === 0 ? (
           <div>No modules found.</div>
         ) : (
@@ -283,8 +334,6 @@ const HomeContent: React.FC = () => {
             </h2>
             {topicsLoading ? (
               <div style={{ color: "#bbb" }}>Loading topics...</div>
-            ) : topicsError ? (
-              <div style={{ color: "#ff5e5e" }}>{topicsError}</div>
             ) : Object.keys(topicsByName).length === 0 ? (
               <div style={{ color: "#bbb" }}>No topics found.</div>
             ) : (

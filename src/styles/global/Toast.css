@@ -1,0 +1,124 @@
+/* Toast popup styles */
+.custom-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  min-width: 400px;
+  max-width: 450px;
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  z-index: 9999;
+  animation: toast-in 0.35s ease;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Type-specific styles */
+.custom-toast-success {
+  background-color: rgb(227, 252, 239);
+  border: 1px solid rgb(163, 243, 203);
+}
+
+.custom-toast-error {
+  background-color: rgb(255, 235, 235);
+  border: 1px solid rgb(255, 205, 205);
+}
+
+.custom-toast-warning {
+  background-color: rgb(255, 248, 225);
+  border: 1px solid rgb(255, 236, 179);
+}
+
+.custom-toast-info {
+  background-color: rgb(229, 246, 253);
+  border: 1px solid rgb(184, 231, 251);
+}
+
+/* Icon styles */
+.custom-toast-icon-wrapper {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.custom-toast-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.custom-toast-success .custom-toast-icon {
+  color: rgb(34, 197, 94);
+}
+
+.custom-toast-error .custom-toast-icon {
+  color: rgb(239, 68, 68);
+}
+
+.custom-toast-warning .custom-toast-icon {
+  color: rgb(234, 179, 8);
+}
+
+.custom-toast-info .custom-toast-icon {
+  color: rgb(59, 130, 246);
+}
+
+/* Content styles */
+.custom-toast-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.custom-toast-title {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 4px;
+  color: rgb(17, 24, 39);
+}
+
+.custom-toast-message {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgb(55, 65, 81);
+  word-wrap: break-word;
+}
+
+/* Close button styles */
+.custom-toast-close {
+  background: transparent;
+  border: none;
+  color: rgb(107, 114, 128);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  margin: -4px -4px 0 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.custom-toast-close:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: rgb(55, 65, 81);
+}
+
+/* Animation */
+@keyframes toast-in {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

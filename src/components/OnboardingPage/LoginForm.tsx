@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/components/OnboardingPage/OnboardingForms.css";
 import { loginUser } from "../../services/LoginService";
+import Toast from "../global/Toast";
 
 interface LoginFormProps {
   onSwitchToSignup: () => void;
@@ -16,6 +17,10 @@ const LoginForm: React.FC<LoginFormProps> = ({
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [isTypingDone, setIsTypingDone] = useState(false);
+  const [toast, setToast] = useState<{
+    message: string;
+    type: "success" | "error" | "warning" | "info";
+  } | null>(null);
   const navigate = useNavigate();
 
   // Set typing animation to complete after the animation duration
@@ -29,22 +34,61 @@ const LoginForm: React.FC<LoginFormProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!email || !password) {
+      setToast({
+        message: "Please enter both email and password",
+        type: "warning",
+      });
+      return;
+    }
+
     try {
       const response = await loginUser({ email, password });
-      // You can handle the response as needed, e.g., save token, show success, redirect
-      alert("Login successful!");
-      // Example: navigate to dashboard or home
-      // navigate('/dashboard');
+
+      // Verify we have all required data
+      if (!response.user?.uuid || !response.accessToken) {
+        throw new Error("User not found.Please sign up first.");
+      }
+
+      // Store user data and tokens
+      localStorage.setItem("accessToken", response.accessToken);
+      localStorage.setItem("refreshToken", response.refreshToken);
+      localStorage.setItem("user", JSON.stringify(response.user));
+      localStorage.setItem("isLoggedIn", "true");
+
+      setToast({
+        message: "Login successful! Welcome back.",
+        type: "success",
+      });
+
+      // Wait for toast to be visible before redirecting
+      setTimeout(() => {
+        navigate("/home");
+      }, 1500);
     } catch (error: any) {
-      alert(
-        error?.response?.data?.message || "Login failed. Please try again."
-      );
+      let errorMessage = error.message || "Failed to login. Please try again.";
+
+      setToast({
+        message: errorMessage,
+        type: "error",
+      });
+
+      // Clear password field on error
+      setPassword("");
     }
   };
 
   return (
     <div className="onboarding-container">
-      {/* ByteCupids logo as back button */}
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
+
       <Link to="/" className="brand-logo">
         ByteCupids
       </Link>
@@ -54,32 +98,28 @@ const LoginForm: React.FC<LoginFormProps> = ({
           <span>Welcome Back .!</span>
         </h1>
 
-        {/* Added tagline for context */}
         <p className="onboarding-tagline">
           Reconnect with your personal AI learning companion and continue your
           journey through computer science.
         </p>
 
-        {/* ByteCupids-specific tagline instead of button */}
         <div className="bytecupids-tagline">
           <span className="bytecupids-highlight">ByteCupids</span> creates
           meaningful dialogue between humans and machines to make learning
           computer science intuitive and enjoyable.
         </div>
-
-        {/* Decorative line */}
-        {/* <div className="decorative-line"></div> */}
       </div>
 
       <div className="onboarding-right">
-        {/* Form content remains unchanged */}
         <div className="form-container">
           <h2 className="form-title">Login</h2>
           <p className="form-subtitle">Glad you're back.!</p>
 
-          {/* Rest of the form */}
-          <form onSubmit={handleSubmit} className="form-content" autoComplete="off">
-            {/* Existing form elements */}
+          <form
+            onSubmit={handleSubmit}
+            className="form-content"
+            autoComplete="off"
+          >
             <div className="form-group">
               <input
                 type="email"
@@ -89,7 +129,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                autoComplete="off" // Or "username", "new-email"
+                autoComplete="off"
               />
             </div>
 
@@ -102,7 +142,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                autoComplete="new-password" // Specifically for password fields
+                autoComplete="new-password"
               />
             </div>
 
@@ -116,7 +156,14 @@ const LoginForm: React.FC<LoginFormProps> = ({
                 />
                 <label htmlFor="remember-me">Remember me</label>
               </div>
-              <a href="#" onClick={(e) => { e.preventDefault(); onSwitchToForgotPassword(); }} className="form-link">
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onSwitchToForgotPassword();
+                }}
+                className="form-link"
+              >
                 Forgot Password?
               </a>
             </div>
@@ -130,21 +177,54 @@ const LoginForm: React.FC<LoginFormProps> = ({
             </div>
 
             <div className="social-login">
-              <button type="button" className="social-button google" aria-label="Login with Google">
-                <img src="/images/google-icon.svg" alt="Google" width={20} height={20} />
+              <button
+                type="button"
+                className="social-button google"
+                aria-label="Login with Google"
+              >
+                <img
+                  src="/images/google-icon.svg"
+                  alt="Google"
+                  width={20}
+                  height={20}
+                />
               </button>
-              <button type="button" className="social-button facebook" aria-label="Login with Facebook">
-                <img src="/images/facebook-icon.svg" alt="Facebook" width={20} height={20} />
+              <button
+                type="button"
+                className="social-button facebook"
+                aria-label="Login with Facebook"
+              >
+                <img
+                  src="/images/facebook-icon.svg"
+                  alt="Facebook"
+                  width={20}
+                  height={20}
+                />
               </button>
-              <button type="button" className="social-button github" aria-label="Login with Github">
-                <img src="/images/github-icon.svg" alt="Github" width={20} height={20} />
+              <button
+                type="button"
+                className="social-button github"
+                aria-label="Login with Github"
+              >
+                <img
+                  src="/images/github-icon.svg"
+                  alt="Github"
+                  width={20}
+                  height={20}
+                />
               </button>
             </div>
 
             <div className="form-footer">
               <p>
                 Don't have an account?{" "}
-                <a href="#" onClick={(e) => { e.preventDefault(); onSwitchToSignup(); }}>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onSwitchToSignup();
+                  }}
+                >
                   Sign Up
                 </a>
               </p>

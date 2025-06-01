@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/components/OnboardingPage/OnboardingForms.css";
+import Toast from "../global/Toast";
 
 interface ForgotPasswordFormProps {
   onSwitchToLogin: () => void;
@@ -12,6 +13,10 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
 }) => {
   const [email, setEmail] = useState("");
   const [isTypingDone, setIsTypingDone] = useState(false);
+  const [toast, setToast] = useState<{
+    message: string;
+    type: "success" | "error" | "warning" | "info";
+  } | null>(null);
 
   // Set typing animation to complete after the animation duration
   useEffect(() => {
@@ -22,14 +27,50 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
     return () => clearTimeout(timer);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Forgot password attempt for:", email);
-    alert("Password reset link sent to your email (if account exists).");
+
+    try {
+      // TODO: Replace with actual password reset API call
+      // await resetPassword(email);
+
+      setToast({
+        message: "🔒 Password reset link has been sent to your email.",
+        type: "success",
+      });
+
+      // Switch to login after showing success message
+      setTimeout(() => {
+        onSwitchToLogin();
+      }, 3000);
+    } catch (error: any) {
+      let errorMessage = "Failed to send reset link.";
+
+      if (error?.response?.status === 404) {
+        errorMessage = "❌ No account found with this email address.";
+      } else if (error?.response?.status === 429) {
+        errorMessage = "⚠️ Too many requests. Please try again later.";
+      } else if (!navigator.onLine) {
+        errorMessage = "📡 Please check your internet connection.";
+      }
+
+      setToast({
+        message: errorMessage,
+        type: "error",
+      });
+    }
   };
 
   return (
     <div className="onboarding-container">
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
+
       {/* ByteCupids logo as back button */}
       <Link to="/" className="brand-logo">
         ByteCupids
@@ -38,9 +79,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
       <div className="onboarding-left">
         {/* Enhanced heading with typing animation */}
         <h1 className="onboarding-heading" data-text="No Worries.!!">
-          <span>
-            No Worries.!!
-          </span>
+          <span>No Worries.!!</span>
         </h1>
 
         {/* Added tagline for context */}
@@ -62,7 +101,11 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
 
       <div className="onboarding-right">
         <div className="form-container">
-          <form onSubmit={handleSubmit} className="form-content" autoComplete="off">
+          <form
+            onSubmit={handleSubmit}
+            className="form-content"
+            autoComplete="off"
+          >
             <h2 className="form-title">Reset Password</h2>
             <p className="form-subtitle">
               Enter your email to receive a password reset link.
@@ -81,14 +124,22 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
               />
             </div>
 
-            <button type="submit" className="form-button secondary-button"> {/* Changed to secondary-button for theme consistency */}
+            <button type="submit" className="form-button secondary-button">
+              {" "}
+              {/* Changed to secondary-button for theme consistency */}
               Send Reset Link
             </button>
 
             <div className="form-footer">
               <p>
                 Remember your password?{" "}
-                <a href="#" onClick={(e) => { e.preventDefault(); onSwitchToLogin(); }}>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onSwitchToLogin();
+                  }}
+                >
                   Log In
                 </a>
               </p>
